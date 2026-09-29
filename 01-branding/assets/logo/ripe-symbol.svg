@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120"><title>Ripe symbol</title>
+  <g fill="none" stroke="#2B2118" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 34V20a10 10 0 0 1 10-10h14M86 10h14a10 10 0 0 1 10 10v14M110 86v14a10 10 0 0 1-10 10H86M34 110H20a10 10 0 0 1-10-10V86"/></g>
+  <ellipse cx="60" cy="68" rx="36" ry="30" fill="#E2552A"/>
+  <ellipse cx="46" cy="60" rx="9" ry="5.5" fill="#F4A06B" transform="rotate(-30 48 58)"/>
+  <path d="M60 41c-8-7-20-8-28-3 7 6 18 7 28 3zM60 41c8-7 20-8 28-3-7 6-18 7-28 3zM60 41c-7-1-13 2-15 7 7 1 12-2 15-7zM60 41c7-1 13 2 15 7-7 1-12-2-15-7z" fill="#4A7326"/>
+  <path d="M60 41V31" stroke="#4A7326" stroke-width="5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024"><title>Ripe Android adaptive icon: foreground layer (art inside the 66/108 safe zone)</title>
+  <g transform="translate(512 530) scale(0.78) translate(-512 -530)"><circle cx="512" cy="530" r="236" fill="#FBF6EE"/>
+  <ellipse cx="512" cy="572" rx="160" ry="134" fill="#E2552A"/>
+  <ellipse cx="448" cy="530" rx="38" ry="22" fill="#F4A06B" transform="rotate(-30 458 516)"/>
+  <path d="M512 446c-36-30-88-34-124-12 30 26 80 30 124 12zM512 446c36-30 88-34 124-12-30 26-80 30-124 12zM512 446c-30-4-58 8-66 30 30 4 54-8 66-30zM512 446c30-4 58 8 66 30-30 4-54-8-66-30z" fill="#4A7326"/>
+  <path d="M512 446v-44" stroke="#4A7326" stroke-width="22" stroke-linecap="round"/>
+  <g fill="none" stroke="#FBF6EE" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"><path d="M282 352v-50a40 40 0 0 1 40-40h50M652 262h50a40 40 0 0 1 40 40v50M742 708v50a40 40 0 0 1-40 40h-50M372 798h-50a40 40 0 0 1-40-40v-50"/></g></g>
+</svg>
