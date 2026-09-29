@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ripe Stylescape</title>
+<meta name="description" content="Ripe brand stylescape: logo, palette, typography, UI fragments, food photography, icons and brand principles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --oat:#FBF6EE; --rice:#FFFCF6; --rye:#2B2118; --walnut:#6B5A4A; --persimmon:#C4431A; --apricot:#FCE3CC;
+  --avocado:#4A7326; --avocado-tint:#E6EFD9; --honey:#F2B63D; --p:#9B2F63; --f:#A77A0B; --c:#3B6CC0;
+  --ok:#2E7D4F; --warn:#9A6400; --warn-tint:#FDF3DF; --err:#B3261E; --line:rgba(43,33,24,.12);
+  --f-head:"Young Serif",serif; --f-body:"Hanken Grotesk",sans-serif; --f-num:"Azeret Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#2B2118}
+body{font-family:var(--f-body);color:var(--rye);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.stage{width:100%;overflow:hidden}
+.canvas{position:relative;width:3840px;height:2160px;background:var(--oat);overflow:hidden;transform-origin:0 0}
+.t{position:absolute;overflow:hidden}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.kicker{font:700 16px/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase}
+
+/* ---------- A1 · brand block ---------- */
+.brand{left:0;top:0;width:1180px;height:1250px;background:var(--persimmon);color:var(--oat);padding:72px 80px}
+.brand .top{display:flex;justify-content:space-between;opacity:.85}
+.brand .logo{margin-top:92px;width:720px;display:block}
+.brand h1{font:400 150px/.98 var(--f-head);letter-spacing:-.02em;margin-top:96px}
+.brand h1 span{color:#FFD9BE}
+.brand .sub{font:500 30px/1.35 var(--f-body);margin-top:40px;max-width:600px}
+.brand .store{display:inline-flex;gap:14px;align-items:center;margin-top:36px;font:600 20px/1 var(--f-body);background:rgba(251,246,238,.14);border:1.5px solid rgba(251,246,238,.4);border-radius:999px;padding:12px 20px}
+.brand .store b{font-family:var(--f-num);font-weight:500;opacity:.85}
+.brand .kws{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;max-width:640px}
+.brand .kws span{font:600 19px/1 var(--f-body);padding:11px 18px;border-radius:999px;background:var(--oat);color:var(--persimmon)}
+.brand .kws span+span{background:transparent;color:var(--oat);border:1.5px solid rgba(251,246,238,.5)}
+
+/* round badge: persimmon photo with ring text */
+.badge{position:absolute;left:760px;top:850px;width:480px;height:480px;z-index:6}
+.badge svg{position:absolute;inset:0;width:100%;height:100%}
+.badge .ph{position:absolute;inset:64px;border-radius:50%;background:url(assets/persimmons-bowl.jpg) center/cover;box-shadow:0 0 0 8px var(--oat)}
+
+/* ---------- A2 · snap photo ---------- */
+.snap{left:0;top:1250px;width:560px;height:910px;background:url(assets/snap-phone.jpg) center 42%/cover}
+.snap .cap{position:absolute;left:32px;bottom:32px;right:32px;background:var(--oat);border-radius:22px;padding:18px 22px;display:flex;align-items:center;gap:14px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.snap .cap .ic{width:52px;height:52px;border-radius:16px;background:var(--persimmon);color:#fff;display:grid;place-items:center}
+.snap .cap b{font:400 26px/1.1 var(--f-head);display:block}
+.snap .cap small{font:500 16px/1.3 var(--f-body);color:var(--walnut)}
+
+/* ---------- A3 · principles ---------- */
+.princ{left:560px;top:1250px;width:620px;height:910px;background:var(--rice);padding:110px 56px 40px 56px}
+.princ .kicker{color:var(--walnut);margin-bottom:26px}
+.pr{display:grid;grid-template-columns:78px 1fr;gap:4px 12px;padding:18px 0;border-top:1.5px solid var(--line)}
+.pr .n{font:400 44px/1 var(--f-head);color:var(--persimmon);grid-row:span 2}
+.pr b{font:400 30px/1.15 var(--f-head)}
+.pr p{font:400 18px/1.45 var(--f-body);color:var(--walnut)}
+
+/* ---------- B1 · hero food photo ---------- */
+.hero{left:1180px;top:0;width:1400px;height:1300px;background:#1d1712}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.hero .vf{position:absolute;inset:0;pointer-events:none}
+.hero .vert{position:absolute;left:34px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:0 0;white-space:nowrap}
+.pin{position:absolute;width:52px;height:52px;border-radius:50%;background:var(--rice);font:700 24px/52px var(--f-body);text-align:center;color:var(--rye);box-shadow:0 4px 14px rgba(0,0,0,.35);transform:translate(-50%,-50%)}
+.pin.q{background:var(--honey)}
+.pill{position:absolute;display:flex;align-items:center;gap:12px;background:rgba(255,252,246,.96);border-radius:18px;padding:12px 18px 12px 14px;box-shadow:0 10px 28px rgba(0,0,0,.3)}
+.pill .ic{width:30px;height:30px}
+.pill b{font:700 21px/1.2 var(--f-body);display:block}
+.pill small{font:500 16px/1.2 var(--f-body)}
+.pill .k{font:500 22px/1 var(--f-num);margin-left:10px}
+.pill.q{background:var(--warn-tint);border:2px solid var(--honey)}
+.hero .step{position:absolute;left:96px;top:72px;display:flex;align-items:center;gap:12px;background:var(--persimmon);color:#fff;border-radius:999px;padding:12px 22px 12px 14px;font:700 20px/1 var(--f-body)}
+.hero .step .d{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center}
+
+/* ---------- B2 · UI fragments ---------- */
+.frag{left:1180px;top:1300px;width:1400px;height:860px;background:var(--apricot);padding:52px 60px}
+.frag .card.ring,.frag .card.recipe{top:120px}
+.frag .kicker{color:var(--persimmon)}
+.card{position:absolute;background:var(--rice);border-radius:28px;box-shadow:0 1px 2px rgba(43,33,24,.06),0 12px 32px rgba(43,33,24,.10)}
+.ring{left:60px;top:110px;width:420px;padding:26px 26px 22px}
+.ring .g{position:relative;height:196px}
+.ring svg{width:368px;height:196px;display:block}
+.ring .big{position:absolute;left:0;right:0;top:96px;text-align:center}
+.ring .big b{font:500 58px/1 var(--f-num);letter-spacing:-.03em;display:block}
+.ring .big span{font:500 18px/1.4 var(--f-body);color:var(--walnut)}
+.ring .row{display:flex;justify-content:space-between;font:500 17px/1 var(--f-body);color:var(--walnut);margin:10px 4px 18px}
+.ring .row b{font-family:var(--f-num);color:var(--rye);font-weight:500}
+.mac{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mac div{font:600 15px/1.2 var(--f-body)}
+.mac div span{display:flex;align-items:center;gap:6px}
+.mac i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.mac div em{font:500 17px/1.6 var(--f-num);font-style:normal;display:block}
+.mac div em small{font-size:13px;color:var(--walnut)}
+.mac .bar{height:7px;border-radius:4px;background:var(--line);overflow:hidden}
+.mac .bar b{display:block;height:100%}
+.recipe{left:520px;top:110px;width:420px;overflow:hidden}
+.recipe .im{height:250px;background:url(assets/breakfast-granola-blueberries.jpg) center 38%/cover;position:relative}
+.recipe .im .fav{position:absolute;right:16px;top:16px;width:48px;height:48px;border-radius:50%;background:rgba(255,252,246,.94);display:grid;place-items:center}
+.recipe .bd{padding:20px 24px 24px}
+.tag{display:inline-flex;align-items:center;gap:6px;font:700 15px/1 var(--f-body);color:var(--avocado);background:var(--avocado-tint);padding:8px 12px;border-radius:999px}
+.recipe h3{font:400 30px/1.15 var(--f-head);margin:14px 0 8px}
+.recipe .meta{font:500 16px/1.4 var(--f-body);color:var(--walnut);display:flex;gap:14px}
+.recipe .meta span{display:flex;align-items:center;gap:5px}
+.recipe .meta .i{width:18px;height:18px}
+.recipe .foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.recipe .foot .kc{font:500 30px/1 var(--f-num)}
+.recipe .foot .kc small{font:500 15px var(--f-body);color:var(--walnut)}
+.btn{height:52px;padding:0 22px;border-radius:16px;background:var(--persimmon);color:#fff;display:inline-flex;align-items:center;gap:8px;font:700 18px/1 var(--f-body)}
+.prod{left:980px;top:236px;width:370px;padding:18px 18px 10px}
+.prod h4{font:400 24px/1.2 var(--f-head);padding:4px 6px 12px}
+.prow{display:grid;grid-template-columns:60px 1fr;gap:12px;align-items:center;padding:12px 6px;border-top:1px solid var(--line)}
+.prow .th{width:60px;height:60px;border-radius:14px;background-size:cover}
+.prow b{font:600 17px/1.25 var(--f-body);display:flex;align-items:center;gap:6px}
+.prow .v{font:700 11px/1 var(--f-body);letter-spacing:.06em;color:var(--ok);background:#E3F1E8;padding:4px 6px;border-radius:6px}
+.prow .kc{font:500 15px/1.5 var(--f-num)}
+.prow .kc em{font-style:normal;color:var(--walnut);font-size:13px}
+.states{position:absolute;left:60px;right:60px;top:716px;display:flex;gap:12px;align-items:center}
+.states span{display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 18px;border-radius:14px;background:var(--rice);font:600 17px/1 var(--f-body);box-shadow:0 1px 2px rgba(43,33,24,.06)}
+.states span .i{width:22px;height:22px}
+.states .toast{background:var(--rye);color:var(--oat)}
+.frag .cap{position:absolute;left:60px;bottom:30px;font:500 17px/1.4 var(--f-body);color:var(--walnut);max-width:880px}
+
+/* ---------- phone (Ripe result screen) ---------- */
+.phone-wrap{position:absolute;left:2318px;top:790px;width:328px;height:710px;z-index:8;filter:drop-shadow(0 30px 50px rgba(43,33,24,.45))}
+.phone{width:390px;height:844px;transform:scale(.841);transform-origin:0 0;border-radius:52px;background:var(--rice);overflow:hidden;position:relative;border:10px solid #1B1510;font-family:var(--f-body);font-size:16px;line-height:24px}
+.phone .ph-img{position:absolute;top:0;left:0;right:0;height:308px;background:url(assets/dish-salmon-rice-broccoli.jpg) 62% center/cover}
+.phone .sb{position:absolute;top:0;left:0;right:0;height:47px;display:flex;justify-content:space-between;align-items:center;padding:12px 26px 0 34px;font:600 16px/1 var(--f-body);color:#fff}
+.phone .rp{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--rice);font:700 13px/26px var(--f-body);text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.phone .rp.q{background:var(--honey)}
+.phone .sheet{position:absolute;top:282px;left:0;right:0;bottom:0;background:var(--rice);border-radius:26px 26px 0 0;padding:8px 18px 0}
+.phone .handle{width:36px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 10px}
+.phone .sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.phone .sh h5{font:400 22px/28px var(--f-head)}
+.phone .sh h5 small{display:block;font:400 13px/18px var(--f-body);color:var(--walnut)}
+.phone .mp{height:44px;padding:0 12px;border-radius:12px;background:var(--apricot);display:flex;align-items:center;gap:4px;font:700 15px/1 var(--f-body)}
+.phone .it{display:grid;grid-template-columns:24px minmax(0,1fr) auto 36px;gap:8px;align-items:center;min-height:56px;border-bottom:1px solid var(--line)}
+.phone .it .no{width:24px;height:24px;border-radius:50%;background:var(--apricot);font:700 12px/24px var(--f-body);text-align:center}
+.phone .it .nm{font:600 15px/20px var(--f-body)}
+.phone .it .cf{display:flex;align-items:center;gap:4px;font:600 12px/16px var(--f-body)}
+.phone .it .cf .i{width:14px;height:14px}
+.phone .st{display:flex;align-items:center;height:44px;border-radius:12px;background:var(--oat);border:1px solid var(--line)}
+.phone .st span{width:30px;display:grid;place-items:center;color:var(--walnut)}
+.phone .st span .i{width:17px;height:17px}
+.phone .st b{font:500 14px/1 var(--f-num);min-width:44px;text-align:center}
+.phone .it .kc{font:500 14px/1 var(--f-num);text-align:right}
+.phone .it.q{background:var(--warn-tint);margin:0 -18px;padding:0 18px;border:0}
+.phone .tot{display:flex;justify-content:space-between;align-items:center;padding:10px 0 8px}
+.phone .tot b{font:500 26px/1 var(--f-num)}
+.phone .tot b small{font:500 13px var(--f-body);color:var(--walnut)}
+.phone .tot .m{display:flex;gap:10px;font:500 13px/1 var(--f-num)}
+.phone .tot .m span{display:flex;align-items:center;gap:4px}
+.phone .tot .m i{width:10px;height:10px;border-radius:3px}
+.phone .cta{height:52px;border-radius:16px;background:var(--persimmon);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font:700 17px/1 var(--f-body)}
+.phone .disc{font:400 12px/16px var(--f-body);color:var(--walnut);text-align:center;margin-top:10px}
+.phone .hb{position:absolute;bottom:8px;left:50%;width:134px;height:5px;border-radius:3px;background:var(--rye);transform:translateX(-50%)}
+
+/* ---------- C1 · palette ---------- */
+.pal{left:2580px;top:0;width:1260px;height:650px;background:var(--rice);padding:60px 64px 0 150px}
+.pal .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:26px}
+.pal .hd h2{font:400 44px/1 var(--f-head)}
+.pal .hd .kicker{color:var(--walnut)}
+.chips{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+.chip{height:300px;border-radius:18px;padding:16px 14px;display:flex;flex-direction:column;justify-content:flex-end;font:500 14px/1.3 var(--f-body)}
+.chip b{font:400 21px/1.1 var(--f-head);display:block;margin-bottom:6px}
+.chip code{font:500 14px/1.4 var(--f-num);display:block}
+.chip.out{box-shadow:inset 0 0 0 1.5px var(--line)}
+.sem{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:12px}
+.sem div{border-radius:14px;padding:12px 12px 12px 14px;background:var(--oat);font:500 13px/1.3 var(--f-body);display:grid;grid-template-columns:22px 1fr;gap:2px 10px;align-items:center}
+.sem i{width:22px;height:22px;border-radius:6px;grid-row:span 2}
+.sem b{font:700 15px/1.2 var(--f-body)}
+.sem code{font:500 12px/1.2 var(--f-num);color:var(--walnut)}
+
+/* ---------- C2 · typography ---------- */
+.type{left:2580px;top:650px;width:1260px;height:810px;background:var(--oat);padding:56px 64px 0 150px;border-top:1.5px solid var(--line)}
+.type .hd{display:flex;justify-content:space-between;align-items:baseline}
+.type .hd h2{font:400 44px/1 var(--f-head)}
+.type .hd .kicker{color:var(--walnut)}
+.type .aa{position:absolute;right:60px;top:300px;font:400 260px/1 var(--f-head);color:var(--persimmon);letter-spacing:-.04em}
+.fam{padding:22px 0;border-bottom:1.5px solid var(--line);max-width:700px}
+.fam .lb{display:flex;gap:14px;align-items:baseline;font:700 14px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--walnut);margin-bottom:10px}
+.fam .lb span{letter-spacing:0;text-transform:none;font-weight:500;font-size:16px}
+.fam .spec{margin-bottom:8px}
+.fam p{font:400 18px/1.45 var(--f-body);color:var(--walnut)}
+.fam p b{color:var(--rye)}
+.nums{position:absolute;left:150px;right:64px;bottom:44px;display:flex;justify-content:space-between;align-items:baseline;padding-top:22px;border-top:1.5px solid var(--rye)}
+.nums .n{font:500 64px/1 var(--f-num);letter-spacing:-.03em}
+.nums .n small{font-size:24px;color:var(--walnut);letter-spacing:0}
+.nums .m{font:500 28px/1 var(--f-num);display:flex;gap:22px}
+.nums .m span{display:flex;align-items:center;gap:8px}
+.nums .m i{width:16px;height:16px;border-radius:4px}
+
+/* ---------- C3 · icons ---------- */
+.icons{left:2580px;top:1460px;width:640px;height:700px;background:var(--rice);padding:52px 56px 0 150px;border-top:1.5px solid var(--line)}
+.icons h2{font:400 40px/1 var(--f-head);margin-bottom:6px}
+.icons .kicker{color:var(--walnut);font-size:14px}
+.ig{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+.ig div{height:92px;border-radius:20px;background:var(--oat);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:500 13px/1 var(--f-body);color:var(--walnut)}
+.ig div .i{width:36px;height:36px;color:var(--rye)}
+.ig div.on{background:var(--persimmon);color:#FFE6D6}
+.ig div.on .i{color:#fff}
+.icons .note{font:400 16px/1.45 var(--f-body);color:var(--walnut);margin-top:24px}
+
+/* ---------- C4 · app icon ---------- */
+.appi{left:3220px;top:1460px;width:620px;height:700px;background:var(--rye);color:var(--oat);padding:52px 56px}
+.appi h2{font:400 40px/1 var(--f-head)}
+.appi .kicker{font-size:14px;opacity:.7;margin-top:10px}
+.appi .row{display:flex;align-items:flex-end;gap:28px;margin-top:40px}
+.appi figure{display:flex;flex-direction:column;align-items:center;gap:14px}
+.appi figcaption{font:500 14px/1.35 var(--f-body);opacity:.75;text-align:center}
+.appi .m{width:250px;height:250px}
+.appi .ios{width:120px;height:120px;border-radius:27px;overflow:hidden}
+.appi .and{width:120px;height:120px;border-radius:50%;overflow:hidden;position:relative}
+.appi .and::after{content:"";position:absolute;inset:23px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.9)}
+.appi img{width:100%;height:100%;display:block}
+.appi .note{font:400 16px/1.45 var(--f-body);opacity:.75;margin-top:30px}
+
+/* stickers */
+.sticker{position:absolute;z-index:9;display:flex;align-items:center;gap:10px;border-radius:999px;padding:14px 22px;font:700 22px/1 var(--f-body);box-shadow:0 10px 24px rgba(0,0,0,.22)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-today" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5V20H4z"/><path d="M9.5 20v-5h5v5"/></symbol>
+  <symbol id="i-diary" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+  <symbol id="i-pot" viewBox="0 0 24 24"><path d="M4 11h16v4a5 5 0 01-5 5H9a5 5 0 01-5-5z"/><path d="M2 11h20M9 4v3M12 3v4M15 4v3"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-barcode" viewBox="0 0 24 24"><path d="M4 6v12M7.5 6v12M11 6v12M14 6v12M17 6v12M20 6v12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.7 2.7L16 9.5"/></symbol>
+  <symbol id="i-half" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18z" fill="currentColor"/></symbol>
+  <symbol id="i-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.5-1.5 1-1.5 2M12 17h.01"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></symbol>
+  <symbol id="i-vf" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"/><circle cx="12" cy="12.5" r="3.5"/><path d="M12 9V7.5"/></symbol>
+  <symbol id="i-portion" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 12V3.5M12 12l6 6"/></symbol>
+  <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></symbol>
+</svg>
+
+<div class="stage"><div class="canvas" id="canvas">
+
+  <!-- A1 · brand -->
+  <section class="t brand">
+    <div class="top kicker"><span>Ripe · Brand stylescape</span><span>01 · Branding</span></div>
+    <img class="logo" src="assets/logo/ripe-logo-on-persimmon.svg" alt="Ripe logo">
+    <h1>Point,<br>snap,<br><span>know.</span></h1>
+    <p class="sub">Calories from a photo, as fresh as the food.</p>
+    <div class="store">Store name <b>“Ripe: Photo Calorie Counter” · 27/30</b></div>
+    <div class="kws"><span>Fresh</span><span>Quick</span><span>Optimistic</span><span>Honest</span><span>Appetising</span></div>
+  </section>
+
+  <!-- A2 · snap photo -->
+  <section class="t snap" role="img" aria-label="Hands photographing a meal with a phone">
+    <div class="cap"><span class="ic"><svg class="i"><use href="#i-cam"/></svg></span><div><b>Snap → 3 s → done</b><small>Every item, portion and kcal, ready to confirm</small></div></div>
+  </section>
+
+  <!-- A3 · principles -->
+  <section class="t princ">
+    <div class="kicker">Brand principles</div>
+    <div class="pr"><span class="n">01</span><b>The photo is the interface</b><p>Logging starts with the camera. Everything after is a quick correction, never a form.</p></div>
+    <div class="pr"><span class="n">02</span><b>Honest estimates</b><p>Every item shows how sure we are. Nothing is saved until you confirm it.</p></div>
+    <div class="pr"><span class="n">03</span><b>Food, not guilt</b><p>No red alarms, no "bad" foods, no shame. Over goal is just a number.</p></div>
+    <div class="pr"><span class="n">04</span><b>Two taps, then dinner</b><p>Recent foods first, sensible defaults, no pop-ups. Then get back to your meal.</p></div>
+  </section>
+
+  <!-- B1 · hero photo with detection overlay -->
+  <section class="t hero">
+    <img src="assets/dish-salmon-rice-broccoli.jpg" alt="Salmon, white rice and broccoli on a dark plate, shot from above">
+    <svg class="vf" viewBox="0 0 1400 1300" aria-hidden="true"><g fill="none" stroke="#FBF6EE" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M90 250v-120a40 40 0 0 1 40-40h120M1150 90h120a40 40 0 0 1 40 40v120M1310 1050v120a40 40 0 0 1-40 40h-120M250 1210H130a40 40 0 0 1-40-40v-120"/></g></svg>
+    <div class="step"><span class="d"><svg class="i" style="width:20px;height:20px"><use href="#i-vf"/></svg></span>Analysing your plate · 4 foods found</div>
+    <span class="pin" style="left:1024px;top:713px">1</span>
+    <span class="pin" style="left:444px;top:694px">2</span>
+    <span class="pin" style="left:729px;top:618px">3</span>
+    <span class="pin q" style="left:1033px;top:361px">4</span>
+    <div class="pill" style="left:660px;top:790px"><svg class="i ic" style="color:var(--ok)"><use href="#i-ok"/></svg><div><b>Salmon, cooked</b><small style="color:var(--ok)">High confidence</small></div><span class="k">140 g · 288</span></div>
+    <div class="pill" style="left:140px;top:830px"><svg class="i ic" style="color:var(--warn)"><use href="#i-half"/></svg><div><b>White rice</b><small style="color:var(--warn)">Check portion</small></div><span class="k">150 g · 195</span></div>
+    <div class="pill" style="left:420px;top:430px"><svg class="i ic" style="color:var(--ok)"><use href="#i-ok"/></svg><div><b>Broccoli, boiled</b><small style="color:var(--ok)">High confidence</small></div><span class="k">90 g · 32</span></div>
+    <div class="pill q" style="left:700px;top:210px"><svg class="i ic" style="color:var(--warn)"><use href="#i-q"/></svg><div><b>Oil or glaze?</b><small style="color:var(--warn)">Not sure. Tap to choose</small></div><span class="k">5 g · 44</span></div>
+  </section>
+
+  <!-- B2 · UI fragments -->
+  <section class="t frag">
+    <div class="kicker">UI fragments · built from the tokens</div>
+
+    <div class="card ring">
+      <div class="g">
+        <svg viewBox="0 0 368 196" aria-hidden="true">
+          <path d="M26 184 A158 158 0 0 1 342 184" fill="none" stroke="#FCE3CC" stroke-width="26" stroke-linecap="round"/>
+          <path d="M26 184 A158 158 0 0 1 342 184" fill="none" stroke="#C4431A" stroke-width="26" stroke-linecap="round" stroke-dasharray="283.4 600"/>
+        </svg>
+        <div class="big"><b class="num">879</b><span>kcal left today</span></div>
+      </div>
+      <div class="row"><span>Eaten <b>1,171</b></span><span>Goal <b>2,050</b></span></div>
+      <div class="mac">
+        <div><span><i style="background:var(--p)"></i>P · Protein</span><em>70<small> / 110 g</small></em><div class="bar"><b style="width:64%;background:var(--p)"></b></div></div>
+        <div><span><i style="background:var(--f)"></i>F · Fat</span><em>45<small> / 68 g</small></em><div class="bar"><b style="width:66%;background:var(--f)"></b></div></div>
+        <div><span><i style="background:var(--c)"></i>C · Carbs</span><em>127<small> / 250 g</small></em><div class="bar"><b style="width:51%;background:var(--c)"></b></div></div>
+      </div>
+    </div>
+
+    <div class="card recipe">
+      <div class="im"><span class="fav"><svg class="i"><use href="#i-heart"/></svg></span></div>
+      <div class="bd">
+        <span class="tag"><svg class="i" style="width:16px;height:16px"><use href="#i-leaf"/></svg>Fits your breakfast</span>
+        <h3>Oat &amp; blueberry yogurt bowl</h3>
+        <div class="meta"><span><svg class="i"><use href="#i-time"/></svg>5 min</span><span>3 ingredients</span><span class="num">P 26 · F 7 · C 47</span></div>
+        <div class="foot"><span class="kc num">344 <small>kcal</small></span><span class="btn"><svg class="i" style="width:20px;height:20px"><use href="#i-plus"/></svg>Log portion</span></div>
+      </div>
+    </div>
+
+    <div class="card prod">
+      <h4>Per 100 g</h4>
+      <div class="prow"><span class="th" style="background-image:url(assets/avocado-halves.jpg);background-position:center"></span><div><b>Avocado, raw <span class="v">✓ USDA</span></b><div class="kc">160 kcal <em>· P 2.0 · F 14.7 · C 8.5</em></div></div></div>
+      <div class="prow"><span class="th" style="background-image:url(assets/dish-salmon-rice-broccoli.jpg);background-size:420%;background-position:74% 52%"></span><div><b>Salmon, cooked <span class="v">✓ USDA</span></b><div class="kc">206 kcal <em>· P 22.1 · F 12.4 · C 0</em></div></div></div>
+      <div class="prow"><span class="th" style="background-image:url(assets/dish-salmon-rice-broccoli.jpg);background-size:420%;background-position:36% 52%"></span><div><b>White rice, cooked <span class="v">✓ USDA</span></b><div class="kc">130 kcal <em>· P 2.7 · F 0.3 · C 28.2</em></div></div></div>
+    </div>
+
+    <div class="states"><span style="color:var(--ok)"><svg class="i"><use href="#i-ok"/></svg>High confidence</span><span style="color:var(--warn)"><svg class="i"><use href="#i-half"/></svg>Check portion</span><span style="color:var(--warn)"><svg class="i"><use href="#i-q"/></svg>Not sure</span><span class="toast"><svg class="i" style="color:var(--honey)"><use href="#i-leaf"/></svg>Over by 120 kcal. It's a number, not a verdict.</span></div>
+    <p class="cap">Numbers are real USDA FoodData Central values. The recipe card is Greek yogurt 200 g + rolled oats 40 g + blueberries 80 g. Over goal is shown in Turmeric, never error red.</p>
+  </section>
+
+  <!-- C1 · palette -->
+  <section class="t pal">
+    <div class="hd"><h2>Palette · named after food</h2><span class="kicker">Contrast on Oat milk · WCAG AA</span></div>
+    <div class="chips">
+      <div class="chip out" style="background:#FBF6EE"><b>Oat milk</b><code>#FBF6EE</code>Background</div>
+      <div class="chip out" style="background:#FFFCF6"><b>Rice</b><code>#FFFCF6</code>Cards, sheets</div>
+      <div class="chip" style="background:#FCE3CC"><b>Apricot</b><code>#FCE3CC</code>Tints, chips</div>
+      <div class="chip" style="background:#F2B63D"><b>Honey</b><code>#F2B63D</code>Highlights</div>
+      <div class="chip" style="background:#C4431A;color:#fff"><b>Persimmon</b><code>#C4431A</code>Brand, CTA · 4.7</div>
+      <div class="chip" style="background:#4A7326;color:#fff"><b>Avocado</b><code>#4A7326</code>Freshness · 5.2</div>
+      <div class="chip" style="background:#6B5A4A;color:#fff"><b>Walnut</b><code>#6B5A4A</code>Secondary · 6.1</div>
+      <div class="chip" style="background:#2B2118;color:#FBF6EE"><b>Rye crust</b><code>#2B2118</code>Text · 14.6</div>
+    </div>
+    <div class="sem">
+      <div><i style="background:#9B2F63"></i><b>P · Beetroot</b><code>#9B2F63</code></div>
+      <div><i style="background:#A77A0B"></i><b>F · Mustard</b><code>#A77A0B</code></div>
+      <div><i style="background:#3B6CC0"></i><b>C · Blueberry</b><code>#3B6CC0</code></div>
+      <div><i style="background:#2E7D4F"></i><b>Basil</b><code>success</code></div>
+      <div><i style="background:#9A6400"></i><b>Turmeric</b><code>warning · over goal</code></div>
+      <div><i style="background:#B3261E"></i><b>Chili</b><code>errors only</code></div>
+    </div>
+  </section>
+
+  <!-- C2 · typography -->
+  <section class="t type">
+    <div class="hd"><h2>Typography</h2><span class="kicker">Google Fonts · SIL OFL</span></div>
+    <div class="aa">Aa</div>
+    <div class="fam"><div class="lb">Headline <span>Young Serif · 400</span></div><div class="spec" style="font:400 56px/1.05 var(--f-head)">We found 4 foods</div><p><b>Use for headlines and big moments only</b>, 20 px and up. A warm market-sign serif with one weight, so hierarchy comes from size.</p></div>
+    <div class="fam"><div class="lb">Body &amp; UI <span>Hanken Grotesk · 400 / 600 / 700</span></div><div class="spec" style="font:500 26px/1.35 var(--f-body)">Check the portion, then add it to Lunch.</div><p><b>All interface text.</b> Body 16, callout 14, caption 12 minimum. Scales with Dynamic Type and Android sp.</p></div>
+    <div class="fam" style="border-bottom:0"><div class="lb">Numbers <span>Azeret Mono · 500</span></div><p><b>Every number</b>: kcal, grams, macros. Tabular figures, so columns and totals line up.</p></div>
+    <div class="nums"><span class="n">559 <small>kcal</small></span><span class="m"><span><i style="background:var(--p)"></i>P 37</span><span><i style="background:var(--f)"></i>F 23</span><span><i style="background:var(--c)"></i>C 49</span></span></div>
+  </section>
+
+  <!-- C3 · icons -->
+  <section class="t icons">
+    <h2>Icons</h2>
+    <div class="kicker">24 px grid · 2 px round stroke · SVG</div>
+    <div class="ig">
+      <div><svg class="i"><use href="#i-today"/></svg>Today</div>
+      <div><svg class="i"><use href="#i-diary"/></svg>Diary</div>
+      <div class="on"><svg class="i"><use href="#i-cam"/></svg>Scan</div>
+      <div><svg class="i"><use href="#i-pot"/></svg>Recipes</div>
+      <div><svg class="i"><use href="#i-user"/></svg>Profile</div>
+      <div><svg class="i"><use href="#i-search"/></svg>Search</div>
+      <div><svg class="i"><use href="#i-barcode"/></svg>Barcode</div>
+      <div><svg class="i"><use href="#i-vf"/></svg>Frame</div>
+      <div><svg class="i" style="color:var(--ok)"><use href="#i-ok"/></svg>Sure</div>
+      <div><svg class="i" style="color:var(--warn)"><use href="#i-half"/></svg>Check</div>
+      <div><svg class="i" style="color:var(--warn)"><use href="#i-q"/></svg>Not sure</div>
+      <div><svg class="i"><use href="#i-portion"/></svg>Portion</div>
+    </div>
+    <p class="note">Confidence is always icon + word, never colour alone.</p>
+  </section>
+
+  <!-- C4 · app icon -->
+  <section class="t appi">
+    <h2>App icon</h2>
+    <div class="kicker">1024 × 1024 · opaque · no pre-rounded corners</div>
+    <div class="row">
+      <figure><img class="m" src="assets/logo/ripe-app-icon-1024.svg" alt="Ripe app icon master"><figcaption>Master (square)</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <figure><div class="ios"><img src="assets/logo/ripe-app-icon-1024.svg" alt=""></div><figcaption>iOS mask</figcaption></figure>
+      </div>
+      <figure><div class="and" style="background:#C4431A"><img src="assets/logo/ripe-android-foreground.svg" alt=""></div><figcaption>Android adaptive<br>66/108 safe zone</figcaption></figure>
+    </div>
+    <p class="note">A ripe persimmon on an oat plate, inside the camera frame. It reads as food first and as a camera app second.</p>
+  </section>
+
+  <!-- phone: photo result screen -->
+  <div class="phone-wrap"><div class="phone">
+    <div class="ph-img"></div>
+    <div class="sb"><span>9:41</span><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity=".6"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/></svg></div>
+    <span class="rp" style="left:222px;top:150px">1</span><span class="rp" style="left:70px;top:146px">2</span><span class="rp" style="left:140px;top:124px">3</span><span class="rp q" style="left:224px;top:74px">4</span>
+    <div class="sheet">
+      <div class="handle"></div>
+      <div class="sh"><h5>We found 4 foods<small>Check anything marked below</small></h5><span class="mp">Lunch<svg class="i" style="width:18px;height:18px"><use href="#i-chev-d"/></svg></span></div>
+      <div class="it"><span class="no">1</span><div><div class="nm">Salmon, cooked</div><div class="cf" style="color:var(--ok)"><svg class="i"><use href="#i-ok"/></svg>High confidence</div></div><div class="st"><span><svg class="i"><use href="#i-minus"/></svg></span><b>140 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">288</span></div>
+      <div class="it"><span class="no">2</span><div><div class="nm">White rice</div><div class="cf" style="color:var(--warn)"><svg class="i"><use href="#i-half"/></svg>Check portion</div></div><div class="st"><span><svg class="i"><use href="#i-minus"/></svg></span><b>150 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">195</span></div>
+      <div class="it"><span class="no">3</span><div><div class="nm">Broccoli, boiled</div><div class="cf" style="color:var(--ok)"><svg class="i"><use href="#i-ok"/></svg>High confidence</div></div><div class="st"><span><svg class="i"><use href="#i-minus"/></svg></span><b>90 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">32</span></div>
+      <div class="it q"><span class="no" style="background:var(--honey)">4</span><div><div class="nm">Oil or glaze?</div><div class="cf" style="color:var(--warn)"><svg class="i"><use href="#i-q"/></svg>Not sure. Tap to choose</div></div><div class="st"><span><svg class="i"><use href="#i-minus"/></svg></span><b>5 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">44</span></div>
+      <div class="tot"><b>559 <small>kcal</small></b><div class="m"><span><i style="background:var(--p)"></i>P 37</span><span><i style="background:var(--f)"></i>F 23</span><span><i style="background:var(--c)"></i>C 49</span></div></div>
+      <div class="cta"><svg class="i"><use href="#i-check"/></svg>Add to Lunch · 559 kcal</div>
+      <p class="disc">Photo estimates can be off by 10–20%. Not medical advice.</p>
+    </div>
+    <div class="hb"></div>
+  </div></div>
+
+  <!-- ring-text badge with persimmons -->
+  <div class="badge" aria-hidden="true">
+    <svg viewBox="0 0 480 480">
+      <defs><path id="ring" d="M240 240m-212 0a212 212 0 1 1 424 0a212 212 0 1 1-424 0"/></defs>
+      <circle cx="240" cy="240" r="238" fill="#2B2118"/>
+      <text font-family="Azeret Mono" font-weight="500" font-size="25" letter-spacing="5" fill="#FBF6EE"><textPath href="#ring">SNAP · KNOW · ENJOY · FRESH FROM THE PHOTO · 559 KCAL ·</textPath></text>
+    </svg>
+    <div class="ph"></div>
+  </div>
+
+  <!-- stickers -->
+  <div class="sticker" style="left:1236px;top:1188px;background:var(--honey);color:var(--rye);transform:rotate(-4deg)"><svg class="i"><use href="#i-leaf"/></svg>879 kcal left. Plenty of room for dinner</div>
+  <div class="sticker" style="left:1760px;top:1250px;background:var(--rye);color:var(--oat);transform:rotate(3deg)">Nothing is saved until you confirm</div>
+
+</div></div>
+
+<script>
+  // Fit the fixed 3840×2160 board to the viewport width (the PNG export uses a 3840 px viewport, so scale = 1).
+  (function(){
+    const c=document.getElementById('canvas'), st=c.parentElement;
+    function fit(){const s=Math.min(1,st.clientWidth/3840);c.style.transform='scale('+s+')';st.style.height=(2160*s)+'px';}
+    addEventListener('resize',fit);fit();
+  })();
+</script>
+</body>
+</html>

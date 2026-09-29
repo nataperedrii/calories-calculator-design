@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Directions</title>
+<meta name="description" content="Three light-theme brand directions for a photo-first calorie calculator: RIPE, PER100 and SPRIG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;600&family=Libre+Franklin:wght@400;500;600;700;800;900&family=Public+Sans:wght@400;500;600;700&family=Chivo+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Albert+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ page chrome ============ */
+:root{
+  --page:#ECE7DE; --page-ink:#1F1B16; --page-muted:#645C51; --page-line:rgba(31,27,22,.14); --page-card:#F6F2EA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--page);color:var(--page-ink);font-family:"Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5}
+.page{max-width:3840px;margin:0 auto;padding:88px 72px 72px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:48px;flex-wrap:wrap;margin-bottom:40px}
+.top h1{font-family:"Libre Franklin";font-weight:900;font-size:72px;letter-spacing:-.03em;line-height:.95}
+.top p{max-width:1100px;color:var(--page-muted);font-size:20px;margin-top:16px}
+.top .meta{font-family:"Azeret Mono";font-size:14px;color:var(--page-muted);text-align:right;line-height:1.7}
+.note{font-size:14px;color:var(--page-muted);background:var(--page-card);border:1px dashed var(--page-line);border-radius:12px;padding:12px 16px;margin-bottom:32px}
+
+.shared{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;margin-bottom:48px}
+.card{background:var(--page-card);border:1px solid var(--page-line);border-radius:20px;padding:24px 24px 22px}
+.card h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--page-muted);margin-bottom:12px}
+.card h3{font-family:"Libre Franklin";font-weight:800;font-size:22px;line-height:1.15;margin-bottom:12px;letter-spacing:-.01em}
+.card ul{list-style:none;display:grid;gap:6px;font-size:14.5px;line-height:1.45}
+.card li{padding-left:18px;position:relative}
+.card li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--page-ink)}
+.card li.minus::before{background:transparent;border:1.5px solid var(--page-ink)}
+.card .sub{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--page-muted);margin:12px 0 6px}
+.flow{display:grid;gap:6px;counter-reset:f}
+.flow div{counter-increment:f;font-size:14px;line-height:1.35;background:#FBF8F2;border:1px solid var(--page-line);border-radius:10px;padding:8px 10px 8px 38px;position:relative}
+.flow div::before{content:counter(f);position:absolute;left:10px;top:8px;width:20px;height:20px;border-radius:50%;background:var(--page-ink);color:#FBF8F2;font:700 11px/20px "Azeret Mono";text-align:center}
+.flow div b{font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;padding:4px 10px;border-radius:999px;background:#FBF8F2;border:1px solid var(--page-line)}
+.chip.avoid{text-decoration:line-through;color:var(--page-muted)}
+
+.boards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;align-items:start}
+@media (max-width:1400px){.shared{grid-template-columns:repeat(2,minmax(0,1fr))}.boards{grid-template-columns:1fr}}
+@media (max-width:700px){
+  .page{padding:32px 16px}.top h1{font-size:40px}.top .meta{text-align:left}
+  .shared{grid-template-columns:1fr}
+}
+
+/* ============ board skeleton (per-direction vars) ============ */
+.board{background:var(--bg);color:var(--ink);border-radius:32px;overflow:hidden;border:1px solid var(--line)}
+.board .hero{background:var(--hero-bg);color:var(--hero-ink);padding:44px 48px 40px}
+.hero .lbl{display:flex;justify-content:space-between;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;opacity:.8;margin-bottom:28px}
+.lockup{display:flex;align-items:center;gap:22px;margin-bottom:22px}
+.lockup .appicon{width:96px;height:96px;border-radius:22px;overflow:hidden;flex:none;box-shadow:0 1px 0 rgba(0,0,0,.08),0 10px 24px -8px rgba(0,0,0,.35)}
+.lockup .appicon svg{width:100%;height:100%;display:block}
+.storename{font-size:14px;opacity:.85;margin-top:6px}
+.storename code{font-family:inherit;padding:2px 8px;border-radius:6px;background:rgba(255,255,255,.18)}
+.positioning{font-size:26px;line-height:1.3;max-width:900px}
+.audience{font-size:16px;line-height:1.5;margin-top:14px;max-width:960px;opacity:.9}
+.kws{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.board section{padding:32px 48px;border-top:1px solid var(--line)}
+.board h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink2);margin-bottom:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.pal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sw{border-radius:var(--r-sw);overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.sw .c{height:64px;position:relative}
+.sw .c span{position:absolute;right:8px;bottom:6px;font:600 11px/1 var(--f-num);padding:3px 6px;border-radius:4px;background:rgba(255,255,255,.85);color:#1a1a1a}
+.sw .t{padding:10px 12px 12px;font-size:12.5px;line-height:1.35}
+.sw .t b{display:block;font-size:14px}
+.sw .t code{font-family:var(--f-num);font-size:12px;color:var(--ink2)}
+.sw .t em{font-style:normal;color:var(--ink2)}
+.macro-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:12px}
+.mchip{border-radius:var(--r-sw);padding:10px 12px;background:var(--surface);border:1px solid var(--line);font-size:12.5px;line-height:1.3}
+.mchip i{display:block;height:10px;border-radius:3px;margin-bottom:8px}
+.mchip b{font-size:13.5px}
+.mchip code{display:block;font-family:var(--f-num);font-size:11.5px;color:var(--ink2)}
+.cvd{font-size:13px;color:var(--ink2);margin-top:10px}
+
+.screens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.scr figcaption{font-size:13px;font-weight:600;margin-top:12px;color:var(--ink2);display:flex;justify-content:space-between}
+.scaler{width:100%;aspect-ratio:390/844;position:relative}
+.scaler>.phone{position:absolute;top:0;left:0;transform-origin:0 0;transform:scale(var(--s,.8))}
+@media (max-width:700px){.screens{grid-template-columns:repeat(3,260px);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.scr{scroll-snap-align:start}}
+
+.type-spec{display:grid;gap:14px}
+.ts-row{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline}
+.ts-row small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);line-height:1.35}
+.ts-row small span{display:block;text-transform:none;letter-spacing:0;font-size:12px}
+.scale-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
+.scale-table td{padding:5px 0;border-top:1px solid var(--line)}
+.scale-table td:last-child{text-align:right;font-family:var(--f-num);color:var(--ink2)}
+.tok{display:grid;gap:18px}
+.spacing{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.spacing div{display:flex;flex-direction:column;align-items:center;gap:6px;font:500 11px/1 var(--f-num);color:var(--ink2)}
+.spacing i{display:block;background:var(--primary);opacity:.85;width:14px}
+.radii,.elev{display:flex;gap:12px;flex-wrap:wrap}
+.radii div,.elev div{width:64px;height:52px;background:var(--surface);border:1.5px solid var(--ink);display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;font:500 11px/1 var(--f-num);color:var(--ink2)}
+.elev div{border:none;width:80px}
+.icons{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.icons svg{width:32px;height:32px;color:var(--ink)}
+.icons .grid24{width:48px;height:48px;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:4px 4px;border:1px solid var(--line);display:grid;place-items:center}
+.icons .grid24 svg{width:40px;height:40px}
+.micro{display:grid;gap:10px}
+.desc{font-size:15px;line-height:1.55}
+.desc b{font-weight:700}
+.iconprev{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap}
+.iconprev figure{display:flex;flex-direction:column;align-items:center;gap:10px;width:108px}
+.iconprev figcaption{font-size:12px;color:var(--ink2);text-align:center;line-height:1.35}
+.ip-master{width:104px;height:104px}
+.ip-ios{width:92px;height:92px;border-radius:21px;overflow:hidden;box-shadow:0 8px 20px -8px rgba(0,0,0,.35)}
+.ip-and{width:104px;height:104px;position:relative}
+.ip-and .mask{position:absolute;inset:0;border-radius:50%;overflow:hidden}
+.ip-and .safe{position:absolute;inset:calc(104px*(21/108));border-radius:50%;border:1.5px dashed rgba(255,255,255,.95);outline:1.5px dashed rgba(0,0,0,.55);outline-offset:1px}
+.ip-canvas{width:104px;height:104px;position:relative;outline:1px dashed var(--ink2)}
+.ip-canvas .safe{position:absolute;inset:calc(104px*(21/108));border-radius:50%;border:1.5px dashed #fff}
+.iconprev svg{width:100%;height:100%;display:block}
+.diff{font-size:16px;line-height:1.55}
+
+/* ============ PHONE (shared mechanics) ============ */
+.phone{width:390px;height:844px;overflow:hidden;background:var(--bg);color:var(--ink);border-radius:46px;box-shadow:0 0 0 1px var(--line),0 24px 48px -24px rgba(0,0,0,.28);font-family:var(--f-body);font-size:16px;line-height:24px}
+.phone svg{flex-shrink:0}
+.sb{height:47px;display:flex;justify-content:space-between;align-items:center;padding:12px 30px 0 40px;font:600 16px/1 var(--f-body);position:relative;z-index:3}
+.sb .ind{display:flex;gap:6px;align-items:center}
+.homebar{position:absolute;bottom:8px;left:50%;width:134px;height:5px;border-radius:3px;background:var(--ink);transform:translateX(-50%);z-index:5}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:83px;padding:0 8px 34px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;background:var(--surface);z-index:4}
+.tab{height:49px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;line-height:14px;color:var(--ink2);font-weight:500}
+.tab svg{width:24px;height:24px}
+.tab.on{color:var(--ink)}
+.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:var(--stroke);stroke-linecap:var(--cap);stroke-linejoin:var(--join)}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+
+/* ============ A · RIPE ============ */
+.ripe{
+  --bg:#FBF6EE;--surface:#FFFCF6;--ink:#2B2118;--ink2:#6B5A4A;--line:rgba(43,33,24,.12);
+  --primary:#C4431A;--on-primary:#FFFFFF;--tint:#FCE3CC;--fresh:#4A7326;--fresh-tint:#E6EFD9;--honey:#F2B63D;
+  --p:#9B2F63;--f:#A77A0B;--c:#3B6CC0;--ok:#2E7D4F;--warn:#9A6400;--warn-tint:#FDF3DF;--err:#B3261E;
+  --hero-bg:#C4431A;--hero-ink:#FFFCF6;--r-sw:12px;
+  --f-head:"Young Serif",serif;--f-body:"Hanken Grotesk",sans-serif;--f-num:"Azeret Mono",monospace;
+  --stroke:2px;--cap:round;--join:round;
+  font-family:var(--f-body);
+}
+.ripe .kw{font-weight:600;font-size:14px;padding:7px 14px;border-radius:999px;background:rgba(255,252,246,.16);border:1px solid rgba(255,252,246,.35)}
+.ripe .kw:first-child{background:#FFFCF6;color:#C4431A}
+.ripe .wordmark{font-family:"Young Serif";font-size:84px;line-height:.9;letter-spacing:-.02em}
+.ripe .tone{background:var(--surface);border-radius:16px;padding:12px 16px 12px 48px;position:relative;font-size:15.5px;line-height:1.4;box-shadow:0 1px 2px rgba(43,33,24,.06),0 2px 8px rgba(43,33,24,.06)}
+.ripe .tone svg{position:absolute;left:14px;top:12px;width:22px;height:22px}
+/* ripe screens */
+.r-top{padding:4px 20px 0;display:flex;justify-content:space-between;align-items:center;height:52px}
+.r-top .date{font-size:14px;color:var(--ink2);font-weight:500;line-height:20px}
+.r-top .hi{font-family:var(--f-head);font-size:22px;line-height:28px}
+.r-avatar{width:44px;height:44px;border-radius:50%;background:var(--tint);display:grid;place-items:center;font-weight:700;color:var(--ink)}
+.r-gauge{margin:4px 20px 0;background:var(--surface);border-radius:24px;padding:16px 16px 14px;text-align:center;box-shadow:0 1px 2px rgba(43,33,24,.06),0 2px 8px rgba(43,33,24,.06);position:relative}
+.r-gauge svg{width:260px;height:136px;display:block;margin:0 auto}
+.r-gauge .big{position:absolute;left:0;right:0;top:78px;text-align:center}
+.r-gauge .big b{font-family:var(--f-num);font-size:40px;line-height:44px;font-weight:500;letter-spacing:-.02em;display:block}
+.r-gauge .big span{font-size:14px;color:var(--ink2);line-height:20px}
+.r-gauge .row{display:flex;justify-content:space-between;font-size:14px;line-height:20px;color:var(--ink2);margin-top:6px;padding:0 8px}
+.r-gauge .row b{color:var(--ink);font-family:var(--f-num);font-weight:500}
+.r-macros{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 20px 0}
+.r-mac{background:var(--surface);border-radius:16px;padding:10px 12px;box-shadow:0 1px 2px rgba(43,33,24,.06)}
+.r-mac .l{display:flex;align-items:center;gap:6px;font-size:13px;line-height:16px;font-weight:600}
+.r-mac .l i{width:10px;height:10px;border-radius:3px}
+.r-mac .v{font-family:var(--f-num);font-size:15px;line-height:22px;margin-top:4px;white-space:nowrap}
+.r-mac .v span{color:var(--ink2);font-size:12px;letter-spacing:-.02em}
+.r-mac .bar{height:6px;border-radius:3px;background:var(--line);margin-top:6px;overflow:hidden}
+.r-mac .bar b{display:block;height:100%;border-radius:3px}
+.r-cta{margin:12px 20px 0;height:64px;border-radius:20px;background:var(--primary);color:var(--on-primary);display:flex;align-items:center;gap:14px;padding:0 16px;font-weight:700;font-size:17px}
+.r-cta .ic{width:40px;height:40px;border-radius:12px;background:rgba(255,252,246,.18);display:grid;place-items:center}
+.r-cta small{display:block;font-weight:500;font-size:13px;line-height:18px;opacity:.9}
+.r-cta .go{margin-left:auto}
+.r-sec{display:flex;justify-content:space-between;align-items:baseline;padding:16px 20px 8px;font-family:var(--f-head);font-size:20px;line-height:26px}
+.r-sec a{font-family:var(--f-body);font-size:14px;color:var(--primary);font-weight:700;text-decoration:none}
+.r-meal{margin:0 20px 8px;background:var(--surface);border-radius:16px;height:56px;display:flex;align-items:center;gap:12px;padding:0 8px 0 12px}
+.r-meal .th{width:36px;height:36px;border-radius:10px;background:var(--tint);display:grid;place-items:center;overflow:hidden;color:var(--primary)}
+.r-meal .n{font-weight:600;font-size:15px;line-height:20px}
+.r-meal .n small{display:block;font-weight:400;font-size:12px;line-height:16px;color:var(--ink2)}
+.r-meal .k{margin-left:auto;font-family:var(--f-num);font-size:15px}
+.r-meal .add{margin-left:auto;width:44px;height:44px;border-radius:12px;background:var(--tint);color:var(--primary);display:grid;place-items:center}
+.ripe .tabbar{box-shadow:0 -1px 0 var(--line)}
+.ripe .tab.on{color:var(--primary)}
+.ripe .tab.scan{position:relative}
+.ripe .tab.scan span.fab{width:56px;height:56px;border-radius:20px;background:var(--primary);color:#fff;display:grid;place-items:center;margin-top:-18px;box-shadow:0 8px 20px -6px rgba(196,67,26,.55)}
+/* ripe result */
+.r-photo{position:absolute;top:0;left:0;right:0;height:318px}
+.r-photo .food{width:100%;height:100%;display:block;object-fit:cover}
+.r-photo .bar{position:absolute;top:47px;left:12px;right:12px;display:flex;justify-content:space-between}
+.r-round{width:44px;height:44px;border-radius:50%;background:rgba(255,252,246,.92);display:grid;place-items:center;color:var(--ink)}
+.r-pin{position:absolute;width:28px;height:28px;border-radius:50%;background:#FFFCF6;color:var(--ink);font:700 14px/28px var(--f-body);text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.r-pin.q{background:var(--honey)}
+.r-sheet{position:absolute;top:290px;left:0;right:0;bottom:0;background:var(--surface);border-radius:28px 28px 0 0;box-shadow:0 -8px 32px rgba(43,33,24,.14);padding:8px 20px 0}
+.r-handle{width:36px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 10px}
+.r-sh-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.r-sh-top h5{font-family:var(--f-head);font-weight:400;font-size:22px;line-height:28px}
+.r-sh-top h5 small{display:block;font-family:var(--f-body);font-size:13px;line-height:18px;color:var(--ink2)}
+.r-mealpick{height:44px;padding:0 12px 0 14px;border-radius:12px;background:var(--tint);display:flex;align-items:center;gap:4px;font-weight:700;font-size:15px}
+.r-item{display:grid;grid-template-columns:28px minmax(0,1fr) auto 40px;gap:10px;align-items:center;min-height:58px;border-bottom:1px solid var(--line)}
+.r-item .no{width:24px;height:24px;border-radius:50%;background:var(--tint);font:700 12px/24px var(--f-body);text-align:center}
+.r-item .nm{font-weight:600;font-size:15px;line-height:20px}
+.r-item .cf{display:flex;align-items:center;gap:4px;font-size:12px;line-height:16px;font-weight:600}
+.r-item .cf svg{width:14px;height:14px}
+.r-step{display:flex;align-items:center;height:44px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
+.r-step span{width:32px;height:44px;display:grid;place-items:center;color:var(--ink2)}
+.r-step span svg{width:18px;height:18px}
+.r-step b{font-family:var(--f-num);font-weight:500;font-size:14px;min-width:48px;text-align:center}
+.r-item .kc{font-family:var(--f-num);font-size:14px;text-align:right}
+.r-item.unsure{background:var(--warn-tint);margin:0 -20px;padding:0 20px;border-bottom:none}
+.r-alt{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px}
+.r-alt span{font-size:12px;line-height:16px;padding:4px 8px;border-radius:8px;background:var(--surface);border:1px solid rgba(154,100,0,.35);font-weight:600}
+.r-total{display:flex;align-items:center;justify-content:space-between;padding:10px 0 8px}
+.r-total b{font-family:var(--f-num);font-size:26px;font-weight:500;line-height:32px}
+.r-total b small{font-size:13px;color:var(--ink2);font-family:var(--f-body)}
+.r-mstack{display:flex;gap:10px;font-family:var(--f-num);font-size:13px}
+.r-mstack span{display:flex;align-items:center;gap:4px}
+.r-mstack i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.r-btn{height:52px;border-radius:16px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;gap:8px}
+.r-btn2{height:44px;display:flex;align-items:center;justify-content:center;gap:6px;font-weight:700;color:var(--primary);font-size:15px}
+.r-disc{font-size:12px;line-height:16px;color:var(--ink2);text-align:center;padding:0 8px}
+/* ripe diary */
+.r-h1{font-family:var(--f-head);font-size:28px;line-height:34px;padding:4px 20px 0;display:flex;justify-content:space-between;align-items:center}
+.r-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:12px 16px 0}
+.r-day{height:56px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;line-height:16px;color:var(--ink2)}
+.r-day b{font-family:var(--f-num);font-size:16px;line-height:22px;color:var(--ink);font-weight:500}
+.r-day.on{background:var(--ink);color:#FBF6EE}.r-day.on b{color:#FBF6EE}
+.r-day .dot{width:5px;height:5px;border-radius:50%;background:var(--fresh);margin-top:2px}
+.r-daysum{margin:12px 20px 0;padding:12px 14px;background:var(--surface);border-radius:16px;display:flex;align-items:center;gap:12px}
+.r-daysum .bar{flex:1;height:8px;border-radius:4px;background:var(--tint);overflow:hidden}
+.r-daysum .bar b{display:block;height:100%;width:57.1%;background:var(--primary)}
+.r-daysum .num{font-size:14px}
+.r-tl{padding:6px 20px 0;position:relative}
+.r-tl::before{content:"";position:absolute;left:31px;top:20px;bottom:0;border-left:2px dashed rgba(43,33,24,.18)}
+.r-tm{position:relative;padding-left:36px;margin-top:8px}
+.r-tm .dot{position:absolute;left:4px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--primary)}
+.r-tm .dot.empty{border-color:var(--ink2);border-style:dashed}
+.r-tm .hd{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--f-head);font-size:18px;line-height:24px}
+.r-tm .hd span{font-family:var(--f-num);font-size:14px}
+.r-tm .hd small{font-family:var(--f-body);font-size:12px;color:var(--ink2);margin-left:6px}
+.r-tm .box{background:var(--surface);border-radius:14px;margin-top:6px;padding:2px 12px}
+.r-row{display:flex;justify-content:space-between;align-items:center;min-height:34px;font-size:14px;line-height:20px;border-bottom:1px solid var(--line)}
+.r-row:last-child{border-bottom:none}
+.r-row small{color:var(--ink2);font-size:12px;margin-left:6px}
+.r-row .num{font-size:13px}
+.r-tm .hd .r-tag{display:inline-flex;align-items:center;gap:4px;font:600 12px/16px var(--f-body);color:var(--fresh);background:var(--fresh-tint);padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.r-empty{display:flex;gap:8px;margin-top:6px}
+.r-empty span{flex:1;height:44px;border-radius:12px;border:1.5px dashed rgba(43,33,24,.3);display:flex;align-items:center;justify-content:center;gap:6px;font-weight:700;font-size:14px;color:var(--primary)}
+
+/* ============ B · PER100 ============ */
+.per{
+  --bg:#F4EDE1;--surface:#FBF7EF;--ink:#1E1C17;--ink2:#5A5348;--line:rgba(30,28,23,.16);
+  --primary:#1E1C17;--on-primary:#FBF7EF;--dijon:#E3A82B;--paprika:#B23A1C;--pickle:#3B6526;
+  --p:#7C2B5C;--f:#A06F00;--c:#2D62A8;--ok:#2F6B35;--warn:#8F5E00;--err:#A8321C;
+  --hero-bg:#1E1C17;--hero-ink:#FBF7EF;--r-sw:2px;
+  --f-head:"Libre Franklin",sans-serif;--f-body:"Public Sans",sans-serif;--f-num:"Chivo Mono",monospace;
+  --stroke:2px;--cap:square;--join:miter;
+  font-family:var(--f-body);
+}
+.per .board,.per.board{border-radius:8px}
+.per .hero{border-bottom:8px solid var(--dijon)}
+.per .kw{font:700 13px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase;padding:8px 12px;border:1.5px solid rgba(251,247,239,.5)}
+.per .kw:first-child{background:var(--dijon);color:var(--ink);border-color:var(--dijon)}
+.per .wordmark{font-family:"Libre Franklin";font-weight:900;font-size:88px;line-height:.85;letter-spacing:-.04em}
+.per .wordmark sup{font-size:.34em;vertical-align:1.6em;letter-spacing:0;font-weight:800;color:var(--dijon);margin-right:4px}
+.per .storename code{background:rgba(227,168,43,.2)}
+.per .sw,.per .mchip{border-color:rgba(30,28,23,.28)}
+.per .tone{font-family:var(--f-num);font-size:14.5px;line-height:1.45;border-top:1.5px solid var(--ink);padding:10px 0 2px}
+.per .tone b{font-family:var(--f-head);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px;color:var(--ink2)}
+.pat-p{background:var(--p)}
+.pat-f{background:repeating-linear-gradient(135deg,var(--f) 0 3px,transparent 3px 6px);box-shadow:inset 0 0 0 1.5px var(--f)}
+.pat-c{background:radial-gradient(circle,var(--c) 1.6px,transparent 1.8px) 0 0/6px 6px;box-shadow:inset 0 0 0 1.5px var(--c)}
+/* per screens */
+.p-top{height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between}
+.p-top h5{font:900 34px/40px var(--f-head);letter-spacing:-.03em}
+.p-top .d{font:700 12px/16px var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);text-align:right}
+.p-label{margin:4px 16px 0;background:var(--surface);border:2px solid var(--ink);padding:10px 12px 8px}
+.p-label .t{font:900 26px/30px var(--f-head);letter-spacing:-.02em;border-bottom:1px solid var(--ink);padding-bottom:4px}
+.p-label .serv{font-size:13px;line-height:18px;display:flex;justify-content:space-between;padding:4px 0;border-bottom:8px solid var(--ink)}
+.p-label .cal{display:flex;justify-content:space-between;align-items:flex-end;padding:4px 0 6px;border-bottom:4px solid var(--ink)}
+.p-label .cal div{font:900 20px/24px var(--f-head)}
+.p-label .cal div small{display:block;font:500 12px/16px var(--f-body)}
+.p-label .cal b{font:700 52px/52px var(--f-num);letter-spacing:-.04em}
+.p-label .left{display:flex;justify-content:space-between;font-size:13px;line-height:18px;padding:6px 0;border-bottom:1px solid var(--ink)}
+.p-label .left b{font-family:var(--f-num)}
+.p-mrow{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--ink)}
+.p-mrow:last-child{border-bottom:none}
+.p-mrow i{width:22px;height:22px;display:block}
+.p-mrow .n{font:800 15px/20px var(--f-head)}
+.p-mrow .n small{font:400 12px/16px var(--f-body);color:var(--ink2);margin-left:4px}
+.p-mrow .v{font:500 14px/20px var(--f-num)}
+.p-mrow .v span{color:var(--ink2)}
+.p-mrow .bar{grid-column:2/4;height:8px;background:rgba(30,28,23,.08);margin-top:2px}
+.p-mrow .bar b{display:block;height:100%}
+.p-scan{margin:12px 16px 0;height:56px;background:var(--ink);color:var(--surface);display:flex;align-items:center;gap:12px;padding:0 16px;font:800 16px/1 var(--f-head);letter-spacing:.02em;text-transform:uppercase}
+.p-scan .sq{width:32px;height:32px;background:var(--dijon);color:var(--ink);display:grid;place-items:center}
+.p-scan .sq svg{width:20px;height:20px}
+.p-scan em{margin-left:auto;font:500 12px/1 var(--f-num);text-transform:none;letter-spacing:0;opacity:.8;font-style:normal}
+.p-meals{margin:12px 16px 0}
+.p-meals .h{font:800 12px/16px var(--f-head);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);padding-bottom:6px;border-bottom:1.5px solid var(--ink)}
+.p-mealrow{display:flex;justify-content:space-between;align-items:center;height:44px;border-bottom:1px solid var(--line);font-size:15px}
+.p-mealrow b{font:500 15px/1 var(--f-num)}
+.p-mealrow .add{display:flex;align-items:center;gap:4px;font:800 13px/1 var(--f-head);text-transform:uppercase;letter-spacing:.06em}
+.per .tabbar{background:var(--surface);border-top:1.5px solid var(--ink)}
+.per .tab{font-family:var(--f-head);font-weight:700;font-size:12px;letter-spacing:.02em}
+.per .tab.on{color:var(--ink);box-shadow:inset 0 3px 0 var(--dijon)}
+.per .tab.scan span.fab{width:52px;height:44px;background:var(--ink);color:var(--dijon);display:grid;place-items:center}
+/* per result */
+.p-photo{position:relative;height:300px;margin-top:-47px}
+.p-photo svg.food{width:100%;height:100%;display:block}
+.p-photo .bar{position:absolute;top:47px;left:8px;right:8px;display:flex;justify-content:space-between}
+.p-sq{width:44px;height:44px;background:var(--surface);display:grid;place-items:center;border:1.5px solid var(--ink)}
+.p-tag{position:absolute;min-width:26px;height:26px;background:var(--surface);border:2px solid var(--ink);font:700 13px/22px var(--f-num);text-align:center}
+.p-tag.q{background:var(--dijon)}
+.p-res{padding:10px 16px 0}
+.p-res .hd{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:8px solid var(--ink);padding-bottom:6px}
+.p-res .hd h5{font:900 24px/28px var(--f-head);letter-spacing:-.02em}
+.p-res .hd h5 small{display:block;font:500 12px/16px var(--f-body);letter-spacing:0;color:var(--ink2)}
+.p-meal{height:44px;padding:0 10px;border:1.5px solid var(--ink);display:flex;align-items:center;gap:4px;font:800 14px/1 var(--f-head);text-transform:uppercase;letter-spacing:.04em}
+.p-th{display:grid;grid-template-columns:20px minmax(0,1fr) 104px 36px;gap:8px;font:700 11px/14px var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);padding:6px 0 4px;border-bottom:1px solid var(--ink)}
+.p-th span:last-child{text-align:right}
+.p-tr{display:grid;grid-template-columns:20px minmax(0,1fr) 104px 36px;gap:8px;align-items:center;min-height:54px;border-bottom:1px solid var(--line)}
+.p-tr .no{font:700 13px/1 var(--f-num)}
+.p-tr .nm{font:700 14px/18px var(--f-body)}
+.p-tr .nm small{display:flex;align-items:center;gap:3px;font:700 10.5px/14px var(--f-head);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.p-tr .nm small svg{width:12px;height:12px}
+.p-step{display:grid;grid-template-columns:30px 1fr 30px;height:44px;border:1.5px solid var(--ink);align-items:center;text-align:center}
+.p-step span{display:grid;place-items:center;height:100%}
+.p-step span svg{width:16px;height:16px}
+.p-step b{font:500 13px/1 var(--f-num)}
+.p-tr .kc{font:500 14px/1 var(--f-num);text-align:right}
+.p-tr.q{background:repeating-linear-gradient(135deg,rgba(227,168,43,.10) 0 6px,rgba(227,168,43,.04) 6px 12px);margin:0 -16px;padding:0 16px;border-bottom:1.5px solid var(--warn)}
+.p-q{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 6px}
+.p-q span{font:700 11px/1 var(--f-head);letter-spacing:.04em;text-transform:uppercase;padding:6px 7px;border:1.5px solid var(--ink);background:var(--surface)}
+.p-tot{display:flex;justify-content:space-between;align-items:flex-end;padding:8px 0 6px;border-bottom:4px solid var(--ink)}
+.p-tot .l{font:900 18px/22px var(--f-head)}
+.p-tot b{font:700 34px/34px var(--f-num);letter-spacing:-.03em}
+.p-mline{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px 0}
+.p-mline div{display:flex;align-items:center;gap:6px;font:500 13px/1 var(--f-num)}
+.p-mline i{width:16px;height:16px;display:block}
+.p-src{font-size:12px;line-height:16px;color:var(--ink2);display:flex;justify-content:space-between;padding-bottom:8px}
+.p-btn{height:52px;background:var(--ink);color:var(--surface);display:flex;align-items:center;justify-content:center;font:800 15px/1 var(--f-head);text-transform:uppercase;letter-spacing:.06em;gap:10px}
+.p-btn em{font-style:normal;color:var(--dijon);font-family:var(--f-num);font-weight:500;text-transform:none;letter-spacing:0}
+.p-disc{font-size:12px;line-height:16px;color:var(--ink2);text-align:center;margin-top:8px}
+/* per diary */
+.p-datenav{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;margin:0 16px;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);height:48px;text-align:center;font:800 15px/1 var(--f-head);text-transform:uppercase;letter-spacing:.06em}
+.p-datenav span{display:grid;place-items:center;height:44px}
+.p-led{margin:0 16px}
+.p-led .mh{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 4px;border-bottom:3px solid var(--ink);font:900 17px/22px var(--f-head);text-transform:uppercase;letter-spacing:.02em}
+.p-led .mh span{font:700 16px/1 var(--f-num);text-transform:none}
+.p-led .mh small{font:700 10.5px/14px var(--f-head);letter-spacing:.08em;background:var(--dijon);padding:2px 5px;margin-left:6px;vertical-align:2px}
+.p-lr{display:grid;grid-template-columns:1fr 64px 48px;gap:8px;align-items:center;min-height:36px;border-bottom:1px solid var(--line);font-size:14px;line-height:18px}
+.p-lr .g{font:400 13px/1 var(--f-num);color:var(--ink2);text-align:right}
+.p-lr .k{font:500 14px/1 var(--f-num);text-align:right}
+.p-lr .rt{font:700 10.5px/14px var(--f-head);letter-spacing:.06em;text-transform:uppercase;color:var(--pickle);display:block}
+.p-addrow{height:44px;display:flex;align-items:center;gap:6px;font:800 13px/1 var(--f-head);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--line)}
+.p-daytot{margin:12px 16px 0;border:2px solid var(--ink);background:var(--surface);padding:8px 12px}
+.p-daytot .r1{display:flex;justify-content:space-between;align-items:baseline;font:900 16px/20px var(--f-head);text-transform:uppercase}
+.p-daytot .r1 b{font:700 22px/1 var(--f-num);text-transform:none}
+.p-daytot .r1 b span{font-size:14px;color:var(--ink2)}
+.p-daytot .r2{font:400 12.5px/16px var(--f-num);color:var(--ink2);margin-top:4px}
+
+/* ============ C · SPRIG ============ */
+.sprig{
+  --bg:#F7F4EC;--surface:#FFFDF7;--ink:#1C2620;--ink2:#56635A;--line:rgba(28,38,32,.11);
+  --primary:#2F6B45;--on-primary:#FFFFFF;--tint:#DDEBD9;--deep:#24563A;--apricot:#F4A259;--apricot-tint:#FCE7D2;
+  --p:#B23A6E;--f:#9E7700;--c:#2E6DB0;--ok:#2F7A4B;--warn:#946200;--err:#B0301F;
+  --hero-bg:#DDEBD9;--hero-ink:#1C2620;--r-sw:16px;
+  --f-head:"Instrument Serif",serif;--f-body:"Albert Sans",sans-serif;--f-num:"Geist Mono",monospace;
+  --stroke:1.5px;--cap:round;--join:round;
+  font-family:var(--f-body);
+}
+.sprig .wordmark{font-family:"Instrument Serif";font-size:96px;line-height:.85;letter-spacing:-.02em;color:var(--deep)}
+.sprig .wordmark em{color:var(--primary)}
+.sprig .kw{font-size:14px;font-weight:600;padding:7px 14px;border-radius:999px;background:rgba(255,253,247,.75);color:var(--deep)}
+.sprig .kw:first-child{background:var(--primary);color:#fff}
+.sprig .storename code{background:rgba(47,107,69,.12)}
+.sprig .tone{font-size:16px;line-height:1.45;background:var(--surface);border-radius:20px;padding:14px 18px;box-shadow:0 1px 3px rgba(28,38,32,.05),0 6px 16px rgba(28,38,32,.05)}
+.sprig .tone::before{content:"“";font-family:var(--f-head);font-size:28px;line-height:0;color:var(--primary);margin-right:4px;vertical-align:-8px}
+/* sprig screens */
+.s-top{padding:8px 20px 0;height:64px;display:flex;justify-content:space-between;align-items:center}
+.s-top h5{font-family:var(--f-head);font-weight:400;font-size:30px;line-height:36px}
+.s-top h5 small{display:block;font-family:var(--f-body);font-size:13px;line-height:18px;color:var(--ink2)}
+.s-ib{width:44px;height:44px;border-radius:50%;background:var(--surface);display:grid;place-items:center;box-shadow:0 1px 3px rgba(28,38,32,.06)}
+.s-ring{position:relative;margin:4px auto 0;width:236px;height:236px}
+.s-ring svg{width:236px;height:236px}
+.s-ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.s-ring .c small{font-size:13px;line-height:18px;color:var(--ink2)}
+.s-ring .c b{font-family:var(--f-head);font-weight:400;font-size:52px;line-height:52px}
+.s-legend{display:flex;justify-content:center;gap:14px;font-size:13px;line-height:18px;color:var(--ink2);margin-top:4px}
+.s-legend span{display:flex;align-items:center;gap:5px}
+.s-legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.s-note{margin:12px 20px 0;min-width:0;background:var(--surface);border-radius:20px;padding:12px 16px;display:flex;gap:12px;align-items:center;font-size:15px;line-height:21px;box-shadow:0 1px 3px rgba(28,38,32,.05),0 6px 16px rgba(28,38,32,.05)}
+.s-note .lf{width:40px;height:40px;border-radius:50%;background:var(--tint);color:var(--deep);display:grid;place-items:center}
+.s-macs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 20px 0}
+.s-mac{background:var(--surface);border-radius:18px;padding:10px 12px}
+.s-mac .l{font-size:13px;line-height:18px;color:var(--ink2);display:flex;align-items:center;gap:6px}
+.s-mac .l i{width:8px;height:8px;border-radius:50%}
+.s-mac .v{font-family:var(--f-num);font-size:16px;line-height:22px}
+.s-mac .v span{font-size:12px;color:var(--ink2)}
+.s-mac .bar{height:4px;border-radius:2px;background:var(--line);margin-top:6px}
+.s-mac .bar b{display:block;height:100%;border-radius:2px}
+.s-rec{margin:12px 20px 0;background:var(--surface);border-radius:20px;padding:10px 12px 10px 10px;display:flex;align-items:center;gap:12px}
+.s-rec .th{width:56px;height:56px;border-radius:16px;overflow:hidden}
+.s-rec div{flex:1}
+.s-rec small{display:block;font-size:12px;line-height:16px;color:var(--deep);font-weight:600}
+.s-rec b{display:block;font-weight:600;font-size:15px;line-height:20px}
+.s-rec span{font-size:13px;line-height:18px;color:var(--ink2);font-family:var(--f-num)}
+.s-cta{margin:12px 20px 0;height:52px;border-radius:999px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:17px}
+.sprig .tabbar{background:rgba(255,253,247,.96);box-shadow:0 -1px 0 var(--line)}
+.sprig .tab.on{color:var(--deep)}
+.sprig .tab.on svg{background:var(--tint);border-radius:999px;width:52px;height:30px;padding:3px 14px}
+.sprig .tab.scan span.fab{width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;margin-top:-6px}
+/* sprig result */
+.s-photo{position:absolute;top:0;left:0;right:0;height:336px}
+.s-photo svg.food{width:100%;height:100%;display:block}
+.s-photo .bar{position:absolute;top:47px;left:16px;right:16px;display:flex;justify-content:space-between}
+.s-glass{width:44px;height:44px;border-radius:50%;background:rgba(255,253,247,.9);display:grid;place-items:center}
+.s-pin{position:absolute;height:28px;padding:0 10px;border-radius:999px;background:rgba(255,253,247,.94);font:600 12px/28px var(--f-body);box-shadow:0 2px 8px rgba(0,0,0,.18);white-space:nowrap}
+.s-pin.q{background:var(--apricot)}
+.s-sheet{position:absolute;top:304px;left:0;right:0;bottom:0;background:var(--bg);border-radius:32px 32px 0 0;padding:10px 20px 0;box-shadow:0 -10px 40px rgba(28,38,32,.12)}
+.s-sheet h5{font-family:var(--f-head);font-weight:400;font-size:28px;line-height:34px}
+.s-sheet .sub{font-size:14px;line-height:20px;color:var(--ink2);margin-bottom:8px}
+.s-it{display:grid;grid-template-columns:minmax(0,1fr) auto 36px;gap:10px;align-items:center;min-height:52px;background:var(--surface);border-radius:16px;padding:4px 6px 4px 14px;margin-bottom:6px}
+.s-it .nm{font-weight:600;font-size:15px;line-height:20px}
+.s-it .nm small{display:flex;align-items:center;gap:4px;font-weight:500;font-size:12px;line-height:16px;color:var(--ink2)}
+.s-it .nm small svg{width:14px;height:14px}
+.s-it .nm small.chk{color:var(--warn)}
+.s-step{display:flex;align-items:center;height:44px;border-radius:999px;background:var(--bg)}
+.s-step span{width:34px;height:44px;display:grid;place-items:center;color:var(--ink2)}
+.s-step span svg{width:18px;height:18px}
+.s-step b{font-family:var(--f-num);font-weight:500;font-size:13px;min-width:44px;text-align:center}
+.s-it .kc{font-family:var(--f-num);font-size:13px;text-align:right}
+.s-miss{border:1.5px dashed rgba(28,38,32,.3);border-radius:16px;padding:10px 12px 10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.s-miss .nm{font-weight:600;font-size:14px;line-height:19px;flex:1}
+.s-miss .nm small{display:block;font-weight:400;font-size:12px;line-height:16px;color:var(--ink2)}
+.s-miss .b{height:44px;padding:0 14px;border-radius:999px;background:var(--tint);color:var(--deep);display:flex;align-items:center;gap:6px;font-weight:600;font-size:14px}
+.s-sum{display:flex;justify-content:space-between;align-items:center;padding:4px 2px 10px}
+.s-sum b{font-family:var(--f-head);font-weight:400;font-size:32px;line-height:36px}
+.s-sum b small{font-family:var(--f-body);font-size:14px;color:var(--ink2)}
+.s-sum .m{display:flex;gap:10px;font-family:var(--f-num);font-size:13px}
+.s-sum .m span{display:flex;align-items:center;gap:4px}
+.s-sum .m i{width:8px;height:8px;border-radius:50%}
+.s-disc{font-size:12px;line-height:16px;color:var(--ink2);text-align:center;margin-top:8px}
+/* sprig diary */
+.s-week{display:flex;gap:6px;padding:8px 20px 0}
+.s-wd{flex:1;height:64px;border-radius:999px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;line-height:16px;color:var(--ink2);background:var(--surface)}
+.s-wd b{font-family:var(--f-num);font-weight:500;font-size:15px;line-height:22px;color:var(--ink)}
+.s-wd.on{background:var(--primary);color:#E7F1E4}.s-wd.on b{color:#fff}
+.s-card{margin:10px 20px 0;background:var(--surface);border-radius:24px;padding:12px 14px;box-shadow:0 1px 3px rgba(28,38,32,.05),0 6px 16px rgba(28,38,32,.05)}
+.s-card .hd{display:flex;justify-content:space-between;align-items:center}
+.s-card .hd b{font-family:var(--f-head);font-weight:400;font-size:22px;line-height:28px}
+.s-card .hd span{font-family:var(--f-num);font-size:14px}
+.s-card .hd small{font-size:12px;color:var(--ink2);font-family:var(--f-body);margin-left:4px}
+.s-li{display:flex;justify-content:space-between;font-size:14px;line-height:20px;padding:5px 0;border-top:1px solid var(--line)}
+.s-li:first-of-type{border-top:none}
+.s-li small{color:var(--ink2);font-size:12px;margin-left:6px}
+.s-li .num{font-size:13px}
+.s-card.ph{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center}
+.s-card.ph .th{width:64px;height:64px;border-radius:18px;overflow:hidden}
+.s-card.ph .ing{font-size:13px;line-height:18px;color:var(--ink2);margin-top:2px}
+.s-card.ph .from{display:inline-flex;gap:4px;align-items:center;font-size:12px;line-height:16px;color:var(--deep);background:var(--tint);padding:2px 8px;border-radius:999px;margin-top:4px}
+.s-card.ph .from svg{width:12px;height:12px}
+.s-emp{margin:10px 20px 0;border:1.5px dashed rgba(28,38,32,.25);border-radius:24px;padding:14px;display:flex;align-items:center;justify-content:space-between}
+.s-emp b{font-family:var(--f-head);font-weight:400;font-size:22px;line-height:28px}
+.s-emp b small{display:block;font-family:var(--f-body);font-size:13px;line-height:18px;color:var(--ink2)}
+.s-emp .add{width:44px;height:44px;border-radius:50%;background:var(--tint);color:var(--deep);display:grid;place-items:center}
+
+/* ============ recommendation ============ */
+.rec{margin-top:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;background:var(--page-card);border:1px solid var(--page-line);border-radius:28px;padding:40px 44px}
+.rec h2{font-family:"Libre Franklin";font-weight:900;font-size:40px;letter-spacing:-.02em;line-height:1.05;margin-bottom:16px}
+.rec p{font-size:17px;line-height:1.55;margin-bottom:10px}
+.score{width:100%;border-collapse:collapse;font-size:15px}
+.score th,.score td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--page-line)}
+.score th{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--page-muted)}
+.score td.n{font-family:"Azeret Mono";text-align:center}
+.score tr.tot td{font-weight:800;border-bottom:none;font-size:17px}
+.score .win{background:#FCE3CC}
+@media (max-width:1100px){.rec{grid-template-columns:1fr;padding:24px}.grid2{grid-template-columns:1fr}.board section,.board .hero{padding-left:20px;padding-right:20px}.pal{grid-template-columns:repeat(2,1fr)}.macro-row{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- ============ icon sprite (stroke/caps set per direction via CSS vars) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-today" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5V20H4z"/><path d="M9.5 20v-5h5v5"/></symbol>
+  <symbol id="i-diary" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+  <symbol id="i-pot" viewBox="0 0 24 24"><path d="M4 11h16v4a5 5 0 01-5 5H9a5 5 0 01-5-5z"/><path d="M2 11h20M9 4v3M12 3v4M15 4v3"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-flash" viewBox="0 0 24 24"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 8"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.7 2.7L16 9.5"/></symbol>
+  <symbol id="i-half" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18z" fill="currentColor"/></symbol>
+  <symbol id="i-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.5-1.5 1-1.5 2M12 17h.01"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></symbol>
+  <symbol id="i-barcode" viewBox="0 0 24 24"><path d="M4 6v12M7.5 6v12M11 6v12M14 6v12M17 6v12M20 6v12"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+</svg>
+
+<main class="page">
+  <header class="top">
+    <div>
+      <h1>Brand directions · v2</h1>
+      <p>Three light-theme directions for a <b>photo-first calorie calculator</b> that must pass App Store and Google Play review. Each board has a palette named after food, fonts, tokens, three 390×844 mini screens (Home, Photo analysis result, Food diary) and an app icon preview. All food numbers are USDA FoodData Central values per 100&nbsp;g, scaled to the portion shown.</p>
+    </div>
+    <div class="meta">01 · Branding<br>Calories Calculator: design test task<br>Rationale and full specs: directions.md</div>
+  </header>
+
+  <p class="note"><b>Inputs:</b> there is no <code>00-research/</code> folder with competitor screenshots in this repo. As agreed, the analysis is <code>process/research.md</code>, plus competitors' public product and help pages for how their photo analysis behaves. Anything that isn't sourced is marked <i>our decision</i> in directions.md.</p>
+
+  <!-- ============ shared foundations ============ -->
+  <div class="shared">
+    <div class="card">
+      <h2>Step 0 · Direct competitors</h2>
+      <h3>MyFitnessPal · Yazio · Lifesum · FatSecret</h3>
+      <div class="sub">Do well</div>
+      <ul>
+        <li>Several items per photo, confirmed before saving (MyFitnessPal)</li>
+        <li>Adjust each ingredient's amount after a photo (Lifesum)</li>
+        <li>Recipes that fit meal targets (Yazio)</li>
+        <li>Verified database, free core features (FatSecret)</li>
+      </ul>
+      <div class="sub">Do poorly</div>
+      <ul>
+        <li class="minus">No recognition confidence shown</li>
+        <li class="minus">Photo and barcode logging behind paywalls</li>
+        <li class="minus">Crowdsourced duplicates, ads, AI pop-ups</li>
+        <li class="minus">Red "over goal" numbers, good/bad labels</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>MVP scope (from research.md)</h2>
+      <h3>What we take, and why</h3>
+      <ul>
+        <li><b>Photo analysis</b> with confirmation and editable portions. The core feature</li>
+        <li><b>Confidence per item.</b> Nobody shows it; fixes trust</li>
+        <li><b>Home summary and diary by meal.</b> Found in all four</li>
+        <li><b>Search (recent foods first) and barcode.</b> Two taps to log</li>
+        <li><b>Dish calculator</b> with cooked weight (user story 1)</li>
+        <li><b>Recipes that fit your day</b> (user story 2)</li>
+      </ul>
+      <div class="sub">Out of scope</div>
+      <div class="chips"><span class="chip avoid">Social feed</span><span class="chip avoid">Marketplace</span><span class="chip avoid">Coaching</span><span class="chip avoid">Streaks</span><span class="chip avoid">Fasting</span><span class="chip avoid">Ads</span></div>
+    </div>
+    <div class="card">
+      <h2>Core flow · photo analysis</h2>
+      <div class="flow">
+        <div><b>Scan tab</b> or "+ Add", then camera or library</div>
+        <div><b>Camera purpose screen</b>, then the system prompt</div>
+        <div><b>Guidance:</b> plate outline · light · 45° · live hints</div>
+        <div><b>Analyzing</b> 2–4 s · "Finding foods…" · Cancel</div>
+        <div><b>Result:</b> items · grams · kcal · P/F/C · <b>confidence</b></div>
+        <div><b>Add to Lunch</b>, then a toast with Undo</div>
+        <div><b>Errors:</b> not recognized → Retake / Search · offline queue</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Colour and food</h2>
+      <h3>Warm = appetite, green = fresh, oat = wholesome</h3>
+      <div class="chips" style="margin-bottom:10px"><span class="chip">Tomato / persimmon</span><span class="chip">Honey / mustard</span><span class="chip">Herbs / avocado</span><span class="chip">Oat / rice / coconut</span></div>
+      <div class="chips"><span class="chip avoid">Clinical cyan</span><span class="chip avoid">Pure #FFFFFF</span><span class="chip avoid">Blue surfaces</span><span class="chip avoid">Violet gradients</span><span class="chip avoid">Grey UI</span></div>
+      <div class="sub">Macro rule</div>
+      <ul>
+        <li>Protein, fat and carbs are always a magenta / gold / blue triad. ΔE ≥ 22 under protanopia, deuteranopia and tritanopia</li>
+        <li>Always labelled P · F · C with values, in a fixed order</li>
+        <li>Over goal = warning tone, never an error</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>System and store</h2>
+      <ul>
+        <li>8 pt grid (4 pt fine steps) · margins 16–20 · frame 390×844</li>
+        <li>Touch targets ≥ 44 pt / 48 dp · body 16 · caption ≥ 12 · Dynamic Type</li>
+        <li>Safe areas: status bar 47, home indicator 34 · nav with 5 items</li>
+        <li>Icon 1024², no transparency, no pre-rounded corners · Android adaptive, 66/108 safe zone</li>
+        <li>Name ≤ 30 characters, no trademarks · Google Fonts (OFL) only</li>
+        <li>Camera purpose screen · in-app account deletion · "Not medical advice"</li>
+        <li>Default goal = maintenance · pace ≤ 0.5 kg per week · floor 1,200 kcal</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="boards">
+
+<!-- =====================================================================
+     A · RIPE
+     ===================================================================== -->
+    <article class="board ripe">
+      <div class="hero">
+        <div class="lbl"><span>Direction A</span><span>Fresh market</span></div>
+        <div class="lockup">
+          <div class="appicon"><svg viewBox="0 0 1024 1024"><use href="#icon-ripe"/></svg></div>
+          <div>
+            <div class="wordmark">Ripe</div>
+            <div class="storename">Store name: <code>Ripe: Photo Calorie Counter</code> · 27/30</div>
+          </div>
+        </div>
+        <p class="positioning" style="font-family:'Young Serif'">Point, snap, know. Calories from a photo, as fresh as the food.</p>
+        <p class="audience"><b>For</b> busy adults aged 24–40 who mix home cooking and takeaway. They gave up typing every ingredient and want a fast photo estimate they can trust and correct.</p>
+        <div class="kws"><span class="kw">Fresh</span><span class="kw">Quick</span><span class="kw">Optimistic</span><span class="kw">Honest</span><span class="kw">Appetising</span></div>
+      </div>
+
+      <section>
+        <h4>Palette · named after food · contrast measured on Oat milk</h4>
+        <div class="pal">
+          <div class="sw"><div class="c" style="background:#FBF6EE"></div><div class="t"><b>Oat milk</b><code>#FBF6EE</code><br><em>Background: creamy, never clinical</em></div></div>
+          <div class="sw"><div class="c" style="background:#FFFCF6"></div><div class="t"><b>Rice</b><code>#FFFCF6</code><br><em>Cards and sheets</em></div></div>
+          <div class="sw"><div class="c" style="background:#2B2118"><span>14.6</span></div><div class="t"><b>Rye crust</b><code>#2B2118</code><br><em>Text: baked-bread brown</em></div></div>
+          <div class="sw"><div class="c" style="background:#6B5A4A"><span>6.1</span></div><div class="t"><b>Walnut</b><code>#6B5A4A</code><br><em>Secondary text</em></div></div>
+          <div class="sw"><div class="c" style="background:#C4431A"><span>4.7</span></div><div class="t"><b>Persimmon</b><code>#C4431A</code><br><em>Brand and CTA: ripeness and heat · white 5.0</em></div></div>
+          <div class="sw"><div class="c" style="background:#FCE3CC"></div><div class="t"><b>Apricot</b><code>#FCE3CC</code><br><em>Tints, chips · Rye 12.8</em></div></div>
+          <div class="sw"><div class="c" style="background:#4A7326"><span>5.2</span></div><div class="t"><b>Avocado</b><code>#4A7326</code><br><em>Freshness, "fits your day"</em></div></div>
+          <div class="sw"><div class="c" style="background:#F2B63D"></div><div class="t"><b>Honey</b><code>#F2B63D</code><br><em>Highlights, fill only · Rye 8.7</em></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="mchip"><i style="background:#9B2F63"></i><b>P · Beetroot</b><code>#9B2F63 · 6.6</code></div>
+          <div class="mchip"><i style="background:#A77A0B"></i><b>F · Mustard</b><code>#A77A0B · 3.6</code></div>
+          <div class="mchip"><i style="background:#3B6CC0"></i><b>C · Blueberry</b><code>#3B6CC0 · 4.8</code></div>
+          <div class="mchip"><i style="background:#2E7D4F"></i><b>Success · Basil</b><code>#2E7D4F · 4.7</code></div>
+          <div class="mchip"><i style="background:#9A6400"></i><b>Warning · Turmeric</b><code>#9A6400 · 4.7</code></div>
+          <div class="mchip"><i style="background:#B3261E"></i><b>Error · Chili</b><code>#B3261E · 6.1</code></div>
+        </div>
+        <p class="cvd">Colour-blindness separation for P/F/C (ΔE): protanopia 36 / 75 / 104 · deuteranopia 52 / 59 / 110 · tritanopia 29 / 62 / 84. Blue appears only as a data mark, never as a surface.</p>
+      </section>
+
+      <section>
+        <h4>Mini screens · 390×844</h4>
+        <div class="screens">
+          <!-- RIPE · HOME -->
+          <figure class="scr"><div class="scaler"><div class="phone">
+            <div class="sb"><span>9:41</span><span class="ind"><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="10" y="2" width="3" height="10" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/><rect x="23" y="4" width="1.5" height="4" rx=".7" fill="currentColor" opacity=".4"/></svg></span></div>
+            <div class="r-top"><div><div class="date">Tuesday, 29 September</div><div class="hi">Good afternoon</div></div><div class="r-avatar">A</div></div>
+            <div class="r-gauge">
+              <svg viewBox="0 0 260 136" aria-hidden="true">
+                <path d="M20 128 A110 110 0 0 1 240 128" fill="none" stroke="#FCE3CC" stroke-width="18" stroke-linecap="round"/>
+                <path d="M20 128 A110 110 0 0 1 240 128" fill="none" stroke="#C4431A" stroke-width="18" stroke-linecap="round" stroke-dasharray="197.4 400"/>
+              </svg>
+              <div class="big"><b class="num">879</b><span>kcal left today</span></div>
+              <div class="row"><span>Eaten <b>1,171</b></span><span>Goal <b>2,050</b></span></div>
+            </div>
+            <div class="r-macros">
+              <div class="r-mac"><div class="l"><i style="background:var(--p)"></i>P · Protein</div><div class="v">70<span> / 110 g</span></div><div class="bar"><b style="width:64%;background:var(--p)"></b></div></div>
+              <div class="r-mac"><div class="l"><i style="background:var(--f)"></i>F · Fat</div><div class="v">45<span> / 68 g</span></div><div class="bar"><b style="width:66%;background:var(--f)"></b></div></div>
+              <div class="r-mac"><div class="l"><i style="background:var(--c)"></i>C · Carbs</div><div class="v">127<span> / 250 g</span></div><div class="bar"><b style="width:51%;background:var(--c)"></b></div></div>
+            </div>
+            <div class="r-cta"><span class="ic"><svg class="i"><use href="#i-cam"/></svg></span><span>Snap your dinner<small>We'll find the foods and portions</small></span><svg class="i go"><use href="#i-chev-r"/></svg></div>
+            <div class="r-sec"><span>Today's meals</span><a>Diary</a></div>
+            <div class="r-meal"><span class="th"><svg class="i" style="width:20px;height:20px"><use href="#i-leaf"/></svg></span><span class="n">Breakfast<small>Greek yogurt, oats, blueberries</small></span><span class="k">344</span></div>
+            <div class="r-meal"><span class="th"><img src="assets/dish-salmon-rice-broccoli.jpg" alt="" style="width:36px;height:36px;object-fit:cover"></span><span class="n">Lunch<small>From photo · 4 items</small></span><span class="k">559</span></div>
+            <div class="r-meal"><span class="th"><svg class="i" style="width:20px;height:20px"><use href="#i-leaf"/></svg></span><span class="n">Snack<small>Apple, almonds</small></span><span class="k">268</span></div>
+            <div class="tabbar">
+              <div class="tab on"><svg class="i"><use href="#i-today"/></svg>Today</div>
+              <div class="tab"><svg class="i"><use href="#i-diary"/></svg>Diary</div>
+              <div class="tab scan"><span class="fab"><svg class="i"><use href="#i-cam"/></svg></span></div>
+              <div class="tab"><svg class="i"><use href="#i-pot"/></svg>Recipes</div>
+              <div class="tab"><svg class="i"><use href="#i-user"/></svg>Profile</div>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Home · daily summary</span><span>1/3</span></figcaption></figure>
+
+          <!-- RIPE · RESULT -->
+          <figure class="scr"><div class="scaler"><div class="phone">
+            <div class="r-photo">
+              <img class="food" src="assets/dish-salmon-rice-broccoli.jpg" alt="Photo: salmon, white rice and broccoli on a plate">
+              <div class="sb" style="position:absolute;top:0;left:0;right:0;color:#FFFCF6"><span>9:41</span><span class="ind"><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity=".6"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/></svg></span></div><div class="bar"><span class="r-round"><svg class="i"><use href="#i-close"/></svg></span><span class="r-round"><svg class="i"><use href="#i-cam"/></svg></span></div>
+              <span class="r-pin" style="left:260px;top:160px">1</span>
+              <span class="r-pin" style="left:118px;top:156px">2</span>
+              <span class="r-pin" style="left:188px;top:135px">3</span>
+              <span class="r-pin q" style="left:262px;top:74px">4</span>
+            </div>
+            <div class="r-sheet">
+              <div class="r-handle"></div>
+              <div class="r-sh-top"><h5>We found 4 foods<small>Check anything marked below</small></h5><span class="r-mealpick">Lunch<svg class="i" style="width:18px;height:18px"><use href="#i-chev-d"/></svg></span></div>
+              <div class="r-item"><span class="no">1</span><div><div class="nm">Salmon, cooked</div><div class="cf" style="color:var(--ok)"><svg class="i"><use href="#i-ok"/></svg>High confidence</div></div><div class="r-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>140 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">288</span></div>
+              <div class="r-item"><span class="no">2</span><div><div class="nm">White rice</div><div class="cf" style="color:var(--warn)"><svg class="i"><use href="#i-half"/></svg>Check portion</div></div><div class="r-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>150 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">195</span></div>
+              <div class="r-item"><span class="no">3</span><div><div class="nm">Broccoli, boiled</div><div class="cf" style="color:var(--ok)"><svg class="i"><use href="#i-ok"/></svg>High confidence</div></div><div class="r-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>90 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">32</span></div>
+              <div class="r-item unsure"><span class="no" style="background:var(--honey)">4</span><div><div class="nm">Oil or glaze?</div><div class="cf" style="color:var(--warn)"><svg class="i"><use href="#i-q"/></svg>Not sure. Is it…</div><div class="r-alt"><span>Olive oil</span><span>Teriyaki</span><span>Search</span></div></div><div class="r-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>5 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">44</span></div>
+              <div class="r-total"><b class="num">559 <small>kcal</small></b><div class="r-mstack"><span><i style="background:var(--p)"></i>P 37</span><span><i style="background:var(--f)"></i>F 23</span><span><i style="background:var(--c)"></i>C 49</span></div></div>
+              <div class="r-btn"><svg class="i"><use href="#i-check"/></svg>Add to Lunch · 559 kcal</div>
+              <div class="r-btn2"><svg class="i" style="width:20px;height:20px"><use href="#i-plus"/></svg>Add a missing item</div>
+              <p class="r-disc">Photo estimates can be off by 10–20%. Not medical advice.</p>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Photo analysis · result</span><span>2/3</span></figcaption></figure>
+
+          <!-- RIPE · DIARY -->
+          <figure class="scr"><div class="scaler"><div class="phone">
+            <div class="sb"><span>9:41</span><span class="ind"><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="10" y="2" width="3" height="10" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/></svg></span></div>
+            <div class="r-h1"><span>Diary</span><span class="r-avatar" style="background:var(--surface)"><svg class="i"><use href="#i-search"/></svg></span></div>
+            <div class="r-days">
+              <div class="r-day">Wed<b>23</b><span class="dot"></span></div><div class="r-day">Thu<b>24</b><span class="dot"></span></div><div class="r-day">Fri<b>25</b><span class="dot"></span></div><div class="r-day">Sat<b>26</b></div><div class="r-day">Sun<b>27</b><span class="dot"></span></div><div class="r-day">Mon<b>28</b><span class="dot"></span></div><div class="r-day on">Tue<b>29</b></div>
+            </div>
+            <div class="r-daysum"><span class="num"><b>1,171</b> / 2,050</span><span class="bar"><b></b></span><span style="font-size:13px;color:var(--ink2)">879 left</span></div>
+            <div class="r-tl">
+              <div class="r-tm"><span class="dot"></span><div class="hd">Breakfast<span>344<small>kcal</small></span></div>
+                <div class="box"><div class="r-row"><span>Greek yogurt, 2%<small>200 g</small></span><span class="num">146</span></div><div class="r-row"><span>Rolled oats<small>40 g</small></span><span class="num">152</span></div><div class="r-row"><span>Blueberries<small>80 g</small></span><span class="num">46</span></div></div></div>
+              <div class="r-tm"><span class="dot"></span><div class="hd"><span style="font-family:var(--f-head);font-size:18px">Lunch<span class="r-tag"><svg class="i" style="width:12px;height:12px"><use href="#i-cam"/></svg>From photo</span></span><span>559<small>kcal</small></span></div>
+                <div class="box"><div class="r-row"><span>Salmon, cooked<small>140 g</small></span><span class="num">288</span></div><div class="r-row"><span>White rice<small>150 g</small></span><span class="num">195</span></div><div class="r-row"><span>Broccoli, boiled<small>90 g</small></span><span class="num">32</span></div><div class="r-row"><span>Olive oil<small>5 g</small></span><span class="num">44</span></div></div></div>
+              <div class="r-tm"><span class="dot"></span><div class="hd">Snack<span>268<small>kcal</small></span></div>
+                <div class="box"><div class="r-row"><span>Apple<small>180 g</small></span><span class="num">94</span></div><div class="r-row"><span>Almonds<small>30 g</small></span><span class="num">174</span></div></div></div>
+              <div class="r-tm"><span class="dot empty"></span><div class="hd">Dinner<span style="color:var(--ink2)">—</span></div>
+                <div class="r-empty"><span><svg class="i" style="width:20px;height:20px"><use href="#i-cam"/></svg>Snap</span><span><svg class="i" style="width:20px;height:20px"><use href="#i-search"/></svg>Search</span></div></div>
+            </div>
+            <div class="tabbar">
+              <div class="tab"><svg class="i"><use href="#i-today"/></svg>Today</div>
+              <div class="tab on"><svg class="i"><use href="#i-diary"/></svg>Diary</div>
+              <div class="tab scan"><span class="fab"><svg class="i"><use href="#i-cam"/></svg></span></div>
+              <div class="tab"><svg class="i"><use href="#i-pot"/></svg>Recipes</div>
+              <div class="tab"><svg class="i"><use href="#i-user"/></svg>Profile</div>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Food diary</span><span>3/3</span></figcaption></figure>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>Type · Young Serif / Hanken Grotesk / Azeret Mono</h4>
+          <div class="type-spec">
+            <div class="ts-row"><small>Headline<span>Young Serif 400</span></small><div style="font-family:'Young Serif';font-size:40px;line-height:44px">Snap it. Know it.</div></div>
+            <div class="ts-row"><small>Body<span>Hanken Grotesk</span></small><div style="font-size:16px;line-height:24px">Point your camera at the plate. We'll find each food, estimate the portion and show how sure we are.</div></div>
+            <div class="ts-row"><small>Numbers<span>Azeret Mono</span></small><div class="num" style="font-size:44px;line-height:48px;font-weight:500;letter-spacing:-.02em">559 <span style="font-size:16px;color:var(--ink2)">kcal</span></div></div>
+          </div>
+          <table class="scale-table">
+            <tr><td>Display · Young Serif</td><td>40/44</td></tr><tr><td>H1 · H2</td><td>28/34 · 22/28</td></tr><tr><td>Title · Hanken 600</td><td>18/24</td></tr><tr><td>Body · Callout · Caption</td><td>16/24 · 14/20 · 12/16</td></tr><tr><td>Num-XL · Num-M</td><td>44/48 · 16/24</td></tr>
+          </table>
+        </div>
+        <div class="tok">
+          <div><h4>Spacing · 8 pt grid · screen margin 20</h4><div class="spacing"><div><i style="height:4px"></i>4</div><div><i style="height:8px"></i>8</div><div><i style="height:12px"></i>12</div><div><i style="height:16px"></i>16</div><div><i style="height:20px;opacity:1"></i>20</div><div><i style="height:24px"></i>24</div><div><i style="height:32px"></i>32</div><div><i style="height:40px"></i>40</div><div><i style="height:48px"></i>48</div><div><i style="height:64px"></i>64</div></div></div>
+          <div><h4>Radii</h4><div class="radii"><div style="border-radius:6px">6</div><div style="border-radius:10px">10</div><div style="border-radius:16px">16</div><div style="border-radius:24px">24</div><div style="border-radius:32px">32</div><div style="border-radius:999px">full</div></div></div>
+          <div><h4>Elevation</h4><div class="elev"><div style="border-radius:16px;box-shadow:0 1px 2px rgba(43,33,24,.06),0 2px 8px rgba(43,33,24,.06)">e1</div><div style="border-radius:16px;box-shadow:0 8px 24px rgba(43,33,24,.10)">e2</div><div style="border-radius:16px;box-shadow:0 -8px 32px rgba(43,33,24,.14)">e3 sheet</div></div></div>
+          <div><h4>Icons · 24 grid · 2 px round</h4><div class="icons"><span class="grid24"><svg class="i"><use href="#i-cam"/></svg></span><svg class="i"><use href="#i-today"/></svg><svg class="i"><use href="#i-diary"/></svg><svg class="i"><use href="#i-pot"/></svg><svg class="i"><use href="#i-search"/></svg><svg class="i"><use href="#i-barcode"/></svg><svg class="i" style="color:var(--ok)"><use href="#i-ok"/></svg><svg class="i" style="color:var(--warn)"><use href="#i-half"/></svg><svg class="i" style="color:var(--warn)"><use href="#i-q"/></svg></div></div>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>Imagery · iconography</h4>
+          <p class="desc"><b>Imagery:</b> bright natural-light plates shot at 45° (the same angle the camera guidance asks for). Colours are saturated but unfiltered, with market textures: crates, paper bags, boards. No bodies, scales or measuring tapes.</p>
+          <p class="desc" style="margin-top:10px"><b>Icons:</b> 2&nbsp;px rounded stroke on a 24&nbsp;px grid. The selected tab uses Persimmon; confidence is shown as check / half / question, never by colour alone.</p>
+        </div>
+        <div>
+          <h4>Tone · upbeat, short, open about estimates</h4>
+          <div class="micro">
+            <div class="tone"><svg class="i" style="color:var(--primary)"><use href="#i-cam"/></svg>Looks like salmon, rice and broccoli. Check the portions?</div>
+            <div class="tone"><svg class="i" style="color:var(--warn)"><use href="#i-q"/></svg>We're not sure about the glaze. Is it olive oil or teriyaki?</div>
+            <div class="tone"><svg class="i" style="color:var(--fresh)"><use href="#i-leaf"/></svg>879 kcal left today. Plenty of room for dinner.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>App icon · store-ready</h4>
+          <div class="iconprev">
+            <figure><div class="ip-master"><svg viewBox="0 0 1024 1024"><use href="#icon-ripe"/></svg></div><figcaption>1024×1024 master<br>square, opaque</figcaption></figure>
+            <figure><div class="ip-ios"><svg viewBox="0 0 1024 1024"><use href="#icon-ripe"/></svg></div><figcaption>iOS<br>mask applied by the system</figcaption></figure>
+            <figure><div class="ip-canvas"><svg viewBox="0 0 1024 1024"><use href="#icon-ripe"/></svg><span class="safe"></span></div><figcaption>Android adaptive<br>108 dp · 66 dp safe zone</figcaption></figure>
+            <figure><div class="ip-and"><div class="mask"><svg viewBox="0 0 1024 1024"><use href="#icon-ripe"/></svg></div></div><figcaption>Circle mask<br>preview</figcaption></figure>
+          </div>
+        </div>
+        <div>
+          <h4>How it's different</h4>
+          <p class="diff">Category leaders lean on blues and greens. Ripe owns <b>ripe orange and oat</b>, the colours of food itself. It's the only one that shows a <b>confidence label on every detected item</b>, and navigation is camera-first (Scan sits in the centre of the tab bar).</p>
+        </div>
+      </section>
+    </article>
+
+<!-- =====================================================================
+     B · PER100
+     ===================================================================== -->
+    <article class="board per">
+      <div class="hero">
+        <div class="lbl"><span>Direction B</span><span>The honest label</span></div>
+        <div class="lockup">
+          <div class="appicon" style="border-radius:22px"><svg viewBox="0 0 1024 1024"><use href="#icon-per"/></svg></div>
+          <div>
+            <div class="wordmark"><sup>per</sup>100</div>
+            <div class="storename">Store name: <code>Per100: Calorie Calculator</code> · 26/30</div>
+          </div>
+        </div>
+        <p class="positioning" style="font-family:'Libre Franklin';font-weight:800;letter-spacing:-.01em">Every food, every photo, reduced to one honest label.</p>
+        <p class="audience"><b>For</b> label-readers aged 25–45: lifters, people who meal-prep, people who read packaging. They distrust "AI magic" and want the numbers, the source and the maths.</p>
+        <div class="kws"><span class="kw">Frank</span><span class="kw">Exact</span><span class="kw">Graphic</span><span class="kw">Unfussy</span></div>
+      </div>
+
+      <section>
+        <h4>Palette · named after food · contrast measured on Kraft</h4>
+        <div class="pal">
+          <div class="sw"><div class="c" style="background:#F4EDE1"></div><div class="t"><b>Kraft</b><code>#F4EDE1</code><br><em>Background: deli paper</em></div></div>
+          <div class="sw"><div class="c" style="background:#FBF7EF"></div><div class="t"><b>Parchment</b><code>#FBF7EF</code><br><em>Cards, label panel</em></div></div>
+          <div class="sw"><div class="c" style="background:#1E1C17"><span>14.6</span></div><div class="t"><b>Black olive</b><code>#1E1C17</code><br><em>Text, rules, primary button</em></div></div>
+          <div class="sw"><div class="c" style="background:#5A5348"><span>6.5</span></div><div class="t"><b>Peppercorn</b><code>#5A5348</code><br><em>Secondary text</em></div></div>
+          <div class="sw"><div class="c" style="background:#E3A82B"></div><div class="t"><b>Dijon</b><code>#E3A82B</code><br><em>Brand highlight · Black olive 8.0</em></div></div>
+          <div class="sw"><div class="c" style="background:#B23A1C"><span>5.1</span></div><div class="t"><b>Paprika</b><code>#B23A1C</code><br><em>Stamp accent · white 6.0</em></div></div>
+          <div class="sw"><div class="c" style="background:#3B6526"><span>5.9</span></div><div class="t"><b>Pickle</b><code>#3B6526</code><br><em>"Fits", verified source</em></div></div>
+          <div class="sw"><div class="c" style="background:repeating-linear-gradient(135deg,#1E1C17 0 3px,#F4EDE1 3px 8px)"></div><div class="t"><b>Rules and hatches</b><code>1.5 / 4 / 8 px</code><br><em>Label structure</em></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="mchip"><i class="pat-p" style="--p:#7C2B5C"></i><b>P · Plum</b><code>#7C2B5C · 7.7 · solid</code></div>
+          <div class="mchip"><i class="pat-f" style="--f:#A06F00"></i><b>F · Dijon dark</b><code>#A06F00 · 3.8 · hatched</code></div>
+          <div class="mchip"><i class="pat-c" style="--c:#2D62A8"></i><b>C · Sloe</b><code>#2D62A8 · 5.3 · dotted</code></div>
+          <div class="mchip"><i style="background:#2F6B35"></i><b>Success · Pickle</b><code>#2F6B35 · 5.5</code></div>
+          <div class="mchip"><i style="background:#8F5E00"></i><b>Warning · Dijon dark</b><code>#8F5E00 · 4.8</code></div>
+          <div class="mchip"><i style="background:#A8321C"></i><b>Error · Paprika</b><code>#A8321C · 5.8</code></div>
+        </div>
+        <p class="cvd">Colour-blindness separation for P/F/C (ΔE): protanopia 27 / 75 / 94 · deuteranopia 39 / 66 / 102 · tritanopia 22 / 62 / 68. Patterns (solid / hatched / dotted) mean macros read correctly even in greyscale.</p>
+      </section>
+
+      <section>
+        <h4>Mini screens · 390×844</h4>
+        <div class="screens">
+          <!-- PER · HOME -->
+          <figure class="scr"><div class="scaler"><div class="phone" style="border-radius:40px">
+            <div class="sb"><span>9:41</span><span class="ind"><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" fill="currentColor"/><rect x="5" y="5" width="3" height="7" fill="currentColor"/><rect x="10" y="2" width="3" height="10" fill="currentColor"/><rect x="15" y="0" width="3" height="12" fill="currentColor"/></svg><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="2" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="12" height="8" rx="1" fill="currentColor"/></svg></span></div>
+            <div class="p-top"><h5>Today</h5><div class="d">Tuesday<br>29 Sep</div></div>
+            <div class="p-label">
+              <div class="t">Daily Facts</div>
+              <div class="serv"><span>Goal (maintenance)</span><b class="num">1,900 kcal</b></div>
+              <div class="cal"><div>Calories<small>eaten so far</small></div><b>908</b></div>
+              <div class="left"><span>Left for today</span><b>992 kcal</b></div>
+              <div class="p-mrow"><i class="pat-p"></i><span class="n">Protein<small>P</small></span><span class="v">37<span> / 95 g</span></span><div class="bar"><b class="pat-p" style="width:39%"></b></div></div>
+              <div class="p-mrow"><i class="pat-f"></i><span class="n">Fat<small>F</small></span><span class="v">26<span> / 63 g</span></span><div class="bar"><b class="pat-f" style="width:41%"></b></div></div>
+              <div class="p-mrow"><i class="pat-c"></i><span class="n">Carbs<small>C</small></span><span class="v">140<span> / 238 g</span></span><div class="bar"><b class="pat-c" style="width:59%"></b></div></div>
+            </div>
+            <div class="p-scan"><span class="sq"><svg class="i"><use href="#i-cam"/></svg></span>Scan a meal<em>photo · barcode</em></div>
+            <div class="p-meals">
+              <div class="h">Meals</div>
+              <div class="p-mealrow"><span>Breakfast</span><b>373</b></div>
+              <div class="p-mealrow"><span>Lunch</span><b>411</b></div>
+              <div class="p-mealrow"><span>Snack</span><b>124</b></div>
+              <div class="p-mealrow"><span>Dinner</span><span class="add"><svg class="i" style="width:18px;height:18px"><use href="#i-plus"/></svg>Add</span></div>
+            </div>
+            <div class="tabbar">
+              <div class="tab on"><svg class="i"><use href="#i-today"/></svg>Today</div>
+              <div class="tab"><svg class="i"><use href="#i-diary"/></svg>Diary</div>
+              <div class="tab scan"><span class="fab"><svg class="i"><use href="#i-cam"/></svg></span></div>
+              <div class="tab"><svg class="i"><use href="#i-pot"/></svg>Recipes</div>
+              <div class="tab"><svg class="i"><use href="#i-user"/></svg>Profile</div>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Home · daily summary</span><span>1/3</span></figcaption></figure>
+
+          <!-- PER · RESULT -->
+          <figure class="scr"><div class="scaler"><div class="phone" style="border-radius:40px">
+            <div class="sb" style="color:#1E1C17"><span>9:41</span><span class="ind"><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="2" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="12" height="8" rx="1" fill="currentColor"/></svg></span></div>
+            <div class="p-photo">
+              <svg class="food" viewBox="0 0 390 300" preserveAspectRatio="xMidYMid slice" aria-label="Photo: oatmeal with banana, peanut butter and honey">
+                <rect width="390" height="300" fill="#E8DCC6"/>
+                <g stroke="#D6C6A8" stroke-width="1.5" opacity=".7"><path d="M0 60h390M0 64h390M0 250h390M0 254h390"/></g>
+                <circle cx="206" cy="182" r="118" fill="#1E1C17" opacity=".14"/>
+                <circle cx="195" cy="170" r="118" fill="#FBF7EF"/>
+                <circle cx="195" cy="170" r="100" fill="#E6D3AE"/>
+                <g fill="#D4BC8C"><circle cx="160" cy="140" r="3"/><circle cx="180" cy="200" r="3"/><circle cx="230" cy="130" r="2.5"/><circle cx="150" cy="190" r="2.5"/><circle cx="240" cy="210" r="3"/><circle cx="210" cy="160" r="2"/><circle cx="170" cy="170" r="2"/><circle cx="130" cy="160" r="2.5"/></g>
+                <!-- banana coins -->
+                <g fill="#F6E7A8" stroke="#E2CD7A" stroke-width="2"><circle cx="232" cy="120" r="17"/><circle cx="260" cy="146" r="17"/><circle cx="268" cy="180" r="17"/><circle cx="256" cy="212" r="17"/></g>
+                <g fill="#C9B266"><circle cx="232" cy="120" r="3"/><circle cx="260" cy="146" r="3"/><circle cx="268" cy="180" r="3"/><circle cx="256" cy="212" r="3"/></g>
+                <!-- peanut butter -->
+                <path d="M140 150c10-16 34-18 44-4 8 12-2 26-16 26-10 0-14-8-8-14 5-4 12 0 9 4" fill="none" stroke="#A8702F" stroke-width="12" stroke-linecap="round"/>
+                <!-- honey -->
+                <path d="M150 210c20 8 40-10 60 0s30 12 40 4" fill="none" stroke="#E3A82B" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+              </svg>
+              <div class="bar"><span class="p-sq"><svg class="i"><use href="#i-close"/></svg></span><span class="p-sq"><svg class="i"><use href="#i-image"/></svg></span></div>
+              <span class="p-tag" style="left:108px;top:190px">1</span>
+              <span class="p-tag" style="left:282px;top:104px">2</span>
+              <span class="p-tag" style="left:150px;top:120px">3</span>
+              <span class="p-tag q" style="left:226px;top:222px">4?</span>
+            </div>
+            <div class="p-res">
+              <div class="hd"><h5>Analysis<small>4 foods · values from USDA</small></h5><span class="p-meal">Breakfast<svg class="i" style="width:16px;height:16px"><use href="#i-chev-d"/></svg></span></div>
+              <div class="p-th"><span>#</span><span>Food</span><span>Portion</span><span>kcal</span></div>
+              <div class="p-tr"><span class="no">1</span><div class="nm">Oatmeal, cooked<small style="color:var(--ok)"><svg class="i"><use href="#i-ok"/></svg>High</small></div><div class="p-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>250 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">178</span></div>
+              <div class="p-tr"><span class="no">2</span><div class="nm">Banana<small style="color:var(--ok)"><svg class="i"><use href="#i-ok"/></svg>High</small></div><div class="p-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>80 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">71</span></div>
+              <div class="p-tr"><span class="no">3</span><div class="nm">Peanut butter<small style="color:var(--warn)"><svg class="i"><use href="#i-half"/></svg>Check portion</small></div><div class="p-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>16 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">94</span></div>
+              <div class="p-tr q"><span class="no">4</span><div class="nm">Honey?<small style="color:var(--warn)"><svg class="i"><use href="#i-q"/></svg>Can't tell</small><div class="p-q"><span>Honey</span><span>Maple</span><span>Search</span></div></div><div class="p-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>10 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">30</span></div>
+              <div class="p-tot"><span class="l">Total</span><b>373<span style="font-size:14px"> kcal</span></b></div>
+              <div class="p-mline"><div><i class="pat-p"></i>P 11 g</div><div><i class="pat-f"></i>F 12 g</div><div><i class="pat-c"></i>C 60 g</div></div>
+              <div class="p-btn">Add to Breakfast <em>373 kcal</em></div>
+              <p class="p-disc">Photo estimates can be off by 10–20%. Not medical advice.</p>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Photo analysis · result</span><span>2/3</span></figcaption></figure>
+
+          <!-- PER · DIARY -->
+          <figure class="scr"><div class="scaler"><div class="phone" style="border-radius:40px">
+            <div class="sb"><span>9:41</span><span class="ind"><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="2" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="12" height="8" rx="1" fill="currentColor"/></svg></span></div>
+            <div class="p-top"><h5>Diary</h5><span class="p-sq" style="border:none;background:none"><svg class="i"><use href="#i-search"/></svg></span></div>
+            <div class="p-datenav"><span><svg class="i"><use href="#i-chev-l"/></svg></span>Tue · 29 Sep<span><svg class="i"><use href="#i-chev-r"/></svg></span></div>
+            <div class="p-led">
+              <div class="mh"><span style="font:inherit">Breakfast<small>Photo</small></span><span>373</span></div>
+              <div class="p-lr"><span>Oatmeal, cooked</span><span class="g">250 g</span><span class="k">178</span></div>
+              <div class="p-lr"><span>Banana</span><span class="g">80 g</span><span class="k">71</span></div>
+              <div class="p-lr"><span>Peanut butter</span><span class="g">16 g</span><span class="k">94</span></div>
+              <div class="p-lr"><span>Honey</span><span class="g">10 g</span><span class="k">30</span></div>
+              <div class="mh"><span style="font:inherit">Lunch</span><span>411</span></div>
+              <div class="p-lr"><span>Lentil soup<span class="rt">Your recipe · 62 kcal/100 g</span></span><span class="g">400 g</span><span class="k">248</span></div>
+              <div class="p-lr"><span>Sourdough bread</span><span class="g">60 g</span><span class="k">163</span></div>
+              <div class="mh"><span style="font:inherit">Snack</span><span>124</span></div>
+              <div class="p-lr"><span>Hummus</span><span class="g">50 g</span><span class="k">83</span></div>
+              <div class="p-lr"><span>Carrot, raw</span><span class="g">100 g</span><span class="k">41</span></div>
+              <div class="mh"><span style="font:inherit">Dinner</span><span style="color:var(--ink2)">—</span></div>
+              <div class="p-addrow"><svg class="i" style="width:18px;height:18px"><use href="#i-plus"/></svg>Add food</div>
+            </div>
+            <div class="p-daytot"><div class="r1">Day total<b>908 <span>/ 1,900</span></b></div><div class="r2">P 37 g · F 26 g · C 140 g · 992 kcal left</div></div>
+            <div class="tabbar">
+              <div class="tab"><svg class="i"><use href="#i-today"/></svg>Today</div>
+              <div class="tab on"><svg class="i"><use href="#i-diary"/></svg>Diary</div>
+              <div class="tab scan"><span class="fab"><svg class="i"><use href="#i-cam"/></svg></span></div>
+              <div class="tab"><svg class="i"><use href="#i-pot"/></svg>Recipes</div>
+              <div class="tab"><svg class="i"><use href="#i-user"/></svg>Profile</div>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Food diary</span><span>3/3</span></figcaption></figure>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>Type · Libre Franklin / Public Sans / Chivo Mono</h4>
+          <div class="type-spec">
+            <div class="ts-row"><small>Headline<span>Libre Franklin 900</span></small><div style="font-family:'Libre Franklin';font-weight:900;font-size:44px;line-height:44px;letter-spacing:-.03em">Daily Facts</div></div>
+            <div class="ts-row"><small>Body<span>Public Sans</span></small><div style="font-size:16px;line-height:24px">Every item shows its source, its portion and how sure we are. You can change any number before it's saved.</div></div>
+            <div class="ts-row"><small>Numbers<span>Chivo Mono</span></small><div class="num" style="font-size:56px;line-height:56px;font-weight:700;letter-spacing:-.04em">373</div></div>
+          </div>
+          <table class="scale-table">
+            <tr><td>Display · Franklin 900</td><td>44/44</td></tr><tr><td>H1 · H2 · Franklin 800</td><td>28/32 · 20/24</td></tr><tr><td>Label caps · Franklin 700</td><td>13/16 +6%</td></tr><tr><td>Body · Callout · Caption</td><td>16/24 · 14/20 · 12/16</td></tr><tr><td>Num-XL · Num-M</td><td>56/56 · 16/24</td></tr>
+          </table>
+        </div>
+        <div class="tok">
+          <div><h4>Spacing · 8 pt grid · screen margin 16</h4><div class="spacing"><div><i style="height:4px"></i>4</div><div><i style="height:8px"></i>8</div><div><i style="height:12px"></i>12</div><div><i style="height:16px;opacity:1"></i>16</div><div><i style="height:24px"></i>24</div><div><i style="height:32px"></i>32</div><div><i style="height:48px"></i>48</div><div><i style="height:64px"></i>64</div></div></div>
+          <div><h4>Radii · sharp label edges</h4><div class="radii"><div style="border-radius:0">0</div><div style="border-radius:2px">2</div><div style="border-radius:4px">4</div><div style="border-radius:8px">8 sheet</div></div></div>
+          <div><h4>Elevation · rules instead of shadows</h4><div class="elev"><div style="box-shadow:inset 0 0 0 1.5px #1E1C17">e0 rule</div><div style="box-shadow:0 0 0 1.5px #1E1C17,4px 4px 0 #1E1C17">e1 stamp</div><div style="box-shadow:0 -6px 24px rgba(30,28,23,.14)">e2 sheet</div></div></div>
+          <div><h4>Icons · 24 grid · 2 px square caps</h4><div class="icons"><span class="grid24"><svg class="i"><use href="#i-cam"/></svg></span><svg class="i"><use href="#i-today"/></svg><svg class="i"><use href="#i-diary"/></svg><svg class="i"><use href="#i-pot"/></svg><svg class="i"><use href="#i-search"/></svg><svg class="i"><use href="#i-barcode"/></svg><svg class="i" style="color:var(--ok)"><use href="#i-ok"/></svg><svg class="i" style="color:var(--warn)"><use href="#i-half"/></svg><svg class="i" style="color:var(--warn)"><use href="#i-q"/></svg></div></div>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>Imagery · iconography</h4>
+          <p class="desc"><b>Imagery:</b> packshot-style photos of ingredients on kraft paper under one hard light, shown next to their label panel. Ingredients are whole or cut in half. No lifestyle scenes and no people. The photo analysis screen turns any plate into a numbered label.</p>
+          <p class="desc" style="margin-top:10px"><b>Icons:</b> 2&nbsp;px, square caps, mitred joins. Built from rectangles and circles, like stamps. Confidence labels are set in caps: HIGH · CHECK PORTION · CAN'T TELL.</p>
+        </div>
+        <div>
+          <h4>Tone · plain facts, with sources</h4>
+          <div class="micro">
+            <div class="tone"><b>Result</b>Oatmeal, 250 g. Source: USDA. Confidence: high.</div>
+            <div class="tone"><b>Low confidence</b>Honey? We can't tell from the photo. Check it or remove it.</div>
+            <div class="tone"><b>Over goal</b>Over by 90 kcal. That's about one banana. No big deal.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>App icon · store-ready</h4>
+          <div class="iconprev">
+            <figure><div class="ip-master"><svg viewBox="0 0 1024 1024"><use href="#icon-per"/></svg></div><figcaption>1024×1024 master<br>square, opaque</figcaption></figure>
+            <figure><div class="ip-ios"><svg viewBox="0 0 1024 1024"><use href="#icon-per"/></svg></div><figcaption>iOS<br>mask applied by the system</figcaption></figure>
+            <figure><div class="ip-canvas"><svg viewBox="0 0 1024 1024"><use href="#icon-per"/></svg><span class="safe"></span></div><figcaption>Android adaptive<br>108 dp · 66 dp safe zone</figcaption></figure>
+            <figure><div class="ip-and"><div class="mask"><svg viewBox="0 0 1024 1024"><use href="#icon-per"/></svg></div></div><figcaption>Circle mask<br>preview</figcaption></figure>
+          </div>
+        </div>
+        <div>
+          <h4>How it's different</h4>
+          <p class="diff">It turns the <b>Nutrition Facts label</b>, a public visual language nobody owns, into the whole brand. It is the most transparent of the three: source, confidence and maths on every item, answering the trust gap in the research. Patterns make the macros readable without colour.</p>
+        </div>
+      </section>
+    </article>
+
+<!-- =====================================================================
+     C · SPRIG
+     ===================================================================== -->
+    <article class="board sprig">
+      <div class="hero">
+        <div class="lbl"><span>Direction C</span><span>Calm kitchen</span></div>
+        <div class="lockup">
+          <div class="appicon"><svg viewBox="0 0 1024 1024"><use href="#icon-sprig"/></svg></div>
+          <div>
+            <div class="wordmark">sprig</div>
+            <div class="storename">Store name: <code>Sprig: Calm Calorie Counter</code> · 27/30</div>
+          </div>
+        </div>
+        <p class="positioning" style="font-family:'Instrument Serif';font-size:32px;line-height:1.2">Know what's on your plate, <em>without the pressure.</em></p>
+        <p class="audience"><b>For</b> adults aged 28–50 who tried trackers before and felt judged or anxious. They want gentle awareness: a photo, a number, and no alarms.</p>
+        <div class="kws"><span class="kw">Calm</span><span class="kw">Kind</span><span class="kw">Grounded</span><span class="kw">Clear</span></div>
+      </div>
+
+      <section>
+        <h4>Palette · named after food · contrast measured on Coconut</h4>
+        <div class="pal">
+          <div class="sw"><div class="c" style="background:#F7F4EC"></div><div class="t"><b>Coconut</b><code>#F7F4EC</code><br><em>Background: soft flesh</em></div></div>
+          <div class="sw"><div class="c" style="background:#FFFDF7"></div><div class="t"><b>Rice paper</b><code>#FFFDF7</code><br><em>Cards</em></div></div>
+          <div class="sw"><div class="c" style="background:#1C2620"><span>14.2</span></div><div class="t"><b>Nori</b><code>#1C2620</code><br><em>Text: seaweed green-black</em></div></div>
+          <div class="sw"><div class="c" style="background:#56635A"><span>5.7</span></div><div class="t"><b>Sage stem</b><code>#56635A</code><br><em>Secondary text</em></div></div>
+          <div class="sw"><div class="c" style="background:#2F6B45"><span>5.8</span></div><div class="t"><b>Basil</b><code>#2F6B45</code><br><em>Brand and CTA: fresh herbs · white 6.3</em></div></div>
+          <div class="sw"><div class="c" style="background:#DDEBD9"></div><div class="t"><b>Cucumber</b><code>#DDEBD9</code><br><em>Tints, chips · deep Basil 6.9</em></div></div>
+          <div class="sw"><div class="c" style="background:#F4A259"></div><div class="t"><b>Apricot</b><code>#F4A259</code><br><em>Warm spark · Nori 7.5</em></div></div>
+          <div class="sw"><div class="c" style="background:#24563A"><span>7.7</span></div><div class="t"><b>Basil deep</b><code>#24563A</code><br><em>Text on tints</em></div></div>
+        </div>
+        <div class="macro-row">
+          <div class="mchip"><i style="background:#B23A6E"></i><b>P · Radish</b><code>#B23A6E · 5.1</code></div>
+          <div class="mchip"><i style="background:#9E7700"></i><b>F · Corn</b><code>#9E7700 · 3.8</code></div>
+          <div class="mchip"><i style="background:#2E6DB0"></i><b>C · Borage</b><code>#2E6DB0 · 4.9</code></div>
+          <div class="mchip"><i style="background:#2F7A4B"></i><b>Success · Basil</b><code>#2F7A4B · 4.8</code></div>
+          <div class="mchip"><i style="background:#946200"></i><b>Warning · Saffron</b><code>#946200 · 4.8</code></div>
+          <div class="mchip"><i style="background:#B0301F"></i><b>Error · Chili</b><code>#B0301F · 5.8</code></div>
+        </div>
+        <p class="cvd">Colour-blindness separation for P/F/C (ΔE): protanopia 27 / 71 / 95 · deuteranopia 47 / 55 / 102 · tritanopia 34 / 58 / 89. Going over the goal never turns red; the copy stays neutral.</p>
+      </section>
+
+      <section>
+        <h4>Mini screens · 390×844</h4>
+        <div class="screens">
+          <!-- SPRIG · HOME -->
+          <figure class="scr"><div class="scaler"><div class="phone">
+            <div class="sb"><span>9:41</span><span class="ind"><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1.5" fill="currentColor"/><rect x="5" y="5" width="3" height="7" rx="1.5" fill="currentColor"/><rect x="10" y="2" width="3" height="10" rx="1.5" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1.5" fill="currentColor"/></svg><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2.5" fill="currentColor"/></svg></span></div>
+            <div class="s-top"><h5><small>Tuesday, 29 September</small>Your plate today</h5><span class="s-ib"><svg class="i"><use href="#i-user"/></svg></span></div>
+            <div class="s-ring">
+              <svg viewBox="0 0 236 236" aria-hidden="true">
+                <circle cx="118" cy="118" r="100" fill="#FFFDF7"/>
+                <circle cx="118" cy="118" r="100" fill="none" stroke="#EAE6DB" stroke-width="16"/>
+                <g transform="rotate(-90 118 118)" fill="none" stroke-width="16" stroke-linecap="round">
+                  <circle cx="118" cy="118" r="100" stroke="#F4A259" stroke-dasharray="103.6 525"/>
+                  <circle cx="118" cy="118" r="100" stroke="#2F6B45" stroke-dasharray="125 525" stroke-dashoffset="-117.6"/>
+                  <circle cx="118" cy="118" r="100" stroke="#7FAE8A" stroke-dasharray="64.6 525" stroke-dashoffset="-256.6"/>
+                </g>
+              </svg>
+              <div class="c"><small>eaten so far</small><b>903</b><small>of 1,800 kcal</small></div>
+            </div>
+            <div class="s-legend"><span><i style="background:#F4A259"></i>Breakfast 314</span><span><i style="background:#2F6B45"></i>Lunch 381</span><span><i style="background:#7FAE8A"></i>Snack 208</span></div>
+            <div class="s-macs">
+              <div class="s-mac"><div class="l"><i style="background:var(--p)"></i>Protein</div><div class="v">79<span> / 100 g</span></div><div class="bar"><b style="width:79%;background:var(--p)"></b></div></div>
+              <div class="s-mac"><div class="l"><i style="background:var(--f)"></i>Fat</div><div class="v">43<span> / 60 g</span></div><div class="bar"><b style="width:72%;background:var(--f)"></b></div></div>
+              <div class="s-mac"><div class="l"><i style="background:var(--c)"></i>Carbs</div><div class="v">52<span> / 215 g</span></div><div class="bar"><b style="width:24%;background:var(--c)"></b></div></div>
+            </div>
+            <div class="s-note"><span class="lf"><svg class="i"><use href="#i-leaf"/></svg></span><span>Dinner's still ahead. About 900 kcal fits comfortably.</span></div>
+            <div class="s-cta"><svg class="i"><use href="#i-cam"/></svg>Snap a meal</div>
+            <div class="s-rec"><span class="th"><svg viewBox="0 0 56 56" width="56" height="56"><rect width="56" height="56" fill="#ECE5D6"/><circle cx="28" cy="28" r="23" fill="#FFFDF7"/><rect x="14" y="16" width="20" height="12" rx="5" fill="#F3EDE0" stroke="#E2D8C4"/><g fill="#E6CF8E"><circle cx="36" cy="34" r="6"/><circle cx="26" cy="38" r="5.5"/></g><g fill="#6E9F4E"><circle cx="18" cy="34" r="3"/><circle cx="21" cy="30" r="3"/><circle cx="16" cy="29" r="3"/></g></svg></span><div><small>Fits your dinner</small><b>Baked cod, potatoes &amp; peas</b><span>443 kcal · 30 min</span></div><svg class="i"><use href="#i-chev-r"/></svg></div>
+            <div class="tabbar">
+              <div class="tab on"><svg class="i"><use href="#i-today"/></svg>Today</div>
+              <div class="tab"><svg class="i"><use href="#i-diary"/></svg>Diary</div>
+              <div class="tab scan"><span class="fab"><svg class="i"><use href="#i-cam"/></svg></span></div>
+              <div class="tab"><svg class="i"><use href="#i-pot"/></svg>Recipes</div>
+              <div class="tab"><svg class="i"><use href="#i-user"/></svg>Profile</div>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Home · daily summary</span><span>1/3</span></figcaption></figure>
+
+          <!-- SPRIG · RESULT -->
+          <figure class="scr"><div class="scaler"><div class="phone">
+            <div class="s-photo">
+              <svg class="food" viewBox="0 0 390 360" preserveAspectRatio="xMidYMid slice" aria-label="Photo: chicken salad with avocado, tomatoes and feta">
+                <rect width="390" height="360" fill="#ECE5D6"/>
+                <g stroke="#DCD2BE" stroke-width="3" opacity=".6"><path d="M0 30h390M0 46h390M0 320h390M0 336h390"/></g>
+                <circle cx="206" cy="196" r="140" fill="#1C2620" opacity=".08"/>
+                <circle cx="195" cy="186" r="140" fill="#FFFDF7"/>
+                <circle cx="195" cy="186" r="122" fill="#F3EFE4"/>
+                <!-- greens -->
+                <g fill="#6E9F4E"><ellipse cx="130" cy="160" rx="40" ry="22" transform="rotate(-30 130 160)"/><ellipse cx="250" cy="250" rx="42" ry="22" transform="rotate(20 250 250)"/><ellipse cx="150" cy="250" rx="36" ry="20" transform="rotate(40 150 250)"/><ellipse cx="260" cy="130" rx="38" ry="20" transform="rotate(-10 260 130)"/></g>
+                <g fill="#8DBA63"><ellipse cx="120" cy="210" rx="32" ry="18" transform="rotate(60 120 210)"/><ellipse cx="200" cy="110" rx="34" ry="18" transform="rotate(10 200 110)"/><ellipse cx="280" cy="200" rx="30" ry="16" transform="rotate(-50 280 200)"/></g>
+                <g fill="#4D7A38"><ellipse cx="170" cy="130" rx="24" ry="12" transform="rotate(-50 170 130)"/><ellipse cx="230" cy="280" rx="24" ry="12" transform="rotate(30 230 280)"/></g>
+                <!-- chicken -->
+                <g transform="rotate(-12 205 190)"><rect x="160" y="160" width="100" height="24" rx="10" fill="#E8C29A"/><rect x="162" y="188" width="96" height="24" rx="10" fill="#EBC8A2"/><g stroke="#B98A5E" stroke-width="3" opacity=".7"><path d="M180 164l-6 16M205 164l-6 16M230 164l-6 16M182 192l-6 16M207 192l-6 16M232 192l-6 16"/></g></g>
+                <!-- tomatoes -->
+                <g fill="#D9442F"><circle cx="118" cy="182" r="14"/><circle cx="286" cy="164" r="13"/><circle cx="178" cy="268" r="13"/></g>
+                <g fill="#F08A74"><circle cx="113" cy="177" r="4"/><circle cx="281" cy="159" r="4"/><circle cx="173" cy="263" r="4"/></g>
+                <!-- avocado slices -->
+                <g><path d="M268 214c20 8 40 30 38 50-18-4-40-24-38-50z" fill="#C9D77A" stroke="#3D5A1E" stroke-width="4"/><path d="M252 226c16 10 30 32 26 50-16-6-32-28-26-50z" fill="#C9D77A" stroke="#3D5A1E" stroke-width="4"/></g>
+                <!-- feta -->
+                <g fill="#FBF8EE" stroke="#E2DCCB" stroke-width="2"><rect x="130" y="120" width="18" height="18" rx="3" transform="rotate(12 139 129)"/><rect x="226" y="98" width="17" height="17" rx="3"/><rect x="104" y="230" width="18" height="18" rx="3" transform="rotate(-18 113 239)"/></g>
+                <!-- dressing -->
+                <path d="M150 150c30 20 60 10 90 20" stroke="#EAD9A6" stroke-width="5" fill="none" opacity=".85" stroke-linecap="round"/>
+              </svg>
+              <div class="bar"><span class="s-glass"><svg class="i"><use href="#i-chev-l"/></svg></span><span class="s-glass"><svg class="i"><use href="#i-image"/></svg></span></div>
+              <span class="s-pin" style="left:180px;top:152px">Chicken</span>
+              <span class="s-pin q" style="left:268px;top:268px">Avocado?</span>
+              <span class="s-pin" style="left:70px;top:130px">Feta</span>
+            </div>
+            <div class="s-sheet">
+              <h5>Here's what we found</h5>
+              <p class="sub">Adjust anything that doesn't look right.</p>
+              <div class="s-it"><div class="nm">Chicken breast<small><svg class="i" style="color:var(--ok)"><use href="#i-ok"/></svg>Sure</small></div><div class="s-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>120 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">198</span></div>
+              <div class="s-it"><div class="nm">Avocado<small class="chk"><svg class="i"><use href="#i-half"/></svg>Check portion</small></div><div class="s-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>50 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">80</span></div>
+              <div class="s-it"><div class="nm">Feta<small><svg class="i" style="color:var(--ok)"><use href="#i-ok"/></svg>Sure</small></div><div class="s-step"><span><svg class="i"><use href="#i-minus"/></svg></span><b>30 g</b><span><svg class="i"><use href="#i-plus"/></svg></span></div><span class="kc">79</span></div>
+              <div class="s-it"><div class="nm">Romaine, cherry tomatoes<small><svg class="i" style="color:var(--ok)"><use href="#i-ok"/></svg>Sure · 60 g + 80 g</small></div><div class="s-step" style="padding:0 10px;font-size:13px;gap:2px;color:var(--ink2)">2 items<svg class="i" style="width:18px;height:18px"><use href="#i-chev-d"/></svg></div><span class="kc">24</span></div>
+              <div class="s-miss"><div class="nm">1 item not recognized<small>Looks like a dressing</small></div><span class="b"><svg class="i" style="width:18px;height:18px"><use href="#i-search"/></svg>Add it</span></div>
+              <div class="s-sum"><b>381 <small>kcal</small></b><div class="m"><span><i style="background:var(--p)"></i>P 44</span><span><i style="background:var(--f)"></i>F 18</span><span><i style="background:var(--c)"></i>C 11</span></div></div>
+              <div class="s-cta" style="margin:0">Add to lunch</div>
+              <p class="s-disc">An estimate from your photo. Not medical advice.</p>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Photo analysis · result</span><span>2/3</span></figcaption></figure>
+
+          <!-- SPRIG · DIARY -->
+          <figure class="scr"><div class="scaler"><div class="phone">
+            <div class="sb"><span>9:41</span><span class="ind"><svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2.5" fill="currentColor"/></svg></span></div>
+            <div class="s-top"><h5><small>903 of 1,800 kcal</small>Diary</h5><span class="s-ib"><svg class="i"><use href="#i-search"/></svg></span></div>
+            <div class="s-week"><div class="s-wd">M<b>28</b></div><div class="s-wd on">T<b>29</b></div><div class="s-wd">W<b>30</b></div><div class="s-wd">T<b>1</b></div><div class="s-wd">F<b>2</b></div></div>
+            <div class="s-card"><div class="hd"><b>Breakfast</b><span>314<small>kcal</small></span></div>
+              <div class="s-li"><span>Eggs, boiled<small>2 large · 100 g</small></span><span class="num">155</span></div>
+              <div class="s-li"><span>Wholegrain toast<small>35 g</small></span><span class="num">88</span></div>
+              <div class="s-li"><span>Orange<small>150 g</small></span><span class="num">71</span></div>
+            </div>
+            <div class="s-card ph"><span class="th"><svg viewBox="0 0 64 64" width="64" height="64"><rect width="64" height="64" fill="#ECE5D6"/><circle cx="32" cy="32" r="26" fill="#FFFDF7"/><ellipse cx="24" cy="26" rx="10" ry="6" fill="#6E9F4E"/><ellipse cx="40" cy="40" rx="10" ry="6" fill="#8DBA63"/><rect x="24" y="28" width="18" height="6" rx="3" fill="#E8C29A"/><circle cx="20" cy="38" r="4" fill="#D9442F"/><path d="M40 22c4 2 8 6 7 10-4-1-7-5-7-10z" fill="#C9D77A" stroke="#3D5A1E" stroke-width="1.5"/></svg></span>
+              <div><div class="hd"><b>Lunch</b><span>381<small>kcal</small></span></div><div class="ing">Chicken, romaine, tomatoes, avocado, feta</div><span class="from"><svg class="i"><use href="#i-cam"/></svg>From your photo</span></div></div>
+            <div class="s-card"><div class="hd"><b>Snack</b><span>208<small>kcal</small></span></div>
+              <div class="s-li"><span>Greek yogurt, 2%<small>150 g</small></span><span class="num">110</span></div>
+              <div class="s-li"><span>Walnuts<small>15 g</small></span><span class="num">98</span></div>
+            </div>
+            <div class="s-emp"><b>Dinner<small>Add it when you're ready</small></b><span class="add"><svg class="i"><use href="#i-plus"/></svg></span></div>
+            <div class="tabbar">
+              <div class="tab"><svg class="i"><use href="#i-today"/></svg>Today</div>
+              <div class="tab on"><svg class="i"><use href="#i-diary"/></svg>Diary</div>
+              <div class="tab scan"><span class="fab"><svg class="i"><use href="#i-cam"/></svg></span></div>
+              <div class="tab"><svg class="i"><use href="#i-pot"/></svg>Recipes</div>
+              <div class="tab"><svg class="i"><use href="#i-user"/></svg>Profile</div>
+            </div>
+            <div class="homebar"></div>
+          </div></div><figcaption><span>Food diary</span><span>3/3</span></figcaption></figure>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>Type · Instrument Serif / Albert Sans / Geist Mono</h4>
+          <div class="type-spec">
+            <div class="ts-row"><small>Headline<span>Instrument Serif</span></small><div style="font-family:'Instrument Serif';font-size:44px;line-height:48px">Here's what we found</div></div>
+            <div class="ts-row"><small>Body<span>Albert Sans</span></small><div style="font-size:16px;line-height:24px">A photo, a number and a little context. Nothing turns red, and nothing is "bad". Adjust anything that doesn't look right.</div></div>
+            <div class="ts-row"><small>Numbers<span>Geist Mono</span></small><div class="num" style="font-size:40px;line-height:44px">903 <span style="font-size:16px;color:var(--ink2)">/ 1,800</span></div></div>
+          </div>
+          <table class="scale-table">
+            <tr><td>Display · Instrument Serif</td><td>44/48</td></tr><tr><td>H1 · H2</td><td>30/36 · 24/30</td></tr><tr><td>Title · Albert 600</td><td>17/24</td></tr><tr><td>Body · Footnote · Caption</td><td>16/24 · 13/18 · 12/16</td></tr><tr><td>Num-XL · Num-M</td><td>40/44 · 16/24</td></tr>
+          </table>
+        </div>
+        <div class="tok">
+          <div><h4>Spacing · 8 pt grid · screen margin 20 · airy</h4><div class="spacing"><div><i style="height:4px"></i>4</div><div><i style="height:8px"></i>8</div><div><i style="height:12px"></i>12</div><div><i style="height:16px"></i>16</div><div><i style="height:20px;opacity:1"></i>20</div><div><i style="height:24px"></i>24</div><div><i style="height:32px"></i>32</div><div><i style="height:40px"></i>40</div><div><i style="height:56px"></i>56</div><div><i style="height:72px"></i>72</div></div></div>
+          <div><h4>Radii</h4><div class="radii"><div style="border-radius:12px">12</div><div style="border-radius:16px">16</div><div style="border-radius:24px">24</div><div style="border-radius:32px">32</div><div style="border-radius:999px">full</div></div></div>
+          <div><h4>Elevation · soft and diffuse</h4><div class="elev"><div style="border-radius:20px;box-shadow:0 1px 3px rgba(28,38,32,.05),0 6px 16px rgba(28,38,32,.05)">e1</div><div style="border-radius:20px;box-shadow:0 12px 32px rgba(28,38,32,.08)">e2</div><div style="border-radius:20px;box-shadow:0 -10px 40px rgba(28,38,32,.12)">e3 sheet</div></div></div>
+          <div><h4>Icons · 24 grid · 1.5 px round</h4><div class="icons"><span class="grid24"><svg class="i"><use href="#i-cam"/></svg></span><svg class="i"><use href="#i-today"/></svg><svg class="i"><use href="#i-diary"/></svg><svg class="i"><use href="#i-pot"/></svg><svg class="i"><use href="#i-search"/></svg><svg class="i"><use href="#i-leaf"/></svg><svg class="i" style="color:var(--ok)"><use href="#i-ok"/></svg><svg class="i" style="color:var(--warn)"><use href="#i-half"/></svg><svg class="i" style="color:var(--warn)"><use href="#i-q"/></svg></div></div>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>Imagery · iconography</h4>
+          <p class="desc"><b>Imagery:</b> overhead plates on linen in soft, diffused daylight, with lots of negative space and muted, natural colour. Hands appear gently and without urgency. Detected items are labelled with soft name pills, not numbers.</p>
+          <p class="desc" style="margin-top:10px"><b>Icons:</b> 1.5&nbsp;px rounded strokes with organic curves. The active tab gets a Cucumber pill. Confidence reads as "Sure" / "Check portion" / "Not recognized".</p>
+        </div>
+        <div>
+          <h4>Tone · gentle, second person, never urgent</h4>
+          <div class="micro">
+            <div class="tone">Here's what we found. Adjust anything that doesn't look right.</div>
+            <div class="tone">One item wasn't recognized. Want to add it yourself?</div>
+            <div class="tone">You've had 903 kcal so far. Dinner's still ahead.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid2">
+        <div>
+          <h4>App icon · store-ready</h4>
+          <div class="iconprev">
+            <figure><div class="ip-master"><svg viewBox="0 0 1024 1024"><use href="#icon-sprig"/></svg></div><figcaption>1024×1024 master<br>square, opaque</figcaption></figure>
+            <figure><div class="ip-ios"><svg viewBox="0 0 1024 1024"><use href="#icon-sprig"/></svg></div><figcaption>iOS<br>mask applied by the system</figcaption></figure>
+            <figure><div class="ip-canvas"><svg viewBox="0 0 1024 1024"><use href="#icon-sprig"/></svg><span class="safe"></span></div><figcaption>Android adaptive<br>108 dp · 66 dp safe zone</figcaption></figure>
+            <figure><div class="ip-and"><div class="mask"><svg viewBox="0 0 1024 1024"><use href="#icon-sprig"/></svg></div></div><figcaption>Circle mask<br>preview</figcaption></figure>
+          </div>
+        </div>
+        <div>
+          <h4>How it's different</h4>
+          <p class="diff">A <b>low-pressure</b> tracker: no red for going over, no streaks, and the day shown as a <b>plate ring split by meals</b> rather than a countdown. It's aimed at the people the research showed feel judged by red numbers and good/bad ratings.</p>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <!-- ============ recommendation ============ -->
+  <section class="rec">
+    <div>
+      <h2>Recommendation: A · RIPE</h2>
+      <p><b>Strongest food story for a photo-first app.</b> The photo <i>is</i> the interface. Oat and Persimmon frame food rather than competing with it, and every palette name is literally something you eat.</p>
+      <p><b>Answers the two biggest category problems.</b> A camera-first tab bar deals with slow logging. A confidence label on every detected item, with alternatives and a search fallback, deals with distrust.</p>
+      <p><b>Passes the responsible-nutrition bar.</b> Friendly copy, over goal shown as a warning tone (never an error), a maintenance default and a clear "Not medical advice".</p>
+      <p style="color:var(--page-muted)">Borrow from the others: PER100's label-panel rigour for the food-detail and nutrition tables, and SPRIG's neutral "over goal" language.</p>
+    </div>
+    <table class="score">
+      <tr><th>Criterion (1–5)</th><th style="text-align:center">Ripe</th><th style="text-align:center">Per100</th><th style="text-align:center">Sprig</th></tr>
+      <tr><td>Food association</td><td class="n win">5</td><td class="n">3</td><td class="n">4</td></tr>
+      <tr><td>Differentiation from competitors</td><td class="n win">5</td><td class="n win">5</td><td class="n">3</td></tr>
+      <tr><td>Legibility</td><td class="n">4</td><td class="n win">5</td><td class="n">4</td></tr>
+      <tr><td>Store-review readiness</td><td class="n win">5</td><td class="n">4</td><td class="n win">5</td></tr>
+      <tr class="tot"><td>Total</td><td class="n win">19</td><td class="n">17</td><td class="n">16</td></tr>
+    </table>
+  </section>
+</main>
+
+<!-- ============ app icon masters (1024, square, opaque, key art inside the 66/108 safe zone) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="icon-ripe" viewBox="0 0 1024 1024">
+    <rect width="1024" height="1024" fill="#C4431A"/>
+    <circle cx="512" cy="540" r="250" fill="#FBF6EE"/>
+    <circle cx="512" cy="560" r="150" fill="#E86A2E"/>
+    <circle cx="470" cy="520" r="36" fill="#F4A06B"/>
+    <path d="M512 410c-30-20-80-18-96 8 34 8 64 14 96 12 32 2 62-4 96-12-16-26-66-28-96-8z" fill="#4A7326"/>
+    <path d="M512 430v-58" stroke="#4A7326" stroke-width="22" stroke-linecap="round"/>
+    <g fill="none" stroke="#FBF6EE" stroke-width="26" stroke-linecap="round"><path d="M300 330v-40a30 30 0 0130-30h40M724 330v-40a30 30 0 00-30-30h-40M300 750v40a30 30 0 0030 30h40M724 750v40a30 30 0 01-30 30h-40"/></g>
+  </symbol>
+  <symbol id="icon-per" viewBox="0 0 1024 1024">
+    <rect width="1024" height="1024" fill="#1E1C17"/>
+    <rect x="300" y="300" width="424" height="424" fill="#F4EDE1"/>
+    <rect x="300" y="300" width="424" height="40" fill="#E3A82B"/>
+    <text x="512" y="440" text-anchor="middle" font-family="Libre Franklin" font-weight="800" font-size="64" fill="#1E1C17" letter-spacing="2">PER</text>
+    <text x="512" y="610" text-anchor="middle" font-family="Libre Franklin" font-weight="900" font-size="180" fill="#1E1C17" letter-spacing="-10">100</text>
+    <rect x="336" y="640" width="352" height="16" fill="#1E1C17"/>
+    <rect x="336" y="672" width="220" height="10" fill="#B23A1C"/>
+  </symbol>
+  <symbol id="icon-sprig" viewBox="0 0 1024 1024">
+    <rect width="1024" height="1024" fill="#2F6B45"/>
+    <circle cx="512" cy="512" r="236" fill="none" stroke="#F7F4EC" stroke-width="30"/>
+    <path d="M430 650c40-70 80-160 100-280" fill="none" stroke="#F7F4EC" stroke-width="22" stroke-linecap="round"/>
+    <path d="M520 420c40-60 110-70 140-60-14 60-70 100-140 60z" fill="#DDEBD9"/>
+    <path d="M490 500c-40-50-110-54-138-40 20 56 80 86 138 40z" fill="#DDEBD9"/>
+    <path d="M530 360c10-50 50-80 80-86 6 44-26 84-80 86z" fill="#F7F4EC"/>
+    <circle cx="610" cy="600" r="30" fill="#F4A259"/>
+  </symbol>
+</svg>
+
+<script>
+  // Scale each 390×844 mini screen to its column width.
+  function fit(){document.querySelectorAll('.scaler').forEach(s=>{s.style.setProperty('--s',(s.clientWidth/390).toFixed(4));s.firstElementChild.style.setProperty('--s',(s.clientWidth/390).toFixed(4));});}
+  addEventListener('resize',fit);fit();
+</script>
+</body>
+</html>
