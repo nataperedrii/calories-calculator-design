@@ -1,0 +1,340 @@
+/* Ripe design tokens: GENERATED from tokens.json by tools/build_tokens.py. Do not edit by hand.
+   Light theme. Font sizes are rem-based so they scale with Dynamic Type / Android font size. */
+
+:root {
+  /* ===== color ===== */
+
+  /* color.primitive */
+  --color-white: #fff;  /* Only for text and icons on Persimmon. Never a background. */
+
+  /* color.primitive.oat */
+  --color-oat-0: #fffcf6;  /* Rice: cards, sheets */
+  --color-oat-50: #fbf6ee;  /* Oat milk: app background */
+  --color-oat-100: #f4ecdf;  /* Toasted oat: sunken areas, inputs */
+  --color-oat-200: #e9ddcb;  /* Oat flakes: dividers, disabled fills */
+  --color-oat-300: #d6c6b0;  /* Bran: decorative borders */
+  --color-oat-400: #b3a18a;  /* Husk: disabled text and icons (exempt from contrast) */
+  --color-oat-500: #8c7a66;  /* Hazelnut: input borders (3.8:1) */
+  --color-oat-550: #705f49;  /* Toasted walnut: disabled text (4.6:1, legible but clearly lighter than secondary) */
+  --color-oat-600: #6b5a4a;  /* Walnut: secondary text */
+  --color-oat-700: #4e4034;  /* Dark walnut: secondary text (7.2:1 on every light surface) */
+  --color-oat-900: #2b2118;  /* Rye crust: primary text */
+
+  /* color.primitive.persimmon */
+  --color-persimmon-50: #fef3ec;
+  --color-persimmon-100: #fce3cc;  /* Apricot: tints, selected chips */
+  --color-persimmon-200: #f9c9a6;
+  --color-persimmon-300: #f4a06b;  /* Persimmon highlight */
+  --color-persimmon-500: #e2552a;  /* Fruit orange (illustration only) */
+  --color-persimmon-600: #c4431a;  /* Persimmon: brand, primary buttons */
+  --color-persimmon-700: #9b3515;  /* Deep persimmon: primary button fill. White text 7.2:1 (was #A23614, 6.8:1) */
+  --color-persimmon-800: #7c2a10;  /* Persimmon text: links, active tab, accent text (≥ 7:1 on light surfaces); pressed CTA fill */
+  --color-persimmon-900: #5e200b;  /* Pressed deep persimmon */
+
+  /* color.primitive.avocado */
+  --color-avocado-50: #f2f6eb;
+  --color-avocado-100: #e6efd9;  /* Avocado tint: 'fits your day' tags */
+  --color-avocado-300: #a9c47f;
+  --color-avocado-600: #4a7326;  /* Avocado: freshness accent */
+  --color-avocado-700: #3a5b1e;  /* Text on avocado tint */
+  --color-avocado-800: #36551c;  /* Fresh text (7.2:1 on avocado tint) */
+
+  /* color.primitive.honey */
+  --color-honey-50: #fdf3df;  /* Warning tint */
+  --color-honey-100: #fbe7b8;
+  --color-honey-400: #f2b63d;  /* Honey: highlights, 'not sure' marker (fill only) */
+  --color-honey-700: #9a6400;  /* Turmeric: warning text, over goal */
+  --color-honey-800: #674300;  /* Warning text: 'check portion', over goal (7.1:1) */
+
+  /* color.primitive.basil */
+  --color-basil-50: #eaf4ee;
+  --color-basil-600: #2e7d4f;  /* Basil: success icons, high confidence */
+  --color-basil-700: #24633e;  /* Success text on tint */
+  --color-basil-800: #215a38;  /* Success text (7.2:1 on basil tint) */
+
+  /* color.primitive.chili */
+  --color-chili-50: #fcecea;
+  --color-chili-600: #a8241c;  /* Chili: errors (fills, icons, rings). White text 7.2:1 (was #B3261E, 6.5:1) */
+  --color-chili-700: #8e1e18;
+
+  /* color.primitive.beetroot */
+  --color-beetroot-50: #f8e9f0;
+  --color-beetroot-600: #9b2f63;  /* Protein */
+  --color-beetroot-700: #7c2550;
+
+  /* color.primitive.mustard */
+  --color-mustard-50: #f8f0da;
+  --color-mustard-600: #a77a0b;  /* Fat (graphics 3.6:1; use 700 for text) */
+  --color-mustard-700: #86620a;
+  --color-mustard-800: #674b08;  /* Fat text (7.1:1 on mustard tint) */
+
+  /* color.primitive.blueberry */
+  --color-blueberry-50: #eaf0fa;
+  --color-blueberry-600: #3b6cc0;  /* Carbs. The only blue: data marks only, never surfaces. */
+  --color-blueberry-700: #2f5699;
+  --color-blueberry-800: #2b4e8b;  /* Carbs text (7.2:1 on blueberry tint) */
+
+  /* color.primitive.alpha */
+  --color-alpha-rye-8: #2b211814;  /* Rye at 8%: hover and pressed overlays */
+  --color-alpha-rye-12: #2b21181f;  /* Rye at 12%: hairline dividers */
+  --color-alpha-rye-40: #2b211866;  /* Rye at 40%: scrim behind sheets */
+
+  /* color.bg */
+  --color-bg-canvas: var(--color-oat-50);  /* App background */
+  --color-bg-surface: var(--color-oat-0);  /* Cards, sheets, bars */
+  --color-bg-sunken: var(--color-oat-100);  /* Inputs, steppers, segmented track */
+  --color-bg-disabled: var(--color-oat-200);
+  --color-bg-inverse: var(--color-oat-900);  /* Toasts, dark stickers */
+  --color-bg-inverse-pressed: var(--color-oat-700);  /* Pressed actions inside toasts */
+  --color-bg-accent: var(--color-persimmon-700);  /* Primary buttons, scan button, badges with white text (white 7.2:1) */
+  --color-bg-accent-pressed: var(--color-persimmon-800);
+  --color-bg-accent-subtle: var(--color-persimmon-100);  /* Selected chips, secondary buttons */
+  --color-bg-accent-subtle-pressed: var(--color-persimmon-200);
+  --color-bg-fresh-subtle: var(--color-avocado-100);  /* 'Fits your day' tags */
+  --color-bg-highlight: var(--color-honey-400);  /* 'Not sure' marker */
+  --color-bg-pressed: var(--color-alpha-rye-8);  /* Overlay for pressed rows */
+  --color-bg-scrim: var(--color-alpha-rye-40);
+
+  /* color.text */
+  --color-text-primary: var(--color-oat-900);  /* Body text and headings */
+  --color-text-secondary: var(--color-oat-700);  /* Meta, units, helper text, placeholders (≥ 7:1) */
+  --color-text-disabled: var(--color-oat-550);  /* Disabled only: exempt from contrast, kept legible at ≥ 4.5:1 */
+  --color-text-inverse: var(--color-oat-50);  /* On bg.inverse */
+  --color-text-on-accent: var(--color-white);  /* On bg.accent */
+  --color-text-accent: var(--color-persimmon-800);  /* Links, text buttons, active tab (≥ 7:1) */
+  --color-text-fresh: var(--color-avocado-800);  /* On bg.fresh-subtle (7.2:1) */
+  --color-text-inverse-accent: var(--color-persimmon-300);  /* Actions on bg.inverse, e.g. 'Undo' in a toast */
+  --color-text-inverse-success: var(--color-avocado-300);  /* Success icons on bg.inverse */
+  --color-text-inverse-warning: var(--color-honey-400);  /* Warning icons on bg.inverse */
+
+  /* color.border */
+  --color-border-subtle: var(--color-alpha-rye-12);  /* Dividers (decorative) */
+  --color-border-default: var(--color-oat-200);  /* Card outlines (decorative) */
+  --color-border-strong: var(--color-oat-500);  /* Input borders: meets 3:1 */
+  --color-border-accent: var(--color-persimmon-600);  /* Selected and focused inputs */
+  --color-border-focus: var(--color-oat-900);  /* Keyboard focus ring (2 px + 2 px offset) */
+  --color-border-error: var(--color-chili-600);
+
+  /* color.status */
+  --color-status-success: var(--color-basil-600);
+  --color-status-success-text: var(--color-basil-800);
+  --color-status-success-subtle: var(--color-basil-50);
+  --color-status-warning: var(--color-honey-700);  /* Warning icons, over-goal ring (graphics ≥ 3:1). Use warning-text for text */
+  --color-status-warning-text: var(--color-honey-800);  /* Warning TEXT (7.1:1). status.warning is for icons and graphics only */
+  --color-status-warning-subtle: var(--color-honey-50);
+  --color-status-error: var(--color-chili-600);  /* Real errors only */
+  --color-status-error-text: var(--color-chili-700);
+  --color-status-error-subtle: var(--color-chili-50);
+
+  /* color.macro */
+  --color-macro-protein: var(--color-beetroot-600);
+  --color-macro-protein-text: var(--color-beetroot-700);
+  --color-macro-protein-subtle: var(--color-beetroot-50);
+  --color-macro-fat: var(--color-mustard-600);
+  --color-macro-fat-text: var(--color-mustard-800);
+  --color-macro-fat-subtle: var(--color-mustard-50);
+  --color-macro-carbs: var(--color-blueberry-600);
+  --color-macro-carbs-text: var(--color-blueberry-800);
+  --color-macro-carbs-subtle: var(--color-blueberry-50);
+  --color-macro-track: var(--color-persimmon-100);  /* Empty part of the calorie ring */
+  --color-macro-kcal: var(--color-persimmon-600);  /* Calorie ring value (brand persimmon, graphic ≥ 3:1 against the track) */
+
+  /* ===== font ===== */
+
+  /* font.family */
+  --font-family-head: "Young Serif", "Iowan Old Style", "Palatino Linotype", "Georgia", serif;  /* Headlines ≥ 20 px only. Fallbacks keep a warm serif offline. */
+  --font-family-body: "Hanken Grotesk", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;  /* All UI and body text. Falls back to the platform UI font offline. */
+  --font-family-num: "Azeret Mono", ui-monospace, "SF Mono", "Menlo", "Consolas", "Roboto Mono", monospace;  /* Every number (kcal, grams, macros). Fallbacks are all monospaced, so columns still align. */
+
+  /* font.weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ===== type ===== */
+  --type-display-family: var(--font-family-head);
+  --type-display-size: 2.5rem;
+  --type-display-weight: 400;
+  --type-display-line: 1.1;
+  --type-display-tracking: -0.01em;
+  --type-display: 400 2.5rem/1.1 var(--font-family-head);
+  --type-h1-family: var(--font-family-head);
+  --type-h1-size: 1.75rem;
+  --type-h1-weight: 400;
+  --type-h1-line: 1.2143;
+  --type-h1-tracking: -0.005em;
+  --type-h1: 400 1.75rem/1.2143 var(--font-family-head);
+  --type-h2-family: var(--font-family-head);
+  --type-h2-size: 1.375rem;
+  --type-h2-weight: 400;
+  --type-h2-line: 1.2727;
+  --type-h2-tracking: 0;
+  --type-h2: 400 1.375rem/1.2727 var(--font-family-head);
+  --type-title-family: var(--font-family-body);
+  --type-title-size: 1.125rem;
+  --type-title-weight: 600;
+  --type-title-line: 1.5;
+  --type-title-tracking: 0;
+  --type-title: 600 1.125rem/1.5 var(--font-family-body);
+  --type-body-family: var(--font-family-body);
+  --type-body-size: 1rem;
+  --type-body-weight: 400;
+  --type-body-line: 1.5;
+  --type-body-tracking: 0;
+  --type-body: 400 1rem/1.5 var(--font-family-body);
+  --type-body-strong-family: var(--font-family-body);
+  --type-body-strong-size: 1rem;
+  --type-body-strong-weight: 600;
+  --type-body-strong-line: 1.5;
+  --type-body-strong-tracking: 0;
+  --type-body-strong: 600 1rem/1.5 var(--font-family-body);
+  --type-callout-family: var(--font-family-body);
+  --type-callout-size: 0.875rem;
+  --type-callout-weight: 400;
+  --type-callout-line: 1.5;
+  --type-callout-tracking: 0;
+  --type-callout: 400 0.875rem/1.5 var(--font-family-body);
+  --type-label-family: var(--font-family-body);
+  --type-label-size: 0.875rem;
+  --type-label-weight: 600;
+  --type-label-line: 1.5;
+  --type-label-tracking: 0;
+  --type-label: 600 0.875rem/1.5 var(--font-family-body);
+  --type-caption-family: var(--font-family-body);
+  --type-caption-size: 0.75rem;
+  --type-caption-weight: 500;
+  --type-caption-line: 1.5;
+  --type-caption-tracking: 0.01em;
+  --type-caption: 500 0.75rem/1.5 var(--font-family-body);
+  --type-overline-family: var(--font-family-body);
+  --type-overline-size: 0.75rem;
+  --type-overline-weight: 700;
+  --type-overline-line: 1.5;
+  --type-overline-tracking: 0.12em;
+  --type-overline: 700 0.75rem/1.5 var(--font-family-body);
+  --type-num-xl-family: var(--font-family-num);
+  --type-num-xl-size: 2.75rem;
+  --type-num-xl-weight: 500;
+  --type-num-xl-line: 1.0909;
+  --type-num-xl-tracking: -0.02em;
+  --type-num-xl: 500 2.75rem/1.0909 var(--font-family-num);
+  --type-num-l-family: var(--font-family-num);
+  --type-num-l-size: 1.75rem;
+  --type-num-l-weight: 500;
+  --type-num-l-line: 1.1429;
+  --type-num-l-tracking: -0.01em;
+  --type-num-l: 500 1.75rem/1.1429 var(--font-family-num);
+  --type-num-m-family: var(--font-family-num);
+  --type-num-m-size: 1rem;
+  --type-num-m-weight: 500;
+  --type-num-m-line: 1.5;
+  --type-num-m-tracking: 0;
+  --type-num-m: 500 1rem/1.5 var(--font-family-num);
+  --type-num-s-family: var(--font-family-num);
+  --type-num-s-size: 0.8125rem;
+  --type-num-s-weight: 500;
+  --type-num-s-line: 1.5;
+  --type-num-s-tracking: 0;
+  --type-num-s: 500 0.8125rem/1.5 var(--font-family-num);
+
+  /* ===== space ===== */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-screen-margin: var(--space-5);  /* Left and right screen margin (20 pt) */
+  --space-stack: var(--space-4);  /* Default gap between stacked blocks */
+
+  /* ===== size ===== */
+  --size-touch-min: 44px;  /* Minimum hit region on iOS: 44×44 pt (Apple HIG, Buttons & Accessibility) */
+  --size-touch-android: 48px;  /* Minimum touch target on Android: 48×48 dp (Android accessibility guide, Material 3) */
+  --size-app-bar-android: 64px;  /* Material 3 small top app bar container height (64 dp) */
+  --size-tab-bar-android: 64px;  /* Material 3 navigation bar container height (64 dp) */
+  --size-segment-android: 40px;  /* Segment visual height on Android: 40 + 2×4 padding = 48 dp target */
+  --size-button-l: 52px;
+  --size-button-m: 44px;
+  --size-input: 52px;
+  --size-app-bar: 56px;  /* Top app bar on iOS (content row below the status bar) */
+  --size-tab-bar: 49px;  /* Tab bar content height on iOS, plus safe-bottom below it */
+  --size-tab-indicator-width: 56px;  /* Pressed / active pill inside a tab (Material 3 active indicator 56×32) */
+  --size-tab-indicator-height: 32px;
+  --size-tab-label-max: 14px;  /* Tab labels stop growing at 14 px. Bar items don't scale with Dynamic Type; iOS shows the Large Content Viewer on long-press instead */
+  --size-scan-button: 56px;
+  --size-safe-top: 47px;  /* Status bar (iPhone 14/15) */
+  --size-safe-bottom: 34px;  /* Home indicator */
+  --size-screen-width: 390px;
+  --size-screen-height: 844px;
+
+  /* size.icon */
+  --size-icon-s: 16px;
+  --size-icon-m: 20px;
+  --size-icon-l: 24px;  /* Default: all icons are drawn on a 24 px grid */
+  --size-icon-xl: 32px;
+  --size-icon-stroke: 2px;  /* Every icon uses a 2 px rounded stroke */
+  --size-chip: 36px;  /* Visual height; the hit area is extended to 44 px */
+  --size-thumb: 48px;  /* Product thumbnails */
+  --size-segment: 36px;  /* Segment visual height on iOS. Track padding (4) makes the hit region 44 */
+  --size-badge: 24px;
+  --size-col-min: 5rem;  /* Minimum width of equal columns (segments, macro columns, macro tiles). rem-based, so at large text sizes columns stack instead of clipping */
+  --size-empty-icon: 72px;
+
+  /* ===== radius ===== */
+  --radius-xs: 6px;  /* Badges */
+  --radius-sm: 10px;  /* Chips inside cards, thumbnails */
+  --radius-md: 16px;  /* Buttons, inputs, list rows */
+  --radius-lg: 24px;  /* Cards */
+  --radius-xl: 32px;  /* Bottom sheets */
+  --radius-full: 999px;
+
+  /* ===== border-width ===== */
+  --border-width-hairline: 1px;
+  --border-width-default: 1.5px;  /* Inputs, chips, steppers */
+  --border-width-focus: 2px;  /* Focus ring thickness (WCAG 2.4.7 / 1.4.11) */
+  --border-width-rule: 3px;  /* Heavy rule in the nutrition facts table */
+  --border-width-focus-gap: 2px;  /* Gap between a control and its focus ring */
+
+  /* ===== shadow ===== */
+  --shadow-e1: 0 1px 2px 0 #2b21180f, 0 2px 8px 0 #2b21180f;  /* Cards and list groups */
+  --shadow-e2: 0 8px 24px 0 #2b21181a;  /* Floating buttons, toasts */
+  --shadow-e3: 0 -8px 32px 0 #2b211824;  /* Bottom sheets */
+  --shadow-accent: 0 8px 20px -6px #c4431a8c;  /* Scan button glow */
+
+  /* ===== motion ===== */
+
+  /* motion.duration */
+  --motion-duration-fast: 120ms;
+  --motion-duration-base: 200ms;
+  --motion-duration-slow: 320ms;  /* Sheets */
+
+  /* motion.easing */
+  --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --color-text-secondary: var(--color-oat-900);
+    --color-text-disabled: var(--color-oat-700);
+    --color-text-accent: var(--color-persimmon-900);
+    --color-border-subtle: var(--color-oat-500);
+    --color-border-default: var(--color-oat-500);
+    --color-border-strong: var(--color-oat-900);
+    --border-width-default: 2px;
+    --border-width-focus: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-fast: 0ms;
+    --motion-duration-base: 0ms;
+    --motion-duration-slow: 0ms;
+  }
+}

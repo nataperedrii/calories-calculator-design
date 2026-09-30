@@ -39,7 +39,7 @@ If Ripe were a person, it would be a friend at the farmers' market: cheerful, fa
 
 People connect warm colours (orange, red, yellow) with ripe fruit, cooking and appetite. Green feels fresh and natural. Soft off-whites feel like oat milk, rice and paper; pure white with cold blue feels like a hospital. Most calorie apps use blue or green. **Ripe uses the colours of food itself**, so it looks different and feels appetising.
 
-Every colour is named after a food, and every text colour passes **WCAG AA** (at least 4.5:1 for text, 3:1 for UI shapes) on the Oat milk background.
+Every colour is named after a food. Every text colour passes **WCAG AA** (at least 4.5:1 for text, 3:1 for UI shapes) on the Oat milk background, and the product UI goes further: **7:1 (AAA) for critical text** such as calories, macros, buttons and body text. The table shows the brand colours. The deeper shades the app uses for text and buttons are listed in [Accessibility adjustments (v1.2)](#accessibility-adjustments-v12).
 
 | Colour | HEX | Used for | Why this food |
 |---|---|---|---|
@@ -66,6 +66,22 @@ Blueberry is the only blue in the brand, and it's used only for data, never for 
 - **Basil** `#2E7D4F`: success, high confidence.
 - **Turmeric** `#9A6400`: "check portion" and **over goal**.
 - **Chili** `#B3261E`: real errors only, for example "we couldn't recognise this photo". Going over goal is **never** red.
+
+### Accessibility adjustments (v1.2)
+
+The design system targets WCAG 2.2 AA everywhere and **AAA (7:1) on critical elements**. Five brand colours were too light for that, so the UI now uses a deeper shade of **the same hue**. The brand colours above are unchanged: they stay the identity in the logo, the calorie ring, photos and marketing. Only the text and button usage moved. Full audit: [02-design-system/README.md](../02-design-system/README.md#wcag-22-aa--aaa-for-critical-elements).
+
+| Where | Brand colour | UI colour (v1.2) | Contrast before → after | Why |
+|---|---|---|---|---|
+| Primary buttons, Scan button | Persimmon `#C4431A` | Persimmon 700 `#9B3515` | white text 5.0 → **7.2:1** | Button labels are critical text. The lighter brand persimmon stays on the calorie ring and the logo |
+| Links, active tab, text buttons | Persimmon 700 `#A23614` | Persimmon 800 `#7C2A10` | 6.4 → **8.9:1** | Accent text is often small |
+| Secondary text | Walnut `#6B5A4A` | Walnut 700 `#4E4034` | 6.1 → **9.3:1** | Units, helper text and labels sit next to numbers people must read |
+| "Check portion", "over goal" text | Turmeric `#9A6400` | Turmeric 800 `#674300` | 4.9 → **8.6:1** | Warnings must be read. The lighter turmeric stays for icons and the over-goal ring |
+| Fat / carbs labels | Mustard 700 `#86620A` · Blueberry 700 `#2F5699` | Mustard 800 `#674B08` · Blueberry 800 `#2B4E8B` | 4.9 → **7.1** · 6.3 → **7.2:1** | Macro labels are critical. Bars and dots keep the brand macro colours |
+| Error fills | Chili `#B3261E` | Chili `#A8241C` | white 6.5 → **7.2:1** | Error toasts and destructive buttons carry critical text |
+| Disabled text | `#B3A18A` | `#705F49` | 2.3 → **5.7:1** | WCAG exempts disabled text, but it should still be readable. Disabled options are also struck through, so they don't look active |
+
+**What we accept:** the main button is a little deeper and less orange than the pure brand persimmon. In return, it reads well in sunlight and for low-vision users. The brand still shows up fully in the logo, the calorie ring and the photos.
 
 ## 6. Typography: why these fonts
 

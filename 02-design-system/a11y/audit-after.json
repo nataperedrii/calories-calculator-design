@@ -1,0 +1,6616 @@
+{
+  "summary": {
+    "label": "after",
+    "date": "2026-09-30T20:43:19.665Z",
+    "tier1": {
+      "fail": 0,
+      "pass": 40
+    },
+    "tier2": {
+      "fail": 0,
+      "pass": 9
+    },
+    "tier3": {
+      "info": 3
+    }
+  },
+  "findings": [
+    {
+      "id": "A001",
+      "status": "pass",
+      "source": "axe",
+      "criterion": "all A/AA",
+      "rule": "summary",
+      "tier": 1,
+      "element": "whole page",
+      "measured": "0 violating nodes in 0 rules; 56 rules pass; 2 incomplete",
+      "required": "0 violations"
+    },
+    {
+      "id": "A002",
+      "status": "pass",
+      "source": "pa11y",
+      "criterion": "all AA",
+      "rule": "summary",
+      "tier": 1,
+      "element": "whole page",
+      "measured": "0 errors, 0 warnings/notices",
+      "required": "0 errors"
+    },
+    {
+      "id": "A003",
+      "status": "info",
+      "source": "contrast",
+      "criterion": "1.4.6",
+      "tier": 3,
+      "element": "#c14 button.toast__action.is-pressed",
+      "state": "pressed",
+      "measured": "4.79:1 (#f4a06b on #4e4034)",
+      "required": "7:1 (AAA, secondary text: best effort)",
+      "text": "Retake"
+    },
+    {
+      "id": "A004",
+      "status": "info",
+      "source": "contrast",
+      "criterion": "1.4.3 / 1.4.6",
+      "rule": "summary",
+      "tier": 1,
+      "element": "all text",
+      "measured": "1353 text nodes in 70 colour pairs; worst non-disabled 4.79:1",
+      "required": "AA 4.5 / critical 7"
+    },
+    {
+      "id": "A005",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "text field border: #c2 span.field__control",
+      "measured": "3.83:1 (inset ring)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A006",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "search boundary: #c3 div.search",
+      "measured": "3.83:1 (inset ring)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A007",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "stepper boundary: #c6 div.stepper",
+      "measured": "3.83:1 (inset ring)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A008",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "chip boundary (default): #c4 button.chip",
+      "measured": "3.83:1 (inset ring)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A009",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "selected segment indicator vs track: #c5 label.segmented__opt",
+      "measured": "3.52:1 (ring)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A010",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "selected chip ring: #c4 button.chip.is-selected",
+      "measured": "4.69:1 (ring)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A011",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "macro bar P fill vs track: #c9 i",
+      "measured": "6.01:1 (graphic)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A012",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "macro bar F fill vs track: #c9 i",
+      "measured": "3.3:1 (graphic)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A013",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "macro bar C fill vs track: #c9 i",
+      "measured": "4.38:1 (graphic)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A014",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "calorie ring value vs track: #c9 path",
+      "measured": "4.08:1 (graphic (values also shown as text))",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A015",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "icon in tint icon button: #c1 button.icon-btn.icon-btn--tint",
+      "measured": "7.74:1 (icon stroke)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A016",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "icon in plain icon button: #c11 button.icon-btn",
+      "measured": "14.64:1 (icon stroke)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A017",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "tab icon (inactive): #c12 button.tab",
+      "measured": "9.73:1 (icon stroke)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A018",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "active tab indicator: #c12 button.tab.is-active",
+      "measured": "7.04:1 (2 px label underline)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A019",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "verified check icon: #c7 svg",
+      "measured": "4.93:1 (icon stroke)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A020",
+      "status": "pass",
+      "source": "non-text",
+      "criterion": "1.4.11",
+      "tier": 1,
+      "element": "error ring: #c2 span.field__control",
+      "measured": "6.65:1 (ring)",
+      "required": "≥ 3:1"
+    },
+    {
+      "id": "A021",
+      "status": "info",
+      "source": "axe-aaa",
+      "criterion": "1.4.6",
+      "rule": "color-contrast-enhanced",
+      "tier": 3,
+      "element": ".toast__action.is-pressed",
+      "measured": "Element has insufficient color contrast of 4.78 (foreground color: #f4a06b, background color: #4e4034, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 7:1",
+      "required": "Elements must meet enhanced color contrast ratio thresholds"
+    },
+    {
+      "id": "A022",
+      "status": "info",
+      "source": "axe-aaa",
+      "criterion": "AAA (critical)",
+      "rule": "summary",
+      "tier": 2,
+      "element": "critical elements",
+      "measured": "1 AAA rules with findings; 2 pass",
+      "required": "0 on critical elements"
+    },
+    {
+      "id": "A023",
+      "status": "info",
+      "source": "geometry",
+      "criterion": "2.5.5",
+      "rule": "summary",
+      "tier": 2,
+      "element": "165 targets",
+      "measured": "smallest side 44 px; 0 overlapping pairs",
+      "required": "≥ 44 (48 Android), no overlap"
+    },
+    {
+      "id": "A024",
+      "status": "info",
+      "source": "keyboard",
+      "criterion": "2.1.1 / 2.4.3 / 2.4.7",
+      "rule": "summary",
+      "tier": 1,
+      "element": "142 focus stops",
+      "measured": "0 without indicator; 0 obscured",
+      "required": "all visible, none obscured"
+    },
+    {
+      "id": "A025",
+      "status": "pass",
+      "source": "keyboard",
+      "criterion": "2.1.1 / 2.4.3",
+      "rule": "shift-tab",
+      "tier": 1,
+      "element": "last 5 stops",
+      "measured": "reverse order correct",
+      "required": "Shift+Tab reverses order"
+    },
+    {
+      "id": "A026",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "2.4.1",
+      "tier": 1,
+      "element": "#page a.skip-link",
+      "measured": "first focus stop: \"Skip to content\"",
+      "required": "skip link to main content"
+    },
+    {
+      "id": "A027",
+      "status": "pass",
+      "source": "keyboard",
+      "criterion": "2.1.1 / 4.1.2",
+      "rule": "radio-arrows",
+      "tier": 1,
+      "element": "#c5 segmented radios",
+      "measured": "ArrowRight moves and checks the next unit",
+      "required": "native radiogroup behaviour"
+    },
+    {
+      "id": "A028",
+      "status": "pass",
+      "source": "keyboard",
+      "criterion": "2.1.2 / 2.4.3",
+      "rule": "dialog",
+      "tier": 1,
+      "element": "portion sheet (dialog)",
+      "measured": "focus moves in: true; stays in on Tab/Shift+Tab: true; Esc closes: true; focus returns to opener: true",
+      "required": "move in, stay in, Esc closes, focus returns"
+    },
+    {
+      "id": "A029",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "3.3.4 / 3.3.6",
+      "rule": "confirm",
+      "tier": 2,
+      "element": "Delete account",
+      "measured": "confirm dialog #confirm-delete opens with focus inside; Esc cancels",
+      "required": "review / confirm / undo before irreversible action"
+    },
+    {
+      "id": "A030",
+      "status": "pass",
+      "source": "layout",
+      "criterion": "1.4.10",
+      "tier": 1,
+      "element": "page at 320 CSS px",
+      "measured": "scrollWidth 320 vs 320; outside viewport: none",
+      "required": "no horizontal scroll (tables may scroll in their own region)"
+    },
+    {
+      "id": "A031",
+      "status": "pass",
+      "source": "layout",
+      "criterion": "1.4.10",
+      "rule": "clip-320",
+      "tier": 1,
+      "element": "page at 320 CSS px",
+      "measured": "no clipping",
+      "required": "no loss of content"
+    },
+    {
+      "id": "A032",
+      "status": "pass",
+      "source": "layout",
+      "criterion": "1.4.4",
+      "tier": 1,
+      "element": "page at 200% text",
+      "measured": "no clipping or overflow",
+      "required": "no loss of content or function"
+    },
+    {
+      "id": "A033",
+      "status": "pass",
+      "source": "layout",
+      "criterion": "1.4.12",
+      "tier": 1,
+      "element": "page with WCAG text-spacing overrides",
+      "measured": "no clipping or overflow",
+      "required": "no loss of content"
+    },
+    {
+      "id": "A034",
+      "status": "pass",
+      "source": "preferences",
+      "criterion": "2.3.3",
+      "tier": 2,
+      "element": "ring, sheet, toast, buttons",
+      "measured": "{\"btn\":\"0s, 0s\",\"ring\":\"0s\",\"sheetAnim\":\"none\",\"toastAnim\":\"none\",\"pressedTransform\":\"none\"}",
+      "required": "prefers-reduced-motion: no motion"
+    },
+    {
+      "id": "A035",
+      "status": "pass",
+      "source": "preferences",
+      "criterion": "prefers-contrast",
+      "tier": 3,
+      "element": ":root tokens",
+      "measured": "media matches: true; text-secondary → #2b2118; border-default → #8c7a66",
+      "required": "strengthened tokens under prefers-contrast: more"
+    },
+    {
+      "id": "A036",
+      "status": "pass",
+      "source": "preferences",
+      "criterion": "1.4.11 (forced colours)",
+      "tier": 1,
+      "element": "boundaries, selection, focus, bars",
+      "measured": "all visible",
+      "required": "components stay visible without box-shadow"
+    },
+    {
+      "id": "A037",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "3.1.1",
+      "tier": 1,
+      "element": "html",
+      "measured": "lang=\"en\"",
+      "required": "lang=\"en\""
+    },
+    {
+      "id": "A038",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "2.4.2",
+      "tier": 1,
+      "element": "title",
+      "measured": "Ripe Design System",
+      "required": "descriptive title"
+    },
+    {
+      "id": "A039",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.3.1 landmarks",
+      "tier": 1,
+      "element": "page",
+      "measured": "{\"banner\":true,\"nav\":true,\"main\":1,\"contentinfo\":true}",
+      "required": "header, nav, one main, footer"
+    },
+    {
+      "id": "A040",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.3.1 headings",
+      "tier": 1,
+      "element": "h1–h6",
+      "measured": "1 h1, 0 skipped levels",
+      "required": "one h1, no skipped levels"
+    },
+    {
+      "id": "A041",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.3.1 tables",
+      "tier": 1,
+      "element": "tables",
+      "measured": "0 without th, 0 th without scope",
+      "required": "th with scope"
+    },
+    {
+      "id": "A042",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.3.1 facts caption",
+      "tier": 1,
+      "element": ".facts table",
+      "measured": "caption present",
+      "required": "table caption"
+    },
+    {
+      "id": "A043",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "3.1.4",
+      "tier": 2,
+      "element": "abbreviations",
+      "measured": "legend: true; <abbr>: kcal, P, F, C, g, ml, pt, dp, USDA",
+      "required": "kcal, P, F, C, g, ml expanded (legend + abbr on first use)"
+    },
+    {
+      "id": "A044",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "2.2.3 / 2.2.4 / 2.2.6",
+      "tier": 2,
+      "element": ".toast",
+      "measured": "dismiss control: true; no auto-dismiss timer: true",
+      "required": "no timer, dismissible"
+    },
+    {
+      "id": "A045",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "4.1.3",
+      "tier": 1,
+      "element": ".toast",
+      "measured": "role=status / alert",
+      "required": "status messages exposed"
+    },
+    {
+      "id": "A046",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.1.1 / 4.1.2 ring",
+      "tier": 1,
+      "element": ".nutri__ring svg",
+      "measured": "role=img + aria-label",
+      "required": "text alternative"
+    },
+    {
+      "id": "A047",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "4.1.2 macro bars",
+      "tier": 1,
+      "element": ".macro__bar",
+      "measured": "role=meter with values",
+      "required": "meter or progressbar with value"
+    },
+    {
+      "id": "A048",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "4.1.2 stepper",
+      "tier": 1,
+      "element": ".stepper",
+      "measured": "value exposed (input/spinbutton)",
+      "required": "value exposed to AT"
+    },
+    {
+      "id": "A049",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "4.1.2 segmented",
+      "tier": 1,
+      "element": ".segmented",
+      "measured": "fieldset + radios",
+      "required": "radiogroup"
+    },
+    {
+      "id": "A050",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "4.1.2 sheet",
+      "tier": 1,
+      "element": ".sheet",
+      "measured": "dialog",
+      "required": "dialog with aria-modal / <dialog>"
+    },
+    {
+      "id": "A051",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "3.3.8 / 3.3.9",
+      "tier": 2,
+      "element": "sign-in pattern",
+      "measured": "{\"email\":true,\"noPassword\":true,\"alt\":true}",
+      "required": "no cognitive test; email link / passkey; paste allowed"
+    },
+    {
+      "id": "A052",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.3.5",
+      "tier": 1,
+      "element": "input[type=email]",
+      "measured": "autocomplete set",
+      "required": "autocomplete on personal data"
+    },
+    {
+      "id": "A053",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.4.8 line spacing",
+      "tier": 2,
+      "element": "multi-line text blocks",
+      "measured": "all ≥ 1.5",
+      "required": "line-height ≥ 1.5"
+    },
+    {
+      "id": "A054",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.4.8 line length",
+      "tier": 2,
+      "element": "multi-line text blocks",
+      "measured": "all ≤ 80 characters",
+      "required": "≤ 80 characters"
+    },
+    {
+      "id": "A055",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.4.8 justification",
+      "tier": 2,
+      "element": "all text",
+      "measured": "0 justified elements",
+      "required": "none"
+    },
+    {
+      "id": "A056",
+      "status": "pass",
+      "source": "checklist",
+      "criterion": "1.4.8 paragraph spacing",
+      "tier": 2,
+      "element": "main p + p",
+      "measured": "0 paragraph gaps too small",
+      "required": "≥ 1.5 × line spacing"
+    }
+  ],
+  "contrastPairs": [
+    {
+      "el": "#c1 button.btn.btn--primary",
+      "text": "Add to Lunch",
+      "kind": "text",
+      "fg": "#705f49",
+      "bg": "#e9ddcb",
+      "overImage": false,
+      "ratio": 4.58,
+      "size": 16,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 4,
+      "examples": [
+        "#c1 button.btn.btn--primary \"Add to Lunch\"",
+        "#c2 span.field__suffix \"g\"",
+        "#c6 small \"g\""
+      ]
+    },
+    {
+      "el": "#c4 button.chip",
+      "text": "Vegan · 0",
+      "kind": "text",
+      "fg": "#705f49",
+      "bg": "#e9ddcb",
+      "overImage": false,
+      "ratio": 4.58,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 2,
+      "examples": [
+        "#c4 button.chip \"Vegan · 0\"",
+        "#c3 input \"Offline\""
+      ]
+    },
+    {
+      "el": "#c14 button.toast__action.is-pressed",
+      "text": "Retake",
+      "kind": "text",
+      "fg": "#f4a06b",
+      "bg": "#4e4034",
+      "overImage": false,
+      "ratio": 4.79,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 1,
+      "examples": [
+        "#c14 button.toast__action.is-pressed \"Retake\""
+      ]
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "ml",
+      "kind": "text",
+      "fg": "#705f49",
+      "bg": "#f4ecdf",
+      "overImage": false,
+      "ratio": 5.23,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": true,
+      "disabled": "ref: <Node>",
+      "state": "default",
+      "nodes": 2,
+      "examples": [
+        "#c5 label.segmented__opt \"ml\"",
+        "#c13 label.segmented__opt \"ml\""
+      ]
+    },
+    {
+      "el": "#c1 button.btn.btn--ghost.btn--m",
+      "text": "Undo",
+      "kind": "text",
+      "fg": "#705f49",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 5.7,
+      "size": 14,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 1,
+      "examples": [
+        "#c1 button.btn.btn--ghost.btn--m \"Undo\""
+      ]
+    },
+    {
+      "el": "#c2 span.field__label",
+      "text": "Final cooked weight",
+      "kind": "text",
+      "fg": "#705f49",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 5.7,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": true,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 1,
+      "examples": [
+        "#c2 span.field__label \"Final cooked weight\""
+      ]
+    },
+    {
+      "el": "#c7 div.product__name",
+      "text": "White rice, cooked",
+      "kind": "text",
+      "fg": "#705f49",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 5.99,
+      "size": 16,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 1,
+      "examples": [
+        "#c7 div.product__name \"White rice, cooked\""
+      ]
+    },
+    {
+      "el": "#c7 span.product__kcal",
+      "text": "130",
+      "kind": "text",
+      "fg": "#705f49",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 5.99,
+      "size": 16,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 3,
+      "examples": [
+        "#c7 span.product__kcal \"130\"",
+        "#c7 small \"per 100 g\"",
+        "#c8 h4.recipe-card__title \"Roasted cauliflower, radish and broccoli\""
+      ]
+    },
+    {
+      "el": "#c8 span.recipe-card__kcal",
+      "text": "412",
+      "kind": "text",
+      "fg": "#705f49",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 5.99,
+      "size": 28,
+      "weight": 500,
+      "large": true,
+      "critical": true,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 1,
+      "examples": [
+        "#c8 span.recipe-card__kcal \"412\""
+      ]
+    },
+    {
+      "el": "#c13 span.macro-tile__label",
+      "text": "F · Fat",
+      "kind": "text",
+      "fg": "#674b08",
+      "bg": "#f8f0da",
+      "overImage": false,
+      "ratio": 7.14,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 span.macro-tile__label \"F · Fat\""
+      ]
+    },
+    {
+      "el": "#c16 span.badge.badge--f",
+      "text": "F 23 g",
+      "kind": "text",
+      "fg": "#674b08",
+      "bg": "#f8f0da",
+      "overImage": false,
+      "ratio": 7.14,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c16 span.badge.badge--f \"F 23 g\""
+      ]
+    },
+    {
+      "el": "#c13 span.macro-tile__label",
+      "text": "C · Carbs",
+      "kind": "text",
+      "fg": "#2b4e8b",
+      "bg": "#eaf0fa",
+      "overImage": false,
+      "ratio": 7.15,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 span.macro-tile__label \"C · Carbs\""
+      ]
+    },
+    {
+      "el": "#c16 span.badge.badge--c",
+      "text": "C 49 g",
+      "kind": "text",
+      "fg": "#2b4e8b",
+      "bg": "#eaf0fa",
+      "overImage": false,
+      "ratio": 7.15,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c16 span.badge.badge--c \"C 49 g\""
+      ]
+    },
+    {
+      "el": "#c1 button.btn.btn--destructive.is-pressed",
+      "text": "Pressed",
+      "kind": "text",
+      "fg": "#ffffff",
+      "bg": "#a8241c",
+      "overImage": false,
+      "ratio": 7.16,
+      "size": 16,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 3,
+      "examples": [
+        "#c1 button.btn.btn--destructive.is-pressed \"Pressed\"",
+        "#c14 span.toast__msg \"No connection. We'll analyse your photo \"",
+        "#c14 button.toast__action.is-focus \"Retry\""
+      ]
+    },
+    {
+      "el": "#c4 span.chip.chip--fresh",
+      "text": "Fits your dinner",
+      "kind": "text",
+      "fg": "#36551c",
+      "bg": "#e6efd9",
+      "overImage": false,
+      "ratio": 7.16,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 3,
+      "examples": [
+        "#c4 span.chip.chip--fresh \"Fits your dinner\"",
+        "#c8 span.chip.chip--fresh \"Fits your breakfast\"",
+        "#c16 span.badge.badge--fresh \"Fits your day\""
+      ]
+    },
+    {
+      "el": "#c1 button.btn.btn--primary",
+      "text": "Add to Lunch · 559 kcal",
+      "kind": "text",
+      "fg": "#ffffff",
+      "bg": "#9b3515",
+      "overImage": false,
+      "ratio": 7.21,
+      "size": 16,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 9,
+      "examples": [
+        "#c1 button.btn.btn--primary \"Add to Lunch · 559 kcal\"",
+        "#c1 button.btn.btn--primary.is-focus \"Add to Lunch · 559 kcal\"",
+        "#c1 button.btn.btn--primary.btn--m \"Log portion\""
+      ]
+    },
+    {
+      "el": "#c16 span.badge.badge--count",
+      "text": "3",
+      "kind": "text",
+      "fg": "#ffffff",
+      "bg": "#9b3515",
+      "overImage": false,
+      "ratio": 7.21,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c16 span.badge.badge--count \"3\""
+      ]
+    },
+    {
+      "el": "#c10 span.badge.badge--verified",
+      "text": "✓ USDA",
+      "kind": "text",
+      "fg": "#215a38",
+      "bg": "#eaf4ee",
+      "overImage": false,
+      "ratio": 7.23,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 3,
+      "examples": [
+        "#c10 span.badge.badge--verified \"✓ USDA\"",
+        "#c13 span.badge.badge--verified \"✓ USDA\"",
+        "#c16 span.badge.badge--verified \"✓ USDA\""
+      ]
+    },
+    {
+      "el": "#c5 label.segmented__opt.is-pressed",
+      "text": "ml",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#e4dccf",
+      "overImage": false,
+      "ratio": 7.31,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 1,
+      "examples": [
+        "#c5 label.segmented__opt.is-pressed \"ml\""
+      ]
+    },
+    {
+      "el": "#c2 input",
+      "text": "Add ingredients",
+      "kind": "placeholder",
+      "fg": "#4e4034",
+      "bg": "#e9ddcb",
+      "overImage": false,
+      "ratio": 7.44,
+      "size": 16,
+      "weight": 400,
+      "large": false,
+      "critical": false,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 1,
+      "examples": [
+        "#c2 input \"Add ingredients\""
+      ]
+    },
+    {
+      "el": "#main td.status-ok",
+      "text": "ok",
+      "kind": "text",
+      "fg": "#215a38",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 7.55,
+      "size": 14,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 3,
+      "examples": [
+        "#main td.status-ok \"ok\"",
+        "#main td.status-ok \"ok\"",
+        "#c16 span.confidence.confidence--high \"High confidence\""
+      ]
+    },
+    {
+      "el": "#c14 button.toast__action",
+      "text": "Undo",
+      "kind": "text",
+      "fg": "#f4a06b",
+      "bg": "#2b2118",
+      "overImage": false,
+      "ratio": 7.56,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c14 button.toast__action \"Undo\""
+      ]
+    },
+    {
+      "el": "#c1 button.btn.btn--ghost.is-pressed",
+      "text": "Pressed",
+      "kind": "text",
+      "fg": "#7c2a10",
+      "bg": "#eae5dd",
+      "overImage": false,
+      "ratio": 7.63,
+      "size": 16,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 1,
+      "examples": [
+        "#c1 button.btn.btn--ghost.is-pressed \"Pressed\""
+      ]
+    },
+    {
+      "el": "#c8 span.badge.badge--new",
+      "text": "New",
+      "kind": "text",
+      "fg": "#7c2a10",
+      "bg": "#fce3cc",
+      "overImage": false,
+      "ratio": 7.74,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 2,
+      "examples": [
+        "#c8 span.badge.badge--new \"New\"",
+        "#c16 span.badge.badge--new \"New\""
+      ]
+    },
+    {
+      "el": "#c8 span.badge.badge--new",
+      "text": "Offline",
+      "kind": "text",
+      "fg": "#7c2a10",
+      "bg": "#fce3cc",
+      "overImage": false,
+      "ratio": 7.74,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 1,
+      "examples": [
+        "#c8 span.badge.badge--new \"Offline\""
+      ]
+    },
+    {
+      "el": "#c1 button.btn.btn--destructive",
+      "text": "Delete account",
+      "kind": "text",
+      "fg": "#8e1e18",
+      "bg": "#fcecea",
+      "overImage": false,
+      "ratio": 7.8,
+      "size": 16,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 2,
+      "examples": [
+        "#c1 button.btn.btn--destructive \"Delete account\"",
+        "#c7 div.product__meta \"Tap to retry\""
+      ]
+    },
+    {
+      "el": "#c13 span.macro-tile__label",
+      "text": "P · Protein",
+      "kind": "text",
+      "fg": "#7c2550",
+      "bg": "#f8e9f0",
+      "overImage": false,
+      "ratio": 8,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 span.macro-tile__label \"P · Protein\""
+      ]
+    },
+    {
+      "el": "#c16 span.badge.badge--p",
+      "text": "P 37 g",
+      "kind": "text",
+      "fg": "#7c2550",
+      "bg": "#f8e9f0",
+      "overImage": false,
+      "ratio": 8,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c16 span.badge.badge--p \"P 37 g\""
+      ]
+    },
+    {
+      "el": "#c16 span.confidence.confidence--unsure.is-marked",
+      "text": "Not sure. Is it olive oil or teriyaki?",
+      "kind": "text",
+      "fg": "#674300",
+      "bg": "#fdf3df",
+      "overImage": false,
+      "ratio": 8.01,
+      "size": 12,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c16 span.confidence.confidence--unsure.is-marked \"Not sure. Is it olive oil or teriyaki?\""
+      ]
+    },
+    {
+      "el": "#c7 div.product__meta",
+      "text": "P 22 · F 12 · C 0",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fce3cc",
+      "overImage": false,
+      "ratio": 8.07,
+      "size": 13,
+      "weight": 500,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "selected",
+      "nodes": 1,
+      "examples": [
+        "#c7 div.product__meta \"P 22 · F 12 · C 0\""
+      ]
+    },
+    {
+      "el": "#c7 small",
+      "text": "per 100 g",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fce3cc",
+      "overImage": false,
+      "ratio": 8.07,
+      "size": 12,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "selected",
+      "nodes": 1,
+      "examples": [
+        "#c7 small \"per 100 g\""
+      ]
+    },
+    {
+      "el": "#c16 span.confidence.confidence--check",
+      "text": "Check portion",
+      "kind": "text",
+      "fg": "#674300",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 8.2,
+      "size": 12,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c16 span.confidence.confidence--check \"Check portion\""
+      ]
+    },
+    {
+      "el": "#c2 span.field__help",
+      "text": "Enter a weight between 1 and 10,000 g",
+      "kind": "text",
+      "fg": "#8e1e18",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 8.31,
+      "size": 12,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "error",
+      "nodes": 4,
+      "examples": [
+        "#c2 span.field__help \"Enter a weight between 1 and 10,000 g\"",
+        "#c3 p.search__help \"No results. Did you mean ?\"",
+        "#c3 b \"Greek yogurt\""
+      ]
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "ml",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#f4ecdf",
+      "overImage": false,
+      "ratio": 8.5,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 16,
+      "examples": [
+        "#c5 label.segmented__opt \"ml\"",
+        "#c5 label.segmented__opt \"portion\"",
+        "#c5 label.segmented__opt \"portion\""
+      ]
+    },
+    {
+      "el": "#c7 div.product__meta",
+      "text": "P 10 · F 2 · C 4",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#f4ecdf",
+      "overImage": false,
+      "ratio": 8.5,
+      "size": 13,
+      "weight": 500,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 2,
+      "examples": [
+        "#c7 div.product__meta \"P 10 · F 2 · C 4\"",
+        "#c3 input \"Search foods\""
+      ]
+    },
+    {
+      "el": "#c13 small",
+      "text": "g",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#f8e9f0",
+      "overImage": false,
+      "ratio": 8.5,
+      "size": 13,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 small \"g\""
+      ]
+    },
+    {
+      "el": "#c9 small",
+      "text": "kcal over goal",
+      "kind": "text",
+      "fg": "#674300",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 8.62,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "nutri--over",
+      "nodes": 5,
+      "examples": [
+        "#c9 small \"kcal over goal\"",
+        "#c9 div.macro__value \"118\"",
+        "#c9 div.macro__goal \"of 110 g\""
+      ]
+    },
+    {
+      "el": "#c16 span.marker.marker--unsure",
+      "text": "4",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#f2b63d",
+      "overImage": false,
+      "ratio": 8.65,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c16 span.marker.marker--unsure \"4\""
+      ]
+    },
+    {
+      "el": "#c7 small",
+      "text": "per 100 g",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fcecea",
+      "overImage": false,
+      "ratio": 8.7,
+      "size": 12,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "error",
+      "nodes": 1,
+      "examples": [
+        "#c7 small \"per 100 g\""
+      ]
+    },
+    {
+      "el": "#c13 small",
+      "text": "g",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#eaf0fa",
+      "overImage": false,
+      "ratio": 8.71,
+      "size": 13,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 small \"g\""
+      ]
+    },
+    {
+      "el": "#c13 small",
+      "text": "g",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#f8f0da",
+      "overImage": false,
+      "ratio": 8.77,
+      "size": 13,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 small \"g\""
+      ]
+    },
+    {
+      "el": "#main span.t-overline.text-accent",
+      "text": "02 · Design system",
+      "kind": "text",
+      "fg": "#7c2a10",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 8.89,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 27,
+      "examples": [
+        "#main span.t-overline.text-accent \"02 · Design system\"",
+        "#main td.status-fixed \"fixed (stepper ± was 41 pt, segments 36 \"",
+        "#main td.status-fixed \"fixed (filled active state)\""
+      ]
+    },
+    {
+      "el": "#abbreviations small",
+      "text": "Read me first",
+      "kind": "text",
+      "fg": "#7c2a10",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 8.89,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 10,
+      "examples": [
+        "#abbreviations small \"Read me first\"",
+        "#colour small \"Foundations\"",
+        "#type small \"Foundations\""
+      ]
+    },
+    {
+      "el": "#page p.doc-bar__meta",
+      "text": "Design system · v1.2 · light theme · WCA",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 9.26,
+      "size": 12,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 70,
+      "examples": [
+        "#page p.doc-bar__meta \"Design system · v1.2 · light theme · WCA\"",
+        "#main p \"Tokens and components for a photo-first \"",
+        "#main p.doc-lead \"Two layers.  are the raw palette, and ev\""
+      ]
+    },
+    {
+      "el": "#page p.doc-nav__group",
+      "text": "Foundations",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 9.26,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 172,
+      "examples": [
+        "#page p.doc-nav__group \"Foundations\"",
+        "#page p.doc-nav__group \"Components\"",
+        "#page p.doc-nav__group \"Checks\""
+      ]
+    },
+    {
+      "el": "#c2 span.field__help",
+      "text": "Available after you add an ingredient",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 9.26,
+      "size": 12,
+      "weight": 500,
+      "large": false,
+      "critical": false,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 1,
+      "examples": [
+        "#c2 span.field__help \"Available after you add an ingredient\""
+      ]
+    },
+    {
+      "el": "#c12 span",
+      "text": "Today",
+      "kind": "text",
+      "fg": "#7c2a10",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 9.34,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "active",
+      "nodes": 4,
+      "examples": [
+        "#c12 span \"Today\"",
+        "#c12 span \"Recipes\"",
+        "#c12 span \"Diary\""
+      ]
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.is-pressed",
+      "text": "Add to Lunch · 559 kcal",
+      "kind": "text",
+      "fg": "#ffffff",
+      "bg": "#7c2a10",
+      "overImage": false,
+      "ratio": 9.56,
+      "size": 16,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 1,
+      "examples": [
+        "#c1 button.btn.btn--primary.is-pressed \"Add to Lunch · 559 kcal\""
+      ]
+    },
+    {
+      "el": "#main code",
+      "text": "#FFFFFF",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 9.73,
+      "size": 12,
+      "weight": 500,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 141,
+      "examples": [
+        "#main code \"#FFFFFF\"",
+        "#main small \"Only for text and icons on Persimmon. Ne\"",
+        "#main code \"#FFFCF6\""
+      ]
+    },
+    {
+      "el": "#c2 span.field__suffix",
+      "text": "g",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 9.73,
+      "size": 16,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 46,
+      "examples": [
+        "#c2 span.field__suffix \"g\"",
+        "#c2 span.field__suffix \"g\"",
+        "#c2 span.field__suffix \"g\""
+      ]
+    },
+    {
+      "el": "#c7 div.product__meta",
+      "text": "In this meal",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 9.73,
+      "size": 13,
+      "weight": 500,
+      "large": false,
+      "critical": false,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 2,
+      "examples": [
+        "#c7 div.product__meta \"In this meal\"",
+        "#c8 span \"Available when you're back online. We'll\""
+      ]
+    },
+    {
+      "el": "#c8 small",
+      "text": "kcal",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 9.73,
+      "size": 14,
+      "weight": 400,
+      "large": false,
+      "critical": true,
+      "disabled": true,
+      "state": "disabled",
+      "nodes": 1,
+      "examples": [
+        "#c8 small \"kcal\""
+      ]
+    },
+    {
+      "el": "#c1 button.btn.btn--secondary.is-pressed",
+      "text": "Pressed",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#f9c9a6",
+      "overImage": false,
+      "ratio": 10.45,
+      "size": 16,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 1,
+      "examples": [
+        "#c1 button.btn.btn--secondary.is-pressed \"Pressed\""
+      ]
+    },
+    {
+      "el": "#c1 button.btn.btn--secondary",
+      "text": "Add a missing item",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fce3cc",
+      "overImage": false,
+      "ratio": 12.75,
+      "size": 16,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 10,
+      "examples": [
+        "#c1 button.btn.btn--secondary \"Add a missing item\"",
+        "#c1 button.btn.btn--secondary.btn--m \"Retake\"",
+        "#c2 button.btn.btn--secondary.btn--block \"Continue with a passkey\""
+      ]
+    },
+    {
+      "el": "#c7 span.product__kcal",
+      "text": "206",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fce3cc",
+      "overImage": false,
+      "ratio": 12.75,
+      "size": 16,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "selected",
+      "nodes": 1,
+      "examples": [
+        "#c7 span.product__kcal \"206\""
+      ]
+    },
+    {
+      "el": "#main code",
+      "text": "tokens.json",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#f4ecdf",
+      "overImage": false,
+      "ratio": 13.43,
+      "size": 13,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 24,
+      "examples": [
+        "#main code \"tokens.json\"",
+        "#main code \"tokens.css\"",
+        "#main code \"components.css\""
+      ]
+    },
+    {
+      "el": "#main code",
+      "text": "--color-bg-canvas",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#f4ecdf",
+      "overImage": false,
+      "ratio": 13.43,
+      "size": 13,
+      "weight": 500,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 172,
+      "examples": [
+        "#main code \"--color-bg-canvas\"",
+        "#main code \"--color-oat-50\"",
+        "#main code \"--color-bg-surface\""
+      ]
+    },
+    {
+      "el": "#c13 span.macro-tile__value",
+      "text": "4.0",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#f8e9f0",
+      "overImage": false,
+      "ratio": 13.43,
+      "size": 16,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 span.macro-tile__value \"4.0\""
+      ]
+    },
+    {
+      "el": "#c7 div.product__name",
+      "text": "Broccoli, boiled",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fcecea",
+      "overImage": false,
+      "ratio": 13.74,
+      "size": 16,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "error",
+      "nodes": 1,
+      "examples": [
+        "#c7 div.product__name \"Broccoli, boiled\""
+      ]
+    },
+    {
+      "el": "#c7 span.product__kcal",
+      "text": "—",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fcecea",
+      "overImage": false,
+      "ratio": 13.74,
+      "size": 16,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "error",
+      "nodes": 1,
+      "examples": [
+        "#c7 span.product__kcal \"—\""
+      ]
+    },
+    {
+      "el": "#c13 span.macro-tile__value",
+      "text": "42.3",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#eaf0fa",
+      "overImage": false,
+      "ratio": 13.76,
+      "size": 16,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 span.macro-tile__value \"42.3\""
+      ]
+    },
+    {
+      "el": "#c13 span.macro-tile__value",
+      "text": "0.4",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#f8f0da",
+      "overImage": false,
+      "ratio": 13.85,
+      "size": 16,
+      "weight": 500,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 1,
+      "examples": [
+        "#c13 span.macro-tile__value \"0.4\""
+      ]
+    },
+    {
+      "el": "#page a.skip-link",
+      "text": "Skip to content",
+      "kind": "text",
+      "fg": "#fbf6ee",
+      "bg": "#2b2118",
+      "overImage": false,
+      "ratio": 14.64,
+      "size": 14,
+      "weight": 600,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 3,
+      "examples": [
+        "#page a.skip-link \"Skip to content\"",
+        "#c14 span.toast__msg \"Added to Lunch · 559 kcal\"",
+        "#c14 span.toast__msg \"It's a bit dark. Try near a window.\""
+      ]
+    },
+    {
+      "el": "#page a",
+      "text": "Colour",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 14.64,
+      "size": 14,
+      "weight": 400,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 332,
+      "examples": [
+        "#page a \"Colour\"",
+        "#page a \"Typography\"",
+        "#page a \"Spacing\""
+      ]
+    },
+    {
+      "el": "#main h1",
+      "text": "Ripe design system",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 14.64,
+      "size": 64,
+      "weight": 400,
+      "large": true,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 34,
+      "examples": [
+        "#main h1 \"Ripe design system\"",
+        "#abbreviations h2.doc-h2 \"Abbreviations\"",
+        "#colour h2.doc-h2 \"Colour\""
+      ]
+    },
+    {
+      "el": "#main b",
+      "text": "270",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 14.64,
+      "size": 28,
+      "weight": 500,
+      "large": true,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 6,
+      "examples": [
+        "#main b \"270\"",
+        "#main b \"16\"",
+        "#main b \"AAA\""
+      ]
+    },
+    {
+      "el": "#main h3.doc-h3",
+      "text": "Primitives",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fbf6ee",
+      "overImage": false,
+      "ratio": 14.64,
+      "size": 22,
+      "weight": 400,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 73,
+      "examples": [
+        "#main h3.doc-h3 \"Primitives\"",
+        "#main h3.doc-h3 \"Background\"",
+        "#main h3.doc-h3 \"Text\""
+      ]
+    },
+    {
+      "el": "#main b",
+      "text": "white",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 15.38,
+      "size": 12,
+      "weight": 700,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "default",
+      "nodes": 76,
+      "examples": [
+        "#main b \"white\"",
+        "#main b \"oat-0\"",
+        "#main b \"oat-50\""
+      ]
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 15.38,
+      "size": 14,
+      "weight": 700,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 47,
+      "examples": [
+        "#c5 label.segmented__opt \"g\"",
+        "#c5 label.segmented__opt \"g\"",
+        "#c5 label.segmented__opt \"portion\""
+      ]
+    },
+    {
+      "el": "#c8 span.recipe-card__kcal",
+      "text": "344",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#fffcf6",
+      "overImage": false,
+      "ratio": 15.38,
+      "size": 28,
+      "weight": 500,
+      "large": true,
+      "critical": true,
+      "disabled": false,
+      "state": "default",
+      "nodes": 5,
+      "examples": [
+        "#c8 span.recipe-card__kcal \"344\"",
+        "#c8 span.recipe-card__kcal \"559\"",
+        "#c9 b.nutri__big \"879\""
+      ]
+    }
+  ],
+  "nonText": [
+    {
+      "name": "text field border",
+      "el": "#c2 span.field__control",
+      "fg": "#8c7a66",
+      "bg": "#fbf6ee",
+      "ratio": 3.83,
+      "need": 3,
+      "crit": true,
+      "note": "inset ring"
+    },
+    {
+      "name": "search boundary",
+      "el": "#c3 div.search",
+      "fg": "#8c7a66",
+      "bg": "#fbf6ee",
+      "ratio": 3.83,
+      "need": 3,
+      "crit": true,
+      "note": "inset ring"
+    },
+    {
+      "name": "stepper boundary",
+      "el": "#c6 div.stepper",
+      "fg": "#8c7a66",
+      "bg": "#fbf6ee",
+      "ratio": 3.83,
+      "need": 3,
+      "crit": true,
+      "note": "inset ring"
+    },
+    {
+      "name": "chip boundary (default)",
+      "el": "#c4 button.chip",
+      "fg": "#8c7a66",
+      "bg": "#fbf6ee",
+      "ratio": 3.83,
+      "need": 3,
+      "crit": true,
+      "note": "inset ring"
+    },
+    {
+      "name": "selected segment indicator vs track",
+      "el": "#c5 label.segmented__opt",
+      "ratio": 3.52,
+      "need": 3,
+      "crit": true,
+      "note": "ring"
+    },
+    {
+      "name": "selected chip ring",
+      "el": "#c4 button.chip.is-selected",
+      "fg": "#c4431a",
+      "bg": "#fbf6ee",
+      "ratio": 4.69,
+      "need": 3,
+      "crit": true,
+      "note": "ring"
+    },
+    {
+      "name": "macro bar P fill vs track",
+      "el": "#c9 i",
+      "fg": "#9b2f63",
+      "bg": "#f4ecdf",
+      "ratio": 6.01,
+      "need": 3,
+      "crit": true,
+      "note": "graphic"
+    },
+    {
+      "name": "macro bar F fill vs track",
+      "el": "#c9 i",
+      "fg": "#a77a0b",
+      "bg": "#f4ecdf",
+      "ratio": 3.3,
+      "need": 3,
+      "crit": true,
+      "note": "graphic"
+    },
+    {
+      "name": "macro bar C fill vs track",
+      "el": "#c9 i",
+      "fg": "#3b6cc0",
+      "bg": "#f4ecdf",
+      "ratio": 4.38,
+      "need": 3,
+      "crit": true,
+      "note": "graphic"
+    },
+    {
+      "name": "calorie ring value vs track",
+      "el": "#c9 path",
+      "fg": "#c4431a",
+      "bg": "#fce3cc",
+      "ratio": 4.08,
+      "need": 3,
+      "crit": true,
+      "note": "graphic (values also shown as text)"
+    },
+    {
+      "name": "icon in tint icon button",
+      "el": "#c1 button.icon-btn.icon-btn--tint",
+      "fg": "#7c2a10",
+      "bg": "#fce3cc",
+      "ratio": 7.74,
+      "need": 3,
+      "crit": true,
+      "note": "icon stroke"
+    },
+    {
+      "name": "icon in plain icon button",
+      "el": "#c11 button.icon-btn",
+      "fg": "#2b2118",
+      "bg": "#fbf6ee",
+      "ratio": 14.64,
+      "need": 3,
+      "crit": true,
+      "note": "icon stroke"
+    },
+    {
+      "name": "tab icon (inactive)",
+      "el": "#c12 button.tab",
+      "fg": "#4e4034",
+      "bg": "#fffcf6",
+      "ratio": 9.73,
+      "need": 3,
+      "crit": true,
+      "note": "icon stroke"
+    },
+    {
+      "name": "active tab indicator",
+      "el": "#c12 button.tab.is-active",
+      "fg": "#9b3515",
+      "bg": "#fffcf6",
+      "ratio": 7.04,
+      "need": 3,
+      "crit": true,
+      "note": "2 px label underline"
+    },
+    {
+      "name": "verified check icon",
+      "el": "#c7 svg",
+      "fg": "#2e7d4f",
+      "bg": "#fffcf6",
+      "ratio": 4.93,
+      "need": 3,
+      "crit": true,
+      "note": "icon stroke"
+    },
+    {
+      "name": "error ring",
+      "el": "#c2 span.field__control",
+      "fg": "#a8241c",
+      "bg": "#fbf6ee",
+      "ratio": 6.65,
+      "need": 3,
+      "crit": true,
+      "note": "ring"
+    }
+  ],
+  "targets": [
+    {
+      "el": "#page a.skip-link",
+      "text": "Skip to content",
+      "w": 128,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Colour",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Typography",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Spacing",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Radius & borders",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Elevation",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Icons & sizes",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Platform compliance",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "01 Buttons",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "02 Text field",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "03 Search bar",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "04 Chips",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "05 Segmented control",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "06 Weight stepper",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "07 Product item",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "08 Recipe card",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "09 Nutrition summary",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "10 Nutrition facts",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "11 Top app bar",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "12 Tab bar",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "13 Bottom sheet",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "14 Toast",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "15 Empty state",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "16 Badges",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Abbreviations",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "Accessibility",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Background colour tokensSwatch",
+      "w": 1088,
+      "h": 778,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Text colour tokensSwatchTokenP",
+      "w": 1088,
+      "h": 582,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Border colour tokensSwatchToke",
+      "w": 1088,
+      "h": 329,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Status colour tokensSwatchToke",
+      "w": 1088,
+      "h": 566,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Macros colour tokensSwatchToke",
+      "w": 1088,
+      "h": 654,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Component size tokensTokenValu",
+      "w": 1088,
+      "h": 1069,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Platform compliance: element, ",
+      "w": 1088,
+      "h": 524,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--primary",
+      "text": "Add to Lunch · 559 kcal",
+      "w": 250,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.is-pressed",
+      "text": "Add to Lunch · 559 kcal",
+      "w": 250,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.is-focus",
+      "text": "Add to Lunch · 559 kcal",
+      "w": 250,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--primary",
+      "text": "Add to Lunch",
+      "w": 176,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--secondary",
+      "text": "Add a missing item",
+      "w": 216,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--secondary.is-pressed",
+      "text": "Pressed",
+      "w": 105,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--ghost",
+      "text": "Search instead",
+      "w": 163,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--ghost.is-pressed",
+      "text": "Pressed",
+      "w": 81,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--destructive",
+      "text": "Delete account",
+      "w": 158,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--destructive.is-pressed",
+      "text": "Pressed",
+      "w": 105,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.btn--m",
+      "text": "Log portion",
+      "w": 104,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--secondary.btn--m",
+      "text": "Retake",
+      "w": 76,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--ghost.btn--m",
+      "text": "Undo",
+      "w": 57,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--surface",
+      "text": "Close",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--tint",
+      "text": "Add",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--accent",
+      "text": "Scan",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--accent.is-pressed",
+      "text": "Scan, pressed",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.icon-btn.is-focus",
+      "text": "Search",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.icon-btn",
+      "text": "Barcode",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.btn--m",
+      "text": "Log portion",
+      "w": 104,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--tint",
+      "text": "Add, Android",
+      "w": 48,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--surface",
+      "text": "Close, Android",
+      "w": 48,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c2 label.field",
+      "text": "Final cooked weightgWeigh the ",
+      "w": 310,
+      "h": 107,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c2 label.field.is-focus",
+      "text": "Final cooked weightgWeigh the ",
+      "w": 310,
+      "h": 107,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c2 label.field",
+      "text": "Final cooked weightgThat's 112",
+      "w": 310,
+      "h": 107,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c2 label.field.is-error",
+      "text": "Final cooked weightgEnter a we",
+      "w": 310,
+      "h": 107,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c2 label.field",
+      "text": "EmailWe'll email you a one-tap",
+      "w": 310,
+      "h": 125,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c2 button.btn.btn--primary.btn--block",
+      "text": "Email me a sign-in link",
+      "w": 310,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c2 button.btn.btn--secondary.btn--block",
+      "text": "Continue with a passkey",
+      "w": 310,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c2 label.field.is-disabled",
+      "text": "Final cooked weightgAvailable ",
+      "w": 310,
+      "h": 107,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c3 input",
+      "text": "Search foods or recipes",
+      "w": 206,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c3 button.icon-btn",
+      "text": "Scan barcode",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c3 input",
+      "text": "Search foods",
+      "w": 206,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c3 button.icon-btn",
+      "text": "Clear",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c3 input",
+      "text": "Search foods",
+      "w": 206,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c3 button.icon-btn",
+      "text": "Clear search",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c3 input",
+      "text": "Search (offline)",
+      "w": 258,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c4 button.chip",
+      "text": "High protein",
+      "w": 101,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c4 button.chip",
+      "text": "Under 500 kcal",
+      "w": 119,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c4 button.chip.is-pressed",
+      "text": "High protein",
+      "w": 101,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c4 button.chip.is-selected",
+      "text": "Under 500 kcal",
+      "w": 139,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c4 button.chip.is-focus",
+      "text": "Vegetarian",
+      "w": 92,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c4 button.chip",
+      "text": "Vegan · 0",
+      "w": 82,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "ml",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "portion",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt.is-pressed",
+      "text": "ml",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "portion",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt.is-focus",
+      "text": "ml",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "portion",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "ml",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "portion",
+      "w": 95,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "w": 95,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt.is-focus",
+      "text": "ml",
+      "w": 95,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "portion",
+      "w": 95,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn.is-pressed",
+      "text": "More",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c7 button.icon-btn.icon-btn--tint",
+      "text": "Add avocado",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c7 button.icon-btn.icon-btn--tint",
+      "text": "Add Greek yogurt",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c7 button.icon-btn.icon-btn--tint",
+      "text": "Salmon added",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c7 button.icon-btn",
+      "text": "Add rice",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c7 button.icon-btn.icon-btn--tint",
+      "text": "Retry broccoli",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c8 button.icon-btn.icon-btn--surface",
+      "text": "Save recipe",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c8 button.btn.btn--primary.btn--m",
+      "text": "Log portion",
+      "w": 132,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c8 button.icon-btn.icon-btn--surface",
+      "text": "Save salmon recipe",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c8 button.btn.btn--secondary.btn--m",
+      "text": "View",
+      "w": 63,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Back",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Scan barcode",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c11 button.icon-btn.is-pressed",
+      "text": "Back",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Save",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Search diary",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Pick a date",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Back, Android",
+      "w": 48,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c11 button.icon-btn.is-focus",
+      "text": "Scan barcode, Android",
+      "w": 48,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-active",
+      "text": "Today",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Diary",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.tab--scan",
+      "text": "Scan a meal",
+      "w": 62,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Recipes",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Profile",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-focus",
+      "text": "Today",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-pressed",
+      "text": "Diary",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.tab--scan.is-pressed",
+      "text": "Scan a meal, pressed",
+      "w": 62,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-active",
+      "text": "Recipes",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-pressed.is-focus",
+      "text": "Profile",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Today",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-active",
+      "text": "Diary",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.tab--scan.is-focus",
+      "text": "Scan a meal, focus",
+      "w": 62,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Recipes",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Profile",
+      "w": 62,
+      "h": 46,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-active",
+      "text": "Today",
+      "w": 62,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-pressed",
+      "text": "Diary",
+      "w": 62,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.tab--scan",
+      "text": "Scan a meal, Android",
+      "w": 62,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab.is-focus",
+      "text": "Recipes",
+      "w": 62,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Profile",
+      "w": 62,
+      "h": 48,
+      "min": 48,
+      "inline": false
+    },
+    {
+      "el": "#c13 button.icon-btn",
+      "text": "Close sheet",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c13 label.segmented__opt",
+      "text": "g",
+      "w": 93,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c13 label.segmented__opt",
+      "text": "ml",
+      "w": 93,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c13 label.segmented__opt",
+      "text": "portion",
+      "w": 93,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c13 button.stepper__btn",
+      "text": "Less rice",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c13 input.stepper__input",
+      "text": "Weight in grams",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c13 button.stepper__btn",
+      "text": "More rice",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c13 button.btn.btn--primary.btn--block",
+      "text": "Add to Lunch · 195 kcal",
+      "w": 302,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c13 button.btn.btn--secondary",
+      "text": "Open the portion sheet",
+      "w": 216,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c14 button.toast__action",
+      "text": "Undo",
+      "w": 57,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c14 button.toast__close",
+      "text": "Dismiss",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c14 button.toast__action.is-pressed",
+      "text": "Retake",
+      "w": 67,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c14 button.toast__close",
+      "text": "Dismiss",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c14 button.toast__action.is-focus",
+      "text": "Retry",
+      "w": 58,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c14 button.toast__close",
+      "text": "Dismiss",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c15 button.btn.btn--primary",
+      "text": "Snap a meal",
+      "w": 169,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c15 button.btn.btn--ghost",
+      "text": "Search instead",
+      "w": 169,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c15 button.btn.btn--primary",
+      "text": "Retake photo",
+      "w": 177,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c15 button.btn.btn--ghost",
+      "text": "Search manually",
+      "w": 177,
+      "h": 52,
+      "min": 44,
+      "inline": false
+    }
+  ],
+  "focus": [
+    {
+      "el": "#page a.skip-link",
+      "text": "Skip to content",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 1,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 82,
+      "path": "a",
+      "tag": "A",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "w": 127.84375,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Colour",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 90,
+      "path": "div > aside > nav > a:nth-of-type(1)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 158.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Typography",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 91,
+      "path": "div > aside > nav > a:nth-of-type(2)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 202.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Spacing",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 92,
+      "path": "div > aside > nav > a:nth-of-type(3)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 246.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Radius & borders",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 93,
+      "path": "div > aside > nav > a:nth-of-type(4)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 290.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Elevation",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 94,
+      "path": "div > aside > nav > a:nth-of-type(5)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 334.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Icons & sizes",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 95,
+      "path": "div > aside > nav > a:nth-of-type(6)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 378.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Platform compliance",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 96,
+      "path": "div > aside > nav > a:nth-of-type(7)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 422.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "01 Buttons",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 98,
+      "path": "div > aside > nav > a:nth-of-type(8)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 512.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "02 Text field",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 99,
+      "path": "div > aside > nav > a:nth-of-type(9)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 556.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "03 Search bar",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 100,
+      "path": "div > aside > nav > a:nth-of-type(10)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 600.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "04 Chips",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 101,
+      "path": "div > aside > nav > a:nth-of-type(11)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 644.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "05 Segmented control",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 102,
+      "path": "div > aside > nav > a:nth-of-type(12)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 688.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "06 Weight stepper",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 103,
+      "path": "div > aside > nav > a:nth-of-type(13)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 732.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "07 Product item",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 104,
+      "path": "div > aside > nav > a:nth-of-type(14)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 776.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "08 Recipe card",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 105,
+      "path": "div > aside > nav > a:nth-of-type(15)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 820.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "09 Nutrition summary",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 106,
+      "path": "div > aside > nav > a:nth-of-type(16)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 864.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "10 Nutrition facts",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 107,
+      "path": "div > aside > nav > a:nth-of-type(17)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 908.9375,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "11 Top app bar",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 108,
+      "path": "div > aside > nav > a:nth-of-type(18)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 937,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "12 Tab bar",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 109,
+      "path": "div > aside > nav > a:nth-of-type(19)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 595,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "13 Bottom sheet",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 110,
+      "path": "div > aside > nav > a:nth-of-type(20)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 639,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "14 Toast",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 111,
+      "path": "div > aside > nav > a:nth-of-type(21)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 683,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "15 Empty state",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 112,
+      "path": "div > aside > nav > a:nth-of-type(22)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 727,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "16 Badges",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 113,
+      "path": "div > aside > nav > a:nth-of-type(23)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 771,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Abbreviations",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 115,
+      "path": "div > aside > nav > a:nth-of-type(24)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 861,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "Accessibility",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 116,
+      "path": "div > aside > nav > a:nth-of-type(25)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 905,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Background colour tokensSwat",
+      "section": "main",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 535,
+      "path": "#main > section:nth-of-type(2)",
+      "tag": "SECTION",
+      "rect": {
+        "x": 288,
+        "y": 3325.296875,
+        "w": 1088,
+        "h": 778
+      }
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Text colour tokensSwatchToke",
+      "section": "main",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 691,
+      "path": "#main > section:nth-of-type(3)",
+      "tag": "SECTION",
+      "rect": {
+        "x": 288,
+        "y": 4187.28125,
+        "w": 1088,
+        "h": 582
+      }
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Border colour tokensSwatchTo",
+      "section": "main",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": false,
+      "covered": 0,
+      "sticky": false,
+      "order": 815,
+      "path": "#main > section:nth-of-type(4)",
+      "tag": "SECTION",
+      "rect": {
+        "x": 288,
+        "y": 4853.265625,
+        "w": 1088,
+        "h": 329
+      }
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Status colour tokensSwatchTo",
+      "section": "main",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 894,
+      "path": "#main > section:nth-of-type(5)",
+      "tag": "SECTION",
+      "rect": {
+        "x": 288,
+        "y": 5266.25,
+        "w": 1088,
+        "h": 566
+      }
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Macros colour tokensSwatchTo",
+      "section": "main",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1004,
+      "path": "#main > section:nth-of-type(6)",
+      "tag": "SECTION",
+      "rect": {
+        "x": 288,
+        "y": 6012.234375,
+        "w": 1088,
+        "h": 654
+      }
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Component size tokensTokenVa",
+      "section": "main",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": false,
+      "covered": 0,
+      "sticky": false,
+      "order": 1510,
+      "path": "#main > section:nth-of-type(7)",
+      "tag": "SECTION",
+      "rect": {
+        "x": 288,
+        "y": 9804.703125,
+        "w": 1088,
+        "h": 1069
+      }
+    },
+    {
+      "el": "#main section.table-scroll",
+      "text": "Platform compliance: element",
+      "section": "main",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1648,
+      "path": "#main > section:nth-of-type(8)",
+      "tag": "SECTION",
+      "rect": {
+        "x": 288,
+        "y": 11051.703125,
+        "w": 1088,
+        "h": 524
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--primary",
+      "text": "Add to Lunch · 559 kcal",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1732,
+      "path": "#c1 > div > figure:nth-of-type(1) > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 338.953125,
+        "y": 12101.703125,
+        "w": 250.078125,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.is-pressed",
+      "text": "Add to Lunch · 559 kcal",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 1.65,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1739,
+      "path": "#c1 > div > figure:nth-of-type(2) > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 709.4539184570312,
+        "y": 12102.223114013672,
+        "w": 245.0765380859375,
+        "h": 50.959991455078125
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.is-focus",
+      "text": "Add to Lunch · 559 kcal",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1746,
+      "path": "#c1 > div > figure:nth-of-type(3) > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1074.953125,
+        "y": 12101.703125,
+        "w": 250.078125,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--secondary",
+      "text": "Add a missing item",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1760,
+      "path": "#c1 > div > figure:nth-of-type(5) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 724.03125,
+        "y": 12238.703125,
+        "w": 215.921875,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--secondary.is-pressed",
+      "text": "Pressed",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 10.45,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1763,
+      "path": "#c1 > div > figure:nth-of-type(5) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 780.5499877929688,
+        "y": 12303.22314453125,
+        "w": 102.9000244140625,
+        "h": 50.9599609375
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--ghost",
+      "text": "Search instead",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1768,
+      "path": "#c1 > div > figure:nth-of-type(6) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1071.8125,
+        "y": 12239.703125,
+        "w": 163.359375,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--ghost.is-pressed",
+      "text": "Pressed",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.57,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1771,
+      "path": "#c1 > div > figure:nth-of-type(6) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1247.171875,
+        "y": 12239.703125,
+        "w": 81,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--destructive",
+      "text": "Delete account",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 13.74,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1776,
+      "path": "#c1 > div > figure:nth-of-type(7) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 326.703125,
+        "y": 12439.703125,
+        "w": 157.578125,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--destructive.is-pressed",
+      "text": "Pressed",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.2,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1777,
+      "path": "#c1 > div > figure:nth-of-type(7) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 496.28125,
+        "y": 12439.703125,
+        "w": 105,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.btn--m",
+      "text": "Log portion",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1782,
+      "path": "#c1 > div > figure:nth-of-type(8) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 701.390625,
+        "y": 12443.703125,
+        "w": 104.46875,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--secondary.btn--m",
+      "text": "Retake",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1783,
+      "path": "#c1 > div > figure:nth-of-type(8) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 817.859375,
+        "y": 12443.703125,
+        "w": 75.578125,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--surface",
+      "text": "Close",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1789,
+      "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1066,
+        "y": 12438.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--tint",
+      "text": "Add",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1792,
+      "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1122,
+        "y": 12438.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--accent",
+      "text": "Scan",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1795,
+      "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1178,
+        "y": 12438.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--accent.is-pressed",
+      "text": "Scan, pressed",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 1.65,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1798,
+      "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(4)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1234,
+        "y": 12438.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c1 button.icon-btn.is-focus",
+      "text": "Search",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1801,
+      "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(5)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1290,
+        "y": 12438.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c1 button.btn.btn--primary.btn--m",
+      "text": "Log portion",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1811,
+      "path": "#c1 > div > figure:nth-of-type(10) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 351.765625,
+        "y": 12643.703125,
+        "w": 104.46875,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--tint",
+      "text": "Add, Android",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1812,
+      "path": "#c1 > div > figure:nth-of-type(10) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 468.234375,
+        "y": 12643.703125,
+        "w": 48,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c1 button.icon-btn.icon-btn--surface",
+      "text": "Close, Android",
+      "section": "c1",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1815,
+      "path": "#c1 > div > figure:nth-of-type(10) > div > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 528.234375,
+        "y": 12643.703125,
+        "w": 48,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c2 input",
+      "text": "",
+      "section": "c2",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.92,
+      "ringVsOwn": 4.92,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1840,
+      "path": "#c2 > div > figure:nth-of-type(1) > div > label > span:nth-of-type(2) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 325,
+        "y": 13043.703125,
+        "w": 259.59375,
+        "h": 26
+      }
+    },
+    {
+      "el": "#c2 input",
+      "text": "",
+      "section": "c2",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.92,
+      "ringVsOwn": 4.92,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1850,
+      "path": "#c2 > div > figure:nth-of-type(2) > div > label > span:nth-of-type(2) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 693,
+        "y": 13043.703125,
+        "w": 259.59375,
+        "h": 26
+      }
+    },
+    {
+      "el": "#c2 input.num",
+      "text": "",
+      "section": "c2",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.92,
+      "ringVsOwn": 4.92,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1860,
+      "path": "#c2 > div > figure:nth-of-type(3) > div > label > span:nth-of-type(2) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 1061,
+        "y": 13043.703125,
+        "w": 259.59375,
+        "h": 26
+      }
+    },
+    {
+      "el": "#c2 input.num",
+      "text": "",
+      "section": "c2",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 6.99,
+      "ringVsOwn": 6.99,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1870,
+      "path": "#c2 > div > figure:nth-of-type(4) > div > label > span:nth-of-type(2) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 325,
+        "y": 13234.703125,
+        "w": 259.59375,
+        "h": 26
+      }
+    },
+    {
+      "el": "#c2 input",
+      "text": "",
+      "section": "c2",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.92,
+      "ringVsOwn": 4.92,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1882,
+      "path": "#c2 > div > figure:nth-of-type(5) > div > label > span:nth-of-type(2) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 693,
+        "y": 13234.703125,
+        "w": 278,
+        "h": 26
+      }
+    },
+    {
+      "el": "#c2 button.btn.btn--primary.btn--block",
+      "text": "Email me a sign-in link",
+      "section": "c2",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1884,
+      "path": "#c2 > div > figure:nth-of-type(5) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 677,
+        "y": 13329.703125,
+        "w": 310,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c2 button.btn.btn--secondary.btn--block",
+      "text": "Continue with a passkey",
+      "section": "c2",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1885,
+      "path": "#c2 > div > figure:nth-of-type(5) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 677,
+        "y": 13393.703125,
+        "w": 310,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c3 input",
+      "text": "Search foods or recipes",
+      "section": "c3",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.92,
+      "ringVsOwn": 4.92,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1916,
+      "path": "#c3 > div > figure:nth-of-type(1) > div > div > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 357,
+        "y": 13706.703125,
+        "w": 206,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c3 button.icon-btn",
+      "text": "Scan barcode",
+      "section": "c3",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1917,
+      "path": "#c3 > div > figure:nth-of-type(1) > div > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 571,
+        "y": 13706.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c3 input",
+      "text": "Search foods",
+      "section": "c3",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.92,
+      "ringVsOwn": 4.92,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1927,
+      "path": "#c3 > div > figure:nth-of-type(2) > div > div > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 725,
+        "y": 13706.703125,
+        "w": 206,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c3 button.icon-btn",
+      "text": "Clear",
+      "section": "c3",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1928,
+      "path": "#c3 > div > figure:nth-of-type(2) > div > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 939,
+        "y": 13706.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c3 input",
+      "text": "Search foods",
+      "section": "c3",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 6.99,
+      "ringVsOwn": 6.99,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1938,
+      "path": "#c3 > div > figure:nth-of-type(3) > div > div > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 1093,
+        "y": 13706.703125,
+        "w": 206,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c3 button.icon-btn",
+      "text": "Clear search",
+      "section": "c3",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1939,
+      "path": "#c3 > div > figure:nth-of-type(3) > div > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1307,
+        "y": 13706.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c4 button.chip",
+      "text": "High protein",
+      "section": "c4",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1969,
+      "path": "#c4 > div > figure:nth-of-type(1) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 367.546875,
+        "y": 14179.703125,
+        "w": 100.890625,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c4 button.chip",
+      "text": "Under 500 kcal",
+      "section": "c4",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1970,
+      "path": "#c4 > div > figure:nth-of-type(1) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 358.296875,
+        "y": 14227.703125,
+        "w": 119.40625,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c4 button.chip.is-pressed",
+      "text": "High protein",
+      "section": "c4",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1975,
+      "path": "#c4 > div > figure:nth-of-type(2) > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 643.546875,
+        "y": 14188.703125,
+        "w": 100.890625,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c4 button.chip.is-selected",
+      "text": "Under 500 kcal",
+      "section": "c4",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1980,
+      "path": "#c4 > div > figure:nth-of-type(3) > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 900.296875,
+        "y": 14188.703125,
+        "w": 139.40625,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c4 button.chip.is-focus",
+      "text": "Vegetarian",
+      "section": "c4",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 1987,
+      "path": "#c4 > div > figure:nth-of-type(4) > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1200.046875,
+        "y": 14188.703125,
+        "w": 91.90625,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "section": "c5",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2020,
+      "path": "#c5 > div > figure:nth-of-type(1) > div > fieldset > label:nth-of-type(1) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 313,
+        "y": 14688.703125,
+        "w": 95.328125,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "section": "c5",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2032,
+      "path": "#c5 > div > figure:nth-of-type(2) > div > fieldset > label:nth-of-type(1) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 681,
+        "y": 14688.703125,
+        "w": 95.328125,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "portion",
+      "section": "c5",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2048,
+      "path": "#c5 > div > figure:nth-of-type(3) > div > fieldset > label:nth-of-type(3) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 1255.65625,
+        "y": 14688.703125,
+        "w": 95.34375,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "section": "c5",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2056,
+      "path": "#c5 > div > figure:nth-of-type(4) > div > fieldset > label:nth-of-type(1) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 313,
+        "y": 14826.703125,
+        "w": 95.328125,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c5 label.segmented__opt",
+      "text": "g",
+      "section": "c5",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2068,
+      "path": "#c5 > div > figure:nth-of-type(5) > div > fieldset > label:nth-of-type(1) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 681,
+        "y": 14824.703125,
+        "w": 95.328125,
+        "h": 40
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2091,
+      "path": "#c6 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 338,
+        "y": 15128.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "section": "c6",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.3,
+      "ringVsOwn": 4.3,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2095,
+      "path": "#c6 > div > figure:nth-of-type(1) > div > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 389.765625,
+        "y": 15128.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2097,
+      "path": "#c6 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 454,
+        "y": 15128.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2106,
+      "path": "#c6 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 614,
+        "y": 15128.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "section": "c6",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.3,
+      "ringVsOwn": 4.3,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2110,
+      "path": "#c6 > div > figure:nth-of-type(2) > div > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 665.765625,
+        "y": 15128.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn.is-pressed",
+      "text": "More",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 11.56,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2112,
+      "path": "#c6 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 730,
+        "y": 15128.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2121,
+      "path": "#c6 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 890,
+        "y": 15133.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "section": "c6",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.3,
+      "ringVsOwn": 4.3,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2125,
+      "path": "#c6 > div > figure:nth-of-type(3) > div > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 941.765625,
+        "y": 15133.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2127,
+      "path": "#c6 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1006,
+        "y": 15133.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "section": "c6",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.3,
+      "ringVsOwn": 4.3,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2139,
+      "path": "#c6 > div > figure:nth-of-type(4) > div > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 1217.765625,
+        "y": 15133.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2141,
+      "path": "#c6 > div > figure:nth-of-type(4) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1282,
+        "y": 15133.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "Less",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2149,
+      "path": "#c6 > div > figure:nth-of-type(5) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 338,
+        "y": 15292.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "section": "c6",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 6.1,
+      "ringVsOwn": 6.1,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2153,
+      "path": "#c6 > div > figure:nth-of-type(5) > div > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 389.765625,
+        "y": 15292.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2155,
+      "path": "#c6 > div > figure:nth-of-type(5) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 454,
+        "y": 15292.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c7 button.icon-btn.icon-btn--tint",
+      "text": "Add avocado",
+      "section": "c7",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2201,
+      "path": "#c7 > div > figure > div > div > div:nth-of-type(1) > div:nth-of-type(2) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 583,
+        "y": 15667.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c7 button.icon-btn.icon-btn--tint",
+      "text": "Add Greek yogurt",
+      "section": "c7",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2214,
+      "path": "#c7 > div > figure > div > div > div:nth-of-type(2) > div:nth-of-type(2) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 583,
+        "y": 15731.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c7 button.icon-btn.icon-btn--tint",
+      "text": "Salmon added",
+      "section": "c7",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 12.75,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2227,
+      "path": "#c7 > div > figure > div > div > div:nth-of-type(3) > div:nth-of-type(2) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 583,
+        "y": 15795.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c7 button.icon-btn.icon-btn--tint",
+      "text": "Retry broccoli",
+      "section": "c7",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.74,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2249,
+      "path": "#c7 > div > figure > div > div > div:nth-of-type(5) > div:nth-of-type(2) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 583,
+        "y": 15923.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c8 button.icon-btn.icon-btn--surface",
+      "text": "Save recipe",
+      "section": "c8",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2271,
+      "path": "#c8 > div > figure:nth-of-type(1) > div > article > div:nth-of-type(1) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 563,
+        "y": 16252.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c8 button.btn.btn--primary.btn--m",
+      "text": "Log portion",
+      "section": "c8",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2289,
+      "path": "#c8 > div > figure:nth-of-type(1) > div > article > div:nth-of-type(2) > div:nth-of-type(2) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 470.53125,
+        "y": 16620.421875,
+        "w": 132.46875,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c8 button.icon-btn.icon-btn--surface",
+      "text": "Save salmon recipe",
+      "section": "c8",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2298,
+      "path": "#c8 > div > figure:nth-of-type(2) > div > article > div:nth-of-type(1) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 929.02001953125,
+        "y": 16257.319999694824,
+        "w": 43.1199951171875,
+        "h": 43.12000274658203
+      }
+    },
+    {
+      "el": "#c8 button.btn.btn--secondary.btn--m",
+      "text": "View",
+      "section": "c8",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2314,
+      "path": "#c8 > div > figure:nth-of-type(2) > div > article > div:nth-of-type(2) > div:nth-of-type(2) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 906.587158203125,
+        "y": 16662.733764648438,
+        "w": 61.6328125,
+        "h": 43.1199951171875
+      }
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Back",
+      "section": "c11",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2511,
+      "path": "#c11 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 301,
+        "y": 18491.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Scan barcode",
+      "section": "c11",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2515,
+      "path": "#c11 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 583,
+        "y": 18491.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c11 button.icon-btn.is-pressed",
+      "text": "Back",
+      "section": "c11",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 13.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2523,
+      "path": "#c11 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 669,
+        "y": 18491.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Save",
+      "section": "c11",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2527,
+      "path": "#c11 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 951,
+        "y": 18491.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Search diary",
+      "section": "c11",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2537,
+      "path": "#c11 > div > figure:nth-of-type(3) > div > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1275,
+        "y": 18491.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Pick a date",
+      "section": "c11",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2540,
+      "path": "#c11 > div > figure:nth-of-type(3) > div > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1319,
+        "y": 18491.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c11 button.icon-btn",
+      "text": "Back, Android",
+      "section": "c11",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2548,
+      "path": "#c11 > div > figure:nth-of-type(4) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 301,
+        "y": 18627.375,
+        "w": 48,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c11 button.icon-btn.is-focus",
+      "text": "Scan barcode, Android",
+      "section": "c11",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2552,
+      "path": "#c11 > div > figure:nth-of-type(4) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 579,
+        "y": 18627.375,
+        "w": 48,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-active",
+      "text": "Today",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2574,
+      "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 301,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Diary",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2578,
+      "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 367,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab.tab--scan",
+      "text": "Scan a meal",
+      "section": "c12",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2582,
+      "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 433,
+        "y": 18955.875,
+        "w": 62,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Recipes",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2586,
+      "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(4)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 499,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Profile",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2590,
+      "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(5)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 565,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-focus",
+      "text": "Today",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2599,
+      "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 669,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-pressed",
+      "text": "Diary",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2603,
+      "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 735,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab.tab--scan.is-pressed",
+      "text": "Scan a meal, pressed",
+      "section": "c12",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 1.65,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2607,
+      "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 801,
+        "y": 18955.875,
+        "w": 62,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-active",
+      "text": "Recipes",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2611,
+      "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(4)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 867,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-pressed.is-focus",
+      "text": "Profile",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2615,
+      "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(5)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 933,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Today",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2624,
+      "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1037,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-active",
+      "text": "Diary",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2628,
+      "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1103,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab.tab--scan.is-focus",
+      "text": "Scan a meal, focus",
+      "section": "c12",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2632,
+      "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1169,
+        "y": 18955.875,
+        "w": 62,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Recipes",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2636,
+      "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(4)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1235,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Profile",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2640,
+      "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(5)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1301,
+        "y": 18954.875,
+        "w": 62,
+        "h": 46
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-active",
+      "text": "Today",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2649,
+      "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 301,
+        "y": 19127.375,
+        "w": 62,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-pressed",
+      "text": "Diary",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2653,
+      "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 367,
+        "y": 19127.375,
+        "w": 62,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c12 button.tab.tab--scan",
+      "text": "Scan a meal, Android",
+      "section": "c12",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2657,
+      "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 433,
+        "y": 19127.375,
+        "w": 62,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c12 button.tab.is-focus",
+      "text": "Recipes",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2661,
+      "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(4)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 499,
+        "y": 19127.375,
+        "w": 62,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c12 button.tab",
+      "text": "Profile",
+      "section": "c12",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2665,
+      "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(5)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 565,
+        "y": 19127.375,
+        "w": 62,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c13 button.icon-btn",
+      "text": "Close sheet",
+      "section": "c13",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": false,
+      "covered": 0,
+      "sticky": false,
+      "order": 2695,
+      "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(2) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 571,
+        "y": 19581.390625,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c13 label.segmented__opt",
+      "text": "g",
+      "section": "c13",
+      "indicator": "ring 4px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2702,
+      "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(3) > fieldset > label:nth-of-type(1) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 317,
+        "y": 19659.375,
+        "w": 92.65625,
+        "h": 36
+      }
+    },
+    {
+      "el": "#c13 button.stepper__btn",
+      "text": "Less rice",
+      "section": "c13",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2709,
+      "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(3) > div:nth-of-type(1) > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 313,
+        "y": 19715.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c13 input.stepper__input",
+      "text": "Weight in grams",
+      "section": "c13",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.3,
+      "ringVsOwn": 4.3,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2713,
+      "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(3) > div:nth-of-type(1) > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 364.765625,
+        "y": 19715.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c13 button.stepper__btn",
+      "text": "More rice",
+      "section": "c13",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2715,
+      "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(3) > div:nth-of-type(1) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 429,
+        "y": 19715.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c13 button.btn.btn--primary.btn--block",
+      "text": "Add to Lunch · 195 kcal",
+      "section": "c13",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2734,
+      "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(4) > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 313,
+        "y": 19857.375,
+        "w": 302,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c13 button.btn.btn--secondary",
+      "text": "Open the portion sheet",
+      "section": "c13",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2739,
+      "path": "#c13 > div > figure:nth-of-type(2) > div > button",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 724.109375,
+        "y": 19479.375,
+        "w": 215.765625,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c14 button.toast__action",
+      "text": "Undo",
+      "section": "c14",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2763,
+      "path": "#c14 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 497.84375,
+        "y": 20213.375,
+        "w": 57.15625,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c14 button.toast__close",
+      "text": "Dismiss",
+      "section": "c14",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2764,
+      "path": "#c14 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 567,
+        "y": 20213.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c14 button.toast__action.is-pressed",
+      "text": "Retake",
+      "section": "c14",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 9.26,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2775,
+      "path": "#c14 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 855.734375,
+        "y": 20213.375,
+        "w": 67.265625,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c14 button.toast__close",
+      "text": "Dismiss",
+      "section": "c14",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2776,
+      "path": "#c14 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 935,
+        "y": 20213.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c14 button.toast__action.is-focus",
+      "text": "Retry",
+      "section": "c14",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 6.65,
+      "ringVsOwn": 6.65,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2787,
+      "path": "#c14 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1232.921875,
+        "y": 20233.375,
+        "w": 58.078125,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c14 button.toast__close",
+      "text": "Dismiss",
+      "section": "c14",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 6.65,
+      "ringVsOwn": 6.65,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2788,
+      "path": "#c14 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1303,
+        "y": 20233.375,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c15 button.btn.btn--primary",
+      "text": "Snap a meal",
+      "section": "c15",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2813,
+      "path": "#c15 > div > figure:nth-of-type(1) > div > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 379.71875,
+        "y": 20765.359375,
+        "w": 168.546875,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c15 button.btn.btn--ghost",
+      "text": "Search instead",
+      "section": "c15",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2816,
+      "path": "#c15 > div > figure:nth-of-type(1) > div > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 379.71875,
+        "y": 20821.359375,
+        "w": 168.546875,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c15 button.btn.btn--primary",
+      "text": "Retake photo",
+      "section": "c15",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 2.19,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2828,
+      "path": "#c15 > div > figure:nth-of-type(2) > div > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 743.484375,
+        "y": 20817.34375,
+        "w": 177.015625,
+        "h": 52
+      }
+    },
+    {
+      "el": "#c15 button.btn.btn--ghost",
+      "text": "Search manually",
+      "section": "c15",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2829,
+      "path": "#c15 > div > figure:nth-of-type(2) > div > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 743.484375,
+        "y": 20873.34375,
+        "w": 177.015625,
+        "h": 52
+      }
+    }
+  ],
+  "axeIncomplete": [
+    {
+      "id": "aria-valid-attr-value",
+      "nodes": [
+        "button[data-open-confirm=\"\"]",
+        "button[data-open-sheet=\"\"]"
+      ]
+    },
+    {
+      "id": "color-contrast",
+      "nodes": [
+        "figure:nth-child(1) > .state__stage--start.state__stage > .nutri > .nutri__ring > .nutri__center > .nutri__big",
+        "figure:nth-child(1) > .state__stage--start.state__stage > .nutri > .nutri__ring > .nutri__center > small",
+        ".nutri--over > .nutri__ring > .nutri__center > .nutri__big",
+        ".nutri--over > .nutri__ring > .nutri__center > small",
+        "nav[aria-label=\"Tab bar: pressed and focus\"] > .is-pressed.tab:nth-child(2) > span",
+        ".is-focus.is-pressed.tab > span",
+        "nav[aria-label=\"Tab bar: Android\"] > .is-pressed.tab > span"
+      ]
+    }
+  ]
+}

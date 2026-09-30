@@ -81,6 +81,48 @@ Export with `tools/export.py`. It defaults to a 390×844 viewport at @2x:
 .venv/bin/python tools/export.py 01-branding/directions.html 01-branding/directions.png --width 2160 --height 1200 --scale 1 --full-page
 ```
 
+## Design system builds
+
+`02-design-system/tokens.json` is the source of truth. After changing it, run:
+
+```bash
+python3 tools/build_tokens.py
+```
+
+```bash
+python3 tools/build_docs.py
+```
+
+```bash
+python3 tools/contrast.py
+```
+
+These regenerate `tokens.css`, render the token sections of `index.html`, and write the WCAG table into `02-design-system/README.md`.
+
+## Verification (Node tooling)
+
+Node lives in `~/.local/node` (add `~/.local/node/bin` to PATH); dev packages are in `node_modules` (gitignored, `npm install`).
+
+```bash
+npm run build:standalone
+```
+
+```bash
+npm run export:png
+```
+
+```bash
+npm run check
+```
+
+```bash
+npm run check:a11y
+```
+
+`npm run check:a11y` must also pass: **Tier 1 (WCAG 2.2 A/AA) and Tier 2 (AAA for critical elements) must both have 0 failures.** It runs axe, pa11y, a custom contrast scan (7:1 critical, 4.5:1 regular), axe AAA on critical elements, keyboard, focus, target, reflow, zoom, text-spacing and user-preference checks. Reports go to `02-design-system/a11y/`. Never disable rules or hide elements to make it pass. Use `npm run audit:before` only to record a new baseline.
+
+`npm run check` must pass (61/61) before any design-system change is considered done: it checks paths, tokens (W3C structure, references, drift), stylelint, html-validate, contrast, file:// vs http, CSS loading, clipping, overflow, touch targets (44 pt / 48 dp), component geometry at 100% and 200% text, axe-core, the standalone page and the PNG export. Reports go to `02-design-system/qa/`.
+
 ## Working notes
 
 - Use relative paths everywhere so the GitHub Pages links work.

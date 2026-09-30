@@ -195,3 +195,135 @@ The key prompts used with Claude Code, and what came out of each one.
   - Palette with HEX codes, typography with usage notes, icon grid, app icon previews, and 4 brand principles.
 - **Self-check:** reviewed the render. Fixed a clipped store-name chip, the "Aa" overlapping the type notes, a sticker covering the phone, and empty space in the fragments tile.
 - **`01-branding/BRAND.md`:** the brand rationale in simple English, covering idea, audience, principles, colours (with contrast), fonts, logo rules, app icon, imagery, icons, tone, name check and a file map.
+
+---
+
+## 06 — Design system
+
+**Prompt**
+
+> Based on 01-branding/BRAND.md, create the design system in 02-design-system/:
+> 1. tokens.json (W3C Design Tokens format) + tokens.css: color primitives and semantic tokens
+>    (background, surface, text, accent, success/warning/error, and dedicated colors for
+>    protein / fat / carbs), type scale (display → caption, tabular numbers for kcal),
+>    spacing on a 4pt grid, radius, elevation, icon sizes.
+> 2. components.css with states (default / pressed / disabled / focus / error):
+>    buttons, text field, search bar, chips, segmented control (g / ml / portion),
+>    weight stepper, product list item, recipe card, nutrition summary (calorie ring + macro bars),
+>    nutrition facts table, top app bar, tab bar, bottom sheet, toast, empty state, badges.
+> 3. index.html — a documentation page showing every token and component with names and usage notes.
+> Check WCAG AA contrast for all text colors and report results in 02-design-system/README.md.
+> Export design-system.png.
+
+**Result**
+
+- **`tokens.json`** (W3C DTCG format: `$type`, `$value`, `$description`, aliases) is the single source of truth. It has two layers:
+  - **Primitives:** food-named ramps (oat, persimmon, avocado, honey, basil, chili, beetroot, mustard, blueberry).
+  - **Semantic tokens:** bg, text, border, status (success, warning, error), macro (protein, fat, carbs, plus text and subtle variants).
+  - **Also defined:** fonts and a 14-step type scale (rem-based for Dynamic Type; `num-*` styles are tabular), a 4 pt spacing scale, sizes (touch 44/48, safe areas 47/34, icons 16/20/24/32 with a 2 px stroke), radius, border widths, elevation (warm shadows) and motion.
+- **`tools/build_tokens.py`** generates **`tokens.css`** (241 CSS variables), keeping semantic tokens linked to primitives through `var()`.
+- **`components.css`:** 16 components (buttons, text field, search, chips, segmented g/ml/portion, weight stepper, product item, recipe card, nutrition summary, nutrition facts, app bar, tab bar, bottom sheet, toast, empty state, badges and confidence).
+  - Each has default, pressed, disabled, focus and error states wherever they apply.
+  - An audit confirmed **no hex colours, pixel values or primitive references**, only semantic `var(--…)` tokens.
+- **`index.html`:** the docs page. The token sections are generated from the JSON by `tools/build_docs.py`. The component sections are hand-written with real USDA data and usage notes (do and don't).
+- **`README.md` + `tools/contrast.py`:** **44 of 44 text and UI pairs pass WCAG 2.2 AA.** Disabled text and decorative outlines are listed as exempt.
+- **Self-check:** screenshot each component section and fix overflows:
+  - Text-field inputs forced cells wider than the grid.
+  - Button labels wrapped.
+  - Phone-width components (recipe card, nutrition summary, sheet) were cramped, so they now get 350 px cells.
+  - Product rows now use a compact verified icon and whole-gram macros.
+  - Macro values collided, so they're now a value in grams, a bar, and "of 110 g".
+  - The Scan button was clipped.
+- **Export:** `design-system.png` (1440 × ~18,000 px, full page). `CLAUDE.md` now documents the token build commands.
+
+---
+
+## 07 — Design system QA pass (fix, don't rewrite)
+
+**Prompt**
+
+> Continuing Step 2 (Design System). You are acting as a senior product designer with 20 years of experience AND as a strict QA engineer. 02-design-system/ already contains tokens.json, tokens.css, components.css, index.html, README.md and design-system.png. FIX them (do not rewrite from scratch): keep the tokens, component names and overall visual style, and change only what is described below.
+>
+> *(Full prompt: golden rule "render → screenshot → measure → fix → repeat"; 3 hard design rules: no clipped text, nothing leaves its container, even borders; 7 fixes: page radius and 2× PNG, icon and size compliance against current Apple/Google docs, segmented focus gap, product-row uneven outline, recipe-card clipping, tab-bar states outside the bar, bottom-sheet P/F/C alignment; automated verification `tools/check.mjs` + `npm run check` covering file:// vs http, CSS loading, paths, fonts, clipping, touch targets, screenshots; `index.standalone.html`; html-validate, stylelint-config-standard, tokens validation and drift, axe-core, WCAG contrast for all states; README sections "Icon & size compliance", "Validation report", "Changelog".)*
+
+**Result**
+
+- **Tooling:**
+  - Homebrew couldn't install Node without sudo, so the user approved the official Node 22 LTS tarball from nodejs.org, SHA-256 verified, installed in `~/.local/node`.
+  - `package.json` provides `npm run check`, `build:standalone`, `export:png`, `lint:css` and `lint:html`.
+  - Dev dependencies: Playwright, @axe-core/playwright, html-validate, stylelint (+ config-standard), pngjs and pixelmatch.
+- **Research:** sizes checked against current official sources.
+  - Apple HIG, read as JSON: 44×44 pt hit region, 17/11 pt text, 1024 square unmasked layers with an opaque background.
+  - Android: 48 dp targets, adaptive icon 108 dp with a 48–66 dp logo, Play icon 512 px 32-bit PNG.
+  - Material 3 token source: navigation bar 64 dp, small app bar 64 dp, icons 24 dp, indicator 56×32, body 16 / 12 sp.
+- **The 7 fixes:**
+  1. Square page with no clipping; 2× full-page PNG with background-coloured corners.
+  2. Compliance table plus fixes: 44 pt stepper and segments, an Android 48 dp / 64 dp scope, filled active tab icons, capped tab labels, opaque 1024 and 512 PNG icons, and an adaptive logo at 60 dp (was 39 dp).
+  3. Segmented focus: a double ring with a 2 px gap, contained, on native radios.
+  4. Product rows: inset rows, inset rings, identical geometry across 6 states.
+  5. Recipe cards: no clipping, long titles.
+  6. Tab bar: every indicator inside the bar.
+  7. New `.macro-tiles`: equal columns, subgrid baselines, measured.
+- **Code quality:**
+  - `components.css` reformatted to stylelint-standard (0 problems) with semantic tokens only.
+  - Docs styles moved to `docs.css`.
+  - `index.html` is valid (0 html-validate errors): typed buttons, labelled inputs, unique nav landmarks, native radios, data-only inline custom properties.
+  - `tokens.css` generator: quoted font names, short hex, 0 without units, `--check` for drift.
+  - Font stacks with offline fallbacks.
+- **Verification:** `npm run check` gives **61 / 61 passed**.
+  - Static: tokens, drift, stylelint, html-validate, and contrast (66 / 66, including focus rings).
+  - Browser: file:// = http:// (0-pixel diff), CSS loaded, 0 clipping and 0 overflow at 100% and 200% text, 118 controls ≥ 44 px (Android ≥ 48), component geometry, axe 0 violations, the standalone page alone, the PNG export.
+  - Also found and fixed by the checks and by looking at crops:
+    - The Scan focus ring was 1 px outside its tab.
+    - Search inputs had a 26 px hit area.
+    - Several 200% overflows: fields, tab labels, macro labels, the "portion" segment, "42.3" in tiles.
+    - Tab-bar and app-bar corners poked past rounded doc cells.
+    - The nav group spacing was missing.
+- **Open (stated in the README):** the iOS tab-bar height has no HIG number; brand fonts need a network connection (fallbacks are in place); 9 axe "incomplete" nodes are covered by contrast.py instead.
+
+## 08 — Design system accessibility: WCAG 2.2 AA + AAA for critical elements
+
+**Prompt**
+
+> Continuing Step 2 (Design System), accessibility phase. You are acting as a senior product designer with 20 years of experience AND a strict accessibility auditor. 02-design-system/ already contains the fixed tokens.json, tokens.css, components.css, index.html, index.standalone.html, README.md, design-system.png and tools/check.mjs. Task: verify everything against WCAG 2.2 Level AA (the mandatory baseline) and additionally meet AAA requirements for the critical elements. Find ALL defects and fix them. Do not rewrite the system from scratch: keep token names, component names, brand hues and overall style.
+>
+> *(Full prompt: golden rule "audit → fix → re-audit" with no disabled rules, exclusions or hidden elements, and W3C citations instead of "N/A". Three tiers: Tier 1 = all A/AA, blocking; Tier 2 = AAA on a closed list of critical elements (numbers, macros, body text, inputs, errors, primary buttons, tab bar, app bar, all interactive targets, irreversible actions, animations): 1.4.6, 2.5.5, 2.4.12, 2.4.13, 2.3.3, 1.4.8 text, 3.1.4, 3.3.6, 3.3.9, 2.2.3/2.2.4/2.2.6, blocking; Tier 3 = the rest of AAA, best effort. Tooling: `npm run check:a11y` with axe (wcag2a/aa/21a/21aa/22aa/best-practice), pa11y WCAG2AA, a custom contrast script, axe wcag2aaa on critical elements, and geometry/focus/zoom/reflow checks; audit-before / audit-after JSON + MD with screenshots. Fix at the token level first; document brand deviations; README section "WCAG 2.2 AA + AAA for critical elements"; regenerate design-system.png at 2×; final message with counts by tier, open items and changed colour tokens.)*
+
+**Result**
+
+- **Tooling:** `02-design-system/tools/a11y.mjs` (`npm run check:a11y`, and `npm run audit:before` for the baseline).
+  - Two independent checkers: axe-core (AA tags + best-practice) and pa11y (htmlcs).
+  - Custom contrast scan: every text node, alpha-composited over its real background stack, tagged critical (7:1) or regular (4.5:1).
+  - axe `wcag2aaa`, restricted to the critical selectors.
+  - Keyboard traversal (visible, appearance, not obscured, order, Shift+Tab, dialog trap, Esc, focus return), target size and spacing.
+  - Reflow at 320 px, 200% text, WCAG text-spacing overrides, and reduced-motion / more-contrast / forced-colours emulation.
+  - A structural checklist.
+  - Reports and screenshots: `02-design-system/a11y/audit-{before,after}.{json,md}`, `a11y/{before,after}/`.
+- **Before:** Tier 1 **28** failures, Tier 2 **355**, Tier 3 661 notes.
+  - 11 Tier 1 and 6 Tier 2 findings came from the first version of the checker (wrong focus-indicator element, inner gap ring); the checker was fixed.
+  - The real defects: disabled text 2.3:1, secondary / accent / CTA text below 7:1, chip / search / selected segment / active tab boundaries under 3:1, 24 px nav links, no skip link, no landmarks, a static non-modal sheet, a stepper value that wasn't an input, macro bars with no role, a table with no caption, no reduced-motion handling, invisible boundaries in forced colours, reflow to 520 px at 320, 88-character lines, tight line heights, no abbreviations, no confirm step for deletion, timed toasts, no accessible sign-in pattern.
+- **Fixes (token level first):**
+  - Deeper shades of the same hues: `bg.accent` persimmon-700 `#9B3515` (white 7.21), `text.accent` persimmon-800, `text.secondary` oat-700, `text.disabled` oat-550.
+  - New tokens: `status.warning-text`, macro fat/carbs text 800s, success/fresh 800s, `chili-600` `#A8241C`, `macro.kcal`.
+  - Line-height 1.5; `prefers-contrast: more` and `prefers-reduced-motion` modes, generated from `$extensions`.
+  - Components:
+    - Chip, search and segmented rings; underline on the active tab.
+    - A modal `<dialog>` sheet and a delete confirmation, with a focus trap.
+    - Toast dismiss button, no timers.
+    - Meters, stepper input, skip link, landmarks, abbreviations legend, sign-in pattern (magic link / passkey).
+    - 44 px nav links, a 65-character measure, scrollable table regions, forced-colours outlines.
+- **After:** Tier 1 **0** failures / 40 passes, Tier 2 **0** / 9, Tier 3 **3** notes (stable over repeated runs).
+  - axe 0 violations (56 rules pass); pa11y 0 errors.
+  - 142 focus stops all visible and unobscured; 165 targets ≥ 44 px with 0 overlaps.
+  - Reflow at 320 px, 200% text, text spacing, reduced motion, forced colours and more-contrast all OK.
+  - `npm run check` 61 / 61; `contrast.py` 67 / 67 (34 critical pairs at 7:1).
+  - `design-system.png` 2880 × 43,756.
+- **Docs:**
+  - README section "WCAG 2.2 AA + AAA for critical elements": critical list, a table of every criterion, contrast before → after, changed tokens, open issues.
+  - BRAND.md "Accessibility adjustments (v1.2)".
+  - CLAUDE.md now lists `npm run check:a11y`.
+- **Open:**
+  - The pressed toast action is 4.79:1 (AA, non-critical, Tier 3).
+  - 9 axe "incomplete" nodes are verified by the custom scan.
+  - Forced colours were tested only in Chromium emulation.
+  - 2.4.8 Location (AAA) isn't applied on a single page.

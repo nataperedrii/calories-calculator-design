@@ -1,0 +1,1768 @@
+/* =====================================================================
+   Ripe components
+   Uses ONLY variables from tokens.css. States:
+     :active   / .is-pressed   → pressed
+     :disabled / .is-disabled  → disabled
+     :focus-visible / .is-focus → keyboard focus
+     [aria-invalid="true"] / .is-error → error
+   The .is-* classes exist so the docs can show every state side by side.
+
+   Hard rules
+   1. Text is never clipped: no overflow: hidden around text, min-height instead of height.
+   2. State visuals (pressed, focus, selected) stay inside their parent.
+   3. Borders and rings are equal on all sides: inset box-shadow, never border changes.
+   ===================================================================== */
+
+/* ---------- base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  text-size-adjust: 100%;
+  border-radius: 0;
+}
+
+body {
+  margin: 0;
+  border-radius: 0;
+  background: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  font: var(--type-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+/* Default focus ring: 2 px ring + 2 px gap outside the control (WCAG 2.4.7, 1.4.11).
+   Components in tight containers (segments, tabs, list rows, steppers) override it with a contained ring. */
+:focus-visible,
+.is-focus {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: var(--border-width-focus-gap);
+}
+
+/* Android: 48 dp touch targets and Material 3 bar heights. Put data-platform="android" on the app root. */
+[data-platform="android"] {
+  --size-touch-min: var(--size-touch-android);
+  --size-button-m: var(--size-touch-android);
+  --size-app-bar: var(--size-app-bar-android);
+  --size-tab-bar: var(--size-tab-bar-android);
+  --size-segment: var(--size-segment-android);
+}
+
+/* ---------- typography helpers ---------- */
+.t-display {
+  font: var(--type-display);
+  letter-spacing: var(--type-display-tracking);
+}
+
+.t-h1 {
+  font: var(--type-h1);
+  letter-spacing: var(--type-h1-tracking);
+}
+
+.t-h2 {
+  font: var(--type-h2);
+}
+
+.t-title {
+  font: var(--type-title);
+}
+
+.t-body {
+  font: var(--type-body);
+}
+
+.t-body-strong {
+  font: var(--type-body-strong);
+}
+
+.t-callout {
+  font: var(--type-callout);
+}
+
+.t-label {
+  font: var(--type-label);
+}
+
+.t-caption {
+  font: var(--type-caption);
+  letter-spacing: var(--type-caption-tracking);
+}
+
+.t-overline {
+  font: var(--type-overline);
+  letter-spacing: var(--type-overline-tracking);
+  text-transform: uppercase;
+}
+
+.num {
+  font-family: var(--font-family-num);
+  font-variant-numeric: tabular-nums;
+}
+
+.t-num-xl {
+  font: var(--type-num-xl);
+  letter-spacing: var(--type-num-xl-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.t-num-l {
+  font: var(--type-num-l);
+  letter-spacing: var(--type-num-l-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.t-num-m {
+  font: var(--type-num-m);
+  font-variant-numeric: tabular-nums;
+}
+
+.t-num-s {
+  font: var(--type-num-s);
+  font-variant-numeric: tabular-nums;
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-accent {
+  color: var(--color-text-accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: var(--border-width-hairline);
+  height: var(--border-width-hairline);
+  margin: calc(var(--border-width-hairline) * -1);
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- icons (24 px grid, 2 px round stroke) ---------- */
+.icon {
+  width: var(--size-icon-l);
+  height: var(--size-icon-l);
+  flex: none;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: var(--size-icon-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon--s {
+  width: var(--size-icon-s);
+  height: var(--size-icon-s);
+}
+
+.icon--m {
+  width: var(--size-icon-m);
+  height: var(--size-icon-m);
+}
+
+.icon--xl {
+  width: var(--size-icon-xl);
+  height: var(--size-icon-xl);
+}
+
+/* =====================================================================
+   1. Buttons
+   ===================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--size-button-l);
+  min-width: var(--size-touch-min);
+  padding: var(--space-2) var(--space-6);
+  border-radius: var(--radius-md);
+  font: var(--font-weight-bold) var(--type-body-size) / var(--type-body-line) var(--font-family-body);
+  text-align: center;
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn--m {
+  min-height: var(--size-button-m);
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--type-label-size);
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+.btn--primary {
+  background: var(--color-bg-accent);
+  color: var(--color-text-on-accent);
+}
+
+.btn--secondary {
+  background: var(--color-bg-accent-subtle);
+  color: var(--color-text-primary);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-accent);
+  padding-inline: var(--space-3);
+}
+
+.btn--destructive {
+  background: var(--color-status-error-subtle);
+  color: var(--color-status-error-text);
+}
+
+.btn--primary:active,
+.btn--primary.is-pressed {
+  background: var(--color-bg-accent-pressed);
+  transform: scale(0.98);
+}
+
+.btn--secondary:active,
+.btn--secondary.is-pressed {
+  background: var(--color-bg-accent-subtle-pressed);
+  transform: scale(0.98);
+}
+
+.btn--ghost:active,
+.btn--ghost.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+.btn--destructive:active,
+.btn--destructive.is-pressed {
+  background: var(--color-status-error);
+  color: var(--color-text-on-accent);
+}
+
+.btn:disabled,
+.btn.is-disabled {
+  background: var(--color-bg-disabled);
+  color: var(--color-text-disabled);
+  transform: none;
+  cursor: not-allowed;
+}
+
+.btn--ghost:disabled,
+.btn--ghost.is-disabled {
+  background: transparent;
+}
+
+/* icon button: the glyph is 24, the hit region is always 44 (48 on Android) */
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--size-touch-min);
+  height: var(--size-touch-min);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.icon-btn--surface {
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-e1);
+}
+
+.icon-btn--tint {
+  background: var(--color-bg-accent-subtle);
+  color: var(--color-text-accent);
+}
+
+.icon-btn--accent {
+  background: var(--color-bg-accent);
+  color: var(--color-text-on-accent);
+}
+
+.icon-btn:active,
+.icon-btn.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+.icon-btn--accent:active,
+.icon-btn--accent.is-pressed {
+  background: var(--color-bg-accent-pressed);
+}
+
+.icon-btn:disabled,
+.icon-btn.is-disabled {
+  color: var(--color-text-disabled);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* =====================================================================
+   2. Text field (border drawn with inset box-shadow so states never change size)
+   ===================================================================== */
+.field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  width: 100%;
+}
+
+.field__label {
+  font: var(--type-label);
+  color: var(--color-text-primary);
+}
+
+.field__control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--size-input);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
+  transition: box-shadow var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.field__control input {
+  flex: 1;
+  min-width: 0;
+  width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: var(--type-body);
+  color: var(--color-text-primary);
+}
+
+.field__control input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.field__suffix {
+  font: var(--type-num-m);
+  color: var(--color-text-secondary);
+}
+
+.field__help {
+  display: flex;
+  gap: var(--space-1);
+  align-items: flex-start;
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.field__control:focus-within,
+.field.is-focus .field__control {
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-accent);
+}
+
+.field.is-focus {
+  outline: 0;
+}
+
+.field.is-disabled .field__control {
+  background: var(--color-bg-disabled);
+  box-shadow: none;
+}
+
+.field.is-error .field__control,
+.field .field__control:has(input[aria-invalid="true"]) {
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-error);
+}
+
+.field.is-error .field__help {
+  color: var(--color-status-error-text);
+}
+
+/* =====================================================================
+   3. Search bar
+   ===================================================================== */
+.search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--size-input);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
+  background: var(--color-bg-sunken);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
+  color: var(--color-text-secondary);
+}
+
+.search input {
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  width: 0;
+  min-height: var(--size-touch-min);
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: var(--type-body);
+  color: var(--color-text-primary);
+}
+
+.search input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.search:focus-within,
+.search.is-focus {
+  outline: 0;
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-accent);
+}
+
+.search.is-error {
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-error);
+}
+
+.search.is-disabled {
+  background: var(--color-bg-disabled);
+  color: var(--color-text-disabled);
+}
+
+.search.is-disabled input::placeholder {
+  color: var(--color-text-disabled);
+}
+
+.search__help {
+  margin: 0;
+  font: var(--type-caption);
+  color: var(--color-status-error-text);
+}
+
+/* =====================================================================
+   4. Chips (visual 36, hit region extended to 44 / 48)
+   ===================================================================== */
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--size-chip);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
+  font: var(--type-label);
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.chip::after {
+  content: "";
+  position: absolute;
+  inset: calc((var(--size-chip) - var(--size-touch-min)) / 2) 0;
+}
+
+.chip .icon {
+  width: var(--size-icon-s);
+  height: var(--size-icon-s);
+}
+
+.chip:active,
+.chip.is-pressed {
+  background: var(--color-bg-sunken);
+}
+
+.chip[aria-pressed="true"],
+.chip.is-selected {
+  background: var(--color-bg-accent-subtle);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-accent);
+}
+
+.chip--fresh {
+  background: var(--color-bg-fresh-subtle);
+  box-shadow: none;
+  color: var(--color-text-fresh);
+}
+
+.chip:disabled,
+.chip.is-disabled {
+  background: var(--color-bg-disabled);
+  box-shadow: none;
+  color: var(--color-text-disabled);
+}
+
+.chip-row {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* =====================================================================
+   5. Segmented control (g / ml / portion)
+   Segment + 4 px track padding = 44 (48 on Android) hit region.
+   Focus: 2 px surface gap + 2 px rye ring OUTSIDE the segment. It fits exactly into the
+   4 px track padding and the 8 px gap between segments, so it is never clipped and never
+   touches a neighbour.
+   ===================================================================== */
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--size-col-min)), 1fr));
+  gap: var(--space-2);
+  width: 100%;
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--space-1);
+  border: 0;
+  background: var(--color-bg-sunken);
+  border-radius: var(--radius-md);
+}
+
+.segmented__opt {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: var(--size-touch-min);
+  min-height: var(--size-segment);
+  padding: var(--space-1) var(--space-3);
+  border-radius: calc(var(--radius-md) - var(--space-1));
+  font: var(--type-label);
+  color: var(--color-text-secondary);
+  text-align: center;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.segmented__opt::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--space-1) * -1) 0;
+}
+
+.segmented__opt:active,
+.segmented__opt.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+.segmented__opt:has(input:checked),
+.segmented__opt.is-selected {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong), var(--shadow-e1);
+}
+
+.segmented__opt:has(input:focus-visible),
+.segmented__opt.is-focus {
+  outline: 0;
+  box-shadow:
+    0 0 0 var(--border-width-focus-gap) var(--color-bg-surface),
+    0 0 0 calc(var(--border-width-focus-gap) + var(--border-width-focus)) var(--color-border-focus);
+}
+
+.segmented__opt:has(input:disabled),
+.segmented__opt.is-disabled {
+  color: var(--color-text-disabled);
+  background: transparent;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* selected + focused: keep the segment's own edge so the 2 px gap stays visible against its white fill */
+.segmented__opt:has(input:checked:focus-visible),
+.segmented__opt.is-focus:has(input:checked),
+.segmented__opt.is-selected.is-focus {
+  box-shadow:
+    inset 0 0 0 var(--border-width-default) var(--color-border-strong),
+    0 0 0 var(--border-width-focus-gap) var(--color-bg-surface),
+    0 0 0 calc(var(--border-width-focus-gap) + var(--border-width-focus)) var(--color-border-focus);
+}
+
+/* =====================================================================
+   6. Weight stepper (border is an inset ring, so the ± buttons are a full 44 × 44)
+   ===================================================================== */
+.stepper {
+  display: inline-flex;
+  align-items: stretch;
+  min-height: var(--size-touch-min);
+  background: var(--color-bg-sunken);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
+}
+
+.stepper__btn {
+  display: grid;
+  place-items: center;
+  width: var(--size-touch-min);
+  min-height: var(--size-touch-min);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-md);
+}
+
+.stepper__btn:active,
+.stepper__btn.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+.stepper__btn:disabled,
+.stepper__btn.is-disabled {
+  color: var(--color-text-disabled);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.stepper__value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-width: calc(var(--space-16) + var(--space-2));
+  font: var(--type-num-m);
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper__value small {
+  font: var(--type-num-s);
+  color: var(--color-text-secondary);
+}
+
+.stepper__input {
+  width: 4ch;
+  min-width: var(--size-touch-min);
+  min-height: var(--size-touch-min);
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper.is-focus,
+.stepper:focus-within {
+  outline: 0;
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-accent);
+}
+
+.stepper.is-error {
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-error);
+}
+
+.stepper.is-disabled {
+  background: var(--color-bg-disabled);
+  box-shadow: none;
+  color: var(--color-text-disabled);
+}
+
+.stepper-help {
+  margin-top: var(--space-1);
+  font: var(--type-caption);
+  color: var(--color-status-error-text);
+}
+
+/* =====================================================================
+   7. Product list item
+   Rows are inset in the list (4 px), have their own radius, and draw state outlines with an
+   inset ring, so every state has identical geometry. Dividers hide next to a state row.
+   ===================================================================== */
+.list {
+  display: grid;
+  padding: var(--space-1);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-e1);
+}
+
+.product {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--size-thumb) minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  align-items: center;
+  min-height: calc(var(--size-thumb) + var(--space-4));
+  padding: var(--space-2) var(--space-1) var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: transparent;
+}
+
+.product + .product::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: var(--space-3);
+  left: calc(var(--space-3) + var(--size-thumb) + var(--space-3));
+  border-top: var(--border-width-hairline) solid var(--color-border-subtle);
+}
+
+.product:is(:active, .is-pressed, .is-selected, .is-error)::before,
+.product:is(:active, .is-pressed, .is-selected, .is-error) + .product::before {
+  visibility: hidden;
+}
+
+.product__thumb {
+  width: var(--size-thumb);
+  height: var(--size-thumb);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-sunken) center / cover;
+}
+
+.product__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  font: var(--type-body-strong);
+  overflow-wrap: anywhere;
+}
+
+.product__verified {
+  width: var(--size-icon-s);
+  height: var(--size-icon-s);
+  color: var(--color-status-success);
+}
+
+.product__meta {
+  margin-top: var(--space-1);
+  font: var(--type-num-s);
+  color: var(--color-text-secondary);
+}
+
+.product__end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.product__kcal {
+  font: var(--type-num-m);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.product__kcal small {
+  display: block;
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.product:active,
+.product.is-pressed {
+  background: var(--color-bg-sunken);
+}
+
+.product.is-selected {
+  background: var(--color-bg-accent-subtle);
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-accent);
+}
+
+.product.is-error {
+  background: var(--color-status-error-subtle);
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-error);
+}
+
+.product.is-error .product__meta {
+  color: var(--color-status-error-text);
+}
+
+.product.is-disabled .product__thumb {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.product:focus-visible,
+.product.is-focus {
+  outline: 0;
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-focus);
+}
+
+/* =====================================================================
+   8. Recipe card (no clipping: the image rounds its own top corners)
+   ===================================================================== */
+.recipe-card {
+  display: block;
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-e1);
+  transition: transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.recipe-card__img {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--color-bg-sunken) center / cover;
+}
+
+.recipe-card__img .icon-btn {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+}
+
+.recipe-card__body {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.recipe-card__title {
+  margin: 0;
+  font: var(--type-h2);
+  overflow-wrap: anywhere;
+}
+
+.recipe-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  align-items: center;
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+.recipe-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.recipe-card__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+}
+
+.recipe-card__kcal {
+  font: var(--type-num-l);
+  font-variant-numeric: tabular-nums;
+}
+
+.recipe-card__kcal small {
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+.recipe-card:active,
+.recipe-card.is-pressed {
+  transform: scale(0.98);
+}
+
+.recipe-card.is-disabled .recipe-card__img {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.recipe-card.is-disabled .recipe-card__title,
+.recipe-card.is-disabled .recipe-card__kcal {
+  color: var(--color-text-disabled);
+}
+
+/* =====================================================================
+   9. Nutrition summary (calorie ring + macro bars)
+   ===================================================================== */
+.nutri {
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-e1);
+}
+
+.nutri__ring {
+  display: grid;
+  width: 100%;
+  max-width: calc(var(--space-16) * 4);
+  margin: 0 auto;
+}
+
+.nutri__ring > * {
+  grid-area: 1 / 1;
+}
+
+.nutri__ring svg {
+  display: block;
+  align-self: start;
+  width: 100%;
+  height: auto;
+}
+
+.nutri__track {
+  fill: none;
+  stroke: var(--color-macro-track);
+  stroke-linecap: round;
+}
+
+.nutri__value {
+  fill: none;
+  stroke: var(--color-macro-kcal);
+  stroke-linecap: round;
+  transition: stroke-dasharray var(--motion-duration-slow) var(--motion-easing-standard);
+}
+
+.nutri__center {
+  align-self: end;
+  text-align: center;
+}
+
+.nutri__big {
+  display: block;
+  font: var(--type-num-xl);
+  letter-spacing: var(--type-num-xl-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.nutri__center small {
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+.nutri__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: var(--space-3) var(--space-2) var(--space-4);
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+.nutri__row b {
+  font: var(--type-num-m);
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.nutri--over .nutri__value {
+  stroke: var(--color-status-warning);
+}
+
+.macros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--size-col-min)), 1fr));
+  gap: var(--space-3);
+}
+
+.macro__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font: var(--type-caption);
+  letter-spacing: var(--type-caption-tracking);
+  color: var(--color-text-secondary);
+}
+
+.macro__key {
+  flex: none;
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+.macro__value {
+  margin: var(--space-1) 0;
+  font: var(--type-num-m);
+  font-variant-numeric: tabular-nums;
+}
+
+.macro__value small,
+.macro__goal {
+  font: var(--type-num-s);
+  color: var(--color-text-secondary);
+}
+
+.macro__goal {
+  margin-top: var(--space-1);
+}
+
+.macro__bar {
+  height: var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-sunken);
+}
+
+.macro__bar > i {
+  display: block;
+  width: var(--w, 0%);
+  height: 100%;
+  max-width: 100%;
+  border-radius: var(--radius-full);
+}
+
+.macro--p .macro__key,
+.macro--p .macro__bar > i {
+  background: var(--color-macro-protein);
+}
+
+.macro--f .macro__key,
+.macro--f .macro__bar > i {
+  background: var(--color-macro-fat);
+}
+
+.macro--c .macro__key,
+.macro--c .macro__bar > i {
+  background: var(--color-macro-carbs);
+}
+
+.macro.is-over .macro__value,
+.macro.is-over .macro__goal {
+  color: var(--color-status-warning-text);
+}
+
+/* Macro tiles: three equal columns, identical padding, shared baselines, tabular numbers */
+.macro-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--size-col-min)), 1fr));
+  grid-auto-rows: auto;
+  gap: var(--space-2);
+}
+
+.macro-tile {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  align-items: baseline;
+  row-gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+.macro-tile__label {
+  font: var(--type-caption);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--type-caption-tracking);
+}
+
+.macro-tile__value {
+  font: var(--type-num-m);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+.macro-tile__value small {
+  font: var(--type-num-s);
+  color: var(--color-text-secondary);
+}
+
+.macro-tile--p {
+  background: var(--color-macro-protein-subtle);
+  color: var(--color-macro-protein-text);
+}
+
+.macro-tile--f {
+  background: var(--color-macro-fat-subtle);
+  color: var(--color-macro-fat-text);
+}
+
+.macro-tile--c {
+  background: var(--color-macro-carbs-subtle);
+  color: var(--color-macro-carbs-text);
+}
+
+/* =====================================================================
+   10. Nutrition facts table
+   ===================================================================== */
+.facts {
+  padding: var(--space-4);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-e1);
+}
+
+.facts__title {
+  margin: 0 0 var(--space-1);
+  font: var(--type-h2);
+}
+
+.facts__source {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.facts table {
+  width: 100%;
+  margin-top: var(--space-3);
+  border-collapse: collapse;
+  font: var(--type-callout);
+}
+
+.facts th {
+  padding: var(--space-2) 0;
+  border-bottom: var(--border-width-rule) solid var(--color-text-primary);
+  font: var(--type-overline);
+  letter-spacing: var(--type-overline-tracking);
+  text-transform: uppercase;
+  text-align: right;
+  color: var(--color-text-secondary);
+}
+
+.facts th:first-child {
+  text-align: left;
+}
+
+.facts td {
+  padding: var(--space-2) 0;
+  border-bottom: var(--border-width-hairline) solid var(--color-border-subtle);
+}
+
+.facts td + td {
+  padding-left: var(--space-3);
+  font: var(--type-num-s);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.facts tr.is-energy td {
+  border-bottom: var(--border-width-rule) solid var(--color-text-primary);
+  font: var(--type-body-strong);
+}
+
+.facts tr.is-energy td + td {
+  font: var(--type-num-m);
+  font-weight: var(--font-weight-semibold);
+}
+
+.facts tr.is-sub td:first-child {
+  padding-left: var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+.facts .macro__key {
+  display: inline-block;
+  margin-right: var(--space-2);
+  vertical-align: middle;
+}
+
+/* =====================================================================
+   11. Top app bar (icons 24 in 44 / 48 hit regions; titles wrap instead of truncating)
+   ===================================================================== */
+.app-bar {
+  display: grid;
+  grid-template-columns: var(--size-touch-min) minmax(0, 1fr) var(--size-touch-min);
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--size-app-bar);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-bg-canvas);
+}
+
+.app-bar__title {
+  margin: 0;
+  font: var(--type-title);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.app-bar.is-scrolled {
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 calc(var(--border-width-hairline) * -1) 0 var(--color-border-subtle);
+}
+
+.app-bar--large {
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-5);
+}
+
+.app-bar--large .app-bar__title {
+  font: var(--type-h1);
+  text-align: left;
+}
+
+.app-bar__actions {
+  display: flex;
+}
+
+/* =====================================================================
+   12. Tab bar
+   Each tab is a 44 pt (48 dp) hit region inside the bar, with padding above and below.
+   Pressed = pill drawn INSIDE the tab. Focus = inset ring. The Scan button sits inside the bar.
+   ===================================================================== */
+.tab-bar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: center;
+  gap: var(--space-1);
+  min-height: calc(var(--size-tab-bar) + var(--size-safe-bottom));
+  padding:
+    calc((var(--size-tab-bar) - var(--size-touch-min)) / 2) var(--space-2)
+    calc((var(--size-tab-bar) - var(--size-touch-min)) / 2 + var(--size-safe-bottom));
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 var(--border-width-hairline) 0 var(--color-border-subtle);
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-width: var(--size-touch-min);
+  min-height: var(--size-touch-min);
+  border-radius: var(--radius-md);
+  font: var(--type-caption);
+  font-size: min(var(--type-caption-size), var(--size-tab-label-max));
+  color: var(--color-text-secondary);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.tab::before {
+  content: "";
+  position: absolute;
+  inset: 0 var(--space-1);
+  border-radius: var(--radius-md);
+  background: transparent;
+  pointer-events: none;
+}
+
+.tab .icon,
+.tab span {
+  position: relative;
+}
+
+.tab[aria-current="page"],
+.tab.is-active {
+  color: var(--color-text-accent);
+  font-weight: var(--font-weight-bold);
+}
+
+.tab:active::before,
+.tab.is-pressed::before {
+  background: var(--color-bg-pressed);
+}
+
+.tab[aria-current="page"] span,
+.tab.is-active span {
+  text-decoration: underline var(--border-width-focus) var(--color-bg-accent);
+  text-underline-offset: var(--space-1);
+}
+
+.tab:focus-visible,
+.tab.is-focus {
+  outline: 0;
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-focus);
+}
+
+.tab:disabled,
+.tab.is-disabled {
+  color: var(--color-text-disabled);
+}
+
+.tab--scan::before {
+  display: none;
+}
+
+.tab__fab {
+  display: grid;
+  place-items: center;
+  width: min(var(--size-scan-button), 100% - var(--space-2));
+  height: calc(var(--size-touch-min) - var(--space-2));
+  border-radius: var(--radius-full);
+  background: var(--color-bg-accent);
+  color: var(--color-text-on-accent);
+}
+
+.tab--scan:active .tab__fab,
+.tab--scan.is-pressed .tab__fab {
+  background: var(--color-bg-accent-pressed);
+}
+
+.tab--scan:focus-visible,
+.tab--scan.is-focus {
+  box-shadow: none;
+}
+
+.tab--scan:focus-visible .tab__fab,
+.tab--scan.is-focus .tab__fab {
+  box-shadow:
+    0 0 0 var(--border-width-focus-gap) var(--color-bg-surface),
+    0 0 0 calc(var(--border-width-focus-gap) + var(--border-width-focus)) var(--color-border-focus);
+}
+
+/* =====================================================================
+   13. Bottom sheet
+   ===================================================================== */
+.scrim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-bg-scrim);
+}
+
+.sheet {
+  position: relative;
+  inset: auto;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: var(--space-2) var(--space-5) var(--size-safe-bottom);
+  border: 0;
+  background: var(--color-bg-surface);
+  color: inherit;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: var(--shadow-e3);
+  animation: ripe-sheet-in var(--motion-duration-slow) var(--motion-easing-standard);
+}
+
+/* modal version: <dialog class="sheet-dialog"> opened with showModal(); Esc closes, focus returns to the opener */
+.sheet-dialog {
+  width: min(100%, var(--size-screen-width));
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto auto 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.sheet-dialog::backdrop {
+  background: var(--color-bg-scrim);
+}
+
+.sheet__confirm {
+  margin: 0 0 var(--space-3);
+  padding-left: var(--space-5);
+  font: var(--type-body);
+}
+
+@keyframes ripe-sheet-in {
+  from {
+    transform: translateY(var(--space-16));
+    opacity: 0;
+  }
+}
+
+.sheet__handle {
+  width: var(--space-10);
+  height: var(--space-1);
+  margin: 0 auto var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--color-border-default);
+}
+
+.sheet__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.sheet__title {
+  margin: 0;
+  font: var(--type-h2);
+}
+
+.sheet__sub {
+  margin: var(--space-1) 0 0;
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+.sheet__body {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.sheet__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.sheet__foot {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+/* =====================================================================
+   14. Toast
+   ===================================================================== */
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--size-button-l);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-e2);
+  font: var(--type-callout);
+  animation: ripe-toast-in var(--motion-duration-base) var(--motion-easing-standard);
+}
+
+.toast__msg {
+  flex: 1;
+}
+
+.toast__close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--size-touch-min);
+  height: var(--size-touch-min);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-inverse);
+}
+
+.toast__close:active,
+.toast__close.is-pressed {
+  background: var(--color-bg-inverse-pressed);
+}
+
+@keyframes ripe-toast-in {
+  from {
+    transform: translateY(var(--space-2));
+    opacity: 0;
+  }
+}
+
+.toast__action {
+  min-width: var(--size-touch-min);
+  min-height: var(--size-touch-min);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  font: var(--type-label);
+  color: var(--color-text-inverse-accent);
+}
+
+.toast__action:active,
+.toast__action.is-pressed {
+  background: var(--color-bg-inverse-pressed);
+}
+
+.toast--success .icon {
+  color: var(--color-text-inverse-success);
+}
+
+.toast--warning .icon {
+  color: var(--color-text-inverse-warning);
+}
+
+.toast--error {
+  background: var(--color-status-error);
+  color: var(--color-text-on-accent);
+}
+
+.toast--error .toast__action {
+  color: var(--color-text-on-accent);
+  text-decoration: underline;
+}
+
+.toast .toast__action:focus-visible,
+.toast .toast__action.is-focus,
+.toast .toast__close:focus-visible,
+.toast .toast__close.is-focus {
+  outline-color: var(--color-text-inverse);
+  outline-offset: calc(var(--border-width-focus-gap) * -1);
+}
+
+/* =====================================================================
+   15. Empty state
+   ===================================================================== */
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+}
+
+.empty__icon {
+  display: grid;
+  place-items: center;
+  width: var(--size-empty-icon);
+  height: var(--size-empty-icon);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-accent-subtle);
+  color: var(--color-text-accent);
+}
+
+.empty__title {
+  margin: 0;
+  font: var(--type-h2);
+}
+
+.empty__text {
+  max-width: calc(var(--space-16) * 5);
+  margin: 0;
+  font: var(--type-body);
+  color: var(--color-text-secondary);
+}
+
+.empty__actions {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+}
+
+.empty--error .empty__icon {
+  background: var(--color-status-error-subtle);
+  color: var(--color-status-error);
+}
+
+/* =====================================================================
+   16. Badges and confidence labels
+   ===================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--size-badge);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  font: var(--type-caption);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--type-caption-tracking);
+}
+
+.badge .icon {
+  width: var(--size-icon-s);
+  height: var(--size-icon-s);
+}
+
+.badge--verified {
+  background: var(--color-status-success-subtle);
+  color: var(--color-status-success-text);
+}
+
+.badge--new {
+  background: var(--color-bg-accent-subtle);
+  color: var(--color-text-accent);
+}
+
+.badge--fresh {
+  background: var(--color-bg-fresh-subtle);
+  color: var(--color-text-fresh);
+}
+
+.badge--count {
+  justify-content: center;
+  min-width: var(--size-badge);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-accent);
+  color: var(--color-text-on-accent);
+}
+
+.badge--p {
+  background: var(--color-macro-protein-subtle);
+  color: var(--color-macro-protein-text);
+}
+
+.badge--f {
+  background: var(--color-macro-fat-subtle);
+  color: var(--color-macro-fat-text);
+}
+
+.badge--c {
+  background: var(--color-macro-carbs-subtle);
+  color: var(--color-macro-carbs-text);
+}
+
+.confidence {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font: var(--type-caption);
+  font-weight: var(--font-weight-semibold);
+}
+
+.confidence .icon {
+  width: var(--size-icon-s);
+  height: var(--size-icon-s);
+}
+
+.confidence--high {
+  color: var(--color-status-success-text);
+}
+
+.confidence--check,
+.confidence--unsure {
+  color: var(--color-status-warning-text);
+}
+
+.confidence--unsure.is-marked {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  background: var(--color-status-warning-subtle);
+}
+
+.marker {
+  display: inline-grid;
+  place-items: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-accent-subtle);
+  font: var(--type-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.marker--unsure {
+  background: var(--color-bg-highlight);
+}
+
+/* =====================================================================
+   State overrides for descendants. Kept last so higher-specificity state
+   selectors never precede generic ones (stylelint no-descending-specificity).
+   ===================================================================== */
+.field.is-disabled .field__control input,
+.field.is-disabled .field__label,
+.field.is-disabled .field__suffix {
+  color: var(--color-text-disabled);
+}
+
+.stepper.is-disabled .stepper__btn,
+.stepper.is-disabled small {
+  color: var(--color-text-disabled);
+}
+
+.nutri--over .nutri__center small {
+  color: var(--color-status-warning-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.product.is-disabled .product__name,
+.product.is-disabled .product__kcal,
+.product.is-disabled .product__kcal small {
+  color: var(--color-text-disabled);
+}
+
+.tab[aria-current="page"] .icon,
+.tab.is-active .icon {
+  fill: var(--color-bg-accent-subtle);
+}
+
+/* =====================================================================
+   Reduced motion (WCAG 2.3.3). Durations are already 0 via tokens.css; also drop movement.
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .sheet,
+  .toast {
+    animation: none;
+  }
+
+  .btn:active,
+  .btn.is-pressed,
+  .recipe-card:active,
+  .recipe-card.is-pressed {
+    transform: none;
+  }
+}
+
+/* =====================================================================
+   Forced colours (Windows High Contrast). box-shadow is removed by the browser in this mode,
+   so every boundary, selection and focus ring gets a real outline in system colours.
+   ===================================================================== */
+@media (forced-colors: active) {
+  .field__control,
+  .search,
+  .stepper,
+  .chip,
+  .segmented,
+  .list,
+  .recipe-card,
+  .nutri,
+  .facts,
+  .sheet,
+  .toast,
+  .tab-bar,
+  .btn,
+  .icon-btn--surface,
+  .icon-btn--tint,
+  .icon-btn--accent,
+  .tab__fab,
+  .badge,
+  .macro-tile,
+  .macro__bar {
+    outline: var(--border-width-hairline) solid canvastext;
+    outline-offset: calc(var(--border-width-hairline) * -1);
+  }
+
+  .segmented__opt:has(input:checked),
+  .segmented__opt.is-selected,
+  .chip.is-selected,
+  .chip[aria-pressed="true"],
+  .product.is-selected,
+  .product.is-error,
+  .field.is-error .field__control,
+  .stepper.is-error,
+  .search.is-error {
+    outline: var(--border-width-focus) solid canvastext;
+    outline-offset: calc(var(--border-width-focus) * -1);
+  }
+
+  :focus-visible,
+  .is-focus,
+  .segmented__opt.is-focus,
+  .segmented__opt:has(input:focus-visible),
+  .tab--scan:focus-visible .tab__fab,
+  .tab--scan.is-focus .tab__fab {
+    outline: var(--border-width-focus) solid highlight;
+    outline-offset: var(--border-width-focus-gap);
+  }
+
+  .field .field__control:focus-within,
+  .search:focus-within,
+  .stepper:focus-within,
+  .stepper.is-focus,
+  .tab:focus-visible,
+  .tab.is-focus,
+  .product:focus-visible,
+  .product.is-focus {
+    outline: var(--border-width-focus) solid highlight;
+    outline-offset: calc(var(--border-width-focus) * -1);
+  }
+
+  .macro .macro__bar > i,
+  .sheet__handle {
+    forced-color-adjust: none;
+    background: highlight;
+  }
+
+  .nutri__ring svg {
+    forced-color-adjust: none;
+  }
+
+  .nutri__track {
+    stroke: graytext;
+  }
+
+  .nutri .nutri__value {
+    stroke: highlight;
+  }
+
+  .tab[aria-current="page"] span,
+  .tab.is-active span {
+    text-decoration-color: highlight;
+  }
+}

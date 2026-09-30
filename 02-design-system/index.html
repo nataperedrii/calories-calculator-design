@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ripe Design System</title>
+  <meta name="description" content="Ripe design system: tokens (colour, type, spacing, radius, elevation, icons) and 16 components with all their states.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Azeret+Mono:wght@400;500;600&amp;display=swap">
+  <link rel="stylesheet" href="./tokens.css">
+  <link rel="stylesheet" href="./components.css">
+  <link rel="stylesheet" href="./docs.css">
+</head>
+<body>
+
+<!-- Icon sprite: same shapes as 01-branding/assets/icons (24 px grid, 2 px round stroke). -->
+<svg class="visually-hidden" aria-hidden="true" focusable="false">
+  <symbol id="i-today" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5V20H4z"/><path d="M9.5 20v-5h5v5"/></symbol>
+  <symbol id="i-diary" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3.5 8h3.5l2-3h6l2 3h3.5v11.5h-17z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+  <symbol id="i-recipes" viewBox="0 0 24 24"><path d="M4 11h16v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M2 11h20M9 4v3M12 3v4M15 4v3"/></symbol>
+  <symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-barcode" viewBox="0 0 24 24"><path d="M4 6v12M7.5 6v12M11 6v12M14 6v12M17 6v12M20 6v12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-high" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.7 2.7L16 9.5"/></symbol>
+  <symbol id="i-check-portion" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></symbol>
+  <symbol id="i-unsure" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 4 2c-.9.5-1.5 1-1.5 2M12 17h.01"/></symbol>
+  <symbol id="i-fresh" viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></symbol>
+  <symbol id="i-viewfinder" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12.5" r="3.5"/><path d="M12 9V7.5"/></symbol>
+  <symbol id="i-portion" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 12V3.5M12 12l6 6"/></symbol>
+  <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5h.01"/></symbol>
+  <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M3 3l18 18M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5-2.6M19 13a10 10 0 0 0-2.3-1.6M2 9.5a15 15 0 0 1 4-2.6M22 9.5A15 15 0 0 0 11 5.6M12 20h.01"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="doc-bar">
+  <img src="../01-branding/assets/logo/ripe-logo.svg" alt="Ripe" width="128" height="41">
+  <p class="doc-bar__meta">Design system · v1.2 · light theme · WCAG 2.2 AA, AAA for critical elements</p>
+</header>
+
+<div class="doc">
+  <aside class="doc-nav">
+    <nav aria-label="Documentation sections">
+      <p class="doc-nav__group">Foundations</p>
+      <a href="#colour">Colour</a><a href="#type">Typography</a><a href="#space">Spacing</a><a href="#radius">Radius &amp; borders</a><a href="#elevation">Elevation</a><a href="#icons">Icons &amp; sizes</a><a href="#compliance">Platform compliance</a>
+      <p class="doc-nav__group">Components</p>
+      <a href="#c1">01 Buttons</a><a href="#c2">02 Text field</a><a href="#c3">03 Search bar</a><a href="#c4">04 Chips</a><a href="#c5">05 Segmented control</a><a href="#c6">06 Weight stepper</a><a href="#c7">07 Product item</a><a href="#c8">08 Recipe card</a><a href="#c9">09 Nutrition summary</a><a href="#c10">10 Nutrition facts</a><a href="#c11">11 Top app bar</a><a href="#c12">12 Tab bar</a><a href="#c13">13 Bottom sheet</a><a href="#c14">14 Toast</a><a href="#c15">15 Empty state</a><a href="#c16">16 Badges</a>
+      <p class="doc-nav__group">Checks</p>
+      <a href="#abbreviations">Abbreviations</a><a href="#a11y">Accessibility</a>
+    </nav>
+  </aside>
+
+  <main class="doc-main" id="main" tabindex="-1">
+    <header class="doc-hero">
+      <div>
+        <span class="t-overline text-accent">02 · Design system</span>
+        <h1>Ripe design system</h1>
+        <p>Tokens and components for a photo-first calorie calculator. Every value comes from <code>tokens.json</code> (W3C format). <code>tokens.css</code> is generated from it, and <code>components.css</code> uses nothing but those variables. Screens are 390×844, light theme, WCAG AA. Verified with <code>npm run check</code>.</p>
+      </div>
+      <div class="facts-mini">
+        <div><b>270</b><span>CSS variables</span></div><div><b>16</b><span>components</span></div><div><b>AAA</b><span>critical text 7:1</span></div><div><b>44/48</b><span>pt / dp targets</span></div>
+      </div>
+    </header>
+
+<section class="doc-abbr" id="abbreviations" aria-labelledby="abbr-title">
+      <h2 class="doc-h2" id="abbr-title"><small>Read me first</small>Abbreviations</h2>
+      <dl class="abbr-list">
+        <div><dt><abbr title="kilocalories">kcal</abbr></dt><dd>kilocalories: food energy</dd></div>
+        <div><dt><abbr title="protein">P</abbr></dt><dd>protein, in grams</dd></div>
+        <div><dt><abbr title="fat">F</abbr></dt><dd>fat, in grams</dd></div>
+        <div><dt><abbr title="carbohydrates">C</abbr></dt><dd>carbohydrates, in grams</dd></div>
+        <div><dt><abbr title="grams">g</abbr></dt><dd>grams</dd></div>
+        <div><dt><abbr title="millilitres">ml</abbr></dt><dd>millilitres</dd></div>
+        <div><dt><abbr title="points">pt</abbr> · <abbr title="density-independent pixels">dp</abbr></dt><dd>iOS points · Android density-independent pixels (1 pt ≈ 1 dp ≈ 1 CSS px here)</dd></div>
+        <div><dt><abbr title="United States Department of Agriculture">USDA</abbr></dt><dd>source of every nutrition value (FoodData Central)</dd></div>
+      </dl>
+    </section>
+
+<!-- tokens:start -->
+<h2 class="doc-h2" id="colour"><small>Foundations</small>Colour</h2>
+<p class="doc-lead">Two layers. <b>Primitives</b> are the raw palette, and every family is named after a food. <b>Semantic tokens</b> say what a colour is for; components only use these. Each contrast ratio is measured on the background that colour is actually used on.</p>
+<h3 class="doc-h3">Primitives</h3>
+<div class="fam-h">White <span>Only for text and icons on Persimmon. Never a background.</span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-white)"></i><div><b>white</b><code>#FFFFFF</code><small>Only for text and icons on Persimmon. Never a background.</small></div></div>
+</div>
+<div class="fam-h">Oat <span>Warm neutral ramp: rice → oat milk → walnut → rye crust.</span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-oat-0)"></i><div><b>oat-0</b><code>#FFFCF6</code><small>Rice: cards, sheets</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-50)"></i><div><b>oat-50</b><code>#FBF6EE</code><small>Oat milk: app background</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-100)"></i><div><b>oat-100</b><code>#F4ECDF</code><small>Toasted oat: sunken areas, inputs</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-200)"></i><div><b>oat-200</b><code>#E9DDCB</code><small>Oat flakes: dividers, disabled fills</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-300)"></i><div><b>oat-300</b><code>#D6C6B0</code><small>Bran: decorative borders</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-400)"></i><div><b>oat-400</b><code>#B3A18A</code><small>Husk: disabled text and icons (exempt from contrast)</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-500)"></i><div><b>oat-500</b><code>#8C7A66</code><small>Hazelnut: input borders (3.8:1)</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-550)"></i><div><b>oat-550</b><code>#705F49</code><small>Toasted walnut: disabled text (4.6:1, legible but clearly lighter than secondary)</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-600)"></i><div><b>oat-600</b><code>#6B5A4A</code><small>Walnut: secondary text</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-700)"></i><div><b>oat-700</b><code>#4E4034</code><small>Dark walnut: secondary text (7.2:1 on every light surface)</small></div></div>
+<div class="sw"><i style="--c: var(--color-oat-900)"></i><div><b>oat-900</b><code>#2B2118</code><small>Rye crust: primary text</small></div></div>
+</div>
+<div class="fam-h">Persimmon <span>Brand ramp. Ripe fruit = appetite.</span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-persimmon-50)"></i><div><b>persimmon-50</b><code>#FEF3EC</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-persimmon-100)"></i><div><b>persimmon-100</b><code>#FCE3CC</code><small>Apricot: tints, selected chips</small></div></div>
+<div class="sw"><i style="--c: var(--color-persimmon-200)"></i><div><b>persimmon-200</b><code>#F9C9A6</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-persimmon-300)"></i><div><b>persimmon-300</b><code>#F4A06B</code><small>Persimmon highlight</small></div></div>
+<div class="sw"><i style="--c: var(--color-persimmon-500)"></i><div><b>persimmon-500</b><code>#E2552A</code><small>Fruit orange (illustration only)</small></div></div>
+<div class="sw"><i style="--c: var(--color-persimmon-600)"></i><div><b>persimmon-600</b><code>#C4431A</code><small>Persimmon: brand, primary buttons</small></div></div>
+<div class="sw"><i style="--c: var(--color-persimmon-700)"></i><div><b>persimmon-700</b><code>#9B3515</code><small>Deep persimmon: primary button fill. White text 7.2:1 (was #A23614, 6.8:1)</small></div></div>
+<div class="sw"><i style="--c: var(--color-persimmon-800)"></i><div><b>persimmon-800</b><code>#7C2A10</code><small>Persimmon text: links, active tab, accent text (≥ 7:1 on light surfaces); pressed CTA fill</small></div></div>
+<div class="sw"><i style="--c: var(--color-persimmon-900)"></i><div><b>persimmon-900</b><code>#5E200B</code><small>Pressed deep persimmon</small></div></div>
+</div>
+<div class="fam-h">Avocado <span></span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-avocado-50)"></i><div><b>avocado-50</b><code>#F2F6EB</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-avocado-100)"></i><div><b>avocado-100</b><code>#E6EFD9</code><small>Avocado tint: &#x27;fits your day&#x27; tags</small></div></div>
+<div class="sw"><i style="--c: var(--color-avocado-300)"></i><div><b>avocado-300</b><code>#A9C47F</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-avocado-600)"></i><div><b>avocado-600</b><code>#4A7326</code><small>Avocado: freshness accent</small></div></div>
+<div class="sw"><i style="--c: var(--color-avocado-700)"></i><div><b>avocado-700</b><code>#3A5B1E</code><small>Text on avocado tint</small></div></div>
+<div class="sw"><i style="--c: var(--color-avocado-800)"></i><div><b>avocado-800</b><code>#36551C</code><small>Fresh text (7.2:1 on avocado tint)</small></div></div>
+</div>
+<div class="fam-h">Honey <span></span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-honey-50)"></i><div><b>honey-50</b><code>#FDF3DF</code><small>Warning tint</small></div></div>
+<div class="sw"><i style="--c: var(--color-honey-100)"></i><div><b>honey-100</b><code>#FBE7B8</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-honey-400)"></i><div><b>honey-400</b><code>#F2B63D</code><small>Honey: highlights, &#x27;not sure&#x27; marker (fill only)</small></div></div>
+<div class="sw"><i style="--c: var(--color-honey-700)"></i><div><b>honey-700</b><code>#9A6400</code><small>Turmeric: warning text, over goal</small></div></div>
+<div class="sw"><i style="--c: var(--color-honey-800)"></i><div><b>honey-800</b><code>#674300</code><small>Warning text: &#x27;check portion&#x27;, over goal (7.1:1)</small></div></div>
+</div>
+<div class="fam-h">Basil <span></span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-basil-50)"></i><div><b>basil-50</b><code>#EAF4EE</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-basil-600)"></i><div><b>basil-600</b><code>#2E7D4F</code><small>Basil: success icons, high confidence</small></div></div>
+<div class="sw"><i style="--c: var(--color-basil-700)"></i><div><b>basil-700</b><code>#24633E</code><small>Success text on tint</small></div></div>
+<div class="sw"><i style="--c: var(--color-basil-800)"></i><div><b>basil-800</b><code>#215A38</code><small>Success text (7.2:1 on basil tint)</small></div></div>
+</div>
+<div class="fam-h">Chili <span></span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-chili-50)"></i><div><b>chili-50</b><code>#FCECEA</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-chili-600)"></i><div><b>chili-600</b><code>#A8241C</code><small>Chili: errors (fills, icons, rings). White text 7.2:1 (was #B3261E, 6.5:1)</small></div></div>
+<div class="sw"><i style="--c: var(--color-chili-700)"></i><div><b>chili-700</b><code>#8E1E18</code><small></small></div></div>
+</div>
+<div class="fam-h">Beetroot <span></span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-beetroot-50)"></i><div><b>beetroot-50</b><code>#F8E9F0</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-beetroot-600)"></i><div><b>beetroot-600</b><code>#9B2F63</code><small>Protein</small></div></div>
+<div class="sw"><i style="--c: var(--color-beetroot-700)"></i><div><b>beetroot-700</b><code>#7C2550</code><small></small></div></div>
+</div>
+<div class="fam-h">Mustard <span></span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-mustard-50)"></i><div><b>mustard-50</b><code>#F8F0DA</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-mustard-600)"></i><div><b>mustard-600</b><code>#A77A0B</code><small>Fat (graphics 3.6:1; use 700 for text)</small></div></div>
+<div class="sw"><i style="--c: var(--color-mustard-700)"></i><div><b>mustard-700</b><code>#86620A</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-mustard-800)"></i><div><b>mustard-800</b><code>#674B08</code><small>Fat text (7.1:1 on mustard tint)</small></div></div>
+</div>
+<div class="fam-h">Blueberry <span></span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-blueberry-50)"></i><div><b>blueberry-50</b><code>#EAF0FA</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-blueberry-600)"></i><div><b>blueberry-600</b><code>#3B6CC0</code><small>Carbs. The only blue: data marks only, never surfaces.</small></div></div>
+<div class="sw"><i style="--c: var(--color-blueberry-700)"></i><div><b>blueberry-700</b><code>#2F5699</code><small></small></div></div>
+<div class="sw"><i style="--c: var(--color-blueberry-800)"></i><div><b>blueberry-800</b><code>#2B4E8B</code><small>Carbs text (7.2:1 on blueberry tint)</small></div></div>
+</div>
+<div class="fam-h">Alpha <span></span></div><div class="sw-row">
+<div class="sw"><i style="--c: var(--color-alpha-rye-8)"></i><div><b>alpha-rye-8</b><code>#2B211814</code><small>Rye at 8%: hover and pressed overlays</small></div></div>
+<div class="sw"><i style="--c: var(--color-alpha-rye-12)"></i><div><b>alpha-rye-12</b><code>#2B21181F</code><small>Rye at 12%: hairline dividers</small></div></div>
+<div class="sw"><i style="--c: var(--color-alpha-rye-40)"></i><div><b>alpha-rye-40</b><code>#2B211866</code><small>Rye at 40%: scrim behind sheets</small></div></div>
+</div>
+<h3 class="doc-h3">Background</h3>
+<section class="table-scroll" data-scroll-x tabindex="0" aria-label="Background colour tokens"><table class="tok-table"><caption class="visually-hidden">Background colour tokens</caption><thead><tr><th scope="col" class="chipcol"><span class="visually-hidden">Swatch</span></th><th scope="col">Token</th><th scope="col">Points to</th><th scope="col">Value</th><th scope="col">Contrast</th><th scope="col">Use</th></tr></thead><tbody>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-canvas)"></span></td><td><code>--color-bg-canvas</code></td><td><code>--color-oat-50</code></td><td class="ratio">#FBF6EE</td><td class="ratio">—</td><td>App background</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-surface)"></span></td><td><code>--color-bg-surface</code></td><td><code>--color-oat-0</code></td><td class="ratio">#FFFCF6</td><td class="ratio">—</td><td>Cards, sheets, bars</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-sunken)"></span></td><td><code>--color-bg-sunken</code></td><td><code>--color-oat-100</code></td><td class="ratio">#F4ECDF</td><td class="ratio">—</td><td>Inputs, steppers, segmented track</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-disabled)"></span></td><td><code>--color-bg-disabled</code></td><td><code>--color-oat-200</code></td><td class="ratio">#E9DDCB</td><td class="ratio">—</td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-inverse)"></span></td><td><code>--color-bg-inverse</code></td><td><code>--color-oat-900</code></td><td class="ratio">#2B2118</td><td class="ratio">14.64:1 <small>on canvas</small></td><td>Toasts, dark stickers</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-inverse-pressed)"></span></td><td><code>--color-bg-inverse-pressed</code></td><td><code>--color-oat-700</code></td><td class="ratio">#4E4034</td><td class="ratio">—</td><td>Pressed actions inside toasts</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-accent)"></span></td><td><code>--color-bg-accent</code></td><td><code>--color-persimmon-700</code></td><td class="ratio">#9B3515</td><td class="ratio">7.04:1 <small>on surface</small></td><td>Primary buttons, scan button, badges with white text (white 7.2:1)</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-accent-pressed)"></span></td><td><code>--color-bg-accent-pressed</code></td><td><code>--color-persimmon-800</code></td><td class="ratio">#7C2A10</td><td class="ratio">—</td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-accent-subtle)"></span></td><td><code>--color-bg-accent-subtle</code></td><td><code>--color-persimmon-100</code></td><td class="ratio">#FCE3CC</td><td class="ratio">—</td><td>Selected chips, secondary buttons</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-accent-subtle-pressed)"></span></td><td><code>--color-bg-accent-subtle-pressed</code></td><td><code>--color-persimmon-200</code></td><td class="ratio">#F9C9A6</td><td class="ratio">—</td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-fresh-subtle)"></span></td><td><code>--color-bg-fresh-subtle</code></td><td><code>--color-avocado-100</code></td><td class="ratio">#E6EFD9</td><td class="ratio">—</td><td>&#x27;Fits your day&#x27; tags</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-highlight)"></span></td><td><code>--color-bg-highlight</code></td><td><code>--color-honey-400</code></td><td class="ratio">#F2B63D</td><td class="ratio">—</td><td>&#x27;Not sure&#x27; marker</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-pressed)"></span></td><td><code>--color-bg-pressed</code></td><td><code>--color-alpha-rye-8</code></td><td class="ratio">#2B211814</td><td class="ratio">—</td><td>Overlay for pressed rows</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-bg-scrim)"></span></td><td><code>--color-bg-scrim</code></td><td><code>--color-alpha-rye-40</code></td><td class="ratio">#2B211866</td><td class="ratio">—</td><td></td></tr>
+</tbody></table></section>
+<h3 class="doc-h3">Text</h3>
+<section class="table-scroll" data-scroll-x tabindex="0" aria-label="Text colour tokens"><table class="tok-table"><caption class="visually-hidden">Text colour tokens</caption><thead><tr><th scope="col" class="chipcol"><span class="visually-hidden">Swatch</span></th><th scope="col">Token</th><th scope="col">Points to</th><th scope="col">Value</th><th scope="col">Contrast</th><th scope="col">Use</th></tr></thead><tbody>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-primary)"></span></td><td><code>--color-text-primary</code></td><td><code>--color-oat-900</code></td><td class="ratio">#2B2118</td><td class="ratio">14.64:1 <small>on canvas</small></td><td>Body text and headings</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-secondary)"></span></td><td><code>--color-text-secondary</code></td><td><code>--color-oat-700</code></td><td class="ratio">#4E4034</td><td class="ratio">9.26:1 <small>on canvas</small></td><td>Meta, units, helper text, placeholders (≥ 7:1)</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-disabled)"></span></td><td><code>--color-text-disabled</code></td><td><code>--color-oat-550</code></td><td class="ratio">#705F49</td><td class="ratio">5.70:1 <small>on canvas</small></td><td>Disabled only: exempt from contrast, kept legible at ≥ 4.5:1</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-inverse)"></span></td><td><code>--color-text-inverse</code></td><td><code>--color-oat-50</code></td><td class="ratio">#FBF6EE</td><td class="ratio">14.64:1 <small>on inverse</small></td><td>On bg.inverse</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-on-accent)"></span></td><td><code>--color-text-on-accent</code></td><td><code>--color-white</code></td><td class="ratio">#FFFFFF</td><td class="ratio">7.21:1 <small>on accent</small></td><td>On bg.accent</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-accent)"></span></td><td><code>--color-text-accent</code></td><td><code>--color-persimmon-800</code></td><td class="ratio">#7C2A10</td><td class="ratio">8.89:1 <small>on canvas</small></td><td>Links, text buttons, active tab (≥ 7:1)</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-fresh)"></span></td><td><code>--color-text-fresh</code></td><td><code>--color-avocado-800</code></td><td class="ratio">#36551C</td><td class="ratio">7.16:1 <small>on fresh-subtle</small></td><td>On bg.fresh-subtle (7.2:1)</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-inverse-accent)"></span></td><td><code>--color-text-inverse-accent</code></td><td><code>--color-persimmon-300</code></td><td class="ratio">#F4A06B</td><td class="ratio">7.56:1 <small>on inverse</small></td><td>Actions on bg.inverse, e.g. &#x27;Undo&#x27; in a toast</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-inverse-success)"></span></td><td><code>--color-text-inverse-success</code></td><td><code>--color-avocado-300</code></td><td class="ratio">#A9C47F</td><td class="ratio">8.17:1 <small>on inverse</small></td><td>Success icons on bg.inverse</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-text-inverse-warning)"></span></td><td><code>--color-text-inverse-warning</code></td><td><code>--color-honey-400</code></td><td class="ratio">#F2B63D</td><td class="ratio">8.65:1 <small>on inverse</small></td><td>Warning icons on bg.inverse</td></tr>
+</tbody></table></section>
+<h3 class="doc-h3">Border</h3>
+<section class="table-scroll" data-scroll-x tabindex="0" aria-label="Border colour tokens"><table class="tok-table"><caption class="visually-hidden">Border colour tokens</caption><thead><tr><th scope="col" class="chipcol"><span class="visually-hidden">Swatch</span></th><th scope="col">Token</th><th scope="col">Points to</th><th scope="col">Value</th><th scope="col">Contrast</th><th scope="col">Use</th></tr></thead><tbody>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-border-subtle)"></span></td><td><code>--color-border-subtle</code></td><td><code>--color-alpha-rye-12</code></td><td class="ratio">#2B21181F</td><td class="ratio">—</td><td>Dividers (decorative)</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-border-default)"></span></td><td><code>--color-border-default</code></td><td><code>--color-oat-200</code></td><td class="ratio">#E9DDCB</td><td class="ratio">1.31:1 <small>on surface</small></td><td>Card outlines (decorative)</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-border-strong)"></span></td><td><code>--color-border-strong</code></td><td><code>--color-oat-500</code></td><td class="ratio">#8C7A66</td><td class="ratio">4.03:1 <small>on surface</small></td><td>Input borders: meets 3:1</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-border-accent)"></span></td><td><code>--color-border-accent</code></td><td><code>--color-persimmon-600</code></td><td class="ratio">#C4431A</td><td class="ratio">4.92:1 <small>on surface</small></td><td>Selected and focused inputs</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-border-focus)"></span></td><td><code>--color-border-focus</code></td><td><code>--color-oat-900</code></td><td class="ratio">#2B2118</td><td class="ratio">15.38:1 <small>on surface</small></td><td>Keyboard focus ring (2 px + 2 px offset)</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-border-error)"></span></td><td><code>--color-border-error</code></td><td><code>--color-chili-600</code></td><td class="ratio">#A8241C</td><td class="ratio">6.99:1 <small>on surface</small></td><td></td></tr>
+</tbody></table></section>
+<h3 class="doc-h3">Status</h3>
+<section class="table-scroll" data-scroll-x tabindex="0" aria-label="Status colour tokens"><table class="tok-table"><caption class="visually-hidden">Status colour tokens</caption><thead><tr><th scope="col" class="chipcol"><span class="visually-hidden">Swatch</span></th><th scope="col">Token</th><th scope="col">Points to</th><th scope="col">Value</th><th scope="col">Contrast</th><th scope="col">Use</th></tr></thead><tbody>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-success)"></span></td><td><code>--color-status-success</code></td><td><code>--color-basil-600</code></td><td class="ratio">#2E7D4F</td><td class="ratio">4.93:1 <small>on surface</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-success-text)"></span></td><td><code>--color-status-success-text</code></td><td><code>--color-basil-800</code></td><td class="ratio">#215A38</td><td class="ratio">7.23:1 <small>on success-subtle</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-success-subtle)"></span></td><td><code>--color-status-success-subtle</code></td><td><code>--color-basil-50</code></td><td class="ratio">#EAF4EE</td><td class="ratio">—</td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-warning)"></span></td><td><code>--color-status-warning</code></td><td><code>--color-honey-700</code></td><td class="ratio">#9A6400</td><td class="ratio">4.54:1 <small>on warning-subtle</small></td><td>Warning icons, over-goal ring (graphics ≥ 3:1). Use warning-text for text</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-warning-text)"></span></td><td><code>--color-status-warning-text</code></td><td><code>--color-honey-800</code></td><td class="ratio">#674300</td><td class="ratio">—</td><td>Warning TEXT (7.1:1). status.warning is for icons and graphics only</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-warning-subtle)"></span></td><td><code>--color-status-warning-subtle</code></td><td><code>--color-honey-50</code></td><td class="ratio">#FDF3DF</td><td class="ratio">—</td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-error)"></span></td><td><code>--color-status-error</code></td><td><code>--color-chili-600</code></td><td class="ratio">#A8241C</td><td class="ratio">6.99:1 <small>on surface</small></td><td>Real errors only</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-error-text)"></span></td><td><code>--color-status-error-text</code></td><td><code>--color-chili-700</code></td><td class="ratio">#8E1E18</td><td class="ratio">7.80:1 <small>on error-subtle</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-status-error-subtle)"></span></td><td><code>--color-status-error-subtle</code></td><td><code>--color-chili-50</code></td><td class="ratio">#FCECEA</td><td class="ratio">—</td><td></td></tr>
+</tbody></table></section>
+<h3 class="doc-h3">Macros</h3>
+<p class="doc-lead">Protein, fat and carbs. A magenta, gold and blue triad that stays separable under protanopia, deuteranopia and tritanopia (ΔE ≥ 29). Always shown with the letter P, F or C and a value.</p>
+<section class="table-scroll" data-scroll-x tabindex="0" aria-label="Macros colour tokens"><table class="tok-table"><caption class="visually-hidden">Macros colour tokens</caption><thead><tr><th scope="col" class="chipcol"><span class="visually-hidden">Swatch</span></th><th scope="col">Token</th><th scope="col">Points to</th><th scope="col">Value</th><th scope="col">Contrast</th><th scope="col">Use</th></tr></thead><tbody>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-protein)"></span></td><td><code>--color-macro-protein</code></td><td><code>--color-beetroot-600</code></td><td class="ratio">#9B2F63</td><td class="ratio">6.88:1 <small>on surface</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-protein-text)"></span></td><td><code>--color-macro-protein-text</code></td><td><code>--color-beetroot-700</code></td><td class="ratio">#7C2550</td><td class="ratio">8.00:1 <small>on protein-subtle</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-protein-subtle)"></span></td><td><code>--color-macro-protein-subtle</code></td><td><code>--color-beetroot-50</code></td><td class="ratio">#F8E9F0</td><td class="ratio">—</td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-fat)"></span></td><td><code>--color-macro-fat</code></td><td><code>--color-mustard-600</code></td><td class="ratio">#A77A0B</td><td class="ratio">3.78:1 <small>on surface</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-fat-text)"></span></td><td><code>--color-macro-fat-text</code></td><td><code>--color-mustard-800</code></td><td class="ratio">#674B08</td><td class="ratio">7.14:1 <small>on fat-subtle</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-fat-subtle)"></span></td><td><code>--color-macro-fat-subtle</code></td><td><code>--color-mustard-50</code></td><td class="ratio">#F8F0DA</td><td class="ratio">—</td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-carbs)"></span></td><td><code>--color-macro-carbs</code></td><td><code>--color-blueberry-600</code></td><td class="ratio">#3B6CC0</td><td class="ratio">5.01:1 <small>on surface</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-carbs-text)"></span></td><td><code>--color-macro-carbs-text</code></td><td><code>--color-blueberry-800</code></td><td class="ratio">#2B4E8B</td><td class="ratio">7.15:1 <small>on carbs-subtle</small></td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-carbs-subtle)"></span></td><td><code>--color-macro-carbs-subtle</code></td><td><code>--color-blueberry-50</code></td><td class="ratio">#EAF0FA</td><td class="ratio">—</td><td></td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-track)"></span></td><td><code>--color-macro-track</code></td><td><code>--color-persimmon-100</code></td><td class="ratio">#FCE3CC</td><td class="ratio">—</td><td>Empty part of the calorie ring</td></tr>
+<tr><td class="chipcol"><span class="dot" style="--c: var(--color-macro-kcal)"></span></td><td><code>--color-macro-kcal</code></td><td><code>--color-persimmon-600</code></td><td class="ratio">#C4431A</td><td class="ratio">—</td><td>Calorie ring value (brand persimmon, graphic ≥ 3:1 against the track)</td></tr>
+</tbody></table></section>
+<h2 class="doc-h2" id="type"><small>Foundations</small>Typography</h2>
+<p class="doc-lead">Three Google Fonts (SIL OFL). <b>Young Serif</b> is for headlines only (20 px and up). <b>Hanken Grotesk</b> is for all UI text. <b>Azeret Mono</b> is for every number, with tabular figures. Sizes are in rem, so they follow Dynamic Type; the pixel values are at the default text size.</p>
+<div class="type-row"><div><code>--type-display</code></div><div class="t-display">Point, snap, know.</div><div><div class="meta">Young Serif · 40/44 · 400</div><div class="use">Hero numbers of the brand, onboarding</div></div></div>
+<div class="type-row"><div><code>--type-h1</code></div><div class="t-h1">Today</div><div><div class="meta">Young Serif · 28/34 · 400</div><div class="use">Large app-bar titles</div></div></div>
+<div class="type-row"><div><code>--type-h2</code></div><div class="t-h2">We found 4 foods</div><div><div class="meta">Young Serif · 22/28 · 400</div><div class="use">Sheet and card titles</div></div></div>
+<div class="type-row"><div><code>--type-title</code></div><div class="t-title">Oat &amp; blueberry yogurt bowl</div><div><div class="meta">Hanken Grotesk · 18/27 · 600</div><div class="use">Small app-bar titles, section titles</div></div></div>
+<div class="type-row"><div><code>--type-body</code></div><div class="t-body">Check the portion, then add it to Lunch.</div><div><div class="meta">Hanken Grotesk · 16/24 · 400</div><div class="use">Default text</div></div></div>
+<div class="type-row"><div><code>--type-body-strong</code></div><div class="t-body-strong">Salmon, cooked</div><div><div class="meta">Hanken Grotesk · 16/24 · 600</div><div class="use">Food names in lists</div></div></div>
+<div class="type-row"><div><code>--type-callout</code></div><div class="t-callout">Weigh the whole pot after cooking</div><div><div class="meta">Hanken Grotesk · 14/21 · 400</div><div class="use">Secondary sentences, meta</div></div></div>
+<div class="type-row"><div><code>--type-label</code></div><div class="t-label">Final cooked weight</div><div><div class="meta">Hanken Grotesk · 14/21 · 600</div><div class="use">Field labels, chips, buttons M</div></div></div>
+<div class="type-row"><div><code>--type-caption</code></div><div class="t-caption">High confidence · per 100 g</div><div><div class="meta">Hanken Grotesk · 12/18 · 500</div><div class="use">Minimum size (12). Confidence, helper text</div></div></div>
+<div class="type-row"><div><code>--type-overline</code></div><div class="t-overline">Brand principles</div><div><div class="meta">Hanken Grotesk · 12/18 · 700</div><div class="use">Section kickers (uppercase)</div></div></div>
+<div class="type-row"><div><code>--type-num-xl</code></div><div class="t-num-xl">879</div><div><div class="meta">Azeret Mono · 44/48 · 500</div><div class="use">kcal left on Home</div></div></div>
+<div class="type-row"><div><code>--type-num-l</code></div><div class="t-num-l">559 kcal</div><div><div class="meta">Azeret Mono · 28/32 · 500</div><div class="use">Card totals</div></div></div>
+<div class="type-row"><div><code>--type-num-m</code></div><div class="t-num-m">150 g · 195 kcal</div><div><div class="meta">Azeret Mono · 16/24 · 500</div><div class="use">Steppers, list kcal</div></div></div>
+<div class="type-row"><div><code>--type-num-s</code></div><div class="t-num-s">P 37 · F 23 · C 49</div><div><div class="meta">Azeret Mono · 13/20 · 500</div><div class="use">Macro lines, per-100 g meta</div></div></div>
+<h2 class="doc-h2" id="space"><small>Foundations</small>Spacing</h2>
+<p class="doc-lead">A 4 pt grid (bars drawn at 4× scale). Use multiples of 8 for layout, and 4 or 12 only for fine steps. Screen side margin: <code>--space-screen-margin</code> (20).</p><div class="bars">
+<div class="bar-row"><code>--space-0</code><span class="ratio">0px</span><span><i style="--w: var(--space-0)"></i></span></div>
+<div class="bar-row"><code>--space-1</code><span class="ratio">4px</span><span><i style="--w: var(--space-1)"></i></span></div>
+<div class="bar-row"><code>--space-2</code><span class="ratio">8px</span><span><i style="--w: var(--space-2)"></i></span></div>
+<div class="bar-row"><code>--space-3</code><span class="ratio">12px</span><span><i style="--w: var(--space-3)"></i></span></div>
+<div class="bar-row"><code>--space-4</code><span class="ratio">16px</span><span><i style="--w: var(--space-4)"></i></span></div>
+<div class="bar-row"><code>--space-5</code><span class="ratio">20px</span><span><i style="--w: var(--space-5)"></i></span></div>
+<div class="bar-row"><code>--space-6</code><span class="ratio">24px</span><span><i style="--w: var(--space-6)"></i></span></div>
+<div class="bar-row"><code>--space-8</code><span class="ratio">32px</span><span><i style="--w: var(--space-8)"></i></span></div>
+<div class="bar-row"><code>--space-10</code><span class="ratio">40px</span><span><i style="--w: var(--space-10)"></i></span></div>
+<div class="bar-row"><code>--space-12</code><span class="ratio">48px</span><span><i style="--w: var(--space-12)"></i></span></div>
+<div class="bar-row"><code>--space-16</code><span class="ratio">64px</span><span><i style="--w: var(--space-16)"></i></span></div>
+<div class="bar-row"><code>--space-screen-margin</code><span class="ratio">20px</span><span><i style="--w: var(--space-screen-margin)"></i></span></div>
+<div class="bar-row"><code>--space-stack</code><span class="ratio">16px</span><span><i style="--w: var(--space-stack)"></i></span></div>
+</div>
+<h2 class="doc-h2" id="radius"><small>Foundations</small>Radius &amp; borders</h2><div class="tiles">
+<div class="tile" style="--r: var(--radius-xs); --s: inset 0 0 0 var(--border-width-default) var(--color-border-strong)"><span><b>xs</b>6px<br>Badges</span></div>
+<div class="tile" style="--r: var(--radius-sm); --s: inset 0 0 0 var(--border-width-default) var(--color-border-strong)"><span><b>sm</b>10px<br>Chips inside cards, thumbnails</span></div>
+<div class="tile" style="--r: var(--radius-md); --s: inset 0 0 0 var(--border-width-default) var(--color-border-strong)"><span><b>md</b>16px<br>Buttons, inputs, list rows</span></div>
+<div class="tile" style="--r: var(--radius-lg); --s: inset 0 0 0 var(--border-width-default) var(--color-border-strong)"><span><b>lg</b>24px<br>Cards</span></div>
+<div class="tile" style="--r: var(--radius-xl); --s: inset 0 0 0 var(--border-width-default) var(--color-border-strong)"><span><b>xl</b>32px<br>Bottom sheets</span></div>
+<div class="tile" style="--r: var(--radius-full); --s: inset 0 0 0 var(--border-width-default) var(--color-border-strong)"><span><b>full</b>999px<br></span></div>
+</div><h3 class="doc-h3">Border widths</h3><div class="tiles">
+<div class="tile" style="--r: var(--radius-md); --s: inset 0 0 0 var(--border-width-hairline) var(--color-text-primary)"><span><b>hairline</b>1px<br></span></div>
+<div class="tile" style="--r: var(--radius-md); --s: inset 0 0 0 var(--border-width-default) var(--color-text-primary)"><span><b>default</b>1.5px<br>Inputs, chips, steppers</span></div>
+<div class="tile" style="--r: var(--radius-md); --s: inset 0 0 0 var(--border-width-focus) var(--color-text-primary)"><span><b>focus</b>2px<br>Focus ring thickness (WCAG 2.4.7 / 1.4.11)</span></div>
+<div class="tile" style="--r: var(--radius-md); --s: inset 0 0 0 var(--border-width-rule) var(--color-text-primary)"><span><b>rule</b>3px<br>Heavy rule in the nutrition facts table</span></div>
+<div class="tile" style="--r: var(--radius-md); --s: inset 0 0 0 var(--border-width-focus-gap) var(--color-text-primary)"><span><b>focus-gap</b>2px<br>Gap between a control and its focus ring</span></div>
+</div>
+<h2 class="doc-h2" id="elevation"><small>Foundations</small>Elevation</h2><p class="doc-lead">Warm, rye-tinted shadows, never grey. Most surfaces are flat; elevation marks things that float.</p><div class="tiles">
+<div class="tile" style="--r: var(--radius-lg); --s: var(--shadow-e1)"><span><b>e1</b>Cards and list groups</span></div>
+<div class="tile" style="--r: var(--radius-lg); --s: var(--shadow-e2)"><span><b>e2</b>Floating buttons, toasts</span></div>
+<div class="tile" style="--r: var(--radius-lg); --s: var(--shadow-e3)"><span><b>e3</b>Bottom sheets</span></div>
+<div class="tile" style="--r: var(--radius-lg); --s: var(--shadow-accent)"><span><b>accent</b>Scan button glow</span></div>
+</div>
+<h2 class="doc-h2" id="icons"><small>Foundations</small>Icons &amp; sizes</h2><p class="doc-lead">Drawn on a 24 px grid with a 2 px round stroke, coloured with <code>currentColor</code>. SVG files are in <code>01-branding/assets/icons/</code>. Confidence icons are always paired with a word.</p><div class="tiles">
+<div class="tile" style="--is: var(--size-icon-s)"><span><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg><b>s · 16px</b></span></div>
+<div class="tile" style="--is: var(--size-icon-m)"><span><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg><b>m · 20px</b></span></div>
+<div class="tile" style="--is: var(--size-icon-l)"><span><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg><b>l · 24px</b>Default: all icons are drawn on a 24 px grid</span></div>
+<div class="tile" style="--is: var(--size-icon-xl)"><span><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg><b>xl · 32px</b></span></div>
+</div><div class="sw-row">
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-today"/></svg><div><code>today</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-diary"/></svg><div><code>diary</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg><div><code>scan</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-recipes"/></svg><div><code>recipes</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-profile"/></svg><div><code>profile</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><div><code>search</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-barcode"/></svg><div><code>barcode</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><div><code>plus</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg><div><code>minus</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><code>check</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg><div><code>close</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><div><code>back</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-high"/></svg><div><code>high</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-check-portion"/></svg><div><code>check-portion</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-unsure"/></svg><div><code>unsure</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-fresh"/></svg><div><code>fresh</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-viewfinder"/></svg><div><code>viewfinder</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-portion"/></svg><div><code>portion</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-time"/></svg><div><code>time</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg><div><code>heart</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><div><code>calendar</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><div><code>alert</code></div></div>
+</div><h3 class="doc-h3">Component sizes and safe areas</h3><section class="table-scroll" data-scroll-x tabindex="0" aria-label="Component size tokens"><table class="tok-table"><caption class="visually-hidden">Component size tokens</caption><thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead><tbody>
+<tr><td><code>--size-touch-min</code></td><td class="ratio">44px</td><td>Minimum hit region on iOS: 44×44 pt (Apple HIG, Buttons &amp; Accessibility)</td></tr>
+<tr><td><code>--size-touch-android</code></td><td class="ratio">48px</td><td>Minimum touch target on Android: 48×48 dp (Android accessibility guide, Material 3)</td></tr>
+<tr><td><code>--size-app-bar-android</code></td><td class="ratio">64px</td><td>Material 3 small top app bar container height (64 dp)</td></tr>
+<tr><td><code>--size-tab-bar-android</code></td><td class="ratio">64px</td><td>Material 3 navigation bar container height (64 dp)</td></tr>
+<tr><td><code>--size-segment-android</code></td><td class="ratio">40px</td><td>Segment visual height on Android: 40 + 2×4 padding = 48 dp target</td></tr>
+<tr><td><code>--size-button-l</code></td><td class="ratio">52px</td><td></td></tr>
+<tr><td><code>--size-button-m</code></td><td class="ratio">44px</td><td></td></tr>
+<tr><td><code>--size-input</code></td><td class="ratio">52px</td><td></td></tr>
+<tr><td><code>--size-app-bar</code></td><td class="ratio">56px</td><td>Top app bar on iOS (content row below the status bar)</td></tr>
+<tr><td><code>--size-tab-bar</code></td><td class="ratio">49px</td><td>Tab bar content height on iOS, plus safe-bottom below it</td></tr>
+<tr><td><code>--size-tab-indicator-width</code></td><td class="ratio">56px</td><td>Pressed / active pill inside a tab (Material 3 active indicator 56×32)</td></tr>
+<tr><td><code>--size-tab-indicator-height</code></td><td class="ratio">32px</td><td></td></tr>
+<tr><td><code>--size-tab-label-max</code></td><td class="ratio">14px</td><td>Tab labels stop growing at 14 px. Bar items don&#x27;t scale with Dynamic Type; iOS shows the Large Content Viewer on long-press instead</td></tr>
+<tr><td><code>--size-scan-button</code></td><td class="ratio">56px</td><td></td></tr>
+<tr><td><code>--size-safe-top</code></td><td class="ratio">47px</td><td>Status bar (iPhone 14/15)</td></tr>
+<tr><td><code>--size-safe-bottom</code></td><td class="ratio">34px</td><td>Home indicator</td></tr>
+<tr><td><code>--size-screen-width</code></td><td class="ratio">390px</td><td></td></tr>
+<tr><td><code>--size-screen-height</code></td><td class="ratio">844px</td><td></td></tr>
+<tr><td><code>--size-icon-stroke</code></td><td class="ratio">2px</td><td>Every icon uses a 2 px rounded stroke</td></tr>
+<tr><td><code>--size-chip</code></td><td class="ratio">36px</td><td>Visual height; the hit area is extended to 44 px</td></tr>
+<tr><td><code>--size-thumb</code></td><td class="ratio">48px</td><td>Product thumbnails</td></tr>
+<tr><td><code>--size-segment</code></td><td class="ratio">36px</td><td>Segment visual height on iOS. Track padding (4) makes the hit region 44</td></tr>
+<tr><td><code>--size-badge</code></td><td class="ratio">24px</td><td></td></tr>
+<tr><td><code>--size-col-min</code></td><td class="ratio">5rem</td><td>Minimum width of equal columns (segments, macro columns, macro tiles). rem-based, so at large text sizes columns stack instead of clipping</td></tr>
+<tr><td><code>--size-empty-icon</code></td><td class="ratio">72px</td><td></td></tr>
+</tbody></table></section>
+<!-- tokens:end -->
+
+    <h2 class="doc-h2" id="compliance"><small>Foundations</small>Platform compliance</h2>
+    <p class="doc-lead">Every size checked against current Apple and Google documentation (sources in README.md). Android values apply inside <code>data-platform="android"</code>.</p>
+    <section class="table-scroll" data-scroll-x tabindex="0" aria-label="Platform compliance table">
+    <table class="tok-table">
+      <caption class="visually-hidden">Platform compliance: element, Ripe size, requirement, status</caption>
+      <thead><tr><th scope="col">Element</th><th scope="col">Ripe</th><th scope="col">Requirement</th><th scope="col">Status</th></tr></thead>
+      <tbody>
+        <tr><td>Hit region: every interactive element</td><td>44×44 pt · 48×48 dp</td><td>iOS ≥ 44×44 pt · Android ≥ 48×48 dp</td><td class="status-fixed">fixed (stepper ± was 41 pt, segments 36 pt)</td></tr>
+        <tr><td>UI icons</td><td>24 px glyph on a 24 grid, 2 px stroke; 16 / 20 / 32 for badges, meta and empty states</td><td>Material 3: 24 dp · Apple: consistent size and stroke weight</td><td class="status-ok">ok</td></tr>
+        <tr><td>Tab bar icons</td><td>24 px in a 44 pt (48 dp) tab; active icon gets a tinted fill</td><td>M3 nav bar icon 24 dp, indicator 56×32 · HIG: prefer filled symbols in tab bars</td><td class="status-fixed">fixed (filled active state)</td></tr>
+        <tr><td>Tab bar height</td><td>49 pt + 34 pt safe area · Android 64 dp</td><td>M3 navigation bar container 64 dp · iOS system bar + home indicator</td><td class="status-fixed">fixed (Android 64 dp added)</td></tr>
+        <tr><td>Top app bar</td><td>56 pt, icons 24 in 44 pt buttons · Android 64 dp</td><td>M3 small top app bar 64 dp, icon 24 dp</td><td class="status-fixed">fixed (Android 64 dp added)</td></tr>
+        <tr><td>Body / minimum text</td><td>16 body · 12 caption minimum · rem-based</td><td>iOS min 11 pt, default 17 pt · M3 body large 16 sp, body small 12 sp · support 200% text</td><td class="status-ok">ok</td></tr>
+        <tr><td>iOS app icon</td><td>1024×1024, square, opaque PNG + SVG source</td><td>1024×1024 square layers, no pre-masked corners, opaque background</td><td class="status-fixed">fixed (opaque PNG exported)</td></tr>
+        <tr><td>Google Play icon</td><td>512×512, 32-bit PNG, square, opaque</td><td>512×512 32-bit PNG, sRGB, ≤ 1024 KB, full square</td><td class="status-fixed">fixed (PNG exported)</td></tr>
+        <tr><td>Android adaptive icon</td><td>108 dp layers, artwork ≈ 60 dp inside the 66 dp safe zone</td><td>Layers 108×108 dp; logo ≥ 48 dp and ≤ 66 dp</td><td class="status-fixed">fixed (logo was 39 dp)</td></tr>
+      </tbody>
+    </table>
+    </section>
+
+    <h2 class="doc-h2" id="components"><small>Components</small>16 components, every state</h2>
+    <p class="doc-lead">States are shown with <code>.is-pressed</code>, <code>.is-disabled</code>, <code>.is-focus</code> and <code>.is-error</code>. In the app they come from <code>:active</code>, <code>:disabled</code>, <code>:focus-visible</code> and <code>aria-invalid</code>. All numbers are real USDA values. Every state keeps its visuals inside its parent, and text is never clipped.</p>
+
+    <!-- 01 Buttons -->
+    <section class="doc-comp" id="c1">
+      <header><span class="n">01</span><h3>Buttons</h3><code>.btn--primary · --secondary · --ghost · --destructive · .icon-btn</code></header>
+      <ul class="doc-notes">
+        <li><b>One primary button per screen.</b> It does the main job, like "Add to Lunch".</li>
+        <li><b>Label = verb + object.</b> Add the kcal total when it helps the user decide.</li>
+        <li><b>Heights:</b> 52 (L) and 44 (M; 48 on Android). Icon buttons are 44×44 (48×48 on Android) around a 24 glyph.</li>
+        <li class="dont"><b>Don't</b> use destructive styling for "over goal". It's only for deleting data, and it <b>always opens a confirm sheet</b> that lists what will be deleted and offers 30 days to undo.</li>
+      </ul>
+      <div class="states states--wide">
+        <figure class="state"><div class="state__stage"><button type="button" class="btn btn--primary"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Add to Lunch · 559 kcal</button></div><figcaption><b>Primary</b>Default</figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="btn btn--primary is-pressed"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Add to Lunch · 559 kcal</button></div><figcaption><b>Primary</b>Pressed</figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="btn btn--primary is-focus"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Add to Lunch · 559 kcal</button></div><figcaption><b>Primary</b>Focus (2 px ring, 2 px gap)</figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="btn btn--primary" disabled><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Add to Lunch</button></div><figcaption><b>Primary</b>Disabled (nothing selected)</figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="btn btn--secondary"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add a missing item</button><button type="button" class="btn btn--secondary is-pressed">Pressed</button></div><figcaption><b>Secondary</b>Default · pressed</figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="btn btn--ghost"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Search instead</button><button type="button" class="btn btn--ghost is-pressed">Pressed</button></div><figcaption><b>Ghost</b>Default · pressed</figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="btn btn--destructive" data-open-confirm aria-haspopup="dialog" aria-controls="confirm-delete">Delete account</button><button type="button" class="btn btn--destructive is-pressed">Pressed</button></div><figcaption><b>Destructive</b>Opens a confirm sheet (try it)</figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="btn btn--primary btn--m">Log portion</button><button type="button" class="btn btn--secondary btn--m">Retake</button><button type="button" class="btn btn--ghost btn--m" disabled>Undo</button></div><figcaption><b>Size M · 44</b>Primary · secondary · ghost disabled</figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="icon-btn icon-btn--surface" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button><button type="button" class="icon-btn icon-btn--tint" aria-label="Add"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button><button type="button" class="icon-btn icon-btn--accent" aria-label="Scan"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg></button><button type="button" class="icon-btn icon-btn--accent is-pressed" aria-label="Scan, pressed"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg></button><button type="button" class="icon-btn is-focus" aria-label="Search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></button><button type="button" class="icon-btn" disabled aria-label="Barcode"><svg class="icon" aria-hidden="true"><use href="#i-barcode"/></svg></button></div><figcaption><b>Icon button · 44 pt</b>Surface · tint · accent · pressed · focus · disabled</figcaption></figure>
+        <figure class="state" data-platform="android"><div class="state__stage"><button type="button" class="btn btn--primary btn--m">Log portion</button><button type="button" class="icon-btn icon-btn--tint" aria-label="Add, Android"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button><button type="button" class="icon-btn icon-btn--surface" aria-label="Close, Android"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div><figcaption><b>Android · 48 dp</b>data-platform="android"</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 02 Text field -->
+    <section class="doc-comp" id="c2">
+      <header><span class="n">02</span><h3>Text field</h3><code>.field · .field__control · .field__suffix · .field__help</code></header>
+      <ul class="doc-notes">
+        <li><b>Always a visible label.</b> The placeholder is only an example.</li>
+        <li><b>Units live in the suffix</b> (g, ml, kcal) and are set in Azeret Mono.</li>
+        <li><b>Errors say how to fix it,</b> not just that something is wrong.</li>
+        <li><b>The border is an inset ring,</b> so focus and error never change the size.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--start"><label class="field"><span class="field__label">Final cooked weight</span><span class="field__control"><input type="text" placeholder="e.g. 1,250" inputmode="decimal"><span class="field__suffix">g</span></span><span class="field__help">Weigh the whole pot after cooking</span></label></div><figcaption><b>Default</b>Empty</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><label class="field is-focus"><span class="field__label">Final cooked weight</span><span class="field__control"><input type="text" value="1,25" inputmode="decimal"><span class="field__suffix">g</span></span><span class="field__help">Weigh the whole pot after cooking</span></label></div><figcaption><b>Focus</b>Typing</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><label class="field"><span class="field__label">Final cooked weight</span><span class="field__control"><input type="text" value="1,250" class="num" inputmode="decimal"><span class="field__suffix">g</span></span><span class="field__help">That's 112 kcal per 100 g</span></label></div><figcaption><b>Filled</b>With result</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><label class="field is-error"><span class="field__label">Final cooked weight</span><span class="field__control"><input type="text" value="0" aria-invalid="true" class="num" inputmode="decimal"><span class="field__suffix">g</span></span><span class="field__help"><svg class="icon icon--s" aria-hidden="true"><use href="#i-alert"/></svg>Enter a weight between 1 and 10,000 g</span></label></div><figcaption><b>Error</b>Out of range</figcaption></figure>
+        <figure class="state" data-pattern="sign-in"><div class="state__stage state__stage--start"><label class="field"><span class="field__label">Email</span><span class="field__control"><input type="email" name="email" autocomplete="email" placeholder="you@example.com"></span><span class="field__help">We'll email you a one-tap sign-in link. No password to remember; paste and password managers work.</span></label><button type="button" class="btn btn--primary btn--block">Email me a sign-in link</button><button type="button" class="btn btn--secondary btn--block">Continue with a passkey</button></div><figcaption><b>Sign-in</b>No memory or puzzle test</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><label class="field is-disabled"><span class="field__label">Final cooked weight</span><span class="field__control"><input type="text" placeholder="Add ingredients" disabled><span class="field__suffix">g</span></span><span class="field__help">Available after you add an ingredient</span></label></div><figcaption><b>Disabled</b></figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 03 Search -->
+    <section class="doc-comp" id="c3">
+      <header><span class="n">03</span><h3>Search bar</h3><code>.search</code></header>
+      <ul class="doc-notes">
+        <li><b>Recent foods show first,</b> before any typing (research insight 4).</li>
+        <li><b>Barcode lives inside the bar,</b> so there's one place to find food.</li>
+        <li><b>No results → offer help:</b> check spelling, add a custom food, or scan.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--start"><div class="search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input type="search" placeholder="Search foods" aria-label="Search foods or recipes"><button type="button" class="icon-btn" aria-label="Scan barcode"><svg class="icon" aria-hidden="true"><use href="#i-barcode"/></svg></button></div></div><figcaption><b>Default</b></figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="search is-focus"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input type="search" value="greek yog" aria-label="Search foods"><button type="button" class="icon-btn" aria-label="Clear"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div></div><figcaption><b>Focus</b>With value and clear</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="search is-error"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input type="search" value="grek yogurt" aria-label="Search foods" aria-describedby="search-err"><button type="button" class="icon-btn" aria-label="Clear search"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div><p class="search__help" id="search-err">No results. Did you mean <b>Greek yogurt</b>?</p></div><figcaption><b>Error</b>No results</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="search is-disabled"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input type="search" placeholder="Offline" aria-label="Search (offline)" disabled></div></div><figcaption><b>Disabled</b>Offline</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 04 Chips -->
+    <section class="doc-comp" id="c4">
+      <header><span class="n">04</span><h3>Chips</h3><code>.chip · .is-selected · .chip--fresh</code></header>
+      <ul class="doc-notes">
+        <li><b>For filters and quick choices,</b> such as recipe filters and "Is it olive oil or teriyaki?".</li>
+        <li><b>Selected = apricot fill + persimmon ring + check icon,</b> so it's not colour alone.</li>
+        <li><b>Visual height is 36;</b> the hit region is extended to 44 (48 on Android).</li>
+      </ul>
+      <div class="states">
+        <figure class="state"><div class="state__stage"><button type="button" class="chip">High protein</button><button type="button" class="chip">Under 500 kcal</button></div><figcaption><b>Default</b></figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="chip is-pressed">High protein</button></div><figcaption><b>Pressed</b></figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="chip is-selected" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Under 500 kcal</button></div><figcaption><b>Selected</b></figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="chip is-focus">Vegetarian</button></div><figcaption><b>Focus</b></figcaption></figure>
+        <figure class="state"><div class="state__stage"><button type="button" class="chip" disabled>Vegan · 0</button></div><figcaption><b>Disabled</b>No matches</figcaption></figure>
+        <figure class="state"><div class="state__stage"><span class="chip chip--fresh"><svg class="icon" aria-hidden="true"><use href="#i-fresh"/></svg>Fits your dinner</span></div><figcaption><b>Fresh</b>Recipe fits the kcal left</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 05 Segmented -->
+    <section class="doc-comp" id="c5">
+      <header><span class="n">05</span><h3>Segmented control</h3><code>.segmented · .segmented__opt</code></header>
+      <ul class="doc-notes">
+        <li><b>Switches the unit</b> for a portion: grams, millilitres or portions.</li>
+        <li><b>Disable options that don't apply</b> (for example ml for rice) rather than hiding them.</li>
+        <li><b>Focus = 2 px surface gap + 2 px rye ring</b> outside the segment. It fits exactly into the 4 px track padding and the 8 px gap between segments.</li>
+      </ul>
+      <div class="states states--wide">
+        <figure class="state"><div class="state__stage"><fieldset class="segmented"><legend class="visually-hidden">Unit</legend><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-1" value="g" checked>g</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-1" value="ml">ml</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-1" value="portion">portion</label></fieldset></div><figcaption><b>Default</b>g selected</figcaption></figure>
+        <figure class="state"><div class="state__stage"><fieldset class="segmented"><legend class="visually-hidden">Unit, pressed</legend><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-2" value="g" checked>g</label><label class="segmented__opt is-pressed"><input class="visually-hidden" type="radio" name="unit-2" value="ml">ml</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-2" value="portion">portion</label></fieldset></div><figcaption><b>Pressed</b>ml</figcaption></figure>
+        <figure class="state"><div class="state__stage"><fieldset class="segmented"><legend class="visually-hidden">Unit, focus</legend><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-3" value="g">g</label><label class="segmented__opt is-focus"><input class="visually-hidden" type="radio" name="unit-3" value="ml">ml</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-3" value="portion" checked>portion</label></fieldset></div><figcaption><b>Focus</b>Keyboard on ml</figcaption></figure>
+        <figure class="state"><div class="state__stage"><fieldset class="segmented"><legend class="visually-hidden">Unit, disabled option</legend><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-4" value="g" checked>g</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-4" value="ml" disabled>ml</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-4" value="portion">portion</label></fieldset></div><figcaption><b>Disabled option</b>Rice has no ml</figcaption></figure>
+        <figure class="state" data-platform="android"><div class="state__stage"><fieldset class="segmented"><legend class="visually-hidden">Unit, Android</legend><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-5" value="g" checked>g</label><label class="segmented__opt is-focus"><input class="visually-hidden" type="radio" name="unit-5" value="ml">ml</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-5" value="portion">portion</label></fieldset></div><figcaption><b>Android · 48 dp</b>Focus on ml</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 06 Stepper -->
+    <section class="doc-comp" id="c6">
+      <header><span class="n">06</span><h3>Weight stepper</h3><code>.stepper · .stepper__btn · .stepper__value</code></header>
+      <ul class="doc-notes">
+        <li><b>Tap ± for 10 g steps;</b> tap the value to type an exact weight.</li>
+        <li><b>The kcal next to it updates live.</b> This is how users fix photo estimates.</li>
+        <li><b>The border is an inset ring,</b> so each ± button is a full 44×44 hit region.</li>
+      </ul>
+      <div class="states">
+        <figure class="state"><div class="state__stage"><div class="stepper" role="group" aria-label="White rice weight"><button type="button" class="stepper__btn" aria-label="Less"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="150" aria-label="Weight in grams"><small aria-hidden="true">g</small></span><button type="button" class="stepper__btn" aria-label="More"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div><span class="t-num-m">195 kcal</span></div><figcaption><b>Default</b>White rice</figcaption></figure>
+        <figure class="state"><div class="state__stage"><div class="stepper" role="group" aria-label="Weight, pressed"><button type="button" class="stepper__btn" aria-label="Less"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="160" aria-label="Weight in grams"><small aria-hidden="true">g</small></span><button type="button" class="stepper__btn is-pressed" aria-label="More"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div><span class="t-num-m">208 kcal</span></div><figcaption><b>Pressed</b>+10 g</figcaption></figure>
+        <figure class="state"><div class="state__stage"><div class="stepper is-focus" role="group" aria-label="Weight, focus"><button type="button" class="stepper__btn" aria-label="Less"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="15" aria-label="Weight in grams"><small aria-hidden="true">g</small></span><button type="button" class="stepper__btn" aria-label="More"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div><figcaption><b>Focus</b>Typing a value</figcaption></figure>
+        <figure class="state"><div class="state__stage"><div class="stepper" role="group" aria-label="Weight, minimum"><button type="button" class="stepper__btn" disabled aria-label="Less"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="1" aria-label="Weight in grams"><small aria-hidden="true">g</small></span><button type="button" class="stepper__btn" aria-label="More"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div><figcaption><b>At minimum</b>Minus disabled</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--center-col"><div class="stepper is-error" role="group" aria-label="Weight, error" aria-describedby="stepper-err"><button type="button" class="stepper__btn" aria-label="Less"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="0" aria-label="Weight in grams"><small aria-hidden="true">g</small></span><button type="button" class="stepper__btn" aria-label="More"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div><span class="stepper-help" id="stepper-err">Enter at least 1 g</span></div><figcaption><b>Error</b></figcaption></figure>
+        <figure class="state"><div class="state__stage"><div class="stepper is-disabled" role="group" aria-label="Weight, disabled" aria-disabled="true"><button type="button" class="stepper__btn" disabled aria-label="Less"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="5" aria-label="Weight in grams" disabled><small aria-hidden="true">g</small></span><button type="button" class="stepper__btn" disabled aria-label="More"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div><figcaption><b>Disabled</b>Item removed</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 07 Product item -->
+    <section class="doc-comp" id="c7">
+      <header><span class="n">07</span><h3>Product list item</h3><code>.list · .product</code></header>
+      <ul class="doc-notes">
+        <li><b>One canonical entry per food.</b> The green check means a verified source (USDA); the source is named on the detail screen.</li>
+        <li><b>kcal and P · F · C are per 100 g,</b> rounded to whole grams in lists. Decimals appear on the detail screen.</li>
+        <li><b>Identical geometry in every state:</b> rows are inset 4 px in the list, have a 16 px radius, and draw outlines as a 2 px inset ring. Dividers hide next to a highlighted row.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--flush"><div class="list fill">
+          <div class="product"><span class="product__thumb product__thumb--avocado"></span><div><div class="product__name">Avocado, raw <svg class="icon product__verified" role="img" aria-label="Verified: USDA"><use href="#i-high"/></svg></div><div class="product__meta">P 2 · F 15 · C 9</div></div><div class="product__end"><span class="product__kcal">160<small>per 100 g</small></span><button type="button" class="icon-btn icon-btn--tint" aria-label="Add avocado"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+          <div class="product is-pressed"><span class="product__thumb product__thumb--yogurt"></span><div><div class="product__name">Greek yogurt, 2% <svg class="icon product__verified" role="img" aria-label="Verified: USDA"><use href="#i-high"/></svg></div><div class="product__meta">P 10 · F 2 · C 4</div></div><div class="product__end"><span class="product__kcal">73<small>per 100 g</small></span><button type="button" class="icon-btn icon-btn--tint" aria-label="Add Greek yogurt"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+          <div class="product is-selected"><span class="product__thumb product__thumb--salmon"></span><div><div class="product__name">Salmon, cooked <svg class="icon product__verified" role="img" aria-label="Verified: USDA"><use href="#i-high"/></svg></div><div class="product__meta">P 22 · F 12 · C 0</div></div><div class="product__end"><span class="product__kcal">206<small>per 100 g</small></span><button type="button" class="icon-btn icon-btn--tint" aria-label="Salmon added"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></button></div></div>
+          <div class="product is-disabled" aria-disabled="true"><span class="product__thumb product__thumb--rice"></span><div><div class="product__name">White rice, cooked</div><div class="product__meta">In this meal</div></div><div class="product__end"><span class="product__kcal">130<small>per 100 g</small></span><button type="button" class="icon-btn" disabled aria-label="Add rice"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+          <div class="product is-error"><span class="product__thumb product__thumb--broccoli"></span><div><div class="product__name">Broccoli, boiled</div><div class="product__meta">Tap to retry</div></div><div class="product__end"><span class="product__kcal">—<small>per 100 g</small></span><button type="button" class="icon-btn icon-btn--tint" aria-label="Retry broccoli"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg></button></div></div>
+        </div></div><figcaption><b>Default · Pressed · Selected · Disabled · Error</b>Same row size in every state</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 08 Recipe card -->
+    <section class="doc-comp" id="c8">
+      <header><span class="n">08</span><h3>Recipe card</h3><code>.recipe-card</code></header>
+      <ul class="doc-notes">
+        <li><b>Leads with "fits your …"</b> when the recipe fits the kcal left (research insight 3).</li>
+        <li><b>kcal per portion</b> is the biggest number; macros sit in the meta row.</li>
+        <li><b>No fixed height, no clipping.</b> Long titles wrap and the card grows, including at 200% text size.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--start"><article class="recipe-card"><div class="recipe-card__img recipe-card__img--breakfast"><button type="button" class="icon-btn icon-btn--surface" aria-label="Save recipe"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></button></div><div class="recipe-card__body"><span><span class="chip chip--fresh"><svg class="icon" aria-hidden="true"><use href="#i-fresh"/></svg>Fits your breakfast</span></span><h4 class="recipe-card__title">Oat &amp; blueberry yogurt bowl</h4><div class="recipe-card__meta"><span><svg class="icon icon--s" aria-hidden="true"><use href="#i-time"/></svg>5 min</span><span>3 ingredients</span><span class="num">P 26 · F 7 · C 47</span></div><div class="recipe-card__foot"><span class="recipe-card__kcal">344 <small>kcal</small></span><button type="button" class="btn btn--primary btn--m"><svg class="icon icon--m" aria-hidden="true"><use href="#i-plus"/></svg>Log portion</button></div></div></article></div><figcaption><b>Default</b>Greek yogurt 200 g + oats 40 g + blueberries 80 g</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><article class="recipe-card is-pressed"><div class="recipe-card__img recipe-card__img--salmon"><button type="button" class="icon-btn icon-btn--surface" aria-label="Save salmon recipe"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></button></div><div class="recipe-card__body"><span><span class="badge badge--new">New</span></span><h4 class="recipe-card__title">Pan-seared salmon with white rice, steamed broccoli and a light soy-ginger glaze</h4><div class="recipe-card__meta"><span><svg class="icon icon--s" aria-hidden="true"><use href="#i-time"/></svg>20 min</span><span>4 ingredients</span><span class="num">P 37 · F 23 · C 49</span></div><div class="recipe-card__foot"><span class="recipe-card__kcal">559 <small>kcal</small></span><button type="button" class="btn btn--secondary btn--m">View</button></div></div></article></div><figcaption><b>Pressed</b>Long title wraps</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><article class="recipe-card is-disabled" aria-disabled="true"><div class="recipe-card__img recipe-card__img--market"></div><div class="recipe-card__body"><span><span class="badge badge--new">Offline</span></span><h4 class="recipe-card__title">Roasted cauliflower, radish and broccoli tray with lemon-tahini dressing</h4><div class="recipe-card__meta"><span>Available when you're back online. We'll download it automatically.</span></div><div class="recipe-card__foot"><span class="recipe-card__kcal">412 <small>kcal</small></span></div></div></article></div><figcaption><b>Disabled</b>Not downloaded, long title</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 09 Nutrition summary -->
+    <section class="doc-comp" id="c9">
+      <header><span class="n">09</span><h3>Nutrition summary</h3><code>.nutri · .nutri__ring · .macros · .macro--p/f/c</code></header>
+      <ul class="doc-notes">
+        <li><b>Leads with kcal left,</b> not kcal eaten. It answers "can I have dinner?".</li>
+        <li><b>Macros are always ordered P → F → C,</b> each with a letter, a value, a bar and the goal.</li>
+        <li><b>Over goal:</b> the ring and number turn Turmeric, and the copy stays neutral.</li>
+        <li class="dont"><b>Never</b> red, never "warning", never an exclamation mark for going over.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--start"><div class="nutri">
+          <div class="nutri__ring"><svg viewBox="0 0 256 136" role="img" aria-label="1,171 of 2,050 kcal eaten"><path class="nutri__track" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20"/><path class="nutri__value" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20" stroke-dasharray="201 400"/></svg><div class="nutri__center"><b class="nutri__big">879</b><small>kcal left today</small></div></div>
+          <div class="nutri__row"><span>Eaten <b>1,171</b></span><span>Goal <b>2,050</b></span></div>
+          <div class="macros">
+            <div class="macro macro--p"><div class="macro__label"><i class="macro__key"></i>P · Protein</div><div class="macro__value">70<small> g</small></div><div class="macro__bar" role="meter" aria-label="Protein" aria-valuemin="0" aria-valuemax="110" aria-valuenow="70" aria-valuetext="70 of 110 grams"><i style="--w: 64%"></i></div><div class="macro__goal">of 110 g</div></div>
+            <div class="macro macro--f"><div class="macro__label"><i class="macro__key"></i>F · Fat</div><div class="macro__value">45<small> g</small></div><div class="macro__bar" role="meter" aria-label="Fat" aria-valuemin="0" aria-valuemax="68" aria-valuenow="45" aria-valuetext="45 of 68 grams"><i style="--w: 66%"></i></div><div class="macro__goal">of 68 g</div></div>
+            <div class="macro macro--c"><div class="macro__label"><i class="macro__key"></i>C · Carbs</div><div class="macro__value">127<small> g</small></div><div class="macro__bar" role="meter" aria-label="Carbs" aria-valuemin="0" aria-valuemax="250" aria-valuenow="127" aria-valuetext="127 of 250 grams"><i style="--w: 51%"></i></div><div class="macro__goal">of 250 g</div></div>
+          </div></div></div><figcaption><b>On track</b>1,171 of 2,050 kcal</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="nutri nutri--over">
+          <div class="nutri__ring"><svg viewBox="0 0 256 136" role="img" aria-label="2,170 of 2,050 kcal eaten"><path class="nutri__track" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20"/><path class="nutri__value" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20" stroke-dasharray="352 400"/></svg><div class="nutri__center"><b class="nutri__big">120</b><small>kcal over goal</small></div></div>
+          <div class="nutri__row"><span>Eaten <b>2,170</b></span><span>Goal <b>2,050</b></span></div>
+          <div class="macros">
+            <div class="macro macro--p is-over"><div class="macro__label"><i class="macro__key"></i>P · Protein</div><div class="macro__value">118<small> g</small></div><div class="macro__bar" role="meter" aria-label="Protein" aria-valuemin="0" aria-valuemax="110" aria-valuenow="110" aria-valuetext="118 of 110 grams, 8 grams over"><i style="--w: 100%"></i></div><div class="macro__goal">of 110 g</div></div>
+            <div class="macro macro--f is-over"><div class="macro__label"><i class="macro__key"></i>F · Fat</div><div class="macro__value">76<small> g</small></div><div class="macro__bar" role="meter" aria-label="Fat" aria-valuemin="0" aria-valuemax="68" aria-valuenow="68" aria-valuetext="76 of 68 grams, 8 grams over"><i style="--w: 100%"></i></div><div class="macro__goal">of 68 g</div></div>
+            <div class="macro macro--c"><div class="macro__label"><i class="macro__key"></i>C · Carbs</div><div class="macro__value">248<small> g</small></div><div class="macro__bar" role="meter" aria-label="Carbs" aria-valuemin="0" aria-valuemax="250" aria-valuenow="248" aria-valuetext="248 of 250 grams"><i style="--w: 99%"></i></div><div class="macro__goal">of 250 g</div></div>
+          </div></div></div><figcaption><b>Over goal</b>Turmeric, never red</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 10 Facts -->
+    <section class="doc-comp" id="c10">
+      <header><span class="n">10</span><h3>Nutrition facts table</h3><code>.facts</code></header>
+      <ul class="doc-notes">
+        <li><b>Two columns: per 100 g and per portion,</b> so users can compare foods and see their meal.</li>
+        <li><b>Energy row first,</b> between heavy rules; sub-rows ("of which…") are indented.</li>
+        <li><b>The source is always shown</b> under the title.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--start"><div class="facts">
+          <h4 class="facts__title">Salmon, cooked</h4>
+          <div class="facts__source"><span class="badge badge--verified">✓ USDA</span>Atlantic, farmed, dry heat · FoodData Central</div>
+          <table>
+            <caption class="visually-hidden">Nutrition facts for salmon, cooked: per 100 grams and per 140 gram portion</caption>
+            <thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 140 g</th></tr></thead>
+            <tbody>
+              <tr class="is-energy"><td>Energy</td><td>206 kcal</td><td>288 kcal</td></tr>
+              <tr><td><i class="macro__key macro-key--p"></i>Protein</td><td>22.1 g</td><td>30.9 g</td></tr>
+              <tr><td><i class="macro__key macro-key--f"></i>Fat</td><td>12.4 g</td><td>17.4 g</td></tr>
+              <tr class="is-sub"><td>of which saturated</td><td>2.5 g</td><td>3.5 g</td></tr>
+              <tr><td><i class="macro__key macro-key--c"></i>Carbohydrates</td><td>0 g</td><td>0 g</td></tr>
+              <tr class="is-sub"><td>of which sugars</td><td>0 g</td><td>0 g</td></tr>
+              <tr><td>Fibre</td><td>0 g</td><td>0 g</td></tr>
+              <tr><td>Salt</td><td>0.15 g</td><td>0.21 g</td></tr>
+            </tbody>
+          </table></div></div><figcaption><b>Default</b>Per 100 g + per portion</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 11 App bar -->
+    <section class="doc-comp" id="c11">
+      <header><span class="n">11</span><h3>Top app bar</h3><code>.app-bar · .app-bar--large · .is-scrolled</code></header>
+      <ul class="doc-notes">
+        <li><b>Sits below the 47 pt status bar.</b> 56 pt on iOS, 64 dp on Android (Material 3).</li>
+        <li><b>Icons are 24</b> inside 44 pt (48 dp) buttons.</li>
+        <li><b>Titles wrap instead of truncating.</b> When content scrolls under the bar, it switches to the surface colour with a hairline.</li>
+      </ul>
+      <div class="states states--wide">
+        <figure class="state"><div class="state__stage state__stage--flush"><div class="app-bar fill"><button type="button" class="icon-btn" aria-label="Back"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg></button><h4 class="app-bar__title">Add food</h4><button type="button" class="icon-btn" aria-label="Scan barcode"><svg class="icon" aria-hidden="true"><use href="#i-barcode"/></svg></button></div></div><figcaption><b>Default</b>Pushed screen</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--flush"><div class="app-bar is-scrolled fill"><button type="button" class="icon-btn is-pressed" aria-label="Back"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg></button><h4 class="app-bar__title">Salmon, cooked (Atlantic, farmed)</h4><button type="button" class="icon-btn" aria-label="Save"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></button></div></div><figcaption><b>Scrolled</b>Back pressed, long title wraps</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--flush"><div class="app-bar app-bar--large fill"><h4 class="app-bar__title">Diary</h4><div class="app-bar__actions"><button type="button" class="icon-btn" aria-label="Search diary"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></button><button type="button" class="icon-btn" aria-label="Pick a date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></button></div></div></div><figcaption><b>Large</b>Top-level tab</figcaption></figure>
+        <figure class="state" data-platform="android"><div class="state__stage state__stage--flush"><div class="app-bar fill"><button type="button" class="icon-btn" aria-label="Back, Android"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg></button><h4 class="app-bar__title">Add food</h4><button type="button" class="icon-btn is-focus" aria-label="Scan barcode, Android"><svg class="icon" aria-hidden="true"><use href="#i-barcode"/></svg></button></div></div><figcaption><b>Android · 64 dp</b>48 dp buttons, focus</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 12 Tab bar -->
+    <section class="doc-comp" id="c12">
+      <header><span class="n">12</span><h3>Tab bar</h3><code>.tab-bar · .tab · .tab--scan</code></header>
+      <ul class="doc-notes">
+        <li><b>5 items:</b> Today · Diary · <b>Scan</b> · Recipes · Profile. Scan is a persimmon pill inside the bar.</li>
+        <li><b>Every indicator stays inside the bar:</b> tabs are 44 pt tall with padding above and below, the pressed pill is inset 4 px, and the focus ring is inset.</li>
+        <li><b>Active = persimmon, bold label and filled icon,</b> not colour alone. The 34 pt home-indicator area sits below.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--bar"><nav class="tab-bar fill" aria-label="Tab bar: default">
+          <button type="button" class="tab is-active" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-today"/></svg><span>Today</span></button>
+          <button type="button" class="tab"><svg class="icon" aria-hidden="true"><use href="#i-diary"/></svg><span>Diary</span></button>
+          <button type="button" class="tab tab--scan" aria-label="Scan a meal"><span class="tab__fab"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg></span></button>
+          <button type="button" class="tab"><svg class="icon" aria-hidden="true"><use href="#i-recipes"/></svg><span>Recipes</span></button>
+          <button type="button" class="tab"><svg class="icon" aria-hidden="true"><use href="#i-profile"/></svg><span>Profile</span></button>
+        </nav></div><figcaption><b>Default</b>Today active</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--bar"><nav class="tab-bar fill" aria-label="Tab bar: pressed and focus">
+          <button type="button" class="tab is-focus"><svg class="icon" aria-hidden="true"><use href="#i-today"/></svg><span>Today</span></button>
+          <button type="button" class="tab is-pressed"><svg class="icon" aria-hidden="true"><use href="#i-diary"/></svg><span>Diary</span></button>
+          <button type="button" class="tab tab--scan is-pressed" aria-label="Scan a meal, pressed"><span class="tab__fab"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg></span></button>
+          <button type="button" class="tab is-active" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-recipes"/></svg><span>Recipes</span></button>
+          <button type="button" class="tab is-pressed is-focus"><svg class="icon" aria-hidden="true"><use href="#i-profile"/></svg><span>Profile</span></button>
+        </nav></div><figcaption><b>Pressed · Focus</b>Today focus, Diary + Scan pressed, Profile pressed + focus</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--bar"><nav class="tab-bar fill" aria-label="Tab bar: scan focus">
+          <button type="button" class="tab"><svg class="icon" aria-hidden="true"><use href="#i-today"/></svg><span>Today</span></button>
+          <button type="button" class="tab is-active" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-diary"/></svg><span>Diary</span></button>
+          <button type="button" class="tab tab--scan is-focus" aria-label="Scan a meal, focus"><span class="tab__fab"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg></span></button>
+          <button type="button" class="tab"><svg class="icon" aria-hidden="true"><use href="#i-recipes"/></svg><span>Recipes</span></button>
+          <button type="button" class="tab"><svg class="icon" aria-hidden="true"><use href="#i-profile"/></svg><span>Profile</span></button>
+        </nav></div><figcaption><b>Scan focus</b>Ring around the pill, inside the tab</figcaption></figure>
+        <figure class="state" data-platform="android"><div class="state__stage state__stage--bar"><nav class="tab-bar fill" aria-label="Tab bar: Android">
+          <button type="button" class="tab is-active" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-today"/></svg><span>Today</span></button>
+          <button type="button" class="tab is-pressed"><svg class="icon" aria-hidden="true"><use href="#i-diary"/></svg><span>Diary</span></button>
+          <button type="button" class="tab tab--scan" aria-label="Scan a meal, Android"><span class="tab__fab"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg></span></button>
+          <button type="button" class="tab is-focus"><svg class="icon" aria-hidden="true"><use href="#i-recipes"/></svg><span>Recipes</span></button>
+          <button type="button" class="tab"><svg class="icon" aria-hidden="true"><use href="#i-profile"/></svg><span>Profile</span></button>
+        </nav></div><figcaption><b>Android · 64 dp</b>48 dp tabs</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 13 Sheet -->
+    <section class="doc-comp" id="c13">
+      <header><span class="n">13</span><h3>Bottom sheet</h3><code>.scrim · .sheet · .macro-tiles</code></header>
+      <ul class="doc-notes">
+        <li><b>For quick edits without leaving the screen,</b> such as a portion or a meal choice.</li>
+        <li><b>Always has a handle and a close button.</b> As a modal it traps focus, closes with Esc and returns focus to the control that opened it.</li>
+        <li><b>Macro tiles:</b> three equal grid columns, the same padding, shared baselines and tabular numbers, all inside the sheet margins.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--flush"><div class="frame">
+          <div class="scrim"></div>
+          <dialog open class="sheet" aria-labelledby="ps-preview-title">
+            <div class="sheet__handle"></div>
+            <div class="sheet__head"><div><h4 class="sheet__title" id="ps-preview-title">White rice, cooked</h4><p class="sheet__sub">130 kcal per 100 g · <span class="badge badge--verified">✓ USDA</span></p></div><button type="button" class="icon-btn" aria-label="Close sheet"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+            <div class="sheet__body">
+              <fieldset class="segmented fill"><legend class="visually-hidden">Portion unit</legend><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-6" value="g" checked>g</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-6" value="ml" disabled>ml</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-6" value="portion">portion</label></fieldset>
+              <div class="sheet__row"><div class="stepper" role="group" aria-label="Rice weight"><button type="button" class="stepper__btn" aria-label="Less rice"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="150" aria-label="Weight in grams"><small aria-hidden="true">g</small></span><button type="button" class="stepper__btn" aria-label="More rice"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div><span class="t-num-l">195 <span class="t-callout text-secondary">kcal</span></span></div>
+              <div class="macro-tiles">
+                <div class="macro-tile macro-tile--p"><span class="macro-tile__label">P · Protein</span><span class="macro-tile__value">4.0<small> g</small></span></div>
+                <div class="macro-tile macro-tile--f"><span class="macro-tile__label">F · Fat</span><span class="macro-tile__value">0.4<small> g</small></span></div>
+                <div class="macro-tile macro-tile--c"><span class="macro-tile__label">C · Carbs</span><span class="macro-tile__value">42.3<small> g</small></span></div>
+              </div>
+            </div>
+            <div class="sheet__foot"><button type="button" class="btn btn--primary btn--block">Add to Lunch · 195 kcal</button></div>
+          </dialog></div></div><figcaption><b>Portion sheet</b>Preview (non-modal)</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--center-col"><button type="button" class="btn btn--secondary" data-open-sheet aria-haspopup="dialog" aria-controls="portion-sheet">Open the portion sheet</button><p class="t-callout text-secondary doc-measure">Opens a modal <code>&lt;dialog&gt;</code>: focus moves in, Tab stays inside, Esc or ✕ closes it and focus returns to this button.</p></div><figcaption><b>Modal behaviour</b>Keyboard: Enter · Tab · Esc</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 14 Toast -->
+    <section class="doc-comp" id="c14">
+      <header><span class="n">14</span><h3>Toast</h3><code>.toast · --success · --warning · --error</code></header>
+      <ul class="doc-notes">
+        <li><b>Confirms an action and offers Undo.</b> It stays until the user dismisses it or does something else: no timer, and a ✕ to close.</li>
+        <li><b>One line, plus an optional action.</b> Shown above the tab bar.</li>
+        <li><b>The red error toast</b> is only for real failures, such as no connection.</li>
+      </ul>
+      <div class="states states--wide">
+        <figure class="state"><div class="state__stage state__stage--start"><div class="toast toast--success" role="status"><svg class="icon" aria-hidden="true"><use href="#i-high"/></svg><span class="toast__msg">Added to Lunch · 559 kcal</span><button type="button" class="toast__action">Undo</button><button type="button" class="toast__close" aria-label="Dismiss"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div></div><figcaption><b>Success</b>With Undo</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="toast toast--warning" role="status"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg><span class="toast__msg">It's a bit dark. Try near a window.</span><button type="button" class="toast__action is-pressed">Retake</button><button type="button" class="toast__close" aria-label="Dismiss"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div></div><figcaption><b>Warning</b>Action pressed</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="toast toast--error" role="alert"><svg class="icon" aria-hidden="true"><use href="#i-wifi-off"/></svg><span class="toast__msg">No connection. We'll analyse your photo when you're back online.</span><button type="button" class="toast__action is-focus">Retry</button><button type="button" class="toast__close" aria-label="Dismiss"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div></div><figcaption><b>Error</b>Action focused (inset ring)</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 15 Empty state -->
+    <section class="doc-comp" id="c15">
+      <header><span class="n">15</span><h3>Empty state</h3><code>.empty · .empty--error</code></header>
+      <ul class="doc-notes">
+        <li><b>Say what's missing and give the next step:</b> one primary action and one alternative.</li>
+        <li><b>Friendly, never blaming.</b> Photo failures always offer manual search.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage"><div class="empty"><span class="empty__icon"><svg class="icon icon--xl" aria-hidden="true"><use href="#i-recipes"/></svg></span><h4 class="empty__title">Nothing for dinner yet</h4><p class="empty__text">Snap your plate when you eat. You have 879 kcal left today.</p><div class="empty__actions"><button type="button" class="btn btn--primary"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg>Snap a meal</button><button type="button" class="btn btn--ghost">Search instead</button></div></div></div><figcaption><b>Empty</b>No dinner logged</figcaption></figure>
+        <figure class="state"><div class="state__stage"><div class="empty empty--error"><span class="empty__icon"><svg class="icon icon--xl" aria-hidden="true"><use href="#i-viewfinder"/></svg></span><h4 class="empty__title">We couldn't spot any food</h4><p class="empty__text">Try again with the whole plate in frame and good light, or search for it.</p><div class="empty__actions"><button type="button" class="btn btn--primary">Retake photo</button><button type="button" class="btn btn--ghost"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Search manually</button></div></div></div><figcaption><b>Error</b>Photo not recognised</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 16 Badges -->
+    <section class="doc-comp" id="c16">
+      <header><span class="n">16</span><h3>Badges and confidence</h3><code>.badge · .confidence · .marker</code></header>
+      <ul class="doc-notes">
+        <li><b>Confidence = icon + word,</b> on every detected food in a photo.</li>
+        <li><b>"Not sure" rows get a honey marker</b> and a tint, and always offer alternatives.</li>
+        <li><b>Macro badges repeat the letter</b> (P / F / C), so they're readable without colour.</li>
+      </ul>
+      <div class="states">
+        <figure class="state"><div class="state__stage"><span class="badge badge--verified">✓ USDA</span><span class="badge badge--new">New</span><span class="badge badge--fresh">Fits your day</span><span class="badge badge--count">3</span></div><figcaption><b>Status badges</b>Verified · new · fresh · count</figcaption></figure>
+        <figure class="state"><div class="state__stage"><span class="badge badge--p">P 37 g</span><span class="badge badge--f">F 23 g</span><span class="badge badge--c">C 49 g</span></div><figcaption><b>Macro badges</b>Salmon plate totals</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><span class="confidence confidence--high"><svg class="icon" aria-hidden="true"><use href="#i-high"/></svg>High confidence</span><span class="confidence confidence--check"><svg class="icon" aria-hidden="true"><use href="#i-check-portion"/></svg>Check portion</span><span class="confidence confidence--unsure is-marked"><svg class="icon" aria-hidden="true"><use href="#i-unsure"/></svg>Not sure. Is it olive oil or teriyaki?</span></div><figcaption><b>Confidence</b>High · check · not sure</figcaption></figure>
+        <figure class="state"><div class="state__stage"><span class="marker">1</span><span class="marker">2</span><span class="marker">3</span><span class="marker marker--unsure">4</span></div><figcaption><b>Photo markers</b>Numbered items · honey = not sure</figcaption></figure>
+      </div>
+    </section>
+
+    <h2 class="doc-h2" id="a11y"><small>Checks</small>Accessibility</h2>
+    <div class="states">
+      <figure class="state"><div class="state__stage state__stage--start"><b class="t-num-l">AA</b><span class="t-callout text-secondary">Every text colour, state colour and focus ring passes WCAG 2.2 AA. The table is in README.md, generated by <code>tools/contrast.py</code>.</span></div><figcaption><b>Contrast</b></figcaption></figure>
+      <figure class="state"><div class="state__stage state__stage--start"><b class="t-num-l">44 · 48</b><span class="t-callout text-secondary">Minimum hit region in pt (iOS) and dp (Android). Checked for every interactive element by <code>npm run check</code>.</span></div><figcaption><b>Touch</b></figcaption></figure>
+      <figure class="state"><div class="state__stage state__stage--start"><b class="t-num-l">200%</b><span class="t-callout text-secondary">Text scales with Dynamic Type and Android font size. Tested at 200% with no clipping.</span></div><figcaption><b>Text size</b></figcaption></figure>
+      <figure class="state"><div class="state__stage state__stage--start"><b class="t-num-l">0</b><span class="t-callout text-secondary">Serious or critical axe-core violations across the whole page.</span></div><figcaption><b>axe-core</b></figcaption></figure>
+    </div>
+  </main>
+</div>
+<dialog class="sheet-dialog" id="portion-sheet" aria-labelledby="ps-title">
+  <div class="sheet">
+    <div class="sheet__handle"></div>
+    <div class="sheet__head"><div><h2 class="sheet__title" id="ps-title">White rice, cooked</h2><p class="sheet__sub">130 <abbr title="kilocalories">kcal</abbr> per 100 <abbr title="grams">g</abbr> · <span class="badge badge--verified">✓ USDA</span></p></div><button type="button" class="icon-btn" data-close aria-label="Close sheet"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+    <div class="sheet__body">
+      <fieldset class="segmented"><legend class="visually-hidden">Portion unit</legend><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-modal" value="g" checked>g</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-modal" value="ml" disabled>ml</label><label class="segmented__opt"><input class="visually-hidden" type="radio" name="unit-modal" value="portion">portion</label></fieldset>
+      <div class="sheet__row"><div class="stepper" role="group" aria-label="Rice weight"><button type="button" class="stepper__btn" aria-label="Less rice"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="150" aria-label="Rice weight in grams"><small aria-hidden="true">g</small></span><button type="button" class="stepper__btn" aria-label="More rice"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div><span class="t-num-l">195 <span class="t-callout text-secondary">kcal</span></span></div>
+      <div class="macro-tiles">
+        <div class="macro-tile macro-tile--p"><span class="macro-tile__label">P · Protein</span><span class="macro-tile__value">4.0<small> g</small></span></div>
+        <div class="macro-tile macro-tile--f"><span class="macro-tile__label">F · Fat</span><span class="macro-tile__value">0.4<small> g</small></span></div>
+        <div class="macro-tile macro-tile--c"><span class="macro-tile__label">C · Carbs</span><span class="macro-tile__value">42.3<small> g</small></span></div>
+      </div>
+    </div>
+    <div class="sheet__foot"><button type="button" class="btn btn--primary btn--block" data-close>Add to Lunch · 195 kcal</button></div>
+  </div>
+</dialog>
+
+<dialog class="sheet-dialog" id="confirm-delete" aria-labelledby="cd-title" aria-describedby="cd-desc">
+  <div class="sheet confirm">
+    <div class="sheet__handle"></div>
+    <div class="sheet__head"><div><h2 class="sheet__title" id="cd-title">Delete your account?</h2><p class="sheet__sub" id="cd-desc">This deletes your diary, recipes and photos from Ripe. You have 30 days to change your mind: sign in again and everything comes back.</p></div><button type="button" class="icon-btn" data-close aria-label="Cancel and close"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+    <ul class="sheet__confirm">
+      <li>1,248 diary entries</li>
+      <li>12 saved recipes</li>
+      <li>86 meal photos</li>
+    </ul>
+    <div class="sheet__foot"><button type="button" class="btn btn--secondary btn--block" data-close autofocus>Keep my account</button><button type="button" class="btn btn--destructive btn--block" data-close>Delete account and data</button></div>
+  </div>
+</dialog>
+
+<footer class="doc-footer">
+  <p>Ripe design system v1.2 · tokens generated from <code>tokens.json</code> · verified with <code>npm run check</code> and <code>npm run check:a11y</code> (WCAG 2.2 AA + AAA for critical elements).</p>
+</footer>
+
+<script>
+  // Modal sheets: native <dialog> gives Esc-to-close and returns focus to the opener.
+  // Tab / Shift+Tab are wrapped inside the open dialog so focus never leaves it (WCAG 2.1.2, 2.4.3).
+  document.addEventListener("click", (event) => {
+    const opener = event.target.closest("[data-open-sheet], [data-open-confirm]");
+    if (opener) document.getElementById(opener.getAttribute("aria-controls")).showModal();
+    const closer = event.target.closest("[data-close]");
+    if (closer) closer.closest("dialog").close();
+  });
+  document.addEventListener("keydown", (event) => {
+    const dialog = document.querySelector("dialog[open]:modal");
+    if (!dialog || event.key !== "Tab") return;
+    const stops = [...dialog.querySelectorAll("button, input, [tabindex]:not([tabindex='-1']), a[href]")]
+      .filter((el) => !el.disabled && el.getClientRects().length && !(el.type === "radio" && !el.checked));
+    const first = stops[0];
+    const last = stops[stops.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
+</script>
+</body>
+</html>
