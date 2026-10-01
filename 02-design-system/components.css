@@ -36,9 +36,15 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
   color: inherit;
+}
+
+/* The hidden attribute always wins over component display values (toggled panels, footers, toasts) */
+[hidden] {
+  display: none !important;
 }
 
 button {
@@ -337,7 +343,7 @@ button {
   align-items: center;
   gap: var(--space-2);
   min-height: var(--size-input);
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-1) var(--space-4);
   background: var(--color-bg-surface);
   border-radius: var(--radius-md);
   box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
@@ -348,6 +354,7 @@ button {
   flex: 1;
   min-width: 0;
   width: 0;
+  min-height: var(--size-touch-min); /* the input itself is the 44 target, not just the box around it */
   border: 0;
   outline: 0;
   background: transparent;
@@ -359,6 +366,49 @@ button {
   color: var(--color-text-secondary);
 }
 
+.field__control textarea {
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  width: 0;
+  min-height: calc(var(--size-touch-min) * 2);
+  padding: var(--space-2) 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: var(--type-body);
+  color: var(--color-text-primary);
+  resize: vertical;
+  field-sizing: content; /* grows with its text, so a long step is never hidden inside the field */
+}
+
+.field__control select {
+  flex: 1;
+  min-width: 0;
+  width: 0;
+  min-height: var(--size-touch-min);
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: var(--type-body);
+  color: var(--color-text-primary);
+}
+
+/* Label row with a live character count on the right ("28 / 60") */
+.field__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.field__count {
+  font: var(--type-num-s);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-secondary);
+}
+
 .field__suffix {
   font: var(--type-num-m);
   color: var(--color-text-secondary);
@@ -366,6 +416,7 @@ button {
 
 .field__help {
   display: flex;
+  margin: 0;
   gap: var(--space-1);
   align-items: flex-start;
   font: var(--type-caption);
@@ -403,7 +454,7 @@ button {
   align-items: center;
   gap: var(--space-2);
   min-height: var(--size-input);
-  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
+  padding: var(--space-1) calc(var(--space-card-inset) - var(--size-icon-inset)) var(--space-1) var(--space-card-inset);
   background: var(--color-bg-sunken);
   border-radius: var(--radius-full);
   box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
@@ -500,6 +551,18 @@ button {
   color: var(--color-text-fresh);
 }
 
+/* Locked filter (allergy): a lock icon + the word "Allergy". It can't be removed here, only in Profile. */
+.chip--locked {
+  background: var(--color-bg-sunken);
+  cursor: default;
+}
+
+.chip--locked small {
+  font: var(--type-caption);
+  letter-spacing: var(--type-caption-tracking);
+  color: var(--color-text-secondary);
+}
+
 .chip:disabled,
 .chip.is-disabled {
   background: var(--color-bg-disabled);
@@ -509,7 +572,7 @@ button {
 
 .chip-row {
   display: flex;
-  gap: var(--space-2);
+  gap: var(--space-chip-gap);
   flex-wrap: wrap;
 }
 
@@ -696,7 +759,7 @@ button {
   gap: var(--space-3);
   align-items: center;
   min-height: calc(var(--size-thumb) + var(--space-4));
-  padding: var(--space-2) var(--space-1) var(--space-2) var(--space-3);
+  padding: var(--space-2) calc(var(--space-card-inset) - var(--space-1));
   border-radius: var(--radius-md);
   background: transparent;
 }
@@ -710,8 +773,8 @@ button {
   border-top: var(--border-width-hairline) solid var(--color-border-subtle);
 }
 
-.product:is(:active, .is-pressed, .is-selected, .is-error)::before,
-.product:is(:active, .is-pressed, .is-selected, .is-error) + .product::before {
+.product:is(:active, .is-pressed, .is-selected, .is-error, .is-check)::before,
+.product:is(:active, .is-pressed, .is-selected, .is-error, .is-check) + .product::before {
   visibility: hidden;
 }
 
@@ -720,6 +783,33 @@ button {
   height: var(--size-thumb);
   border-radius: var(--radius-sm);
   background: var(--color-bg-sunken) center / cover;
+  object-fit: cover;
+}
+
+/* No photo: an icon on the sunken tile */
+.product__thumb--icon {
+  display: grid;
+  place-items: center;
+  color: var(--color-text-secondary);
+}
+
+/* Detected item (photo result): marker | name, confidence, weight stepper | kcal */
+.product--detected {
+  grid-template-columns: var(--space-6) minmax(0, 1fr) auto;
+  align-items: start;
+  padding-block: var(--space-3);
+}
+
+.product--detected + .product--detected::before {
+  left: var(--space-3);
+}
+
+.product__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
 }
 
 .product__name {
@@ -744,10 +834,17 @@ button {
   color: var(--color-text-secondary);
 }
 
+/* Words instead of numbers (for example the foods in a meal) */
+.product__meta--text {
+  font: var(--type-callout);
+}
+
 .product__end {
   display: flex;
   align-items: center;
   gap: var(--space-1);
+  margin: calc((var(--border-width-focus-gap) + var(--border-width-focus)) * -1);
+  padding: calc(var(--border-width-focus-gap) + var(--border-width-focus)); /* room for the focus ring of the Add button */
 }
 
 .product__kcal {
@@ -770,6 +867,11 @@ button {
 .product.is-selected {
   background: var(--color-bg-accent-subtle);
   box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-accent);
+}
+
+/* "Check portion": the row is tinted and the user is asked to confirm the weight */
+.product.is-check {
+  background: var(--color-status-warning-subtle);
 }
 
 .product.is-error {
@@ -796,6 +898,7 @@ button {
    8. Recipe card (no clipping: the image rounds its own top corners)
    ===================================================================== */
 .recipe-card {
+  position: relative;
   display: block;
   background: var(--color-bg-surface);
   border-radius: var(--radius-lg);
@@ -812,20 +915,35 @@ button {
 
 .recipe-card__img .icon-btn {
   position: absolute;
+  z-index: 1;
   top: var(--space-3);
   right: var(--space-3);
 }
 
 .recipe-card__body {
   display: grid;
+  justify-items: start;
   gap: var(--space-2);
-  padding: var(--space-4);
+  padding: var(--space-card-inset);
 }
 
 .recipe-card__title {
   margin: 0;
   font: var(--type-h2);
   overflow-wrap: anywhere;
+}
+
+/* A link in the title makes the whole card clickable (stretched link) and keyboard reachable */
+.recipe-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.recipe-card__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
 }
 
 .recipe-card__meta {
@@ -840,7 +958,7 @@ button {
 .recipe-card__meta span {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-inline-icon);
 }
 
 .recipe-card__foot {
@@ -862,6 +980,64 @@ button {
   color: var(--color-text-secondary);
 }
 
+.recipe-card__img > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.recipe-card__fit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-inline-icon);
+  font: var(--type-label);
+  color: var(--color-text-fresh);
+}
+
+/* Compact card for ranked lists: image on the left, the same content on the right */
+.recipe-card--compact {
+  display: grid;
+  grid-template-areas:
+    "img body"
+    "foot foot";
+  grid-template-columns: var(--size-recipe-thumb) minmax(0, 1fr);
+}
+
+.recipe-card--compact .recipe-card__img {
+  grid-area: img;
+  aspect-ratio: auto;
+  min-height: 100%;
+  border-radius: var(--radius-lg) 0 0;
+}
+
+.recipe-card--compact .recipe-card__img:only-child,
+.recipe-card--compact:not(:has(.recipe-card__foot)) .recipe-card__img {
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+/* Macro chips span the whole card width, so P, F and C stay on one row even at 320 pt */
+.recipe-card--compact .recipe-card__foot {
+  grid-area: foot;
+  margin: 0;
+  padding: var(--space-3) var(--space-card-inset) var(--space-card-inset);
+}
+
+.recipe-card--compact .recipe-card__body {
+  grid-area: body;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-card-inset);
+}
+
+.recipe-card--compact .recipe-card__title {
+  font: var(--type-title);
+}
+
+.recipe-card--compact .recipe-card__kcal {
+  font: var(--type-num-m);
+}
+
 .recipe-card:active,
 .recipe-card.is-pressed {
   transform: scale(0.98);
@@ -881,7 +1057,7 @@ button {
    9. Nutrition summary (calorie ring + macro bars)
    ===================================================================== */
 .nutri {
-  padding: var(--space-5) var(--space-4) var(--space-4);
+  padding: var(--space-5) var(--space-card-inset) var(--space-card-inset);
   background: var(--color-bg-surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-e1);
@@ -940,7 +1116,7 @@ button {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--space-2);
-  margin: var(--space-3) var(--space-2) var(--space-4);
+  margin: var(--space-3) 0 var(--space-4);
   font: var(--type-callout);
   color: var(--color-text-secondary);
 }
@@ -1022,6 +1198,19 @@ button {
   background: var(--color-macro-carbs);
 }
 
+/* Standalone macro keys (for example in tables) */
+.macro__key--p {
+  background: var(--color-macro-protein);
+}
+
+.macro__key--f {
+  background: var(--color-macro-fat);
+}
+
+.macro__key--c {
+  background: var(--color-macro-carbs);
+}
+
 .macro.is-over .macro__value,
 .macro.is-over .macro__goal {
   color: var(--color-status-warning-text);
@@ -1063,6 +1252,28 @@ button {
   color: var(--color-text-secondary);
 }
 
+/* Macro chips: the same macro tile, inline. Letter + value, macro colours, no dot separators */
+.macro-tiles--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-chip-gap);
+}
+
+.macro-tile--chip {
+  display: inline-flex;
+  grid-row: auto;
+  align-items: center;
+  gap: var(--space-inline-icon);
+  min-height: var(--size-macro-chip);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-xs);
+  white-space: nowrap; /* a chip never breaks inside; the row of chips may wrap only at large text sizes */
+}
+
+.macro-tile--chip .macro-tile__value {
+  font: var(--type-num-s);
+}
+
 .macro-tile--p {
   background: var(--color-macro-protein-subtle);
   color: var(--color-macro-protein-text);
@@ -1082,7 +1293,7 @@ button {
    10. Nutrition facts table
    ===================================================================== */
 .facts {
-  padding: var(--space-4);
+  padding: var(--space-card-inset);
   background: var(--color-bg-surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-e1);
@@ -1104,6 +1315,7 @@ button {
 
 .facts table {
   width: 100%;
+  overflow-wrap: anywhere; /* long names and headers wrap at 200% text instead of widening the card */
   margin-top: var(--space-3);
   border-collapse: collapse;
   font: var(--type-callout);
@@ -1165,7 +1377,7 @@ button {
   align-items: center;
   gap: var(--space-2);
   min-height: var(--size-app-bar);
-  padding: var(--space-1) var(--space-2);
+  padding: var(--space-1) calc(var(--space-screen-margin) - var(--size-icon-inset));
   background: var(--color-bg-canvas);
 }
 
@@ -1183,7 +1395,7 @@ button {
 
 .app-bar--large {
   grid-template-columns: minmax(0, 1fr) auto;
-  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-5);
+  padding: var(--space-1) calc(var(--space-screen-margin) - var(--size-icon-inset)) var(--space-1) var(--space-screen-margin);
 }
 
 .app-bar--large .app-bar__title {
@@ -1632,6 +1844,700 @@ button {
 }
 
 /* =====================================================================
+   17. Inline banner (info, offline). Stays until the situation changes; never auto-hides.
+   ===================================================================== */
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-card-inset);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-sunken);
+  color: var(--color-text-primary);
+  font: var(--type-callout);
+}
+
+.banner > .icon {
+  color: var(--color-text-secondary);
+}
+
+.banner__text {
+  flex: 1;
+  margin: 0;
+}
+
+.banner__text b {
+  font-weight: var(--font-weight-semibold);
+}
+
+.banner .btn {
+  margin-block: calc(var(--space-2) * -1);
+}
+
+.banner--offline {
+  background: var(--color-status-warning-subtle);
+}
+
+.banner--offline > .icon {
+  color: var(--color-status-warning);
+}
+
+/* =====================================================================
+   18. Skeleton (loading placeholder). Static when the user prefers reduced motion.
+   Put aria-busy="true" on the container and a visually hidden "Loading…" text inside.
+   ===================================================================== */
+.skeleton {
+  display: block;
+  height: var(--space-4);
+  border-radius: var(--radius-xs);
+  background:
+    linear-gradient(90deg, var(--color-bg-sunken) 30%, var(--color-bg-surface) 50%, var(--color-bg-sunken) 70%)
+    0 0 / 300% 100%;
+  animation: ripe-shimmer var(--motion-duration-shimmer) linear infinite;
+}
+
+.skeleton--title {
+  height: var(--space-6);
+  width: 60%;
+}
+
+.skeleton--short {
+  width: 40%;
+}
+
+.skeleton--thumb {
+  width: var(--size-thumb);
+  height: var(--size-thumb);
+  border-radius: var(--radius-sm);
+}
+
+.skeleton--block {
+  height: calc(var(--space-16) * 3);
+  border-radius: var(--radius-lg);
+}
+
+@keyframes ripe-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* =====================================================================
+   19. Camera viewfinder (plate guide, tips, live hint, shutter row)
+   The live feed is a full-bleed image. Everything on it sits on solid dark pills, so text
+   contrast never depends on the photo.
+   ===================================================================== */
+.viewfinder {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  flex: 1;
+  min-height: 0;
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+  overflow: hidden;
+}
+
+.viewfinder__feed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.viewfinder__plate {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle calc(var(--size-plate-guide) / 2) at 50% 50%, transparent 99%, var(--color-bg-scrim) 100%);
+  pointer-events: none;
+}
+
+.viewfinder__plate::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--size-plate-guide);
+  aspect-ratio: 1;
+  border-radius: var(--radius-full);
+  outline: var(--border-width-focus) dashed var(--color-border-inverse);
+  outline-offset: calc(var(--border-width-focus) * -1);
+  translate: -50% -50%;
+}
+
+.viewfinder__top,
+.viewfinder__bottom {
+  position: relative;
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-screen-margin);
+}
+
+.viewfinder__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.viewfinder__tips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.viewfinder__tip,
+.viewfinder__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--size-badge);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+  font: var(--type-caption);
+  letter-spacing: var(--type-caption-tracking);
+}
+
+.viewfinder__hint {
+  justify-self: center;
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font: var(--type-label);
+}
+
+.viewfinder__hint .icon {
+  color: var(--color-status-success);
+}
+
+.viewfinder__controls {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-inline: calc(var(--space-1) * -1);
+  padding: var(--space-2) var(--space-1) var(--size-safe-bottom);
+}
+
+.viewfinder__controls > :first-child {
+  justify-self: start;
+}
+
+.viewfinder__controls > :last-child {
+  justify-self: end;
+}
+
+.viewfinder__library {
+  width: var(--size-touch-android);
+  height: var(--size-touch-android);
+  border-radius: var(--radius-sm);
+  outline: var(--border-width-focus) solid var(--color-border-inverse);
+  outline-offset: calc(var(--border-width-focus) * -1);
+  object-fit: cover;
+}
+
+.viewfinder__side {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-1);
+  min-width: var(--size-touch-min);
+  font: var(--type-caption);
+  color: var(--color-text-inverse);
+}
+
+.shutter {
+  display: grid;
+  place-items: center;
+  width: var(--size-shutter);
+  height: var(--size-shutter);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-accent);
+  color: var(--color-text-on-accent);
+  box-shadow:
+    0 0 0 var(--space-1) var(--color-bg-inverse),
+    0 0 0 calc(var(--space-1) + var(--border-width-focus)) var(--color-border-inverse);
+}
+
+.shutter:active,
+.shutter.is-pressed {
+  background: var(--color-bg-accent-pressed);
+}
+
+.icon-btn--inverse {
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.viewfinder :focus-visible,
+.viewfinder .is-focus {
+  outline-color: var(--color-border-inverse);
+}
+
+.viewfinder .shutter:focus-visible,
+.viewfinder .shutter.is-focus {
+  outline-offset: calc(var(--space-1) + var(--border-width-focus) + var(--border-width-focus-gap));
+}
+
+/* =====================================================================
+   20. Screen layout: the 390 × 844 frame every screen in 03-screens uses
+   ===================================================================== */
+.screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: var(--size-screen-width);
+  max-width: 100%;
+  height: var(--size-screen-height);
+  background: var(--color-bg-canvas);
+  overflow: hidden;
+}
+
+.status-bar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--size-safe-top);
+  padding: var(--space-1) var(--space-6) 0 var(--space-8);
+  font: var(--type-body-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.status-bar__icons {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.status-bar--inverse {
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.screen > .app-bar,
+.screen > .tab-bar {
+  flex: none;
+}
+
+.screen__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* the column never grows past the screen; content wraps instead */
+  flex: 1;
+  align-content: start;
+  gap: var(--space-stack);
+  min-height: 0;
+  padding: var(--space-2) var(--space-screen-margin) var(--space-6);
+  overflow-y: auto;
+}
+
+/* Spacing comes from the grid gap, so direct children never add their own margins */
+.screen__body > *,
+.card > *,
+.row-between > * {
+  margin: 0;
+}
+
+/* The body scrolls, so keyboard users can focus it to scroll (WCAG 2.1.1). The ring is inset because the screen clips. */
+.screen__body:focus-visible {
+  outline-offset: calc(var(--border-width-focus) * -1);
+}
+
+.screen__body--flush {
+  padding-top: 0;
+}
+
+.screen__bleed {
+  margin-inline: calc(var(--space-screen-margin) * -1);
+}
+
+.screen__foot {
+  display: grid;
+  flex: none;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-screen-margin) var(--size-safe-bottom);
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 var(--border-width-hairline) 0 var(--color-border-subtle);
+}
+
+.screen__foot--split {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--size-col-min)), 1fr));
+}
+
+.screen__note {
+  margin: 0;
+  font: var(--type-caption);
+  letter-spacing: var(--type-caption-tracking);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* The toast takes its own row above the tab bar, so it never covers content or a focused control (WCAG 2.4.11) */
+.screen__toast {
+  flex: none;
+  padding: var(--space-3) var(--space-screen-margin);
+}
+
+.screen__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 calc(var(--space-2) * -1);
+}
+
+/* Text buttons at a row edge: the label, not the padded box, sits on the margin line */
+.screen__body > .btn--ghost {
+  justify-self: start;
+  margin-left: calc(var(--space-3) * -1);
+}
+
+/* Text buttons inside a card: the label sits on the card-inset line */
+.card > .btn--ghost {
+  justify-self: start;
+  margin-left: calc(var(--space-3) * -1);
+}
+
+.section-head:has(> .btn--ghost:last-child) {
+  margin-right: calc(var(--space-3) * -1);
+}
+
+.section-head h2 {
+  margin: 0;
+  font: var(--type-title);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-card-inset);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-e1);
+}
+
+.row-between {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-3);
+}
+
+/* Photo with numbered markers. Marker positions are data: style="--x: 30%; --y: 40%" */
+.photo {
+  position: relative;
+}
+
+.photo > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.photo--hero > img {
+  aspect-ratio: 4 / 3;
+}
+
+.photo .marker {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  box-shadow: 0 0 0 var(--border-width-focus) var(--color-bg-surface);
+  translate: -50% -50%;
+}
+
+.photo__status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--color-bg-scrim);
+}
+
+.photo .app-bar {
+  position: absolute;
+  inset: 0 0 auto;
+  padding-inline: var(--space-screen-margin);
+  background: transparent;
+}
+
+/* =====================================================================
+   21. Date button (Today): calendar glyph + day + kcal left, on the margin line
+   ===================================================================== */
+.date-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--size-touch-min);
+  padding: 0;
+  border-radius: var(--radius-sm);
+  font: var(--type-callout);
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.date-btn .icon {
+  color: var(--color-text-accent);
+}
+
+.date-btn b {
+  font-weight: var(--font-weight-semibold);
+}
+
+.date-btn:active,
+.date-btn.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+/* =====================================================================
+   22. Title row with an edit button, and inline name editing
+   The edit glyph sits on the right margin line (the 44 hit area extends past it).
+   ===================================================================== */
+.title-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-2);
+}
+
+.title-row > h1,
+.title-row > h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.title-row:has(> .icon-btn:last-child) {
+  margin-right: calc(var(--size-icon-inset) * -1);
+}
+
+.name-edit {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.name-edit__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* =====================================================================
+   23. Ingredient rows: view (name, amount, kcal, macro chips) and edit (fields + delete)
+   Same insets as list rows, so text starts on the card-inset line in both modes.
+   ===================================================================== */
+.ingredients {
+  display: grid;
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-e1);
+}
+
+.ingredient {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-1) var(--space-3);
+  align-items: baseline;
+  padding: var(--space-2) calc(var(--space-card-inset) - var(--space-1));
+  border-radius: var(--radius-md);
+}
+
+.ingredient + .ingredient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: var(--space-3);
+  left: var(--space-3);
+  border-top: var(--border-width-hairline) solid var(--color-border-subtle);
+}
+
+.ingredient__name {
+  display: block;
+  font: var(--type-body-strong);
+  overflow-wrap: anywhere;
+}
+
+.ingredient__amount {
+  font: var(--type-num-m);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Compact macro text: letter + value + unit, no colour fills. The letter carries the meaning, the colour helps */
+.macro-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-chip-gap);
+  margin: 0;
+  font: var(--type-num-s);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-secondary);
+}
+
+.macro-line__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-inline-icon);
+  white-space: nowrap;
+}
+
+.macro-line__key {
+  font: var(--type-caption);
+  font-weight: var(--font-weight-bold);
+}
+
+.macro-line__item--p .macro-line__key {
+  color: var(--color-macro-protein-text);
+}
+
+.macro-line__item--f .macro-line__key {
+  color: var(--color-macro-fat-text);
+}
+
+.macro-line__item--c .macro-line__key {
+  color: var(--color-macro-carbs-text);
+}
+
+.ingredient__kcal {
+  font: var(--type-num-m);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.ingredient__kcal small {
+  display: block;
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.ingredient > .macro-tiles--inline,
+.ingredient__wide {
+  grid-column: 1 / -1;
+}
+
+.ingredient--edit {
+  gap: var(--space-2) var(--space-3);
+  align-items: start;
+  padding-block: var(--space-3);
+  background: var(--color-bg-canvas);
+}
+
+.ingredient--edit > .icon-btn {
+  align-self: end;
+  margin-right: calc(var(--size-icon-inset) * -1);
+  margin-bottom: calc((var(--size-input) - var(--size-touch-min)) / 2);
+}
+
+/* Amount and unit share the row with the delete button; they stack at large text sizes */
+.ingredient__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--size-col-min)), 1fr));
+  gap: var(--space-3);
+}
+
+.ingredient.is-error {
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-error);
+}
+
+/* Meal-type icon in an empty meal row: passive, muted but legible (not a button) */
+.product__thumb--meal {
+  pointer-events: none;
+}
+
+/* =====================================================================
+   24. Recipe steps (Method): numbered steps in an ordered list, view and edit
+   Number disc on the card-inset line, text in one column (≤ 80 characters, 16 / 1.5).
+   ===================================================================== */
+.recipe-steps {
+  display: grid;
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-e1);
+}
+
+.recipe-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--size-step-number) minmax(0, 1fr);
+  gap: var(--space-2) var(--space-3);
+  align-items: start;
+  padding: var(--space-3) calc(var(--space-card-inset) - var(--space-1));
+  border-radius: var(--radius-md);
+}
+
+.recipe-step + .recipe-step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: var(--space-3);
+  left: var(--space-3);
+  border-top: var(--border-width-hairline) solid var(--color-border-subtle);
+}
+
+.recipe-step__num {
+  display: grid;
+  place-items: center;
+  width: var(--size-step-number);
+  height: var(--size-step-number);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-accent-subtle);
+  font: var(--type-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+
+.recipe-step__text {
+  max-width: var(--size-measure);
+  margin: 0;
+  font: var(--type-body);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.recipe-step--edit {
+  background: var(--color-bg-canvas);
+}
+
+.recipe-step__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  grid-column: 2;
+  margin-right: calc(var(--size-icon-inset) * -1);
+}
+
+.recipe-step.is-error {
+  box-shadow: inset 0 0 0 var(--border-width-focus) var(--color-border-error);
+}
+
+/* =====================================================================
    State overrides for descendants. Kept last so higher-specificity state
    selectors never precede generic ones (stylelint no-descending-specificity).
    ===================================================================== */
@@ -1646,6 +2552,10 @@ button {
   color: var(--color-text-disabled);
 }
 
+.product--detected .marker {
+  margin-top: var(--space-1);
+}
+
 .nutri--over .nutri__center small {
   color: var(--color-status-warning-text);
   font-weight: var(--font-weight-semibold);
@@ -1655,6 +2565,27 @@ button {
 .product.is-disabled .product__kcal,
 .product.is-disabled .product__kcal small {
   color: var(--color-text-disabled);
+}
+
+.recipe-step:is(.recipe-step--edit, .is-error)::before,
+.recipe-step:is(.recipe-step--edit, .is-error) + .recipe-step::before {
+  visibility: hidden;
+}
+
+.recipe-step__actions .icon-btn:focus-visible,
+.recipe-step__actions .icon-btn.is-focus,
+.ingredient--edit > .icon-btn:focus-visible,
+.ingredient--edit > .icon-btn.is-focus {
+  outline-offset: calc(var(--border-width-focus) * -1);
+}
+
+.ingredient.is-error > .field__help {
+  color: var(--color-status-error-text);
+}
+
+.ingredient:is(.ingredient--edit, .is-error)::before,
+.ingredient:is(.ingredient--edit, .is-error) + .ingredient::before {
+  visibility: hidden;
 }
 
 .tab[aria-current="page"] .icon,
@@ -1667,7 +2598,8 @@ button {
    ===================================================================== */
 @media (prefers-reduced-motion: reduce) {
   .sheet,
-  .toast {
+  .toast,
+  .skeleton {
     animation: none;
   }
 
@@ -1703,7 +2635,18 @@ button {
   .tab__fab,
   .badge,
   .macro-tile,
-  .macro__bar {
+  .macro__bar,
+  .banner,
+  .card,
+  .skeleton,
+  .viewfinder__tip,
+  .viewfinder__hint,
+  .shutter,
+  .chip--locked,
+  .ingredients,
+  .recipe-steps,
+  .recipe-step__num,
+  .macro-tile--chip {
     outline: var(--border-width-hairline) solid canvastext;
     outline-offset: calc(var(--border-width-hairline) * -1);
   }
@@ -1713,6 +2656,9 @@ button {
   .chip.is-selected,
   .chip[aria-pressed="true"],
   .product.is-selected,
+  .product.is-check,
+  .ingredient.is-error,
+  .recipe-step.is-error,
   .product.is-error,
   .field.is-error .field__control,
   .stepper.is-error,
@@ -1737,6 +2683,7 @@ button {
   .stepper.is-focus,
   .tab:focus-visible,
   .tab.is-focus,
+  .date-btn:focus-visible,
   .product:focus-visible,
   .product.is-focus {
     outline: var(--border-width-focus) solid highlight;

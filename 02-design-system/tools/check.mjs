@@ -124,7 +124,7 @@ try {
   const tokensCss = readFileSync(resolve(DS, "tokens.css"), "utf8");
   const files = ["components.css", "docs.css"].map((f) => readFileSync(resolve(DS, f), "utf8"));
   const defined = new Set([...[tokensCss, ...files].join("\n").matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1]));
-  const COMPONENT_API = new Set(["--w", "--c", "--r", "--s", "--is"]); // data values set per element via style=""
+  const COMPONENT_API = new Set(["--w", "--c", "--r", "--s", "--is", "--x", "--y"]); // data values set per element via style=""
   const used = new Set([...[tokensCss, ...files].join("\n").matchAll(/var\((--[\w-]+)/g)].map((m) => m[1]));
   const broken = [...used].filter((v) => !defined.has(v) && !COMPONENT_API.has(v));
   record("css", "no broken var(--…) references", broken.length === 0, broken.join(", ") || `${used.size} variables used`);
@@ -219,7 +219,7 @@ for (const [mode, url] of [["file", FILE], ["http", HTTP]]) {
   record(`load:${mode}`, "token variables resolve in the browser", css.canvas.toLowerCase() === "#fbf6ee" && css.emptyVars.length === 0, `--color-bg-canvas=${css.canvas}`);
   record(`load:${mode}`, "token values applied (body = Oat milk, primary button = Persimmon)", css.body === "rgb(251, 246, 238)" && css.btn === css.accent && css.accent !== "", `${css.body} / ${css.btn} (token --color-bg-accent = ${css.accent})`);
   record(`load:${mode}`, "brand fonts loaded", ["Young Serif", "Hanken Grotesk", "Azeret Mono"].every((f) => css.fonts.includes(f)), css.fonts.join(", "));
-  shots[mode] = await page.screenshot({ fullPage: true });
+  shots[mode] = await page.screenshot({ fullPage: true, animations: "disabled" }); // freeze the skeleton shimmer so both renders are comparable
   await page.close();
 }
 {
@@ -258,6 +258,7 @@ const AUDIT = () => {
     const cs = getComputedStyle(e);
     if (cs.overflowX === "visible" && cs.overflowY === "visible") continue;
     if (e.classList.contains("visually-hidden") || e.closest(".visually-hidden")) continue;
+    if (/^(INPUT|SELECT|TEXTAREA|OPTION)$/.test(e.tagName)) continue; // single-line fields scroll their value by platform convention
     const scrolls = /auto|scroll/.test(cs.overflowX + cs.overflowY);
     if ((e.scrollWidth > e.clientWidth + 1 || e.scrollHeight > e.clientHeight + 1) && !scrolls) out.clipped.push(`${label(e)} overflow:${cs.overflow} scroll ${e.scrollWidth}×${e.scrollHeight} > client ${e.clientWidth}×${e.clientHeight}`);
   }
@@ -265,7 +266,7 @@ const AUDIT = () => {
   for (const stage of document.querySelectorAll(".state__stage")) {
     for (const e of stage.querySelectorAll("*")) {
       if (e.closest("svg") && e.tagName.toLowerCase() !== "svg") continue;
-      if (e.closest(".visually-hidden")) continue;
+      if (e.closest(".visually-hidden") || /^(OPTION|OPTGROUP)$/.test(e.tagName)) continue; // options are not laid out inside a closed <select>
       const cs = getComputedStyle(e);
       if (cs.display === "none" || cs.display === "contents") continue;
       const p = e.parentElement;

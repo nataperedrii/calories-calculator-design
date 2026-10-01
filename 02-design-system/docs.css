@@ -665,3 +665,30 @@ abbr[title] {
     gap: var(--space-1);
   }
 }
+
+/* Camera and screen frames inside the docs (heights are docs-only) */
+.doc-camera {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--size-screen-width);
+  height: calc(var(--space-16) * 9);
+  margin: 0 auto;
+  border-radius: calc(var(--radius-lg) - var(--space-1));
+  overflow: hidden;
+}
+
+.doc-camera--short {
+  height: auto;
+}
+
+.doc-screen {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  border-radius: calc(var(--radius-lg) - var(--space-1));
+}
+
+.doc-screen--short {
+  height: auto;
+}

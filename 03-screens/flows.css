@@ -1,0 +1,227 @@
+/* Flows board (03-screens/flows.html). Board layout only: every value is a design token.
+   The screens themselves are the PNG exports in exports/, which use only the design system. */
+
+.board {
+  width: calc(var(--space-16) * 37.5);
+  padding: var(--space-16);
+}
+
+.board-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding-bottom: var(--space-10);
+  border-bottom: var(--border-width-rule) solid var(--color-text-primary);
+}
+
+.board-head h1 {
+  margin: var(--space-3) 0 var(--space-2);
+  font: var(--type-display);
+  letter-spacing: var(--type-display-tracking);
+}
+
+.board-head p {
+  max-width: 65ch;
+  margin: 0;
+  font: var(--type-body);
+  color: var(--color-text-secondary);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.flow {
+  margin-top: var(--space-12);
+  padding: var(--space-10);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-e1);
+}
+
+.flow__head {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 80ch;
+  margin-bottom: var(--space-8);
+}
+
+.flow__head h2 {
+  margin: 0;
+  font: var(--type-h1);
+}
+
+.flow__head p {
+  margin: 0;
+  font: var(--type-body);
+  color: var(--color-text-secondary);
+}
+
+.flow__sub {
+  margin: var(--space-10) 0 var(--space-4);
+  font: var(--type-title);
+}
+
+.steps {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  flex: none;
+  width: calc(var(--size-screen-width) * 0.8);
+}
+
+.step__frame {
+  position: relative;
+}
+
+.step__frame > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-e2), 0 0 0 var(--border-width-hairline) var(--color-border-default);
+}
+
+.step__cap {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.step__cap b {
+  font: var(--type-label);
+}
+
+.step__cap span {
+  font: var(--type-caption);
+  letter-spacing: var(--type-caption-tracking);
+  color: var(--color-text-secondary);
+}
+
+.pin {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  display: grid;
+  place-items: center;
+  width: var(--space-8);
+  height: var(--space-8);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+  font: var(--type-label);
+  font-weight: var(--font-weight-bold);
+  box-shadow: 0 0 0 var(--space-1) var(--color-bg-highlight);
+  translate: -50% -50%;
+}
+
+.arrow {
+  display: grid;
+  flex: 1;
+  justify-items: center;
+  gap: var(--space-2);
+  min-width: calc(var(--space-16) * 1.5);
+  margin-top: calc(var(--size-screen-height) * 0.4);
+  padding: 0 var(--space-3);
+  color: var(--color-text-accent);
+  text-align: center;
+}
+
+.arrow__line {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.arrow__line::before {
+  content: "";
+  flex: 1;
+  height: var(--border-width-focus);
+  background: currentcolor;
+}
+
+.arrow__line .icon {
+  margin-left: calc(var(--space-3) * -1);
+}
+
+.arrow__label {
+  font: var(--type-label);
+  color: var(--color-text-primary);
+}
+
+.arrow__label small {
+  display: block;
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.arrow--gap {
+  color: var(--color-text-secondary);
+}
+
+.arrow--gap .arrow__line::before {
+  height: 0;
+  border-top: var(--border-width-focus) dashed currentcolor;
+  background: none;
+}
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-10);
+  margin: var(--space-10) 0 0;
+  padding: var(--space-8) 0 0;
+  border-top: var(--border-width-hairline) solid var(--color-border-subtle);
+  list-style: none;
+}
+
+.notes li {
+  display: grid;
+  grid-template-columns: var(--space-8) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+  font: var(--type-callout);
+}
+
+.notes .pin,
+.legend .pin {
+  position: static;
+  translate: none;
+}
+
+.notes b {
+  display: block;
+  font: var(--type-body-strong);
+}
+
+.notes p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.board-foot {
+  margin-top: var(--space-10);
+  font: var(--type-caption);
+  letter-spacing: var(--type-caption-tracking);
+  color: var(--color-text-secondary);
+}

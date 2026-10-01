@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-30T20:42:57.009Z",
+  "date": "2026-10-01T21:55:01.484Z",
   "passed": 61,
   "failed": 0,
   "results": [
@@ -37,7 +37,7 @@
       "group": "tokens",
       "name": "W3C DTCG structure: every token has $value and a known $type",
       "ok": true,
-      "detail": "185 tokens"
+      "detail": "197 tokens"
     },
     {
       "group": "tokens",
@@ -55,19 +55,19 @@
       "group": "tokens",
       "name": "$description coverage (optional in the spec)",
       "ok": true,
-      "detail": "105 of 185 tokens described"
+      "detail": "117 of 197 tokens described"
     },
     {
       "group": "tokens",
       "name": "tokens.css matches tokens.json (no drift)",
       "ok": true,
-      "detail": "OK: 02-design-system/tokens.css matches tokens.json (270 declarations)"
+      "detail": "OK: 02-design-system/tokens.css matches tokens.json (283 declarations)"
     },
     {
       "group": "css",
       "name": "no broken var(--…) references",
       "ok": true,
-      "detail": "179 variables used"
+      "detail": "197 variables used"
     },
     {
       "group": "css",
@@ -181,7 +181,7 @@
       "group": "load",
       "name": "file:// and http:// render identically (pixel diff)",
       "ok": true,
-      "detail": "1440×21878, 0 different pixels"
+      "detail": "1440×28910, 0 different pixels"
     },
     {
       "group": "geometry",
@@ -199,13 +199,13 @@
       "group": "geometry",
       "name": "touch targets ≥ 44×44 pt (≥ 48×48 dp in Android variants)",
       "ok": true,
-      "detail": "132 controls, smallest 44 px"
+      "detail": "200 controls, smallest 44 px"
     },
     {
       "group": "geometry",
       "name": "docs navigation links ≥ 24×24 (WCAG 2.5.8)",
       "ok": true,
-      "detail": "25 links"
+      "detail": "33 links"
     },
     {
       "group": "segmented",
@@ -229,7 +229,7 @@
       "group": "recipe",
       "name": "cards have no fixed height or clipping; titles and text are fully inside",
       "ok": true,
-      "detail": "default: 310×439.72, title 2 lines, overflow visible | is-pressed: 303.8×475.97, title 4 lines, overflow visible | is-disabled: 310×469.69, title 4 lines, overflow visible"
+      "detail": "default: 310×439.72, title 2 lines, overflow visible | is-pressed: 303.8×475.97, title 4 lines, overflow visible | is-disabled: 310×469.69, title 4 lines, overflow visible | default: 310×279, title 2 lines, overflow visible"
     },
     {
       "group": "tabbar",
@@ -241,7 +241,7 @@
       "group": "sheet",
       "name": "macro tiles: equal width/height/padding/gaps, shared baselines, tabular numbers, inside sheet margins",
       "ok": true,
-      "detail": "1 row(s) · P · Protein x313 w95.33 h62 | F · Fat x416.33 w95.33 h62 | C · Carbs x519.66 w95.34 h62 · gaps 8/8 · value baselines 19826.38/19826.38/19826.38"
+      "detail": "1 row(s) · P · Protein x313 w95.33 h62 | F · Fat x416.33 w95.33 h62 | C · Carbs x519.66 w95.34 h62 · gaps 8/8 · value baselines 21279.38/21279.38/21279.38"
     },
     {
       "group": "page",
@@ -259,7 +259,7 @@
       "group": "a11y",
       "name": "axe-core: 0 serious / critical violations",
       "ok": true,
-      "detail": "55 rules passed"
+      "detail": "57 rules passed"
     },
     {
       "group": "a11y",
@@ -289,13 +289,13 @@
       "group": "geometry@200%",
       "name": "touch targets ≥ 44×44 pt (≥ 48×48 dp in Android variants)",
       "ok": true,
-      "detail": "132 controls, smallest 44 px"
+      "detail": "200 controls, smallest 44 px"
     },
     {
       "group": "geometry@200%",
       "name": "docs navigation links ≥ 24×24 (WCAG 2.5.8)",
       "ok": true,
-      "detail": "25 links"
+      "detail": "33 links"
     },
     {
       "group": "segmented@200%",
@@ -319,7 +319,7 @@
       "group": "recipe@200%",
       "name": "cards have no fixed height or clipping; titles and text are fully inside",
       "ok": true,
-      "detail": "default: 310×769.7, title 3 lines, overflow visible | is-pressed: 303.8×986.49, title 8 lines, overflow visible | is-disabled: 310×930.64, title 7 lines, overflow visible"
+      "detail": "default: 310×769.7, title 3 lines, overflow visible | is-pressed: 303.8×986.49, title 8 lines, overflow visible | is-disabled: 310×930.64, title 7 lines, overflow visible | default: 310×692, title 4 lines, overflow visible"
     },
     {
       "group": "tabbar@200%",
@@ -331,7 +331,7 @@
       "group": "sheet@200%",
       "name": "macro tiles: equal width/height/padding/gaps, shared baselines, tabular numbers, inside sheet margins",
       "ok": true,
-      "detail": "3 row(s) · P · Protein x313 w302 h104 | F · Fat x313 w302 h104 | C · Carbs x313 w302 h104 · gaps 8/8 · value baselines -2083.23/-1971.23/-1859.23"
+      "detail": "3 row(s) · P · Protein x313 w302 h104 | F · Fat x313 w302 h104 | C · Carbs x313 w302 h104 · gaps 8/8 · value baselines -11831.25/-11719.25/-11607.25"
     },
     {
       "group": "page@200%",
@@ -355,13 +355,13 @@
       "group": "standalone",
       "name": "same layout as index.html (page height)",
       "ok": true,
-      "detail": "21878 vs 21878 CSS px"
+      "detail": "28910 vs 28910 CSS px"
     },
     {
       "group": "export",
       "name": "design-system.png is 2× the full page",
       "ok": true,
-      "detail": "2880×43756 (page 1440×21878)"
+      "detail": "2880×57820 (page 1440×28910)"
     },
     {
       "group": "export",
@@ -372,8 +372,8 @@
   ],
   "facts": {
     "tokens": {
-      "count": 185,
-      "described": 105
+      "count": 197,
+      "described": 117
     },
     "stylelint": {
       "files": 3,
@@ -605,7 +605,7 @@
         },
         {
           "el": "#c3 input.",
-          "w": 206,
+          "w": 204,
           "h": 44,
           "min": 44,
           "ok": true
@@ -619,7 +619,7 @@
         },
         {
           "el": "#c3 input.",
-          "w": 206,
+          "w": 204,
           "h": 44,
           "min": 44,
           "ok": true
@@ -633,7 +633,7 @@
         },
         {
           "el": "#c3 input.",
-          "w": 206,
+          "w": 204,
           "h": 44,
           "min": 44,
           "ok": true
@@ -647,7 +647,7 @@
         },
         {
           "el": "#c3 input.",
-          "w": 258,
+          "w": 256,
           "h": 44,
           "min": 44,
           "ok": true
@@ -961,6 +961,76 @@
           "ok": true
         },
         {
+          "el": "#c7 button.stepper__btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 input.stepper__input",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.stepper__btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.stepper__btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 input.stepper__input",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.stepper__btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint.is-pressed",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint.is-focus",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
           "el": "#c8 button.icon-btn.icon-btn--surface",
           "w": 44,
           "h": 44,
@@ -984,6 +1054,34 @@
         {
           "el": "#c8 button.btn.btn--secondary.btn--m \"View\"",
           "w": 63,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c8 button.btn.btn--secondary.btn--m \"View recipe\"",
+          "w": 106,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c8 button.btn.btn--secondary.btn--m \"View recipe\"",
+          "w": 106,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c8 button.btn.btn--secondary.btn--m \"View recipe\"",
+          "w": 106,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c8 button.btn.btn--secondary.btn--m \"View recipe\"",
+          "w": 106,
           "h": 44,
           "min": 44,
           "ok": true
@@ -1316,6 +1414,384 @@
           "h": 52,
           "min": 44,
           "ok": true
+        },
+        {
+          "el": "#c17 button.btn.btn--ghost.btn--m \"Retry\"",
+          "w": 58,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.icon-btn.icon-btn--inverse",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.icon-btn.icon-btn--inverse",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.viewfinder__side",
+          "w": 48,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.shutter",
+          "w": 72,
+          "h": 72,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.viewfinder__side \"Search\"",
+          "w": 44,
+          "h": 66,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.viewfinder__side.is-focus",
+          "w": 48,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.shutter.is-pressed",
+          "w": 72,
+          "h": 72,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.viewfinder__side \"Search\"",
+          "w": 44,
+          "h": 66,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.btn.btn--primary.btn--block \"Add to Lunch · 559 kcal\"",
+          "w": 302,
+          "h": 52,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.toast__action \"Undo\"",
+          "w": 57,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.toast__close",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab.is-active \"Today\"",
+          "w": 62,
+          "h": 46,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab \"Diary\"",
+          "w": 62,
+          "h": 46,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab.tab--scan",
+          "w": 62,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab \"Recipes\"",
+          "w": 62,
+          "h": 46,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab \"Profile\"",
+          "w": 62,
+          "h": 46,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c21 button.date-btn \"Thursday · 879 kcal left\"",
+          "w": 218,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c21 button.date-btn.is-pressed \"Thursday · 879 kcal left\"",
+          "w": 218,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c21 button.date-btn.is-focus \"Thursday · 879 kcal left\"",
+          "w": 218,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 input.",
+          "w": 278,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--primary.btn--m \"Save name\"",
+          "w": 101,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--ghost.btn--m \"Cancel\"",
+          "w": 68,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 input.",
+          "w": 278,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--primary.btn--m \"Save name\"",
+          "w": 101,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--ghost.btn--m \"Cancel\"",
+          "w": 68,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 input.",
+          "w": 278,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--primary.btn--m \"Saving…\"",
+          "w": 83,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--ghost.btn--m \"Cancel\"",
+          "w": 68,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 278,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 94,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 select. \"gmlportion\"",
+          "w": 94,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 278,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 94,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 select. \"gmlportion\"",
+          "w": 94,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.icon-btn.is-focus",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 278,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 94,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 select. \"gmlportion\"",
+          "w": 94,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.toast__action \"Undo\"",
+          "w": 57,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.toast__close",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 textarea. \"Heat the oven to 200 °C \"",
+          "w": 238,
+          "h": 88,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn.is-focus",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn.is-pressed",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 textarea.",
+          "w": 238,
+          "h": 88,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.btn.btn--primary \"Add steps\"",
+          "w": 152,
+          "h": 52,
+          "min": 44,
+          "ok": true
         }
       ],
       "docTargets": [
@@ -1458,6 +1934,54 @@
           "ok": true
         },
         {
+          "el": "17 Banner",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "18 Skeleton",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "19 Camera viewfinder",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "20 Screen layout",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "21 Date button",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "22 Title + name edit",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "23 Ingredient rows",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "24 Recipe steps",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
           "el": "Abbreviations",
           "w": 183,
           "h": 44,
@@ -1481,7 +2005,7 @@
           "gapColour": true,
           "segment": {
             "x": 1152.33,
-            "y": 14688.7,
+            "y": 15436.7,
             "w": 95.33,
             "h": 36
           },
@@ -1495,7 +2019,7 @@
           "gapColour": true,
           "segment": {
             "x": 784.33,
-            "y": 14824.7,
+            "y": 15572.7,
             "w": 95.33,
             "h": 40
           },
@@ -1506,66 +2030,66 @@
         {
           "state": "default",
           "x": 297,
-          "y": 15997.7,
+          "y": 16918.2,
           "w": 334,
           "h": 64,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "none"
         },
         {
           "state": "is-pressed",
           "x": 297,
-          "y": 16061.7,
+          "y": 16982.2,
           "w": 334,
           "h": 64,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "none"
         },
         {
           "state": "is-selected",
           "x": 297,
-          "y": 16125.7,
+          "y": 17046.2,
           "w": 334,
           "h": 64,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "rgb(196, 67, 26) 0px 0px 0px 2px inset"
         },
         {
           "state": "is-disabled",
           "x": 297,
-          "y": 16189.7,
+          "y": 17110.2,
           "w": 334,
           "h": 64,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "none"
         },
         {
           "state": "is-error",
           "x": 297,
-          "y": 16253.7,
+          "y": 17174.2,
           "w": 334,
           "h": 64,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "rgb(168, 36, 28) 0px 0px 0px 2px inset"
         },
         {
           "state": "is-focus",
           "x": 297,
-          "y": 16317.7,
+          "y": 17238.2,
           "w": 334,
           "h": 64,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "rgb(43, 33, 24) 0px 0px 0px 2px inset"
         }
@@ -1579,7 +2103,7 @@
           "contentInside": true,
           "titleLines": 2,
           "x": 309,
-          "y": 16240.7,
+          "y": 17291.7,
           "w": 310,
           "h": 439.72
         },
@@ -1591,7 +2115,7 @@
           "contentInside": true,
           "titleLines": 4,
           "x": 680.1,
-          "y": 16245.56,
+          "y": 17296.56,
           "w": 303.8,
           "h": 475.97
         },
@@ -1603,9 +2127,21 @@
           "contentInside": true,
           "titleLines": 4,
           "x": 1045,
-          "y": 16240.7,
+          "y": 17291.7,
           "w": 310,
           "h": 469.69
+        },
+        {
+          "state": "default",
+          "overflow": "visible",
+          "height": "279px",
+          "titleInside": true,
+          "contentInside": true,
+          "titleLines": 2,
+          "x": 309,
+          "y": 17861.39,
+          "w": 310,
+          "h": 279
         }
       ],
       "tabBars": [
@@ -1835,7 +2371,7 @@
           {
             "tile": "P · Protein",
             "x": 313,
-            "y": 19775.38,
+            "y": 21228.38,
             "w": 95.33,
             "h": 62,
             "padding": "8px 12px"
@@ -1843,7 +2379,7 @@
           {
             "tile": "F · Fat",
             "x": 416.33,
-            "y": 19775.38,
+            "y": 21228.38,
             "w": 95.33,
             "h": 62,
             "padding": "8px 12px"
@@ -1851,7 +2387,7 @@
           {
             "tile": "C · Carbs",
             "x": 519.66,
-            "y": 19775.38,
+            "y": 21228.38,
             "w": 95.34,
             "h": 62,
             "padding": "8px 12px"
@@ -1867,14 +2403,14 @@
         "sameTop": true,
         "equalPadding": true,
         "valueBaselines": [
-          19826.38,
-          19826.38,
-          19826.38
+          21279.38,
+          21279.38,
+          21279.38
         ],
         "labelBaselines": [
-          19800.38,
-          19800.38,
-          19800.38
+          21253.38,
+          21253.38,
+          21253.38
         ],
         "valueOffsets": [
           51,
@@ -1912,7 +2448,7 @@
       ]
     },
     "axe": {
-      "passes": 55,
+      "passes": 57,
       "violations": [],
       "incomplete": [
         {
@@ -1921,7 +2457,7 @@
         },
         {
           "id": "color-contrast",
-          "nodes": 7
+          "nodes": 8
         }
       ]
     },
@@ -2086,35 +2622,35 @@
         {
           "el": "#c2 label.field \"Final cooked weightgWeig\"",
           "w": 310,
-          "h": 196,
+          "h": 188,
           "min": 44,
           "ok": true
         },
         {
           "el": "#c2 label.field.is-focus \"Final cooked weightgWeig\"",
           "w": 310,
-          "h": 196,
+          "h": 188,
           "min": 44,
           "ok": true
         },
         {
           "el": "#c2 label.field \"Final cooked weightgThat\"",
           "w": 310,
-          "h": 160,
+          "h": 152,
           "min": 44,
           "ok": true
         },
         {
           "el": "#c2 label.field.is-error \"Final cooked weightgEnte\"",
           "w": 310,
-          "h": 196,
+          "h": 188,
           "min": 44,
           "ok": true
         },
         {
           "el": "#c2 label.field \"EmailWe'll email you a o\"",
           "w": 310,
-          "h": 268,
+          "h": 260,
           "min": 44,
           "ok": true
         },
@@ -2135,13 +2671,13 @@
         {
           "el": "#c2 label.field.is-disabled \"Final cooked weightgAvai\"",
           "w": 310,
-          "h": 196,
+          "h": 188,
           "min": 44,
           "ok": true
         },
         {
           "el": "#c3 input.",
-          "w": 206,
+          "w": 204,
           "h": 50,
           "min": 44,
           "ok": true
@@ -2155,7 +2691,7 @@
         },
         {
           "el": "#c3 input.",
-          "w": 206,
+          "w": 204,
           "h": 50,
           "min": 44,
           "ok": true
@@ -2169,7 +2705,7 @@
         },
         {
           "el": "#c3 input.",
-          "w": 206,
+          "w": 204,
           "h": 50,
           "min": 44,
           "ok": true
@@ -2183,7 +2719,7 @@
         },
         {
           "el": "#c3 input.",
-          "w": 258,
+          "w": 256,
           "h": 50,
           "min": 44,
           "ok": true
@@ -2497,6 +3033,76 @@
           "ok": true
         },
         {
+          "el": "#c7 button.stepper__btn",
+          "w": 44,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 input.stepper__input",
+          "w": 83,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.stepper__btn",
+          "w": 44,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.stepper__btn",
+          "w": 44,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 input.stepper__input",
+          "w": 83,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.stepper__btn",
+          "w": 44,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint.is-pressed",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint.is-focus",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
           "el": "#c8 button.icon-btn.icon-btn--surface",
           "w": 44,
           "h": 44,
@@ -2520,6 +3126,34 @@
         {
           "el": "#c8 button.btn.btn--secondary.btn--m \"View\"",
           "w": 94,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c8 button.btn.btn--secondary.btn--m \"View recipe\"",
+          "w": 180,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c8 button.btn.btn--secondary.btn--m \"View recipe\"",
+          "w": 180,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c8 button.btn.btn--secondary.btn--m \"View recipe\"",
+          "w": 180,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c8 button.btn.btn--secondary.btn--m \"View recipe\"",
+          "w": 180,
           "h": 50,
           "min": 44,
           "ok": true
@@ -2852,6 +3486,384 @@
           "h": 112,
           "min": 44,
           "ok": true
+        },
+        {
+          "el": "#c17 button.btn.btn--ghost.btn--m \"Retry\"",
+          "w": 93,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.icon-btn.icon-btn--inverse",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.icon-btn.icon-btn--inverse",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.viewfinder__side",
+          "w": 48,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.shutter",
+          "w": 72,
+          "h": 72,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.viewfinder__side \"Search\"",
+          "w": 75,
+          "h": 84,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.viewfinder__side.is-focus",
+          "w": 48,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.shutter.is-pressed",
+          "w": 72,
+          "h": 72,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c19 button.viewfinder__side \"Search\"",
+          "w": 75,
+          "h": 84,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.btn.btn--primary.btn--block \"Add to Lunch · 559 kcal\"",
+          "w": 302,
+          "h": 112,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.toast__action \"Undo\"",
+          "w": 90,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.toast__close",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab.is-active \"Today\"",
+          "w": 62,
+          "h": 49,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab \"Diary\"",
+          "w": 62,
+          "h": 49,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab.tab--scan",
+          "w": 62,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab \"Recipes\"",
+          "w": 62,
+          "h": 49,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c20 button.tab \"Profile\"",
+          "w": 62,
+          "h": 49,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c21 button.date-btn \"Thursday · 879 kcal left\"",
+          "w": 218,
+          "h": 84,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c21 button.date-btn.is-pressed \"Thursday · 879 kcal left\"",
+          "w": 218,
+          "h": 84,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c21 button.date-btn.is-focus \"Thursday · 879 kcal left\"",
+          "w": 218,
+          "h": 84,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 input.",
+          "w": 278,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--primary.btn--m \"Save name\"",
+          "w": 170,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--ghost.btn--m \"Cancel\"",
+          "w": 113,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 input.",
+          "w": 278,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--primary.btn--m \"Save name\"",
+          "w": 170,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--ghost.btn--m \"Cancel\"",
+          "w": 113,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 input.",
+          "w": 278,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--primary.btn--m \"Saving…\"",
+          "w": 135,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c22 button.btn.btn--ghost.btn--m \"Cancel\"",
+          "w": 113,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 278,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 232,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 select. \"gmlportion\"",
+          "w": 232,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 278,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 232,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 select. \"gmlportion\"",
+          "w": 232,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.icon-btn.is-focus",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 278,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.",
+          "w": 232,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 select. \"gmlportion\"",
+          "w": 232,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.toast__action \"Undo\"",
+          "w": 90,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.toast__close",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 textarea. \"Heat the oven to 200 °C \"",
+          "w": 238,
+          "h": 160,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn.is-focus",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn.is-pressed",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 textarea.",
+          "w": 238,
+          "h": 88,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.icon-btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c24 button.btn.btn--primary \"Add steps\"",
+          "w": 224,
+          "h": 64,
+          "min": 44,
+          "ok": true
         }
       ],
       "docTargets": [
@@ -2994,6 +4006,54 @@
           "ok": true
         },
         {
+          "el": "17 Banner",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "18 Skeleton",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "19 Camera viewfinder",
+          "w": 183,
+          "h": 84,
+          "ok": true
+        },
+        {
+          "el": "20 Screen layout",
+          "w": 183,
+          "h": 84,
+          "ok": true
+        },
+        {
+          "el": "21 Date button",
+          "w": 183,
+          "h": 84,
+          "ok": true
+        },
+        {
+          "el": "22 Title + name edit",
+          "w": 183,
+          "h": 84,
+          "ok": true
+        },
+        {
+          "el": "23 Ingredient rows",
+          "w": 183,
+          "h": 84,
+          "ok": true
+        },
+        {
+          "el": "24 Recipe steps",
+          "w": 183,
+          "h": 84,
+          "ok": true
+        },
+        {
           "el": "Abbreviations",
           "w": 183,
           "h": 44,
@@ -3017,7 +4077,7 @@
           "gapColour": true,
           "segment": {
             "x": 1049,
-            "y": -12814.8,
+            "y": -24919.8,
             "w": 302,
             "h": 50
           },
@@ -3031,7 +4091,7 @@
           "gapColour": true,
           "segment": {
             "x": 681,
-            "y": -12538.8,
+            "y": -24643.8,
             "w": 302,
             "h": 50
           },
@@ -3042,66 +4102,66 @@
         {
           "state": "default",
           "x": 297,
-          "y": -9824.8,
+          "y": -21231.8,
           "w": 334,
           "h": 301,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "none"
         },
         {
           "state": "is-pressed",
           "x": 297,
-          "y": -9824.8,
+          "y": -21231.8,
           "w": 334,
           "h": 301,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "none"
         },
         {
           "state": "is-selected",
           "x": 297,
-          "y": -9824.8,
+          "y": -21231.8,
           "w": 334,
           "h": 301,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "rgb(196, 67, 26) 0px 0px 0px 2px inset"
         },
         {
           "state": "is-disabled",
           "x": 297,
-          "y": -9824.8,
+          "y": -21231.8,
           "w": 334,
           "h": 301,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "none"
         },
         {
           "state": "is-error",
           "x": 297,
-          "y": -9824.8,
+          "y": -21231.8,
           "w": 334,
           "h": 301,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "rgb(168, 36, 28) 0px 0px 0px 2px inset"
         },
         {
           "state": "is-focus",
           "x": 297,
-          "y": -9824.8,
+          "y": -21231.8,
           "w": 334,
           "h": 301,
           "radius": "16px",
-          "padding": "8px 4px 8px 12px",
+          "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
           "ring": "rgb(43, 33, 24) 0px 0px 0px 2px inset"
         }
@@ -3115,7 +4175,7 @@
           "contentInside": true,
           "titleLines": 3,
           "x": 309,
-          "y": -8986.8,
+          "y": -19872.8,
           "w": 310,
           "h": 769.7
         },
@@ -3127,7 +4187,7 @@
           "contentInside": true,
           "titleLines": 8,
           "x": 680.1,
-          "y": -8976.73,
+          "y": -19862.73,
           "w": 303.8,
           "h": 986.49
         },
@@ -3139,9 +4199,21 @@
           "contentInside": true,
           "titleLines": 7,
           "x": 1045,
-          "y": -8986.8,
+          "y": -19872.8,
           "w": 310,
           "h": 930.64
+        },
+        {
+          "state": "default",
+          "overflow": "visible",
+          "height": "692px",
+          "titleInside": true,
+          "contentInside": true,
+          "titleLines": 4,
+          "x": 309,
+          "y": -18764.17,
+          "w": 310,
+          "h": 692
         }
       ],
       "tabBars": [
@@ -3371,7 +4443,7 @@
           {
             "tile": "P · Protein",
             "x": 313,
-            "y": -2173.23,
+            "y": -11921.25,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -3379,7 +4451,7 @@
           {
             "tile": "F · Fat",
             "x": 313,
-            "y": -2061.23,
+            "y": -11809.25,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -3387,7 +4459,7 @@
           {
             "tile": "C · Carbs",
             "x": 313,
-            "y": -1949.23,
+            "y": -11697.25,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -3403,14 +4475,14 @@
         "sameTop": true,
         "equalPadding": true,
         "valueBaselines": [
-          -2083.23,
-          -1971.23,
-          -1859.23
+          -11831.25,
+          -11719.25,
+          -11607.25
         ],
         "labelBaselines": [
-          -2132.23,
-          -2020.23,
-          -1908.23
+          -11880.25,
+          -11768.25,
+          -11656.25
         ],
         "valueOffsets": [
           90,

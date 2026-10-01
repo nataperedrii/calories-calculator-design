@@ -327,3 +327,279 @@ The key prompts used with Claude Code, and what came out of each one.
   - 9 axe "incomplete" nodes are verified by the custom scan.
   - Forced colours were tested only in Chromium emulation.
   - 2.4.8 Location (AAA) isn't applied on a single page.
+
+## 09 — Screens step 1: user flows spec (`03-screens/FLOWS.md`)
+
+**Prompt**
+
+> Write 03-screens/FLOWS.md with user flows for both user stories.
+> List every screen: purpose, key content, and states (empty, loading, error).
+> Include onboarding (goal, diet type, allergies, daily kcal target) — "suitable for me" needs personal data.
+> Target 12–16 screens. Don't build yet.
+
+**Result**
+
+- Planned first, then approved: 16 screens. No HTML or PNG yet.
+- **Screens:**
+  - Onboarding 01–06: welcome & passwordless sign-in, goal, about you, diet type, allergies & dislikes, daily target with "How we calculated this".
+  - Story 1, 07–12: Today, Scan (photo / barcode), photo result with confidence, add food (recents first), food detail & portion (per 100 g + USDA source), dish calculator (raw ingredients + cooked weight).
+  - Story 2, 13–14: recipes that fit the kcal left, filtered by diet and allergies; recipe detail with "Log 1 portion".
+  - Support: Diary and Profile.
+- **Flows:** 0 onboarding, 1A photo, 1B product / barcode, 1C home-cooked dish, 2 find a recipe, 3 change preferences. Each is traced from entry to the logged toast.
+- **"Suits me" logic:**
+  - Allergies and diet are hard filters (hidden recipes are counted and explained).
+  - Dislikes are soft.
+  - Ranking: fits the kcal left → covers the protein gap → fewer kcal → time.
+- **States:** every screen has default, empty, loading and error (plus offline, partial, denied and over-target where relevant). Where a state can't happen, the table says why.
+- **Data:** USDA FDC per-100 g values, computed with a script. The sums use rounded item kcal, as the screens show them.
+  - Persona Sam: 34, 165 cm, 63 kg, moderately active, pescatarian, peanut allergy → Mifflin-St Jeor 1,330 × 1.55 = 2,062 → 2,050 kcal (P 100 / F 70 / C 255 = 2,050).
+  - The day: 344 + 559 + 268 = 1,171, so 879 left.
+  - Recipes: cod 443, shrimp 532, chickpea curry 587; peanut bowl 585 is hidden.
+  - Lentil soup: 1,229 kcal raw pot, cooked 1,700 g → 72 kcal per 100 g, 246 per 340 g portion.
+- **Design-system gaps found** (to add to the DS before building): step indicator, option card, inline banner, skeleton, camera viewfinder overlay, week strip, locked allergy chip.
+
+## 10 — Screens for flows 1 and 2, PNG exports, flows board, validation
+
+**Prompt**
+
+> Export every screen to PNG @2x into 03-screens/exports/.
+> Create 03-screens/flows.html — an overview board with Flow 1 and Flow 2 in rows, arrows between
+> screens, and short annotations explaining key UX decisions. Export flows.png.
+> And validate the HTML and other results of your work.
+
+**Clarifications:**
+- **Screens:** no screens existed yet. I asked, and the user chose to build only the screens of flows 1 and 2 (07–14).
+- **Photos:** the user approved downloading 6 more Unsplash photos (cod, shrimp, chickpea curry, almonds, apple, lentil soup). They're credited in `01-branding/assets/CREDITS.md`.
+
+**Result**
+
+- **Design system first (v1.3):**
+  - New components 17 Inline banner, 18 Skeleton, 19 Camera viewfinder and 20 Screen layout, plus a locked allergy chip.
+  - Variants: detected-item row, "check portion" tint, photo and icon thumbnails, compact recipe card, macro keys.
+  - 5 tokens, 8 icons.
+  - The toast now takes its own row above the tab bar instead of floating over content (axe showed it covering a control; WCAG 2.4.11).
+  - Docs macro goals now match the persona (100 / 70 / 255 g = 2,050 kcal).
+- **Screens:** `03-screens/tools/build_screens.py` generates 13 HTML files (8 screens + key states) from the USDA data. It asserts the totals: 344 + 559 + 268 = 1,171, so 879 kcal are left; cod 443; soup 1,229 kcal raw pot, 72 per 100 g, 246 per portion. Screens link to each other (`data-href` and real links).
+- **Exports:** `03-screens/tools/export.mjs` (`npm run export:screens`) renders 13 PNGs at 780 × 1688 (390 × 844 @2x) and `flows.png` at 4800 × 6558. It waits for fonts and images and fails on any error.
+- **Flows board:** `flows.html` has Flow 1 (1A photo path; 1B search, 1C dish calculator) and Flow 2 (recipes) in rows, with arrows labelled by the tap. Numbered pins match 15 short notes on the key UX decisions.
+- **Validation:** `03-screens/tools/check.mjs` (`npm run check:screens`) gives **153 / 153**.
+  - html-validate on all pages.
+  - The design-system-only rule: only `tokens.css` and `components.css`, data-only inline styles, no hex or px.
+  - Every link, image and `data-href` exists.
+  - axe WCAG 2.2 A/AA + best practice: 0 violations; AAA contrast: all text ≥ 7:1.
+  - The frame is exactly 390 × 844 with no overflow or clipped text; every target is ≥ 44 × 44; every focus stop is visible.
+  - The numbers add up: meals = eaten, goal − eaten = left, items = photo total, ingredients = pot.
+  - PNG sizes are correct.
+  - The checker caught real bugs, which were fixed: `aria-label` on markers, unescaped `&`, the toast over a button, a scrolling area with no focus stop. It also exposed 4 mistakes in the checker itself, which were corrected.
+- **Design system re-verified:** `npm run check` gives 61 / 61 (after fixing the standalone image inlining, the skeleton height, the viewfinder geometry and the docs demos). `contrast.py` gives 67 / 67. Lint is clean.
+
+
+## 11 — Global grid, Today / Meals / Recipes fixes, dish editing, cod photo
+
+**Prompt**
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Improving the existing app flows. You are acting as a senior product designer with 20 years of experience AND a strict QA engineer. The screens, components and design system already exist in the project: locate the relevant files and FIX them, do not create parallel versions. Keep the tokens, component names, color palette, light theme and everything fixed earlier (text is never clipped, nothing extends beyond its container, borders are even, focus has a gap, touch targets ≥ 44×44, WCAG AA as the baseline and AAA for critical elements).
+>
+> ## Golden rule
+> Never consider the work done without verifying it in a browser. Loop: make the change → render → screenshot → look at it → measure geometry → fix → repeat. Save a "before" and "after" screenshot for every screen. If something could not be verified, say so explicitly.
+>
+> ## Step 0. Global grid and margins (do this first, then everything else)
+> 1. Define one set of horizontal screen margins (left and right) as tokens and apply them on ALL screens: every heading, subheading, text block, card, row and icon starts on the same vertical line on the left.
+> 2. Right-aligned text (values, prices, kcal, time, counters, right-hand buttons) ends exactly on the right margin. The right margin equals the left margin on every screen.
+> 3. Section headings on all screens share the same left inset, the same size and the same spacing to their content. Find places where heading insets differ and unify them.
+> 4. Text must not "jump": in lists and cards the first line of text starts at the same x coordinate. Achieve this with a shared container/grid, not by tweaking individual margins.
+> 5. Spacing only from the 4pt/8pt token scale. No arbitrary values in code.
+> Automated check: a Playwright script that, for every screen, collects the left/right bounding box edges of all headings, text blocks, icons and cards, groups them by x, and reports deviations from the grid (tolerance 0 px). Add it to `npm run check` as a separate alignment check.
+>
+> ## Fixes by screen
+>
+> 1. Today screen
+> - Align section headings to the grid on the left edge (on the side-margin line).
+> - Align the calendar icon and the text next to it (the day and how many calories are left) to the same left line as the headings. Icon and text are vertically centered relative to each other.
+>
+> 2. Today → Meals section (Lunch / Snack / Dinner rows)
+> - Currently a plus sign sits on the left where the dish photo should be. Replace it with a meal-type icon (in the style of the Almond butter dish icon, from the same icon set). Until a dish is added, this icon is passive: not a button, no pressed/hover/focus states, no hit area or pointer cursor; visually muted but legible.
+> - Currently each row has two plus signs. Exactly ONE must remain: the one on the right, as a proper button (hit area ≥ 44×44, all states default / pressed / focus / disabled, an accessible name such as "Add lunch", focus ring with a gap).
+> - Once a dish is added, show the dish photo (thumbnail) in place of the icon with the same size and spacing so rows do not shift.
+> - Follow the grid: the icon, the meal-type label and the right-hand button are aligned identically in every row.
+>
+> 3. Dish card on Today (the card with the green pill and leaf; in my description it is labeled "first … dinner")
+> - Find this card in the screenshots and code and work on it.
+> - Give the numbers and the P, F, C letters colored backgrounds (chips) in the macro colors, as on this dish's detail screen. Use the same tokens and the same component as the detail screen, not a copy of the styles. Remove the dot separators between them.
+> - Align the text and the green pill with its text and leaf to the grid: equal pill height, internal padding, vertical alignment of icon and text, the pill does not extend beyond the card, text is not clipped.
+>
+> 4. Recipes section, recipe cards
+> - Align the text in all cards to the left edge on the grid (it currently "jumps"): the first line of the title, captions and the row of values start at the same x coordinate in every card.
+> - Add the same colored chips for the numbers and P, F, C as on the dish detail (same component). Remove the dot separators.
+> - I like the gap between the clock icon and the time. Take that value from the current card, record it as a token and apply the same gap between the number and the P/F/C letter inside every chip (and define a separate token for the gap between chips).
+>
+> 5. Dish detail: editing
+> - Ingredients: the user can edit ingredients that were added incorrectly: change the name, amount and unit (g / ml / portion), delete an ingredient, add a new one. After a change, the dish's calories and P/F/C are recalculated (the nutrition summary, calorie ring and macro bars update) without a reload.
+> - Dish name: the user can change it if it was entered incorrectly (an edit button next to the name; edit in place or in a sheet). Validation: not empty, length limit, a clear error message with a hint on how to fix it.
+> - States: view / edit / validation error / saving. Save and Cancel buttons, unsaved-changes protection on exit ("Discard changes?"), the ability to undo deleting an ingredient (undo toast).
+> - Accessibility: all fields have visible labels (a placeholder never replaces a label), hit areas ≥ 44×44, keyboard operable, focus is not lost when a row is deleted, changes are announced via role=status. Long names wrap and are never clipped. Add every new component (editable ingredient row, amount stepper/fields, inline name edit) to the design system (components.css, the index.html docs), keeping tokens.json and tokens.css in sync.
+>
+> 6. Photo for Baked cod, potatoes & peas
+> - Replace the photo currently used for this dish EVERYWHERE (Today, Meals, Recipes, detail, thumbnails, previews and exports) with a different photo that actually shows baked cod, potatoes and peas.
+> - Source: a freely licensed photo (Unsplash / Pexels / Pixabay) with author, link and license recorded, or a file provided by the user in the project folder. No competitor photos and no copyrighted images. If there is no network access and no suitable file, put a clearly labeled placeholder and ask the user for a file in the report.
+> - A single source file in assets, with all screens referencing it; optimized size, a consistent aspect ratio and object-fit: cover, alt text describing the dish.
+>
+> ## Verification
+> 1. `npm run check` (CSS loads via file:// and HTTP, no text clipping, touch targets) plus the new alignment check: zero deviations from the grid on the left and right.
+> 2. `npm run check:a11y`: zero AA violations and zero AAA violations for critical elements (7:1 contrast for calorie and macro numbers, focus, touch targets, reduced motion). The colored P/F/C chips must pass text contrast, and macros must be distinguishable by more than color (letter + label).
+> 3. html-validate, stylelint, tokens.json validation and its parity with tokens.css: 0 errors.
+> 4. Browser checks: 390px and 320px widths, 200% font scaling, long dish names, long ingredient names. Keyboard traversal of the new elements. LOOK at the screenshots and describe what you see.
+> 5. Regression: confirm that nothing fixed earlier broke (even borders, focus with a gap, tab bar and bottom sheet within bounds, no clipping).
+>
+> ## Deliverables
+> - Fixed screen and component files, updated design-system tokens/components/docs.
+> - Before and after screenshots for every changed screen (Today, Meals, Recipes, dish detail, editing states).
+> - A report in README.md: "Changelog" (items 1–6: before → after), check results, the source and license of the new photo, and a list of open issues.
+> - Final message: what changed, what was verified, what remains open. If any check fails, say so plainly and keep fixing.
+
+</details>
+
+**Clarification:**
+- **Photo:** no free photo showed baked cod, potatoes *and* peas (about 300 searched on Unsplash, Pexels and Pixabay). The user chose the Pixabay baked cod with potatoes and broccoli (Gadini, Pixabay Content License) and approved renaming the dish to "Baked cod, potatoes & broccoli".
+
+**Result**
+
+- **Before screenshots:** saved first (`03-screens/qa/before/`).
+- **Step 0, the grid:**
+  - **Tokens:** `--space-card-inset` (16), `--space-inline-icon` (4, the clock → time gap), `--space-chip-gap` (8), `--size-icon-inset` (10).
+  - **Edges:** lists, cards, banners, the nutrition summary and the search bar end on the same inset line on both sides. App-bar glyphs sit on the 20 px margin, and text buttons align by their label.
+  - **Checker:** new `03-screens/tools/align.mjs`, chained into `npm run check`: 1,212 edges on 20 screens at 390 and 320 px, **0 px deviation**; one size and one gap for section headings.
+- **Today:**
+  - **Date button:** the calendar glyph and "Thursday · 879 kcal left" sit on the margin line, centred on each other.
+  - **Meal rows:** a passive meal-type icon (new icons: breakfast, snack, dinner; lunch reuses sun) and exactly one Add button with all states.
+  - **Dish card:** macro chips (`.macro-tile--chip`, the same component as the detail screen) and a `.badge--fresh` pill.
+- **Recipes:** chips instead of dotted text; every text line in the cards on one x; the reason ("Covers your protein") next to the time.
+- **Dish detail editing:**
+  - **Design system:** new components 21 date button, 22 title row + name edit, 23 ingredient rows, plus `select` in fields and `.field__count`.
+  - **Editor:** `screens/js/dish-editor.js` recalculates kcal, ring, per-100 g, macro bars, allergens and the Log button live.
+  - **States:** delete with Undo and focus management, "Discard changes?", Saving…, name validation. Each state is a separate export.
+- **Photo:** one file, `recipe-baked-cod.jpg`, used everywhere; the old file was deleted. Data recomputed: 462 kcal, P 40.7, F 11.9, C 49.1; the day is 1,633, so 417 kcal are left.
+- **Found and fixed while verifying:**
+  - inputs were only 26 px tall inside 52 px fields;
+  - screen bodies could grow wider than the screen at 200% text;
+  - facts tables didn't wrap;
+  - the Add button's focus ring could leave its wrapper;
+  - the select didn't shrink at 320 px;
+  - `check:a11y` hung on the infinite shimmer animation.
+- **Checks:**
+  - `npm run check`: 61/61 + alignment 0;
+  - `npm run check:a11y`: Tier 1 0/40, Tier 2 0/9;
+  - `npm run check:screens`: 241/241 (new: 320 px, 200% text, long names, editor behaviour);
+  - contrast 67/67; tokens in sync; lint 0.
+- **Report:** in the root `README.md`: changelog items 0–6, check results, photo source and licence, open issues. Before/after images are in `03-screens/qa/compare/`.
+
+
+## 12 — Chips in one row, a real “View recipe”, compact ingredients, Method (steps)
+
+**Prompt**
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Improving the existing flows of the calorie calculator app. You are acting as a senior product designer with 20 years of experience AND a strict QA engineer. The screens, components and design system already exist in the project: locate the relevant files and FIX them, do not create parallel versions. Keep the tokens, component names, color palette, light theme and everything fixed earlier (text never clipped, nothing extends beyond its container, borders are even, focus has a gap, touch targets ≥ 44×44). Accessibility: WCAG 2.2 AA as the mandatory baseline, plus AAA for critical elements (calorie and macro numbers, body text, errors, primary buttons, tab bar, focus, touch targets, irreversible actions, animations): 7:1 contrast, enhanced focus, Target Size Enhanced, etc.
+>
+> ## Golden rule
+> Never consider the work done without verifying it in a browser. Loop: make the change → render → screenshot → look at it → measure geometry → fix → repeat. Save a "before" and "after" screenshot for every screen. If something could not be verified, say so explicitly.
+>
+> ## Step 0. Global grid and margins (do this first, then everything else)
+> 1. Define one set of horizontal screen margins (left and right) as tokens and apply them on ALL screens: every heading, subheading, text block, card, row and icon starts on the same vertical line on the left.
+> 2. Right-aligned text (values, prices, kcal, time, counters, right-hand buttons) ends exactly on the right margin. The right margin equals the left margin on every screen.
+> 3. Section headings on all screens share the same left inset, the same size and the same spacing to their content. Find places where heading insets differ and unify them.
+> 4. Text must not "jump": in lists and cards the first line of text starts at the same x coordinate. Achieve this with a shared container/grid, not by tweaking individual margins.
+> 5. Spacing only from the 4pt/8pt token scale. No arbitrary values in code.
+> Automated check: a Playwright script that, for every screen, collects the left/right bounding box edges of all headings, text blocks, icons and cards, groups them by x, and reports deviations from the grid (tolerance 0 px). Add it to `npm run check` as a separate alignment check.
+>
+> ## Fixes by screen
+>
+> 1. Today screen
+> - Align section headings to the grid on the left edge (on the side-margin line).
+> - Align the calendar icon and the text next to it (the day and how many calories are left) to the same left line as the headings. Icon and text are vertically centered relative to each other.
+>
+> 2. Today → Meals section (Lunch / Snack / Dinner rows)
+> - Currently a plus sign sits on the left where the dish photo should be. Replace it with a meal-type icon (in the style of the Almond butter dish icon, from the same icon set). Until a dish is added, this icon is passive: not a button, no pressed/hover/focus states, no hit area or pointer cursor; visually muted but legible.
+> - Currently each row has two plus signs. Exactly ONE must remain: the one on the right, as a proper button (hit area ≥ 44×44, all states default / pressed / focus / disabled, an accessible name such as "Add lunch", focus ring with a gap).
+> - Once a dish is added, show the dish photo (thumbnail) in place of the icon with the same size and spacing so rows do not shift.
+> - The icon, the meal-type label and the right-hand button are aligned identically in every row.
+>
+> 3. Today → dish card at the bottom (the card with the green pill and leaf; in my description it is labeled "first … dinner")
+> - Find this card in the screenshots and code and work on it.
+> - Give the numbers and the P, F, C letters colored backgrounds (chips) in the macro colors, as on the dish detail screen. Use the same tokens and the same component as the detail screen, not a copy of the styles. Remove the dot separators between them.
+> - Align the text and the green pill with its text and leaf to the grid: equal pill height, internal padding, vertical alignment of icon and text, the pill does not extend beyond the card, text is not clipped.
+> - The "View recipe" button in this card currently looks inactive. Make it active: a proper button with a clear appearance (secondary or primary per the design system), text contrast ≥ 7:1 (important action), hit area ≥ 44×44, states default / pressed / focus / disabled, focus ring with a gap, accessible name ("View recipe: <dish name>"). Pressing it opens that dish's detail screen in Recipes. Verify that navigation actually works (click and keyboard: Enter / Space).
+>
+> 4. Recipes section, recipe cards
+> - Align the text in all cards to the left edge on the grid (it currently "jumps"): the first line of the title, captions and the row of values start at the same x coordinate in every card.
+> - Add the same colored chips for the numbers and P, F, C as on the dish card on Today (same component). Remove the dot separators.
+> - P, F and C must sit in ONE row, not two, in every card. To achieve this make the chips more compact (size and spacing tokens), with no wrapping (nowrap) and no clipping. This must hold at 390px and 320px widths at the default font size. At enlarged font sizes (150% scaling and above) wrapping is allowed, but text is never clipped and nothing extends beyond the card. Test the longest values (e.g. 100+ g).
+> - I like the gap between the clock icon and the time. Take that value from the current card, record it as a token and apply the same gap between the number and the P/F/C letter inside every chip (and define a separate token for the gap between chips).
+>
+> 5. Dish detail (Recipes → tap a dish)
+> a) Dish name: the user can change it if it was entered incorrectly (an edit button next to the name; edit in place or in a sheet). Validation: not empty, length limit, a clear error message with a hint on how to fix it.
+> b) Ingredients: make the section more compact. In ingredient rows remove the colored chips for P, F, C and keep a compact text form (number + P/F/C letter + unit) with the same gap between number and letter; macros are distinguished by more than color (the letter). Reduce vertical spacing between rows to values from the 4pt/8pt scale, but keep control hit areas ≥ 44×44 (extend the hit area with invisible padding without increasing visual height). Keep this list on the grid: the ingredient name on the left, the amount and unit right-aligned (one common right edge).
+> c) Ingredient editing: if an ingredient was added incorrectly, the user can change its name, amount and unit (g / ml / portion), delete it, or add a new one. After a change the dish's calories and P/F/C are recalculated (the nutrition summary, calorie ring and macro bars update) without a reload. In edit mode rows may be roomier; in view mode they are compact.
+> d) Recipe (cooking steps): AFTER the Ingredients section comes a "Method / Instructions" section with the actual recipe. This is a mandatory part of the screen.
+> - Numbered steps, each in its own block with a number and text; long steps wrap and nothing is clipped.
+> - Meta information above the steps: total cooking time and number of servings. Same style as the cards (clock icon + time, same gap token). Do not add new metrics unless they appear in the competitor analysis.
+> - Step text: body 16, line spacing ≥ 1.5, line length ≤ 80 characters, no justified text.
+> - Recipes without steps show a clear empty state with an explanation and an "Add steps" action, never blank space.
+> - Step editing: add, edit text, delete (with an undo toast), reorder. Reordering has a non-drag alternative ("move up / move down" buttons, WCAG 2.5.7). Validation: a step cannot be empty.
+> - Data: extend the recipe structure with a steps field (an ordered array of strings). Fill every existing recipe with steps (realistic, correct cooking text, including Baked cod, potatoes & peas). No unsafe advice: temperatures, times and cooking safety must be sensible.
+> - Step numbers and text follow the same grid: identical left and right margins, the first line of every step starts at the same x coordinate.
+> e) States and protection: view / edit / validation error / saving; Save and Cancel buttons; unsaved-changes protection on exit ("Discard changes?"); undo after deleting an ingredient or a step.
+> f) Accessibility: fields have visible labels (a placeholder never replaces a label), keyboard operable, focus is not lost when deleting or moving, changes announced via role=status, steps in a semantic ordered list (ol/li), accessible button names ("Move step 2 up"). Long names wrap and are never clipped.
+> g) Add every new component (editable ingredient row, compact ingredient row, amount fields, inline name edit, recipe step, editable recipe step) to the design system (components.css, the index.html docs) with states default / focus / pressed / disabled / error; tokens.json and tokens.css stay in sync.
+>
+> 6. Photo for Baked cod, potatoes & peas
+> - Replace the photo currently used for this dish EVERYWHERE (Today, Meals, Recipes, detail, thumbnails, previews and exports) with a different photo that actually shows baked cod, potatoes and peas.
+> - Source: a freely licensed photo (Unsplash / Pexels / Pixabay) with author, link and license recorded, or a file provided by the user in the project folder. No competitor photos and no copyrighted images. If there is no network access and no suitable file, put a clearly labeled placeholder and ask the user for a file in the report.
+> - A single source file in assets, with all screens referencing it; optimized size, a consistent aspect ratio and object-fit: cover, alt text describing the dish.
+>
+> ## Verification (mandatory)
+> 1. `npm run check` (CSS loads via file:// and HTTP, no text clipping, touch targets) plus the new alignment check: zero deviations from the grid on the left and right. Separately verify that P, F, C in the Recipes cards sit in one row at 390px and 320px.
+> 2. `npm run check:a11y`: zero AA violations and zero AAA violations for critical elements (7:1 contrast for calorie and macro numbers and the "View recipe" button, focus, touch targets, reduced motion). The colored P/F/C chips pass text contrast, and macros are distinguishable by more than color (letter + label).
+> 3. html-validate, stylelint, tokens.json validation and its parity with tokens.css: 0 errors.
+> 4. Browser checks: 390px and 320px widths, 200% font scaling, long dish names, long ingredient names, very long steps, a recipe with no steps, a recipe with 15+ steps. Keyboard traversal of all new and changed elements (Tab / Shift+Tab / Enter / Space / Esc). LOOK at the screenshots and describe what you see.
+> 5. Regression: confirm that nothing fixed earlier broke (even borders, focus with a gap, tab bar and bottom sheet within bounds, no clipping).
+>
+> ## Deliverables
+> - Fixed screen and component files, updated design-system tokens/components/docs.
+> - Before and after screenshots for every changed screen (Today, Meals, Recipes, dish detail, editing states).
+> - A report in README.md: "Changelog" (items 1–6: before → after), check results, the source and license of the new photo, and a list of open issues.
+> - Final message: what changed, what was verified, what remains open. If any check fails, say so plainly and keep fixing.
+
+</details>
+
+**Result**
+
+- **Before screenshots:** `03-screens/qa/before-step12/`. Already done in step 11 and re-verified: items 0–2, 5a, 5c, 6.
+- **Today card:** "View recipe" is a real secondary button named "View recipe: Baked cod, potatoes & broccoli", 12.8:1, 44 px tall, with all states. Enter, Space and click open the dish detail (tested).
+- **Recipe cards:**
+  - Compact chips: the token `size-macro-chip` (24) and no wrapping inside a chip.
+  - The chips sit in a full-width row of the compact card, so P, F, C are on **one row at 390 and 320 px**, including 110 g values. They wrap only at 150% text or more, never clipped.
+- **Dish detail:**
+  - **Compact ingredients:** amount + unit right-aligned; a text macro line (`.macro-line`) of letter + value.
+  - **Method section** after Ingredients: time and servings meta, numbered steps in an `ol` (16 / 1.5, ≤ 80 characters). Every recipe has a `steps` array with food-safe cooking.
+  - **Step editing:** labelled fields; Move up / down (WCAG 2.5.7) with focus kept and announced; Delete + Undo; empty-step validation; a "No steps yet" empty state with "Add steps".
+  - **Exports:** method, edit steps, step error, step deleted, no steps, and the Today card.
+- **Design system v1.5:**
+  - 24 Recipe steps, the compact ingredient row, a growing `textarea` in fields, View recipe states and the chip row.
+  - Tokens `size-macro-chip`, `size-step-number`, `size-measure` (40rem ≈ 75 characters).
+  - Icons arrow-up and arrow-down.
+- **Board:** a new "2C" row: Today card → Method → Edit steps → Step deleted → No steps, with notes 20–23.
+- **Checks:**
+  - `npm run check`: 61/61 + alignment 0 (2,322 edges, 26 screens);
+  - `check:a11y`: Tier 1 0/40, Tier 2 0/9;
+  - `check:screens`: 322/322 (new: one-row chips, View recipe keys, method, 16 steps + a very long step, no steps);
+  - contrast 67/67; tokens in sync; lint 0.
+- **Fixed while verifying:**
+  - the textarea cut text at 3 lines;
+  - `80ch` isn't a valid token dimension;
+  - the audit didn't map `textarea` focus;
+  - a chip test counted screen-reader labels as clipped.
+- **Open:** the cod photo still shows broccoli, not peas (no free photo exists); prototype edits are not persisted.

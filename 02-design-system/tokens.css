@@ -114,6 +114,7 @@
   --color-border-accent: var(--color-persimmon-600);  /* Selected and focused inputs */
   --color-border-focus: var(--color-oat-900);  /* Keyboard focus ring (2 px + 2 px offset) */
   --color-border-error: var(--color-chili-600);
+  --color-border-inverse: var(--color-oat-50);  /* Lines on dark or camera surfaces: plate guide, shutter ring */
 
   /* color.status */
   --color-status-success: var(--color-basil-600);
@@ -250,8 +251,11 @@
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
-  --space-screen-margin: var(--space-5);  /* Left and right screen margin (20 pt) */
+  --space-screen-margin: var(--space-5);  /* Grid line 1: left AND right screen margin (20 pt). Every heading, card, list, field and button starts and ends on it */
   --space-stack: var(--space-4);  /* Default gap between stacked blocks */
+  --space-card-inset: var(--space-4);  /* Grid line 2: inner padding of cards, lists, banners and facts (16). Content inside a surface starts and ends here */
+  --space-inline-icon: var(--space-1);  /* Gap between an inline icon and its text (clock → '30 min'), and between a macro letter and its value inside a chip */
+  --space-chip-gap: var(--space-2);  /* Gap between chips in a row (macro chips, filter chips) */
 
   /* ===== size ===== */
   --size-touch-min: 44px;  /* Minimum hit region on iOS: 44×44 pt (Apple HIG, Buttons & Accessibility) */
@@ -285,6 +289,13 @@
   --size-badge: 24px;
   --size-col-min: 5rem;  /* Minimum width of equal columns (segments, macro columns, macro tiles). rem-based, so at large text sizes columns stack instead of clipping */
   --size-empty-icon: 72px;
+  --size-shutter: 72px;  /* Camera shutter button (larger than a normal target: the main action on the camera screen) */
+  --size-plate-guide: 280px;  /* Plate outline in the camera viewfinder */
+  --size-recipe-thumb: 112px;  /* Image width in compact recipe cards */
+  --size-icon-inset: 10px;  /* (touch-min 44 − icon 24) / 2: the space between a hit area and its glyph. Bars subtract it so the glyph, not the hit box, sits on the grid line */
+  --size-macro-chip: 24px;  /* Compact macro chip height (P / F / C). Three chips with 3-digit values fit one row in a 320 pt card */
+  --size-step-number: 28px;  /* Recipe step number disc */
+  --size-measure: 40rem;  /* Maximum width of reading text such as recipe steps: 40rem ≈ 75 characters of 16 px body text (WCAG 1.4.8: ≤ 80 characters). In rem, so it scales with text size */
 
   /* ===== radius ===== */
   --radius-xs: 6px;  /* Badges */
@@ -313,6 +324,7 @@
   --motion-duration-fast: 120ms;
   --motion-duration-base: 200ms;
   --motion-duration-slow: 320ms;  /* Sheets */
+  --motion-duration-shimmer: 1400ms;  /* One skeleton shimmer cycle. 0 ms (static) with reduced motion */
 
   /* motion.easing */
   --motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -336,5 +348,6 @@
     --motion-duration-fast: 0ms;
     --motion-duration-base: 0ms;
     --motion-duration-slow: 0ms;
+    --motion-duration-shimmer: 0ms;
   }
 }

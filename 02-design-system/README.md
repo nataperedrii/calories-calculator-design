@@ -34,24 +34,24 @@ There are two layers:
 1. **Primitives** (`--color-oat-50`, `--color-persimmon-600` and so on): the raw palette, with every family named after a food.
 2. **Semantic tokens** (`--color-bg-canvas`, `--color-text-secondary`, `--color-macro-protein` and so on): what components use.
 
-The tokens in `tokens.json` become 270 CSS variables, including the `prefers-contrast: more` and `prefers-reduced-motion` modes.
+The tokens in `tokens.json` become 283 CSS variables, including the `prefers-contrast: more` and `prefers-reduced-motion` modes.
 
 | Group | Tokens | Notes |
 |---|---|---|
 | **Colour: background** | `bg-canvas`, `bg-surface`, `bg-sunken`, `bg-disabled`, `bg-inverse(-pressed)`, `bg-accent(-pressed)`, `bg-accent-subtle(-pressed)`, `bg-fresh-subtle`, `bg-highlight`, `bg-pressed`, `bg-scrim` | Oat milk background, Rice cards, Persimmon accent |
 | **Colour: text** | `text-primary`, `text-secondary`, `text-disabled`, `text-inverse`, `text-on-accent`, `text-accent`, `text-fresh`, `text-inverse-accent/-success/-warning` | Rye crust and Walnut |
-| **Colour: border** | `border-subtle`, `border-default`, `border-strong`, `border-accent`, `border-focus`, `border-error` | `border-strong` (inputs) and `border-focus` meet 3:1 |
+| **Colour: border** | `border-subtle`, `border-default`, `border-strong`, `border-accent`, `border-focus`, `border-error`, `border-inverse` (on camera / dark) | `border-strong` (inputs) and `border-focus` meet 3:1 |
 | **Colour: status** | `success`, `warning`, `error`, each with `-text` and `-subtle` | Basil, Turmeric, Chili. **Over goal = warning, never error** |
 | **Colour: macros** | `macro-protein`, `macro-fat`, `macro-carbs`, each with `-text` and `-subtle`, plus `macro-track` | Beetroot, Mustard, Blueberry. Always labelled P / F / C |
 | **Type** | `display`, `h1`, `h2`, `title`, `body`, `body-strong`, `callout`, `label`, `caption`, `overline`, `num-xl`, `num-l`, `num-m`, `num-s` | rem-based (Dynamic Type). `num-*` use tabular figures |
 | **Font stacks** | Young Serif → Iowan Old Style, Palatino, Georgia, serif · Hanken Grotesk → system UI fonts → sans-serif · Azeret Mono → SF Mono, Menlo, Consolas, Roboto Mono → monospace | They look right offline and keep numbers tabular |
-| **Space** | `space-0 … space-16` on a **4 pt grid**, plus `space-screen-margin` (20) | |
-| **Size** | `touch-min` 44 · `touch-android` 48 · `app-bar` 56 / `app-bar-android` 64 · `tab-bar` 49 / `tab-bar-android` 64 · `tab-indicator` 56×32 · `tab-label-max` 14 · `segment` 36 / `segment-android` 40 · `col-min` 5rem · `chip` 36 · `thumb` 48 · safe areas 47 / 34 | |
+| **Space** | `space-0 … space-16` on a **4 pt grid**. Grid lines: `space-screen-margin` (20, left **and** right) and `space-card-inset` (16, content inside cards, lists, banners, rows). Gaps: `space-inline-icon` (4, icon → text and macro letter → value), `space-chip-gap` (8, between chips) | Checked by `npm run check:align` (0 px tolerance) |
+| **Size** | `touch-min` 44 · `touch-android` 48 · `app-bar` 56 / `app-bar-android` 64 · `tab-bar` 49 / `tab-bar-android` 64 · `tab-indicator` 56×32 · `tab-label-max` 14 · `segment` 36 / `segment-android` 40 · `col-min` 5rem · `chip` 36 · `thumb` 48 · `shutter` 72 · `plate-guide` 280 · `recipe-thumb` 112 · `icon-inset` 10 (hit area → glyph, used to put glyphs on grid lines) · `macro-chip` 24 (compact P/F/C chip) · `step-number` 28 · `measure` 40rem (≈ 75 characters, reading width) · safe areas 47 / 34 | |
 | **Icons** | `size-icon-s/m/l/xl` = 16 / 20 / 24 / 32, `size-icon-stroke` 2 | Drawn on a 24 grid |
 | **Radius** | `xs` 6 · `sm` 10 · `md` 16 · `lg` 24 · `xl` 32 · `full` | |
 | **Border width** | `hairline` 1 · `default` 1.5 · `focus` 2 · `focus-gap` 2 · `rule` 3 | |
 | **Elevation** | `shadow-e1` (cards), `e2` (toasts), `e3` (sheets), `accent` (scan) | Warm rye-tinted shadows |
-| **Motion** | `duration-fast` 120 ms, `base` 200 ms, `slow` 320 ms, `easing-standard` | |
+| **Motion** | `duration-fast` 120 ms, `base` 200 ms, `slow` 320 ms, `shimmer` 1400 ms, `easing-standard` | All 0 ms under `prefers-reduced-motion` |
 
 ## Components
 
@@ -65,14 +65,14 @@ Every component has **default, pressed, disabled, focus and error** states where
 | # | Component | Class | States shown |
 |---|---|---|---|
 | 1 | Buttons, icon buttons | `.btn`, `.icon-btn` | default · pressed · disabled · focus · Android 48 dp |
-| 2 | Text field | `.field` | default · focus · filled · error · disabled |
+| 2 | Text field | `.field`, `.field__top`, `.field__count` | default · focus · filled · error · disabled · select · live character count |
 | 3 | Search bar | `.search` | default · focus · no results (error) · disabled |
-| 4 | Chips | `.chip` | default · pressed · selected · focus · disabled · fresh |
+| 4 | Chips | `.chip` | default · pressed · selected · focus · disabled · fresh · locked (allergy) |
 | 5 | Segmented control (g / ml / portion) | `fieldset.segmented` + native radios | default · pressed · focus · disabled option · Android |
 | 6 | Weight stepper | `.stepper` | default · pressed · focus · at minimum · error · disabled |
-| 7 | Product list item | `.product` | default · pressed · selected · disabled · error (+ focus) |
-| 8 | Recipe card | `.recipe-card` | default · pressed · disabled (long titles) |
-| 9 | Nutrition summary | `.nutri`, `.macro` | on track · over goal |
+| 7 | Product list item | `.product`, `.product--detected`, `.product__thumb--meal` | default · pressed · selected · disabled · error (+ focus) · detected · check portion · photo / icon thumb · meal rows (passive meal icon + one Add button) |
+| 8 | Recipe card | `.recipe-card`, `.recipe-card--compact` | default · pressed · disabled (long titles) · compact (chips in a full-width row) · View recipe button (default · pressed · focus · disabled) |
+| 9 | Nutrition summary | `.nutri`, `.macro`, `.macro-tile--chip` | on track · over goal · macro chips |
 | 10 | Nutrition facts table | `.facts` | per 100 g + per portion |
 | 11 | Top app bar | `.app-bar` | default · scrolled · large · Android 64 dp |
 | 12 | Tab bar | `.tab-bar`, `.tab` | active · pressed · focus · Scan focus · Android 64 dp |
@@ -80,6 +80,14 @@ Every component has **default, pressed, disabled, focus and error** states where
 | 14 | Toast | `.toast` | success · warning (pressed action) · error (focused action) |
 | 15 | Empty state | `.empty` | empty · error |
 | 16 | Badges and confidence | `.badge`, `.confidence`, `.marker` | verified · new · fresh · count · P/F/C · high · check · not sure |
+| 17 | Inline banner | `.banner` | info · offline · offline with action |
+| 18 | Skeleton | `.skeleton` | list · card (static under reduced motion) |
+| 19 | Camera viewfinder | `.viewfinder`, `.shutter`, `.icon-btn--inverse` | live (plate found) · shutter pressed · library focused |
+| 21 | Date button | `.date-btn` | default · pressed · focus |
+| 22 | Title row and name editing | `.title-row`, `.name-edit` | view · edit · error · saving |
+| 23 | Ingredient rows | `.ingredients`, `.ingredient`, `.ingredient--edit`, `.macro-line` | compact view (amount right-aligned, letter + value macros) · edit · delete focused · error · deleted (Undo toast) |
+| 24 | Recipe steps (Method) | `.recipe-steps`, `.recipe-step`, `.recipe-step--edit`, `.recipe-step__actions` | view · edit · move disabled / focus / pressed · empty-step error · empty state |
+| 20 | Screen layout | `.screen`, `.status-bar`, `.screen__body`, `.screen__foot`, `.screen__toast`, `.card`, `.photo` | frame with photo markers and footer · inverse status bar · toast row |
 
 ---
 
@@ -107,10 +115,10 @@ No rules were disabled, and nothing was excluded or hidden to pass.
 | Tier 1: A + AA (blocking) | **28 failures** (17 real, counting pa11y's own summary row, + 11 checker artefacts*) | **0 failures**, 40 checks pass |
 | Tier 2: AAA on critical elements (blocking) | **355 failures** (349 real: 318 contrast findings below 7:1, from the custom scan (164) and axe AAA (154), mostly the same nodes seen twice; 24 nav links under 44 px; 7 missing patterns. Plus 6 checker artefacts*) | **0 failures**, 9 checks pass |
 | Tier 3: other AAA (information) | 661 notes | 3 notes (the pressed toast action, reported by both scanners, and a *pass* note for more-contrast mode) |
-| axe-core AA + best practice | 0 violations, 46 rules pass | 0 violations, 56 rules pass |
+| axe-core AA + best practice | 0 violations, 46 rules pass | 0 violations, 58 rules pass |
 | pa11y WCAG2AA | 4 errors (disabled label text) | **0 errors** |
-| Focus stops without a visible indicator | – | 0 of 142 |
-| Smallest target | 183 × 24 (24 docs nav links) | 44 × 44 (165 targets, 0 overlapping) |
+| Focus stops without a visible indicator | – | 0 of 215 |
+| Smallest target | 183 × 24 (24 docs nav links) | 44 × 44 (243 targets, 0 overlapping) |
 | Reflow at 320 px | horizontal scroll (520 px) | none (wide tables scroll inside their own region) |
 
 \* The first version of the checker measured three things wrongly:
@@ -155,9 +163,9 @@ Selectors are listed at the top of `tools/a11y.mjs`. Hints, captions, placeholde
 | 2.3.1 Three Flashes | 1 | pass | No flashing |
 | 2.4.1 Bypass Blocks | 1 | fixed | A "Skip to content" link is the first focus stop (44 px) |
 | 2.4.2 Page Titled · 2.4.4 Link Purpose · 2.4.6 Headings and Labels | 1 | pass | Descriptive title, nav links and headings |
-| 2.4.3 Focus Order | 1 | pass | 142 stops in DOM order; Shift+Tab reverses |
+| 2.4.3 Focus Order | 1 | pass | 215 stops in DOM order; Shift+Tab reverses |
 | 2.4.5 Multiple Ways | 1 | justified exception | Applies to "a web page within a set of web pages"; this is one standalone page. It still has a nav, a skip link and in-page anchors ([Understanding 2.4.5](https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways)) |
-| 2.4.7 Focus Visible · 2.4.11 Focus Not Obscured (Min) | 1 | pass | 142 of 142 stops show a ≥ 2 px indicator; 0 covered |
+| 2.4.7 Focus Visible · 2.4.11 Focus Not Obscured (Min) | 1 | pass | 215 of 215 stops show a ≥ 2 px indicator; 0 covered |
 | 2.5.1 Pointer Gestures · 2.5.2 Pointer Cancellation · 2.5.4 Motion Actuation · 2.5.7 Dragging | 1 | pass | Single taps only; native click activation; the stepper has ± buttons and a typed value (no drag) |
 | 2.5.3 Label in Name | 1 | pass | Visible labels are the accessible names; icon-only buttons have `aria-label` |
 | 2.5.8 Target Size (Minimum) | 1 | pass | Smallest target 44 × 44 |
@@ -170,9 +178,9 @@ Selectors are listed at the top of `tools/a11y.mjs`. Hints, captions, placeholde
 | 4.1.2 Name, Role, Value | 1 | fixed | Stepper value is now a labelled `input`; macro bars are `role="meter"` with values; sheet is `<dialog>`; segmented control uses native radios |
 | 4.1.3 Status Messages | 1 | pass | Toasts `role="status"`, error toast `role="alert"` |
 | **1.4.6 Contrast (Enhanced)** | 2 | fixed | 318 critical text nodes were below 7:1. Now all ≥ 7:1 (see the table below); 34 critical token pairs checked by `contrast.py` |
-| **2.5.5 Target Size (Enhanced)** | 2 | fixed | 24 docs nav links were 24 px; now 44 px. 165 targets ≥ 44 (Android variants ≥ 48); 0 overlapping hit areas |
+| **2.5.5 Target Size (Enhanced)** | 2 | fixed | 24 docs nav links were 24 px; now 44 px. 243 targets ≥ 44 (Android variants ≥ 48); 0 overlapping hit areas |
 | **2.4.12 Focus Not Obscured (Enhanced)** | 2 | pass | No focused element is even partly covered: the sticky nav is in its own column, and the sheets are modal |
-| **2.4.13 Focus Appearance** | 2 | pass (checker fixed) | Every one of the 142 stops has a ring ≥ 2 px (outline, double ring or inset ring). Contrast change between focused and unfocused pixels: 14.6:1 on the canvas, 13.4:1 on the segment track, 13.2:1 on a pressed tab, 14.6:1 for the light ring on the dark toast. Screenshots: `a11y/after/focus/` |
+| **2.4.13 Focus Appearance** | 2 | pass (checker fixed) | Every one of the 215 stops has a ring ≥ 2 px (outline, double ring or inset ring). Contrast change between focused and unfocused pixels: 14.6:1 on the canvas, 13.4:1 on the segment track, 13.2:1 on a pressed tab, 14.6:1 for the light ring on the dark toast. Screenshots: `a11y/after/focus/` |
 | **2.3.3 Animation from Interactions** | 2 | fixed | `prefers-reduced-motion`: motion tokens become 0 ms; sheet and toast entrance animations and the pressed scale are removed (measured: 0 s, `none`) |
 | **1.4.8 Visual Presentation (text)** | 2 | fixed | Caption, callout, label, title and num-s line-height 1.33–1.43 → 1.5. Lead and hero text 88 → 65 characters per line. No justified text. Paragraph gaps ≥ 1.5× line spacing |
 | **3.1.4 Abbreviations** | 2 | fixed | Abbreviations legend (`dl`) plus `<abbr title>` for kcal, P, F, C, g, ml, pt, dp, USDA |
@@ -291,21 +299,21 @@ Run everything with `npm run check`. It needs `node_modules` (`npm install`) and
 | Check | Tool | Result |
 |---|---|---|
 | Paths | `check.mjs` reads the `<link>`s | `./tokens.css` → `./components.css` → `./docs.css`, all relative, all present. Font stacks have ≥ 3 offline fallbacks |
-| `tokens.json` | `check.mjs` (JSON parse + W3C DTCG rules) | Valid JSON; 185 tokens, all with `$value` and a known `$type`; values match their type; every `{reference}` resolves; **no cycles**; 105 tokens have `$description` (optional in the spec) |
+| `tokens.json` | `check.mjs` (JSON parse + W3C DTCG rules) | Valid JSON; 197 tokens, all with `$value` and a known `$type`; values match their type; every `{reference}` resolves; **no cycles**; 117 tokens have `$description` (optional in the spec) |
 | No drift | `python3 tools/build_tokens.py --check` | `tokens.css` is byte-identical to a fresh build |
 | CSS references | `check.mjs` | 0 broken `var(--…)`; `components.css` uses no primitives, no hex and no px |
 | CSS lint | **stylelint 17 + stylelint-config-standard** | **0 errors, 0 warnings** in 3 files. The only config change is `selector-class-pattern`, which allows BEM `block__element--modifier`. Specificity-order issues were fixed by reordering, not by disabling rules |
 | HTML | **html-validate** (`html-validate:recommended`) | **0 errors, 0 warnings** in both `index.html` and `index.standalone.html`. The only config change: `no-inline-style` allows the data-only custom properties `--w --c --r --s --is` (bar widths, swatch colours, tile radii). All layout styling lives in CSS |
 | CSS actually loads | Playwright, `file://` **and** a local HTTP server | No console errors, no failed requests; `document.styleSheets` includes tokens.css, then components.css; `--color-bg-canvas` resolves to `#fbf6ee`; body and primary button computed colours match the tokens; brand fonts loaded |
-| `file://` = `http://` | pixelmatch, full page | **0 different pixels** (1440 × 21,878) |
+| `file://` = `http://` | pixelmatch, full page | **0 different pixels** (1440 × 28,910; animations frozen for the comparison) |
 | Clipping | `check.mjs` (every element with `overflow ≠ visible`, plus content wider than its box) | **0** at 100% and **0** at 200% text |
 | Nothing leaves its parent | `check.mjs` (border box + outline + focus-ring spread vs parent) | **0** at 100% and 200% |
-| Touch targets | `check.mjs` (layout size + `::before/::after` hit extensions) | **132 controls, smallest side 44 px**; all Android variants ≥ 48. Docs nav links and the skip link are 44 px tall too (WCAG 2.5.5); `a11y.mjs` measures 165 targets in total |
-| Accessibility | **axe-core** (`@axe-core/playwright`), whole page | **0 violations**; 55 rules pass (56 in `npm run check:a11y`, which adds `wcag22aa` and `best-practice`). 9 nodes are "incomplete" (needs review), see [Open issues](#open-issues) |
+| Touch targets | `check.mjs` (layout size + `::before/::after` hit extensions) | **200 controls, smallest side 44 px**; all Android variants ≥ 48. Docs nav links and the skip link are 44 px tall too (WCAG 2.5.5); `a11y.mjs` measures 243 targets in total |
+| Accessibility | **axe-core** (`@axe-core/playwright`), whole page | **0 violations**; 57 rules pass (58 in `npm run check:a11y`, which adds `wcag22aa` and `best-practice`). 9 nodes are "incomplete" (needs review), see [Open issues](#open-issues) |
 | Contrast | `tools/contrast.py` | **67 / 67** text, UI, state and focus-ring pairs pass; the 34 critical text pairs pass 7:1 (see the table below) |
 | WCAG 2.2 AA + AAA critical | `npm run check:a11y` (axe, pa11y, custom contrast scan, axe AAA, keyboard, geometry, reflow, preferences) | **Tier 1: 0 / 40 pass · Tier 2: 0 / 9 pass** · 3 Tier 3 notes. See [WCAG 2.2 AA + AAA](#wcag-22-aa--aaa-for-critical-elements) |
 | Standalone | Page copied **alone** into an empty temp folder | Renders with no failed requests; tokens, styles and embedded images all load; same page height as `index.html` |
-| PNG export | `npm run export:png` | `design-system.png` **2880 × 43,756** = 2 × the 1440 × 21,878 page; all 4 corners are exactly Oat milk (`251,246,238`), so nothing is rounded or cropped. Checked visually at the top, middle and bottom |
+| PNG export | `npm run export:png` | `design-system.png` **2880 × 57,820** = 2 × the 1440 × 28,910 page; all 4 corners are exactly Oat milk (`251,246,238`), so nothing is rounded or cropped. Checked visually at the top, middle and bottom |
 | Screenshots | `check.mjs` | Every section at 100% (`qa/sections/`) plus 3× crops of each fixed area and 200% crops (`qa/crops/`). Reviewed by eye; see the changelog |
 
 **Bottom sheet macro tiles, measured bounding boxes** (CSS px; sheet content area x = 313 → 615):
@@ -324,6 +332,44 @@ Gaps are 8.00 / 8.00. The last tile ends at 615.00, exactly the sheet margin. Nu
 - **axe "incomplete" nodes** are covered by the custom contrast scan and `contrast.py` rather than by axe itself (see [Open issues](#open-issues)).
 
 ---
+
+## Changelog (v1.4 → v1.5): chips in one row, View recipe, compact ingredients, Method
+
+| Area | Before | After |
+|---|---|---|
+| **Macro chips** | 27 tall, in the narrow text column of compact cards: P, F, C wrapped to two rows at 320 pt | 24 tall (`size-macro-chip`), `white-space: nowrap` inside a chip, and in compact cards a full-width chip row under image + text. One row at 390 and 320 pt, also with 110 g in every chip. They may wrap only at ≥ 150% text, never clipped |
+| **View recipe** | A `span` styled as a button (`aria-hidden`), not focusable | A real secondary button, 12.8:1, 44 tall, named "View recipe: &lt;dish&gt;", all states |
+| **Ingredient rows (view)** | Chips under every row, 12 px row padding | Compact: name left, amount + unit right on one edge, a text macro line (`.macro-line`: letter + value, letter in the macro text colour, no fills), 8 px row padding |
+| **Method** | – | 24 Recipe steps: an ordered list after Ingredients, 16 / 1.5 text up to `size-measure` (≈ 75 characters), meta (clock + time, servings) above. Edit: labelled fields, Move up / down (WCAG 2.5.7), Delete + Undo, empty-step validation, empty state |
+| **Fields** | – | `textarea` in `.field__control`, growing with its text (`field-sizing: content`) |
+
+## Changelog (v1.3 → v1.4): grid, meals, dish editing
+
+| Area | Before | After |
+|---|---|---|
+| **Grid** | Lists ended 8 px further right than cards (row padding 4 vs card 16); app-bar glyphs sat 2 px off the margin; the nutrition row had an extra 8 px inset | Two grid lines from tokens (`space-screen-margin`, `space-card-inset`) on both sides; glyphs (not 44 pt boxes) sit on the lines via `size-icon-inset`; text buttons align by their label. `npm run check:align`: 0 px deviations at 390 and 320 |
+| **Meal rows** | An empty meal showed a "+" tile on the left **and** a "+" button on the right | A passive meal-type icon (`breakfast`, `sun`, `snack`, `dinner`) in the same 48 slot, and exactly one Add button with all states |
+| **Macros in cards** | "P 42 · F 7 · C 53" as text with dots | `.macro-tile--chip`: the macro tile, inline, in the macro colours (≥ 8.5:1). Gaps from `space-inline-icon` and `space-chip-gap` |
+| **Pills** | "Fits your dinner" was an interactive `.chip` (with a 44 hit extension) used as a label | A `.badge--fresh` with its leaf icon: same height, padding and centring as every badge |
+| **New components** | – | 21 Date button, 22 Title row + name edit (with `.field__count`), 23 Ingredient rows (view / edit / error / delete), meal-type and edit / trash icons, `select` in fields |
+| **Fields** | The input inside a 52 field was only 26 tall (the real tap target) | Inputs and selects are 44 tall inside the 52 field |
+| **200% text** | Screen bodies could grow wider than the screen when one item was wide | `.screen__body` has one `minmax(0, 1fr)` column; facts tables wrap |
+| **Audit tool** | `check:a11y` hung forever once the infinite skeleton shimmer existed | Waits only for finite animations; runs in ~30 s |
+
+## Changelog (v1.2 → v1.3): building the screens
+
+These were added while building the screens in `03-screens/` (CLAUDE.md rule: if a screen needs something, add it to the design system first).
+
+| Added | Why |
+|---|---|
+| **17 Inline banner**, **18 Skeleton**, **19 Camera viewfinder**, locked chip | The design-system gaps listed in `03-screens/FLOWS.md` §6 for flows 1 and 2 |
+| **20 Screen layout** (`.screen`, `.status-bar`, `.screen__body/foot/toast`, `.card`, `.row-between`, `.section-head`, `.photo`) | Screens may use only design-system classes, so the 390 × 844 frame itself is a component |
+| Detected-item row, "check portion" tint, photo / icon thumbnails, compact recipe card, `.recipe-card__fit`, `.product__meta--text`, `.macro__key--p/f/c`, `.screen__foot--split` | Found while building the photo result, search, recipes and dish calculator |
+| Tokens `size.shutter`, `size.plate-guide`, `size.recipe-thumb`, `motion.duration.shimmer`, `color.border.inverse` | Values the new components needed; shimmer is 0 ms in reduced-motion mode |
+| 8 icons: `info`, `lock`, `flash`, `image`, `chev-r`, `signal`, `wifi`, `battery` | Banner, allergy chip, camera, lists and the status bar |
+| Macro goals on the docs page: 100 / 70 / 255 g (was 110 / 68 / 250) | They now match the persona target in `03-screens/FLOWS.md` exactly (400 + 630 + 1,020 = 2,050 kcal) |
+| **Toast row:** the toast takes its own space above the tab bar instead of floating over content | axe found a toast covering a control in a screen. A floating toast can hide a focused element (WCAG 2.4.11), so it now never covers anything |
+| **Scrolling screen body is focusable** (`tabindex="0"`, inset focus ring) | Keyboard users can scroll a screen that has no controls in view (axe `scrollable-region-focusable`) |
 
 ## Changelog (v1.0 → v1.1)
 
@@ -410,12 +456,12 @@ Also found and fixed during verification: search inputs had a 26 px hit area (no
 | `text.secondary` `#4E4034` | `bg.pressed over bg.surface` `#EEEBE5` | 8.38:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Pressed row / tab / segment, meta text |
 | `text.primary` `#2B2118` | `bg.pressed over bg.surface` `#EEEBE5` | 13.24:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Pressed row / tab, main text |
 | `text.primary` `#2B2118` | `bg.accent-subtle-pressed` `#F9C9A6` | 10.45:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Secondary button, pressed |
-| `text.primary` `#2B2118` | `macro.protein-subtle` `#F8E9F0` | 13.43:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile value (P) |
-| `text.primary` `#2B2118` | `macro.fat-subtle` `#F8F0DA` | 13.85:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile value (F) |
-| `text.primary` `#2B2118` | `macro.carbs-subtle` `#EAF0FA` | 13.76:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile value (C) |
-| `text.secondary` `#4E4034` | `macro.protein-subtle` `#F8E9F0` | 8.50:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile unit (P) |
-| `text.secondary` `#4E4034` | `macro.fat-subtle` `#F8F0DA` | 8.77:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile unit (F) |
-| `text.secondary` `#4E4034` | `macro.carbs-subtle` `#EAF0FA` | 8.71:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile unit (C) |
+| `text.primary` `#2B2118` | `macro.protein-subtle` `#F8E9F0` | 13.43:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile / chip value (P) |
+| `text.primary` `#2B2118` | `macro.fat-subtle` `#F8F0DA` | 13.85:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile / chip value (F) |
+| `text.primary` `#2B2118` | `macro.carbs-subtle` `#EAF0FA` | 13.76:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile / chip value (C) |
+| `text.secondary` `#4E4034` | `macro.protein-subtle` `#F8E9F0` | 8.50:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile / chip unit (P) |
+| `text.secondary` `#4E4034` | `macro.fat-subtle` `#F8F0DA` | 8.77:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile / chip unit (F) |
+| `text.secondary` `#4E4034` | `macro.carbs-subtle` `#EAF0FA` | 8.71:1 | Critical text ≥ 7.0 | ✅ Pass · AAA | Macro tile / chip unit (C) |
 | `border.accent` `#C4431A` | `bg.accent-subtle` `#FCE3CC` | 4.08:1 | UI ≥ 3.0 | ✅ Pass | Product row / chip: selected ring |
 | `border.error` `#A8241C` | `status.error-subtle` `#FCECEA` | 6.25:1 | UI ≥ 3.0 | ✅ Pass | Product row: error ring |
 | `border.focus` `#2B2118` | `bg.canvas` `#FBF6EE` | 14.64:1 | UI ≥ 3.0 | ✅ Pass | Focus ring on the app background |

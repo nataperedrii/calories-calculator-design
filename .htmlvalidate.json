@@ -1,6 +1,6 @@
 {
   "extends": ["html-validate:recommended"],
   "rules": {
-    "no-inline-style": ["error", { "allowedProperties": ["--w", "--c", "--r", "--s", "--is"] }]
+    "no-inline-style": ["error", { "allowedProperties": ["--w", "--c", "--r", "--s", "--is", "--x", "--y"] }]
   }
 }

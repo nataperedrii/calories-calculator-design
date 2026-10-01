@@ -11,6 +11,17 @@ All photos are from **Unsplash** under the [Unsplash License](https://unsplash.c
 | `avocado-halves.jpg` | Avocado halves on wood | Kevin Porter | [unsplash.com/photos/6BJxafI1hfw](https://unsplash.com/photos/an-avocado-cut-in-half-on-a-wooden-table-6BJxafI1hfw) |
 | `breakfast-granola-blueberries.jpg` | Granola with blueberries (the breakfast recipe card) | AltumCode | [unsplash.com/photos/BT-Cx1n1LXA](https://unsplash.com/photos/a-white-plate-topped-with-granola-and-blueberries-BT-Cx1n1LXA) |
 
+**Added on 1 Oct 2026** for the screens in `03-screens/`. Unsplash files are 1600 px wide. `recipe-baked-cod.jpg` replaced an earlier cod photo that showed fish on greens, not the recipe; the recipe now matches the photo (broccoli instead of peas).
+
+| File | What it shows | Used for | Photographer | Source |
+|---|---|---|---|---|
+| `recipe-baked-cod.jpg` | Baked cod fillets with crushed roasted potatoes, broccoli and golden garlic (Portuguese *bacalhau à lagareiro*) | Recipe "Baked cod, potatoes & broccoli": Today card, Meals thumbnail, Recipes, dish detail, log sheet | Gadini | [pixabay.com/photos/815458](https://pixabay.com/photos/codfish-cod-to-the-lagareiro-food-815458/) · **Pixabay Content License** (free for commercial and non-commercial use, no attribution required; credited anyway). Downloaded 1 Oct 2026 at 1280 × 853 |
+| `recipe-shrimp-vegetables.jpg` | Shrimp with vegetables and grains | Recipe "Shrimp & broccoli stir-fry with rice" | Terry Granger | [unsplash.com/photos/rfpZk1KO_DE](https://unsplash.com/photos/a-close-up-of-a-plate-of-food-on-a-table-rfpZk1KO_DE) |
+| `recipe-chickpea-curry.jpg` | Chickpea and spinach curry with rice | Recipe "Chickpea & spinach curry with rice" | Álvaro Bernal | [unsplash.com/photos/ReySmTMcKEQ](https://unsplash.com/photos/cooked-food-on-white-ceramic-plate-ReySmTMcKEQ) |
+| `food-almonds.jpg` | Almonds in a white bowl | Food "Almonds" (search, detail) | Mockupo | [unsplash.com/photos/8LvXmMZuAU0](https://unsplash.com/photos/brown-almond-nuts-on-white-ceramic-bowl-8LvXmMZuAU0) |
+| `food-apple.jpg` | Red apple on wood | Food "Apple" (recents) | Frank Albrecht | [unsplash.com/photos/5uxgJmZGiVk](https://unsplash.com/photos/red-apple-on-brown-surface-5uxgJmZGiVk) |
+| `dish-lentil-soup.jpg` | Red lentil and pumpkin soup | Dish calculator "Red lentil soup" | Karyna Panchenko | [unsplash.com/photos/2beCqCd8mAc](https://unsplash.com/photos/a-bowl-of-carrot-soup-with-parsley-on-top-2beCqCd8mAc) |
+
 **Notes for store use**
 - `snap-phone.jpg` shows a recognisable phone and its built-in camera app. That's fine in a design board, but **don't use it in App Store or Google Play screenshots or ads**, where third-party devices and UI can cause review problems.
 - The Unsplash License doesn't let you sell the photos unaltered or build a competing stock-photo service from them. Neither applies here.

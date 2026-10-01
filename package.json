@@ -4,13 +4,17 @@
   "description": "Ripe calorie calculator: design test task. Tooling for design-system checks.",
   "type": "module",
   "scripts": {
-    "check": "node 02-design-system/tools/check.mjs",
+    "check": "node 02-design-system/tools/check.mjs && node 03-screens/tools/align.mjs",
     "build:standalone": "node 02-design-system/tools/build-standalone.mjs",
     "export:png": "node 02-design-system/tools/export-png.mjs",
-    "lint:css": "stylelint \"02-design-system/*.css\"",
-    "lint:html": "html-validate 02-design-system/index.html 02-design-system/index.standalone.html",
+    "lint:css": "stylelint \"02-design-system/*.css\" 03-screens/flows.css",
+    "lint:html": "html-validate 02-design-system/index.html 02-design-system/index.standalone.html 03-screens/screens/*.html 03-screens/flows.html",
     "check:a11y": "node 02-design-system/tools/a11y.mjs after",
-    "audit:before": "node 02-design-system/tools/a11y.mjs before"
+    "audit:before": "node 02-design-system/tools/a11y.mjs before",
+    "build:screens": "python3 03-screens/tools/build_screens.py",
+    "export:screens": "node 03-screens/tools/export.mjs",
+    "check:screens": "node 03-screens/tools/check.mjs",
+    "check:align": "node 03-screens/tools/align.mjs"
   },
   "engines": {
     "node": ">=20"

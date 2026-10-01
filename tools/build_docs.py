@@ -154,7 +154,7 @@ out.append("</div>")
 
 # ---------------- icons + sizes ----------------
 ICONS = ["today", "diary", "scan", "recipes", "profile", "search", "barcode", "plus", "minus", "check", "close", "back",
-         "high", "check-portion", "unsure", "fresh", "viewfinder", "portion", "time", "heart", "calendar", "alert"]
+         "high", "check-portion", "unsure", "fresh", "viewfinder", "portion", "time", "heart", "calendar", "alert", "info", "lock", "flash", "image", "chev-r", "signal", "wifi", "battery", "breakfast", "sun", "snack", "dinner", "edit", "trash", "arrow-up", "arrow-down"]
 out.append('<h2 class="doc-h2" id="icons"><small>Foundations</small>Icons &amp; sizes</h2>'
            '<p class="doc-lead">Drawn on a 24 px grid with a 2 px round stroke, coloured with <code>currentColor</code>. SVG files are in <code>01-branding/assets/icons/</code>. '
            'Confidence icons are always paired with a word.</p><div class="tiles">')

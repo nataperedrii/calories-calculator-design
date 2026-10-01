@@ -121,7 +121,35 @@ npm run check:a11y
 
 `npm run check:a11y` must also pass: **Tier 1 (WCAG 2.2 A/AA) and Tier 2 (AAA for critical elements) must both have 0 failures.** It runs axe, pa11y, a custom contrast scan (7:1 critical, 4.5:1 regular), axe AAA on critical elements, keyboard, focus, target, reflow, zoom, text-spacing and user-preference checks. Reports go to `02-design-system/a11y/`. Never disable rules or hide elements to make it pass. Use `npm run audit:before` only to record a new baseline.
 
+`npm run check` runs the design-system checks **and** the grid alignment check (`npm run check:align`: every heading, text block, card, row and glyph on the two token grid lines, 0 px tolerance, at 390 and 320 px). Both must pass: 61/61 and 0 deviations.
+
 `npm run check` must pass (61/61) before any design-system change is considered done: it checks paths, tokens (W3C structure, references, drift), stylelint, html-validate, contrast, file:// vs http, CSS loading, clipping, overflow, touch targets (44 pt / 48 dp), component geometry at 100% and 200% text, axe-core, the standalone page and the PNG export. Reports go to `02-design-system/qa/`.
+
+## Screens (03-screens)
+
+Screens are **generated**: `03-screens/tools/build_screens.py` holds the USDA data, computes every portion and total, and writes `screens/*.html` and `flows.html`. Edit the generator, not the HTML.
+
+```bash
+npm run build:screens
+```
+
+```bash
+npm run export:screens
+```
+
+```bash
+npm run check:screens
+```
+
+`export:screens` renders every screen at 390×844 with `deviceScaleFactor: 2` (780×1688 PNGs in `exports/`) and the board to `flows.png`.
+
+The dish detail editor lives in `03-screens/screens/js/dish-editor.js` and reads its data from the JSON the generator writes. `node 03-screens/tools/compare.mjs` builds before/after images in `03-screens/qa/compare/` (`… compare.mjs step12` → `qa/compare-step12/`).
+
+`check:screens` must pass with 0 failures. It checks:
+- **Code:** html-validate; the design-system-only rule (only `tokens.css` and `components.css`, data-only inline styles, no hex or px); links.
+- **Rendering:** axe WCAG 2.2 A/AA; the 390×844 frame; clipping; 44 px targets; keyboard focus.
+- **Data and files:** that the on-screen numbers add up; export sizes.
+- **Stress and behaviour:** 320 px, 200% text, long names, and the dish editor (recalculation, delete + Undo, validation, discard, save).
 
 ## Working notes
 

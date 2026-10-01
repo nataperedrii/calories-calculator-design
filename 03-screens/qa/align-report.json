@@ -1,0 +1,861 @@
+{
+  "date": "2026-10-01T21:59:33.818Z",
+  "widths": [
+    390,
+    320
+  ],
+  "screens": {
+    "07-today-before-lunch.html@390": {
+      "measured": 24,
+      "deviations": []
+    },
+    "07-today-card.html@390": {
+      "measured": 33,
+      "deviations": []
+    },
+    "07-today-dinner-added.html@390": {
+      "measured": 26,
+      "deviations": []
+    },
+    "07-today-lunch-added.html@390": {
+      "measured": 26,
+      "deviations": []
+    },
+    "07-today-meals.html@390": {
+      "measured": 33,
+      "deviations": []
+    },
+    "07-today.html@390": {
+      "measured": 33,
+      "deviations": []
+    },
+    "08-scan.html@390": {
+      "measured": 4,
+      "deviations": []
+    },
+    "09-photo-result-analyzing.html@390": {
+      "measured": 18,
+      "deviations": []
+    },
+    "09-photo-result.html@390": {
+      "measured": 28,
+      "deviations": []
+    },
+    "10-add-food.html@390": {
+      "measured": 29,
+      "deviations": []
+    },
+    "11-food-detail.html@390": {
+      "measured": 25,
+      "deviations": []
+    },
+    "12-dish-calculator.html@390": {
+      "measured": 26,
+      "deviations": []
+    },
+    "13-recipes.html@390": {
+      "measured": 36,
+      "deviations": []
+    },
+    "14-recipe-detail-deleted.html@390": {
+      "measured": 69,
+      "deviations": []
+    },
+    "14-recipe-detail-discard.html@390": {
+      "measured": 76,
+      "deviations": []
+    },
+    "14-recipe-detail-edit.html@390": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail-edited.html@390": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail-log.html@390": {
+      "measured": 55,
+      "deviations": []
+    },
+    "14-recipe-detail-method.html@390": {
+      "measured": 55,
+      "deviations": []
+    },
+    "14-recipe-detail-name-error.html@390": {
+      "measured": 55,
+      "deviations": []
+    },
+    "14-recipe-detail-no-steps.html@390": {
+      "measured": 37,
+      "deviations": []
+    },
+    "14-recipe-detail-saving.html@390": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail-step-deleted.html@390": {
+      "measured": 68,
+      "deviations": []
+    },
+    "14-recipe-detail-step-error.html@390": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail-steps-edit.html@390": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail.html@390": {
+      "measured": 55,
+      "deviations": []
+    },
+    "07-today-before-lunch.html@320": {
+      "measured": 24,
+      "deviations": []
+    },
+    "07-today-card.html@320": {
+      "measured": 33,
+      "deviations": []
+    },
+    "07-today-dinner-added.html@320": {
+      "measured": 26,
+      "deviations": []
+    },
+    "07-today-lunch-added.html@320": {
+      "measured": 26,
+      "deviations": []
+    },
+    "07-today-meals.html@320": {
+      "measured": 33,
+      "deviations": []
+    },
+    "07-today.html@320": {
+      "measured": 33,
+      "deviations": []
+    },
+    "08-scan.html@320": {
+      "measured": 4,
+      "deviations": []
+    },
+    "09-photo-result-analyzing.html@320": {
+      "measured": 18,
+      "deviations": []
+    },
+    "09-photo-result.html@320": {
+      "measured": 28,
+      "deviations": []
+    },
+    "10-add-food.html@320": {
+      "measured": 29,
+      "deviations": []
+    },
+    "11-food-detail.html@320": {
+      "measured": 25,
+      "deviations": []
+    },
+    "12-dish-calculator.html@320": {
+      "measured": 26,
+      "deviations": []
+    },
+    "13-recipes.html@320": {
+      "measured": 36,
+      "deviations": []
+    },
+    "14-recipe-detail-deleted.html@320": {
+      "measured": 69,
+      "deviations": []
+    },
+    "14-recipe-detail-discard.html@320": {
+      "measured": 76,
+      "deviations": []
+    },
+    "14-recipe-detail-edit.html@320": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail-edited.html@320": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail-log.html@320": {
+      "measured": 55,
+      "deviations": []
+    },
+    "14-recipe-detail-method.html@320": {
+      "measured": 55,
+      "deviations": []
+    },
+    "14-recipe-detail-name-error.html@320": {
+      "measured": 55,
+      "deviations": []
+    },
+    "14-recipe-detail-no-steps.html@320": {
+      "measured": 37,
+      "deviations": []
+    },
+    "14-recipe-detail-saving.html@320": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail-step-deleted.html@320": {
+      "measured": 68,
+      "deviations": []
+    },
+    "14-recipe-detail-step-error.html@320": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail-steps-edit.html@320": {
+      "measured": 70,
+      "deviations": []
+    },
+    "14-recipe-detail.html@320": {
+      "measured": 55,
+      "deviations": []
+    }
+  },
+  "sectionHeads": [
+    {
+      "screen": "07-today-before-lunch.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-card.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-card.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
+    },
+    {
+      "screen": "07-today-dinner-added.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-lunch-added.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-meals.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-meals.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
+    },
+    {
+      "screen": "07-today.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
+    },
+    {
+      "screen": "09-photo-result-analyzing.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Looking at your plate"
+    },
+    {
+      "screen": "09-photo-result.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "4 foods found"
+    },
+    {
+      "screen": "10-add-food.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Results for “alm”"
+    },
+    {
+      "screen": "10-add-food.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Recent"
+    },
+    {
+      "screen": "13-recipes.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
+    },
+    {
+      "screen": "14-recipe-detail-deleted.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-deleted.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-discard.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-discard.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-edit.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-edit.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-edited.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-edited.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-log.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-log.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-method.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-method.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-name-error.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-name-error.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-no-steps.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-no-steps.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-saving.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-saving.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-step-deleted.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-step-deleted.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-step-error.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-step-error.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-steps-edit.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-steps-edit.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "07-today-before-lunch.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-card.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-card.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
+    },
+    {
+      "screen": "07-today-dinner-added.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-lunch-added.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-meals.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today-meals.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
+    },
+    {
+      "screen": "07-today.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
+      "screen": "07-today.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
+    },
+    {
+      "screen": "09-photo-result-analyzing.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Looking at your plate"
+    },
+    {
+      "screen": "09-photo-result.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "4 foods found"
+    },
+    {
+      "screen": "10-add-food.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Results for “alm”"
+    },
+    {
+      "screen": "10-add-food.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Recent"
+    },
+    {
+      "screen": "13-recipes.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
+    },
+    {
+      "screen": "14-recipe-detail-deleted.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-deleted.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-discard.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-discard.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-edit.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-edit.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-edited.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-edited.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-log.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-log.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-method.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-method.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-name-error.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-name-error.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-no-steps.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-no-steps.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-saving.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-saving.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-step-deleted.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-step-deleted.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-step-error.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-step-error.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail-steps-edit.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail-steps-edit.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
+      "screen": "14-recipe-detail.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Ingredients · 1 portion"
+    },
+    {
+      "screen": "14-recipe-detail.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    }
+  ],
+  "measured": 2322,
+  "deviations": 0
+}

@@ -285,14 +285,15 @@ const focusLog = [];
   const seen = new Set();
   for (let i = 0; i < 400; i++) {
     await page.keyboard.press("Tab");
-    await page.evaluate(() => Promise.all(document.getAnimations().map((x) => x.finished.catch(() => {})))); // measure the settled focus state
+    // measure the settled focus state; infinite animations (the skeleton shimmer) never "finish", so only wait for finite ones
+    await page.evaluate(() => Promise.all(document.getAnimations().filter((x) => x.effect?.getComputedTiming().iterations !== Infinity).map((x) => x.finished.catch(() => {}))));
     const info = await page.evaluate(() => {
       const A = window.__a11y;
       const e = document.activeElement;
       if (!e || e === document.body) return null;
       const target = e.matches("input[type=radio]") ? e.closest("label") : e;
       // where the indicator is drawn: inputs show focus on their field container, the Scan tab on its pill
-      const ind = (e.matches("input") && e.closest(".field__control, .search, .stepper")) || target.querySelector(":scope > .tab__fab") || target;
+      const ind = (e.matches("input, select, textarea") && e.closest(".field__control, .search, .stepper")) || target.querySelector(":scope > .tab__fab") || target;
       const cs = getComputedStyle(ind);
       const r = target.getBoundingClientRect();
       const outline = cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) >= 2 ? { w: parseFloat(cs.outlineWidth), off: parseFloat(cs.outlineOffset), c: cs.outlineColor } : null;
