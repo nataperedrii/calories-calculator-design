@@ -1043,3 +1043,23 @@ The key prompts used with Claude Code, and what came out of each one.
   - 32 internal links resolve.
   - I looked at the landing page (1280 px) and Today (390 px) on the live site.
 - **Docs:** LINKS.md (status "Live", check details, no more "404") and the README Pages note.
+
+
+## 21 — Clickable prototype shell (`03-screens/index.html`)
+
+**Prompt** (verbatim, the answer to "There's no phone-frame prototype page yet … Should I build it?")
+
+> yes, please build
+
+**Result**
+
+- **`03-screens/index.html`:** every screen in a phone frame (a 390 × 844 iframe in a bezel), scaled to fit the window and never above 1:1.
+  - **Picker:** grouped by flow (0 · 1A · 1B/1C · 2 · 2B/2C · 3).
+  - **Info panel:** "19 of 46", the screen name and state, Previous / Next, "Open this screen on its own", the flows board and FLOWS.md.
+  - **Navigation:** ← / → keys, `#screen` deep links (an unknown hash falls back to 01 Welcome). A tap inside the phone moves the picker and the hash along (same origin over http; from file:// the last picked screen stays shown).
+  - **Layout:** desktop is picker | sticky phone | sticky info, with the whole phone visible on load. Phones get one column: header, phone, info, picker.
+- **Generated** by `03-screens/tools/build_screens.py`, which asserts that every screen file is in the picker exactly once. Styles are in `03-screens/prototype.css` (tokens only). The missing board names for 5 screens were added.
+- **Fixed while verifying:** the scale read a CSS `calc()` as a number (NaN, a 0 × 0 phone); picking a screen scrolled the page away from the phone on mobile; the phone was 1 px below the fold at 1280 × 720 and started below the header on desktop; the picker scrolled inside the page (nested scrolling).
+- **Tests:** `check:screens` section 9 serves the repo over http and checks the picker covers all 46 screens, Next / Prev / →, the in-phone click sync, deep links and a bad hash, the fit at 1440, 1280 × 720, 390 and 320, and axe 0. Result: 610 / 610.
+- **Lint:** `lint:css` now includes `prototype.css`; `lint:html` includes both index pages.
+- **Docs:** the landing page, README (links, preview link, structure, checks, next steps), LINKS.md, FLOWS.md, CLAUDE.md and PLAN-AUDIT.md (question 3 closed).

@@ -8,7 +8,8 @@ All external links for the Ripe design test task, in one place.
 | **Brand stylescape** | https://nataperedrii.github.io/calories-calculator-design/01-branding/stylescape.html | Live |
 | **Brand directions** | https://nataperedrii.github.io/calories-calculator-design/01-branding/directions.html | Live |
 | **Design system** | https://nataperedrii.github.io/calories-calculator-design/02-design-system/index.html | Live |
-| **Clickable prototype** (starts at sign-in) | https://nataperedrii.github.io/calories-calculator-design/03-screens/screens/01-welcome.html | Live |
+| **Clickable prototype** (phone frame, screen picker) | https://nataperedrii.github.io/calories-calculator-design/03-screens/index.html | Live |
+| **First screen alone** (sign-in) | https://nataperedrii.github.io/calories-calculator-design/03-screens/screens/01-welcome.html | Live |
 | **Flows board** | https://nataperedrii.github.io/calories-calculator-design/03-screens/flows.html | Live |
 | **Video walkthrough** (Loom / FocuSee) | *To be added* | Not recorded yet |
 | **Repository** | https://github.com/nataperedrii/calories-calculator-design | Live |

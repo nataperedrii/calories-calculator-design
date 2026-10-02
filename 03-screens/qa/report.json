@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-02T22:05:55.455Z",
-  "passed": 603,
+  "date": "2026-10-02T22:23:55.112Z",
+  "passed": 610,
   "failed": 0,
   "results": [
     {
@@ -3620,6 +3620,48 @@
       "name": "Profile → Allergies (Peanuts, Shellfish, Mushrooms selected) → Save → Profile shows “Peanuts, shellfish” → Recipes: shrimp hidden, 2 locked chips, “2 recipes hidden”",
       "ok": true,
       "detail": "{\"ed\":[\"Peanuts\",\"Shellfish\",\"Mushrooms\"],\"up\":true,\"rf\":{\"cards\":[\"Baked cod, potatoes & broccoli\",\"Chickpea & spinach curry with rice\"],\"locked\":2,\"note\":\"2 recipes hidden: they contain peanuts or shellfish. Change allergies in Profile.\"}}"
+    },
+    {
+      "group": "prototype",
+      "name": "index.html: every screen file is in the picker exactly once (46)",
+      "ok": true,
+      "detail": "46 in picker"
+    },
+    {
+      "group": "prototype",
+      "name": "starts at 01 Welcome; Next → 01 link sent; a click inside the phone (passkey) moves the picker, hash and counter to 02 Goal; → steps to 03",
+      "ok": true,
+      "detail": "{\"s0\":{\"cur\":\"01-welcome\",\"hash\":\"01-welcome\",\"frame\":\"01-welcome\",\"count\":\"1 of 46\"},\"s1\":{\"cur\":\"01-welcome-link\",\"hash\":\"01-welcome-link\",\"frame\":\"01-welcome-link\",\"count\":\"2 of 46\"},\"s2\":{\"cur\":\"02-goal\",\"hash\":\"02-goal\",\"frame\":\"02-goal\",\"count\":\"3 of 46\"},\"s3\":{\"cur\":\"03-about-you\",\"hash\":\"03-about-you\",\"frame\":\"03-about-you\",\"count\":\"4 of 46\"}}"
+    },
+    {
+      "group": "prototype",
+      "name": "deep link #15-diary-tue opens that screen; an unknown hash falls back to 01 Welcome",
+      "ok": true,
+      "detail": "{\"deep\":{\"cur\":\"15-diary-tue\",\"hash\":\"15-diary-tue\",\"frame\":\"15-diary-tue\",\"count\":\"45 of 46\"},\"bad\":{\"cur\":\"01-welcome\",\"hash\":\"01-welcome\",\"frame\":\"15-diary-tue\",\"count\":\"1 of 46\"}}"
+    },
+    {
+      "group": "prototype",
+      "name": "@1440×900: phone scaled (never above 1:1) without sideways scroll, fully in view; axe 0 violations on the shell",
+      "ok": true,
+      "detail": "{\"scrollW\":1440,\"w\":1440,\"sameBox\":true,\"scale\":1,\"inView\":true,\"axe\":[]}"
+    },
+    {
+      "group": "prototype",
+      "name": "@1280×720: phone scaled (never above 1:1) without sideways scroll, fully in view; axe 0 violations on the shell",
+      "ok": true,
+      "detail": "{\"scrollW\":1280,\"w\":1280,\"sameBox\":true,\"scale\":0.793,\"inView\":true,\"axe\":[]}"
+    },
+    {
+      "group": "prototype",
+      "name": "@390×844: phone scaled (never above 1:1) without sideways scroll; axe 0 violations on the shell",
+      "ok": true,
+      "detail": "{\"scrollW\":390,\"w\":390,\"sameBox\":true,\"scale\":0.845,\"inView\":true,\"axe\":[]}"
+    },
+    {
+      "group": "prototype",
+      "name": "@320×640: phone scaled (never above 1:1) without sideways scroll; axe 0 violations on the shell",
+      "ok": true,
+      "detail": "{\"scrollW\":320,\"w\":320,\"sameBox\":true,\"scale\":0.676,\"inView\":true,\"axe\":[]}"
     }
   ],
   "open": [

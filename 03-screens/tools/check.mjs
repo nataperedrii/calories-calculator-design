@@ -768,6 +768,55 @@ try {
       ed.includes("Shellfish") && ed.includes("Peanuts") && up && rf.cards.length === 2 && !rf.cards.some((c) => /Shrimp/.test(c)) && rf.locked === 2 && /2 recipes hidden/.test(rf.note), JSON.stringify({ ed, up, rf }));
     await page.close();
   }
+  // ---------- 9. the clickable prototype shell (03-screens/index.html), served over http like GitHub Pages ----------
+  {
+    const { createServer } = await import("node:http");
+    const { readFile } = await import("node:fs/promises");
+    const types = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml" };
+    const root = resolve(HERE, "..");
+    const server = createServer(async (req, res) => {
+      try { const f = resolve(root, "." + decodeURIComponent(new URL(req.url, "http://x").pathname)); res.writeHead(200, { "content-type": types[f.slice(f.lastIndexOf("."))] || "application/octet-stream" }); res.end(await readFile(f)); }
+      catch { res.writeHead(404); res.end(); }
+    }).listen(0);
+    const base = `http://localhost:${server.address().port}/03-screens/index.html`;
+    const page = await context.newPage();
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(base, { waitUntil: "networkidle" });
+    const ids = await page.evaluate(() => [...document.querySelectorAll("[data-screen]")].map((a) => a.dataset.screen));
+    const files = readdirSync(SCREENS).filter((x) => x.endsWith(".html")).map((x) => x.replace(".html", "")).sort();
+    record("prototype", `index.html: every screen file is in the picker exactly once (${files.length})`, JSON.stringify([...ids].sort()) === JSON.stringify(files) && new Set(ids).size === ids.length, `${ids.length} in picker`);
+    const st = () => page.evaluate(() => ({ cur: document.querySelector('[aria-current="page"]')?.dataset.screen, hash: location.hash.slice(1), frame: document.getElementById("frame").contentWindow.location.pathname.split("/").pop().replace(".html", ""), count: document.getElementById("now-count").textContent }));
+    const s0 = await st();
+    await page.click("#next"); await page.waitForFunction(() => document.getElementById("frame").contentWindow.location.pathname.endsWith("01-welcome-link.html"));
+    const s1 = await st();
+    await page.click("#prev"); await page.waitForFunction(() => document.getElementById("frame").contentWindow.location.pathname.endsWith("01-welcome.html"));
+    await page.frameLocator("#frame").locator("text=Continue with a passkey").click();
+    await page.waitForFunction(() => document.querySelector('[aria-current="page"]')?.dataset.screen === "02-goal");
+    const s2 = await st();
+    await page.locator("#prev").focus(); await page.keyboard.press("ArrowRight");
+    await page.waitForFunction(() => document.querySelector('[aria-current="page"]')?.dataset.screen === "03-about-you");
+    const s3 = await st();
+    record("prototype", "starts at 01 Welcome; Next → 01 link sent; a click inside the phone (passkey) moves the picker, hash and counter to 02 Goal; → steps to 03",
+      s0.cur === "01-welcome" && s0.count === `1 of ${files.length}` && s1.cur === "01-welcome-link" && s1.frame === "01-welcome-link" && s2.cur === "02-goal" && s2.hash === "02-goal" && s3.cur === "03-about-you",
+      JSON.stringify({ s0, s1, s2, s3 }));
+    await page.goto(base + "#15-diary-tue", { waitUntil: "networkidle" });
+    const deep = await st();
+    await page.goto(base + "#not-a-screen", { waitUntil: "networkidle" });
+    const bad = await st();
+    record("prototype", "deep link #15-diary-tue opens that screen; an unknown hash falls back to 01 Welcome", deep.cur === "15-diary-tue" && deep.frame === "15-diary-tue" && bad.cur === "01-welcome", JSON.stringify({ deep, bad }));
+    for (const [w, h] of [[1440, 900], [1280, 720], [390, 844], [320, 640]]) {
+      await page.setViewportSize({ width: w, height: h });
+      await page.goto(base + "#07-today", { waitUntil: "networkidle" });
+      await page.waitForTimeout(150);
+      const fit = await page.evaluate(() => { const r = document.querySelector(".phone").getBoundingClientRect(), b = document.querySelector(".phone__body").getBoundingClientRect(); return { scrollW: document.documentElement.scrollWidth, w: innerWidth, sameBox: Math.abs(r.width - b.width) < 1 && Math.abs(r.height - b.height) < 1, scale: Number(getComputedStyle(document.documentElement).getPropertyValue("--proto-scale")), inView: r.bottom <= innerHeight + 1 }; });
+      const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).exclude("#frame").analyze();
+      const desk = w >= 900;
+      record("prototype", `@${w}×${h}: phone scaled (never above 1:1) without sideways scroll${desk ? ", fully in view" : ""}; axe 0 violations on the shell`,
+        fit.scrollW === fit.w && fit.sameBox && fit.scale > 0 && fit.scale <= 1 && (!desk || fit.inView) && axe.violations.length === 0, JSON.stringify({ ...fit, axe: axe.violations.map((v) => v.id) }));
+    }
+    await page.close();
+    server.close();
+  }
 } finally {
   await browser.close();
 }

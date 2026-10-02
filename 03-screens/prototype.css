@@ -1,0 +1,243 @@
+/* Clickable prototype shell (03-screens/index.html). Layout only: every value is a design token.
+   The screens inside the phone are the screens in screens/, which use only the design system. */
+
+:root {
+  --proto-bezel: var(--space-3);
+  --proto-phone-w: calc(var(--size-screen-width) + var(--proto-bezel) * 2);
+  --proto-phone-h: calc(var(--size-screen-height) + var(--proto-bezel) * 2);
+  --proto-scale: 1;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  font: var(--type-body);
+}
+
+.skip {
+  position: absolute;
+  top: calc(var(--space-16) * -1);
+  left: var(--space-2);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-touch-min);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  font: var(--type-label);
+}
+
+.skip:focus-visible {
+  top: var(--space-2);
+}
+
+/* One column on phones; picker | phone | info from 1100 pt */
+.proto {
+  display: grid;
+  grid-template-areas:
+    "head"
+    "stage"
+    "info"
+    "nav";
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-screen-margin) var(--space-10);
+}
+
+.proto__head {
+  grid-area: head;
+}
+
+.proto__nav {
+  grid-area: nav;
+}
+
+.proto__stage {
+  grid-area: stage;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.proto__info {
+  grid-area: info;
+}
+
+.proto__head h1 {
+  margin: var(--space-3) 0 var(--space-1);
+  font: var(--type-h1);
+  letter-spacing: var(--type-h1-tracking);
+}
+
+.proto__head p {
+  max-width: var(--size-measure);
+  margin: 0;
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+.proto__home {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-touch-min);
+}
+
+.proto__home img {
+  display: block;
+}
+
+/* Links in the info panel */
+.proto__links {
+  display: grid;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.proto__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-touch-min);
+  font: var(--type-body-strong);
+  color: var(--color-text-accent);
+}
+
+/* Picker: groups by flow; the current screen is marked with aria-current and a tint */
+.proto__nav summary {
+  display: flex;
+  align-items: center;
+  min-height: var(--size-touch-min);
+  font: var(--type-body-strong);
+  cursor: pointer;
+}
+
+.proto__nav h2 {
+  margin: var(--space-4) 0 var(--space-1);
+  font: var(--type-overline);
+  letter-spacing: var(--type-overline-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.proto__nav ol {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.proto__nav a {
+  display: grid;
+  min-height: var(--size-touch-min);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.proto__nav a b {
+  font: var(--type-label);
+}
+
+.proto__nav a span {
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.proto__nav a:hover {
+  background: var(--color-bg-pressed);
+}
+
+.proto__nav a[aria-current="page"] {
+  background: var(--color-bg-accent-subtle);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-accent);
+}
+
+/* The phone: a 390 × 844 screen in a bezel, scaled down (never up) to fit the window */
+.phone {
+  flex: none;
+  width: calc(var(--proto-phone-w) * var(--proto-scale));
+  height: calc(var(--proto-phone-h) * var(--proto-scale));
+}
+
+.phone__body {
+  width: var(--proto-phone-w);
+  height: var(--proto-phone-h);
+  padding: var(--proto-bezel);
+  border-radius: calc(var(--radius-xl) + var(--proto-bezel));
+  background: var(--color-text-primary);
+  box-shadow: var(--shadow-e2);
+  transform: scale(var(--proto-scale));
+  transform-origin: 0 0;
+  box-sizing: border-box;
+}
+
+.phone iframe {
+  display: block;
+  width: var(--size-screen-width);
+  height: var(--size-screen-height);
+  border: 0;
+  border-radius: var(--radius-xl);
+  background: var(--color-bg-canvas);
+}
+
+/* Info: where you are, Previous / Next, links */
+.proto__count {
+  margin: 0;
+  font: var(--type-overline);
+  letter-spacing: var(--type-overline-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.proto__info h2 {
+  margin: var(--space-1) 0 0;
+  font: var(--type-h2);
+}
+
+.proto__info p {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-secondary);
+}
+
+.proto__step {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.proto__info .proto__hint {
+  margin-top: var(--space-4);
+  font: var(--type-callout);
+}
+
+@media (width >= 900px) {
+  .proto__stage {
+    position: sticky;
+    top: var(--space-4);
+  }
+
+  .proto {
+    grid-template:
+      "head stage" auto
+      "info stage" auto
+      "nav stage" 1fr / minmax(15rem, 18rem) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+@media (width >= 1200px) {
+  .proto {
+    grid-template:
+      "head stage info" auto
+      "nav stage info" 1fr / minmax(15rem, 18rem) minmax(0, 1fr) minmax(15rem, 18rem);
+  }
+
+  .proto__info {
+    position: sticky;
+    top: var(--space-4);
+  }
+}

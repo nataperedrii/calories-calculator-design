@@ -15,7 +15,7 @@ Everything was made AI-natively: as HTML and CSS with Claude Code, with no hand-
 | **Landing page** | [nataperedrii.github.io/calories-calculator-design](https://nataperedrii.github.io/calories-calculator-design/) |
 | **Brand stylescape** | [01-branding/stylescape.html](https://nataperedrii.github.io/calories-calculator-design/01-branding/stylescape.html) |
 | **Design system** | [02-design-system/index.html](https://nataperedrii.github.io/calories-calculator-design/02-design-system/index.html) |
-| **Clickable prototype** | [03-screens/screens/01-welcome.html](https://nataperedrii.github.io/calories-calculator-design/03-screens/screens/01-welcome.html) (starts at sign-in) |
+| **Clickable prototype** | [03-screens/index.html](https://nataperedrii.github.io/calories-calculator-design/03-screens/index.html) (phone frame, screen picker by flow, ← / →) |
 | **Flows board** | [03-screens/flows.html](https://nataperedrii.github.io/calories-calculator-design/03-screens/flows.html) |
 | **Video walkthrough** | *Coming soon* |
 
@@ -35,7 +35,7 @@ The site is published with GitHub Pages from `main` and works in incognito: no s
 
 **03 · Key screens**
 
-[![Four screens: Today, Photo result, Recipes and Diary](previews/prototype.jpg)](03-screens/screens/01-welcome.html)
+[![Four screens: Today, Photo result, Recipes and Diary](previews/prototype.jpg)](03-screens/index.html)
 
 **03 · Flows board**
 
@@ -101,7 +101,7 @@ Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md]
 | Command | What it checks | Result now |
 |---|---|---|
 | `npm run check` | Design system: tokens, lint, HTML, contrast, clipping, touch targets, geometry at 100 % and 200 % text, axe; then grid alignment on every screen at 390 and 320 px | 61 / 61, 0 alignment deviations |
-| `npm run check:screens` | Every screen: HTML, the design-system-only rule, links, axe, the 390 × 844 frame, clipping, 44 pt targets, keyboard, numbers that add up, and behaviour tests (editing, servings, onboarding, Diary, Profile) | 603 / 603 |
+| `npm run check:screens` | Every screen: HTML, the design-system-only rule, links, axe, the 390 × 844 frame, clipping, 44 pt targets, keyboard, numbers that add up, and behaviour tests (editing, servings, onboarding, Diary, Profile, the prototype shell over http) | 610 / 610 |
 | `npm run check:a11y` | WCAG 2.2 AA (Tier 1) and AAA for critical elements (Tier 2) | 0 failures in both tiers |
 
 **Honest about gaps.** [PLAN-AUDIT.md](PLAN-AUDIT.md) audits the screens plan against the project item by item, with evidence. Open questions are listed there instead of being guessed.
@@ -132,6 +132,7 @@ calories-calculator-design/
 │   └── qa/, a11y/          ← check and audit reports
 ├── 03-screens/
 │   ├── FLOWS.md            ← user flows: every screen, purpose, content, states
+│   ├── index.html          ← clickable prototype: phone frame + screen picker (+ prototype.css)
 │   ├── screens/            ← 46 HTML screens at 390 × 844 (+ js/dish-editor.js)
 │   ├── exports/            ← the same screens as PNG @2x (780 × 1688)
 │   ├── flows.html/.png     ← flows board with arrows and annotations
@@ -154,7 +155,6 @@ npm run check && npm run check:screens && npm run check:a11y
 
 ## What I'd do next
 
-- **A real prototype shell.** `03-screens/index.html` would show the screens inside a phone frame with a screen picker. Today the prototype opens screen by screen at phone width.
 - **Record the video walkthrough** and add its link to LINKS.md and above.
 - **Build the remaining states.** These are specified but not drawn yet: loading (skeleton), offline banners, the camera's permission states, and the empty states of search, Recipes and Diary. The design system already has the components (15, 17, 18).
 - **Test with five people** from the target group: sign-up, a photo log and finding a recipe. Measure time-to-log and how often a portion gets corrected.

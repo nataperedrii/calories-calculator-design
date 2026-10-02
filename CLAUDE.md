@@ -58,7 +58,7 @@ calories-calculator-design/
 │
 ├── 03-screens/
 │   ├── FLOWS.md               ← user flows: list of screens, their purpose, states
-│   ├── index.html             ← clickable prototype (start)
+│   ├── index.html             ← clickable prototype: phone frame + screen picker (generated; styles in prototype.css)
 │   ├── screens/*.html         ← each screen separately, 390×844
 │   ├── flows.html / flows.png ← board with all screens, arrows and annotations
 │   └── exports/*.png          ← PNG of each screen @2x
