@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ripe · Photo calorie calculator: design test task</title>
+  <meta name="description" content="Ripe, a photo-first calorie calculator: brand stylescape, design system, clickable prototype and flows board. Built AI-natively with Claude Code.">
+  <link rel="icon" href="01-branding/assets/logo/ripe-symbol.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Azeret+Mono:wght@400;500;600&amp;display=swap">
+  <link rel="stylesheet" href="02-design-system/tokens.css">
+  <link rel="stylesheet" href="02-design-system/components.css">
+  <style>
+    /* Landing layout only. Every value comes from the design-system tokens. */
+    body { margin: 0; background: var(--color-bg-canvas); color: var(--color-text-primary); font: var(--type-body); }
+    .wrap { max-width: 72rem; margin: 0 auto; padding: 0 var(--space-screen-margin); }
+    .skip { position: absolute; left: var(--space-2); top: calc(var(--space-16) * -1); display: inline-flex; align-items: center; min-height: var(--size-touch-min); padding: 0 var(--space-3); border-radius: var(--radius-md); background: var(--color-bg-surface); color: var(--color-text-primary); font: var(--type-label); }
+    .skip:focus-visible { top: var(--space-2); }
+    .top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-4) 0; }
+    .top img { display: block; }
+    .top p { margin: 0; font: var(--type-label); color: var(--color-text-secondary); }
+    .hero { display: grid; gap: var(--space-4); padding: var(--space-8) 0 var(--space-10); }
+    .hero h1 { margin: 0; font: var(--type-display); letter-spacing: var(--type-display-tracking); }
+    .hero .lead { max-width: var(--size-measure); margin: 0; font: var(--type-body); color: var(--color-text-secondary); }
+    .stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+    .stories li { padding: var(--space-card-inset); border-radius: var(--radius-lg); background: var(--color-bg-surface); box-shadow: var(--shadow-e1); }
+    .stories b { display: block; margin-bottom: var(--space-1); font: var(--type-body-strong); }
+    .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .actions a { text-decoration: none; }
+    h2 { margin: 0 0 var(--space-4); font: var(--type-h2); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr)); gap: var(--space-6); margin: 0 0 var(--space-12); padding: 0; list-style: none; }
+    .deliv { display: grid; height: 100%; border-radius: var(--radius-lg); background: var(--color-bg-surface); box-shadow: var(--shadow-e1); color: inherit; text-decoration: none; }
+    .deliv img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+    .deliv div { display: grid; gap: var(--space-1); padding: var(--space-card-inset); }
+    .deliv span { font: var(--type-overline); letter-spacing: var(--type-overline-tracking); text-transform: uppercase; color: var(--color-text-accent); }
+    .deliv h3 { margin: 0; font: var(--type-title); }
+    .deliv p { margin: 0; font: var(--type-callout); color: var(--color-text-secondary); }
+    .deliv:hover { box-shadow: var(--shadow-e2); }
+    .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--space-2) var(--space-6); margin: 0 0 var(--space-12); padding: 0; list-style: none; }
+    .docs a { display: inline-flex; align-items: center; min-height: var(--size-touch-min); color: var(--color-text-accent); font: var(--type-body-strong); }
+    .docs small { display: block; font: var(--type-callout); color: var(--color-text-secondary); }
+    .video { display: grid; gap: var(--space-2); margin: 0 0 var(--space-12); padding: var(--space-card-inset); border-radius: var(--radius-lg); background: var(--color-bg-sunken); }
+    .video p { margin: 0; color: var(--color-text-secondary); }
+    footer { padding: var(--space-6) 0 var(--space-10); border-top: var(--border-width-hairline) solid var(--color-border-subtle); font: var(--type-callout); color: var(--color-text-secondary); }
+    footer a { color: var(--color-text-accent); }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the deliverables</a>
+<div class="wrap">
+  <header class="top">
+    <img src="01-branding/assets/logo/ripe-logo.svg" alt="Ripe" width="134" height="46">
+    <p>Design test task · Trainee designer · mobile app for calculating calories</p>
+  </header>
+
+  <section class="hero" aria-labelledby="title">
+    <h1 id="title">Point, snap, know.</h1>
+    <p class="lead">Ripe is a calorie calculator that starts with a photo. Point the phone at your plate: Ripe finds each food, estimates the portion and says how sure it is. You check, tap once, and get back to your meal. Every number is real USDA data per 100 g.</p>
+    <ul class="stories" aria-label="User stories">
+      <li><b>1 · Calculate calories in a dish or product</b>From a photo, a search or barcode, or a home-cooked dish with its cooked weight.</li>
+      <li><b>2 · Find recipes that suit me</b>Ranked by what fits the calories and protein left today, filtered by diet and allergies.</li>
+    </ul>
+    <div class="actions">
+      <a class="btn btn--primary" href="03-screens/screens/01-welcome.html">Open the prototype</a>
+      <a class="btn btn--secondary" href="03-screens/flows.html">See the flows board</a>
+    </div>
+  </section>
+
+  <main id="main">
+    <h2 id="deliverables">Deliverables</h2>
+    <ul class="grid" aria-labelledby="deliverables">
+      <li><a class="deliv" href="01-branding/stylescape.html"><img src="previews/stylescape.jpg" alt="Stylescape: the Ripe logo, palette named after food, typography, icons and UI fragments" width="1200" height="675" loading="lazy">
+        <div><span>01 · Branding</span><h3>Brand stylescape</h3><p>Name, logo, colours named after food, type and imagery. Chosen from 2 directions.</p></div></a></li>
+      <li><a class="deliv" href="02-design-system/index.html"><img src="previews/design-system.jpg" alt="Design system documentation page: tokens and components" width="1200" height="675" loading="lazy">
+        <div><span>02 · Design system</span><h3>Tokens and 27 components</h3><p>Every state shown and documented. WCAG 2.2 AA, with AAA (7:1) for calories and macros.</p></div></a></li>
+      <li><a class="deliv" href="03-screens/screens/01-welcome.html"><img src="previews/prototype.jpg" alt="Four app screens: Today, Photo result, Recipes and Diary" width="1200" height="675" loading="lazy">
+        <div><span>03 · Prototype</span><h3>Clickable prototype</h3><p>16 screens, 46 states at 390 × 844. Starts at sign-in; every button links to the next screen.</p></div></a></li>
+      <li><a class="deliv" href="03-screens/flows.html"><img src="previews/flows.jpg" alt="Flows board: screens in rows with arrows and numbered notes" width="1200" height="675" loading="lazy">
+        <div><span>03 · Flows</span><h3>Flows board</h3><p>Onboarding, both user stories, preferences and Diary, with 34 annotated UX decisions.</p></div></a></li>
+    </ul>
+
+    <h2 id="docs">Documents</h2>
+    <ul class="docs" aria-labelledby="docs">
+      <li><a href="https://github.com/nataperedrii/calories-calculator-design/blob/main/process/research.md">Research</a><small>MyFitnessPal, Yazio, Lifesum and FatSecret → 5 insights</small></li>
+      <li><a href="https://github.com/nataperedrii/calories-calculator-design/blob/main/01-branding/BRAND.md">Brand brief</a><small>Audience, personality, why these colours and fonts</small></li>
+      <li><a href="https://github.com/nataperedrii/calories-calculator-design/blob/main/02-design-system/README.md">Design system README</a><small>Components, WCAG contrast table, changelog</small></li>
+      <li><a href="https://github.com/nataperedrii/calories-calculator-design/blob/main/03-screens/FLOWS.md">User flows spec</a><small>Every screen: purpose, content, states</small></li>
+      <li><a href="https://github.com/nataperedrii/calories-calculator-design/blob/main/process/PROMPTS.md">How I worked with Claude Code</a><small>Every prompt, verbatim, and what came out of it</small></li>
+      <li><a href="https://github.com/nataperedrii/calories-calculator-design">Repository on GitHub</a><small>Source, tools and checks</small></li>
+    </ul>
+
+    <section class="video" aria-labelledby="video">
+      <h2 id="video">Video walkthrough</h2>
+      <p>Coming soon: a walkthrough of the stylescape, the design system and the prototype.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built AI-natively as HTML and CSS with Claude Code, exported to PNG with Playwright. Nutrition data: USDA FoodData Central. Photos: Unsplash, Pexels and Pixabay (<a href="https://github.com/nataperedrii/calories-calculator-design/blob/main/01-branding/assets/CREDITS.md">credits</a>). Fonts: Young Serif, Hanken Grotesk, Azeret Mono (SIL OFL).</p>
+  </footer>
+</div>
+</body>
+</html>

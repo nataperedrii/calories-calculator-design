@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-02T19:53:00.790Z",
+  "date": "2026-10-02T22:00:34.068Z",
   "passed": 61,
   "failed": 0,
   "results": [
@@ -37,7 +37,7 @@
       "group": "tokens",
       "name": "W3C DTCG structure: every token has $value and a known $type",
       "ok": true,
-      "detail": "197 tokens"
+      "detail": "198 tokens"
     },
     {
       "group": "tokens",
@@ -55,19 +55,19 @@
       "group": "tokens",
       "name": "$description coverage (optional in the spec)",
       "ok": true,
-      "detail": "117 of 197 tokens described"
+      "detail": "118 of 198 tokens described"
     },
     {
       "group": "tokens",
       "name": "tokens.css matches tokens.json (no drift)",
       "ok": true,
-      "detail": "OK: 02-design-system/tokens.css matches tokens.json (283 declarations)"
+      "detail": "OK: 02-design-system/tokens.css matches tokens.json (285 declarations)"
     },
     {
       "group": "css",
       "name": "no broken var(--…) references",
       "ok": true,
-      "detail": "197 variables used"
+      "detail": "199 variables used"
     },
     {
       "group": "css",
@@ -181,7 +181,7 @@
       "group": "load",
       "name": "file:// and http:// render identically (pixel diff)",
       "ok": true,
-      "detail": "1440×29982, 0 different pixels"
+      "detail": "1440×32389, 0 different pixels"
     },
     {
       "group": "geometry",
@@ -199,13 +199,13 @@
       "group": "geometry",
       "name": "touch targets ≥ 44×44 pt (≥ 48×48 dp in Android variants)",
       "ok": true,
-      "detail": "205 controls, smallest 44 px"
+      "detail": "224 controls, smallest 44 px"
     },
     {
       "group": "geometry",
       "name": "docs navigation links ≥ 24×24 (WCAG 2.5.8)",
       "ok": true,
-      "detail": "33 links"
+      "detail": "36 links"
     },
     {
       "group": "segmented",
@@ -241,7 +241,7 @@
       "group": "sheet",
       "name": "macro tiles: equal width/height/padding/gaps, shared baselines, tabular numbers, inside sheet margins",
       "ok": true,
-      "detail": "1 row(s) · P · Protein x313 w95.33 h62 | F · Fat x416.33 w95.33 h62 | C · Carbs x519.66 w95.34 h62 · gaps 8/8 · value baselines 22212.38/22212.38/22212.38"
+      "detail": "1 row(s) · P · Protein x313 w95.33 h62 | F · Fat x416.33 w95.33 h62 | C · Carbs x519.66 w95.34 h62 · gaps 8/8 · value baselines 22402.38/22402.38/22402.38"
     },
     {
       "group": "page",
@@ -289,13 +289,13 @@
       "group": "geometry@200%",
       "name": "touch targets ≥ 44×44 pt (≥ 48×48 dp in Android variants)",
       "ok": true,
-      "detail": "205 controls, smallest 44 px"
+      "detail": "224 controls, smallest 44 px"
     },
     {
       "group": "geometry@200%",
       "name": "docs navigation links ≥ 24×24 (WCAG 2.5.8)",
       "ok": true,
-      "detail": "33 links"
+      "detail": "36 links"
     },
     {
       "group": "segmented@200%",
@@ -331,7 +331,7 @@
       "group": "sheet@200%",
       "name": "macro tiles: equal width/height/padding/gaps, shared baselines, tabular numbers, inside sheet margins",
       "ok": true,
-      "detail": "3 row(s) · P · Protein x313 w302 h104 | F · Fat x313 w302 h104 | C · Carbs x313 w302 h104 · gaps 8/8 · value baselines -12818.25/-12706.25/-12594.25"
+      "detail": "3 row(s) · P · Protein x313 w302 h104 | F · Fat x313 w302 h104 | C · Carbs x313 w302 h104 · gaps 8/8 · value baselines -17477.23/-17365.23/-17253.23"
     },
     {
       "group": "page@200%",
@@ -355,13 +355,13 @@
       "group": "standalone",
       "name": "same layout as index.html (page height)",
       "ok": true,
-      "detail": "29982 vs 29982 CSS px"
+      "detail": "32389 vs 32389 CSS px"
     },
     {
       "group": "export",
       "name": "design-system.png is 2× the full page",
       "ok": true,
-      "detail": "2880×59964 (page 1440×29982)"
+      "detail": "2880×64778 (page 1440×32389)"
     },
     {
       "group": "export",
@@ -372,8 +372,8 @@
   ],
   "facts": {
     "tokens": {
-      "count": 197,
-      "described": 117
+      "count": 198,
+      "described": 118
     },
     "stylelint": {
       "files": 3,
@@ -1668,6 +1668,27 @@
           "ok": true
         },
         {
+          "el": "#c23 button.stepper__btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.stepper__input",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.stepper__btn",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
           "el": "#c23 input.",
           "w": 278,
           "h": 44,
@@ -1825,6 +1846,118 @@
           "el": "#c24 button.btn.btn--primary \"Add steps\"",
           "w": 152,
           "h": 52,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c26 label.option-card.option-card--check \"Lunch photo12:30 on week\"",
+          "w": 310,
+          "h": 73,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c26 label.option-card.option-card--check \"Evening check20:00, only\"",
+          "w": 310,
+          "h": 73,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"M28\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-over \"T29+45\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"W30\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"T1Today\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"F2\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"S3\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"S4\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"M21\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"T22\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-pressed \"W23\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-focus \"T24\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"F25\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-over \"S26+110\"",
+          "w": 44,
+          "h": 644,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"S27\"",
+          "w": 44,
+          "h": 644,
           "min": 44,
           "ok": true
         }
@@ -2017,6 +2150,24 @@
           "ok": true
         },
         {
+          "el": "25 Step indicator",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "26 Option card",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
+          "el": "27 Week strip",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
           "el": "Abbreviations",
           "w": 183,
           "h": 44,
@@ -2040,7 +2191,7 @@
           "gapColour": true,
           "segment": {
             "x": 1152.33,
-            "y": 15457.7,
+            "y": 15495.7,
             "w": 95.33,
             "h": 36
           },
@@ -2054,7 +2205,7 @@
           "gapColour": true,
           "segment": {
             "x": 784.33,
-            "y": 15593.7,
+            "y": 15631.7,
             "w": 95.33,
             "h": 40
           },
@@ -2065,7 +2216,7 @@
         {
           "state": "default",
           "x": 297,
-          "y": 17003.7,
+          "y": 17175.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2076,7 +2227,7 @@
         {
           "state": "is-pressed",
           "x": 297,
-          "y": 17067.7,
+          "y": 17239.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2087,7 +2238,7 @@
         {
           "state": "is-selected",
           "x": 297,
-          "y": 17131.7,
+          "y": 17303.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2098,7 +2249,7 @@
         {
           "state": "is-disabled",
           "x": 297,
-          "y": 17195.7,
+          "y": 17367.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2109,7 +2260,7 @@
         {
           "state": "is-error",
           "x": 297,
-          "y": 17259.7,
+          "y": 17431.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2120,7 +2271,7 @@
         {
           "state": "is-focus",
           "x": 297,
-          "y": 17323.7,
+          "y": 17495.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2138,7 +2289,7 @@
           "contentInside": true,
           "titleLines": 2,
           "x": 309,
-          "y": 18200.7,
+          "y": 18372.7,
           "w": 310,
           "h": 439.72
         },
@@ -2150,7 +2301,7 @@
           "contentInside": true,
           "titleLines": 4,
           "x": 680.1,
-          "y": 18205.56,
+          "y": 18377.56,
           "w": 303.8,
           "h": 475.97
         },
@@ -2162,7 +2313,7 @@
           "contentInside": true,
           "titleLines": 4,
           "x": 1045,
-          "y": 18200.7,
+          "y": 18372.7,
           "w": 310,
           "h": 469.69
         },
@@ -2174,7 +2325,7 @@
           "contentInside": true,
           "titleLines": 2,
           "x": 309,
-          "y": 18770.39,
+          "y": 18942.39,
           "w": 310,
           "h": 303
         }
@@ -2406,7 +2557,7 @@
           {
             "tile": "P · Protein",
             "x": 313,
-            "y": 22161.38,
+            "y": 22351.38,
             "w": 95.33,
             "h": 62,
             "padding": "8px 12px"
@@ -2414,7 +2565,7 @@
           {
             "tile": "F · Fat",
             "x": 416.33,
-            "y": 22161.38,
+            "y": 22351.38,
             "w": 95.33,
             "h": 62,
             "padding": "8px 12px"
@@ -2422,7 +2573,7 @@
           {
             "tile": "C · Carbs",
             "x": 519.66,
-            "y": 22161.38,
+            "y": 22351.38,
             "w": 95.34,
             "h": 62,
             "padding": "8px 12px"
@@ -2438,14 +2589,14 @@
         "sameTop": true,
         "equalPadding": true,
         "valueBaselines": [
-          22212.38,
-          22212.38,
-          22212.38
+          22402.38,
+          22402.38,
+          22402.38
         ],
         "labelBaselines": [
-          22186.38,
-          22186.38,
-          22186.38
+          22376.38,
+          22376.38,
+          22376.38
         ],
         "valueOffsets": [
           51,
@@ -2492,7 +2643,7 @@
         },
         {
           "id": "color-contrast",
-          "nodes": 8
+          "nodes": 18
         }
       ]
     },
@@ -3775,6 +3926,27 @@
           "ok": true
         },
         {
+          "el": "#c23 button.stepper__btn",
+          "w": 44,
+          "h": 91,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 input.stepper__input",
+          "w": 83,
+          "h": 48,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c23 button.stepper__btn",
+          "w": 44,
+          "h": 91,
+          "min": 44,
+          "ok": true
+        },
+        {
           "el": "#c23 input.",
           "w": 278,
           "h": 50,
@@ -3932,6 +4104,118 @@
           "el": "#c24 button.btn.btn--primary \"Add steps\"",
           "w": 224,
           "h": 64,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c26 label.option-card.option-card--check \"Lunch photo12:30 on week\"",
+          "w": 310,
+          "h": 118,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c26 label.option-card.option-card--check \"Evening check20:00, only\"",
+          "w": 310,
+          "h": 160,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"M28\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-over \"T29+45\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"W30\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"T1Today\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"F2\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"S3\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"S4\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"M21\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-empty \"T22\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-pressed \"W23\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-focus \"T24\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"F25\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day.is-over \"S26+110\"",
+          "w": 103,
+          "h": 370,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c27 button.week__day \"S27\"",
+          "w": 103,
+          "h": 370,
           "min": 44,
           "ok": true
         }
@@ -4124,6 +4408,24 @@
           "ok": true
         },
         {
+          "el": "25 Step indicator",
+          "w": 183,
+          "h": 84,
+          "ok": true
+        },
+        {
+          "el": "26 Option card",
+          "w": 183,
+          "h": 84,
+          "ok": true
+        },
+        {
+          "el": "27 Week strip",
+          "w": 183,
+          "h": 44,
+          "ok": true
+        },
+        {
           "el": "Abbreviations",
           "w": 183,
           "h": 44,
@@ -4147,7 +4449,7 @@
           "gapColour": true,
           "segment": {
             "x": 1049,
-            "y": -28807.8,
+            "y": -35266.8,
             "w": 302,
             "h": 50
           },
@@ -4161,7 +4463,7 @@
           "gapColour": true,
           "segment": {
             "x": 681,
-            "y": -28531.8,
+            "y": -34990.8,
             "w": 302,
             "h": 50
           },
@@ -4172,7 +4474,7 @@
         {
           "state": "default",
           "x": 297,
-          "y": -24823.8,
+          "y": -30770.8,
           "w": 334,
           "h": 281,
           "radius": "16px",
@@ -4183,7 +4485,7 @@
         {
           "state": "is-pressed",
           "x": 297,
-          "y": -24823.8,
+          "y": -30770.8,
           "w": 334,
           "h": 281,
           "radius": "16px",
@@ -4194,7 +4496,7 @@
         {
           "state": "is-selected",
           "x": 297,
-          "y": -24823.8,
+          "y": -30770.8,
           "w": 334,
           "h": 281,
           "radius": "16px",
@@ -4205,7 +4507,7 @@
         {
           "state": "is-disabled",
           "x": 297,
-          "y": -24823.8,
+          "y": -30770.8,
           "w": 334,
           "h": 281,
           "radius": "16px",
@@ -4216,7 +4518,7 @@
         {
           "state": "is-error",
           "x": 297,
-          "y": -24823.8,
+          "y": -30770.8,
           "w": 334,
           "h": 281,
           "radius": "16px",
@@ -4227,7 +4529,7 @@
         {
           "state": "is-focus",
           "x": 297,
-          "y": -24823.8,
+          "y": -30770.8,
           "w": 334,
           "h": 281,
           "radius": "16px",
@@ -4245,7 +4547,7 @@
           "contentInside": true,
           "titleLines": 3,
           "x": 309,
-          "y": -20970.8,
+          "y": -26917.8,
           "w": 310,
           "h": 769.7
         },
@@ -4257,7 +4559,7 @@
           "contentInside": true,
           "titleLines": 8,
           "x": 680.1,
-          "y": -20960.73,
+          "y": -26907.73,
           "w": 303.8,
           "h": 986.49
         },
@@ -4269,7 +4571,7 @@
           "contentInside": true,
           "titleLines": 7,
           "x": 1045,
-          "y": -20970.8,
+          "y": -26917.8,
           "w": 310,
           "h": 930.64
         },
@@ -4281,7 +4583,7 @@
           "contentInside": true,
           "titleLines": 4,
           "x": 309,
-          "y": -19862.17,
+          "y": -25809.17,
           "w": 310,
           "h": 731
         }
@@ -4513,7 +4815,7 @@
           {
             "tile": "P · Protein",
             "x": 313,
-            "y": -12908.25,
+            "y": -17567.23,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -4521,7 +4823,7 @@
           {
             "tile": "F · Fat",
             "x": 313,
-            "y": -12796.25,
+            "y": -17455.23,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -4529,7 +4831,7 @@
           {
             "tile": "C · Carbs",
             "x": 313,
-            "y": -12684.25,
+            "y": -17343.23,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -4545,14 +4847,14 @@
         "sameTop": true,
         "equalPadding": true,
         "valueBaselines": [
-          -12818.25,
-          -12706.25,
-          -12594.25
+          -17477.23,
+          -17365.23,
+          -17253.23
         ],
         "labelBaselines": [
-          -12867.25,
-          -12755.25,
-          -12643.25
+          -17526.23,
+          -17414.23,
+          -17302.23
         ],
         "valueOffsets": [
           90,

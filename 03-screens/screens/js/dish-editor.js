@@ -2,7 +2,7 @@
 // Data (foods per 100 g from USDA, ingredients, steps, budgets) comes from the JSON block #dish-data that
 // 03-screens/tools/build_screens.py writes, so the numbers match every other screen.
 // <body data-state="…"> picks a starting state for the PNG exports:
-//   view · edit · edited · deleted · name-error · saving · discard · method · steps-edit · step-error · step-deleted · no-steps
+//   view · edit · edited · deleted · name-error · saving · discard · method · steps-edit · step-error · step-deleted · no-steps · servings
 (() => {
   const data = JSON.parse(document.getElementById("dish-data").textContent);
   const $ = (id) => document.getElementById(id);
@@ -18,6 +18,7 @@
   let mode = "view";
   let lastDeleted = null; // { kind: "ingredients" | "steps", item, index }
   let dishName = data.name;
+  let servings = 1; // the Servings stepper scales the ingredient list in view mode; the summary stays per portion
 
   const r0 = (x) => Math.round(x); // half up for the positive values used here
   const r1 = (x) => (Math.round(x * 10) / 10).toFixed(1);
@@ -62,11 +63,19 @@
     [["p", "P", "Protein", n.p], ["f", "F", "Fat", n.f], ["c", "C", "Carbs", n.c]]
       .map(([k, L, W, v]) => `<span class="macro-tile macro-tile--${k} macro-tile--chip"><span class="macro-tile__label" aria-hidden="true">${L}</span><span class="visually-hidden">${W}</span><span class="macro-tile__value">${r0(v)}<small> g</small></span></span>`)
       .join("") + `</div><span class="ingredient__kcal">${n.kcal} kcal</span>`;
-  const amountText = (ing) => (ing.unit === "portion" ? `${ing.qty} portion${qtyOf(ing) === 1 ? "" : "s"}` : `${fmt(qtyOf(ing))} ${ing.unit}`);
+  const portions = (n) => `${fmt(n)} portion${n === 1 ? "" : "s"}`;
+  const amountText = (ing, k = 1) => (ing.unit === "portion" ? portions(qtyOf(ing) * k) : `${fmt(Math.round(qtyOf(ing) * k * 10) / 10)} ${ing.unit}`);
+  // one ingredient for k servings: amount, kcal and P / F / C all scale
+  function scaled(ing, k) {
+    const n = nutrition(ing);
+    if (!n || k === 1) return n;
+    const f = data.foods[ing.name];
+    return { g: n.g * k, kcal: r0((f.kcal * n.g * k) / 100), p: n.p * k, f: n.f * k, c: n.c * k };
+  }
 
   function ingView(ing) {
-    const n = nutrition(ing);
-    return `<li class="ingredient" data-id="${ing.id}"><span class="ingredient__name">${esc(ing.name)}</span><span class="ingredient__amount">${amountText(ing)}</span>${n ? macroRow(n) : ""}</li>`;
+    const n = scaled(ing, servings);
+    return `<li class="ingredient" data-id="${ing.id}"><span class="ingredient__name">${esc(ing.name)}</span><span class="ingredient__amount">${amountText(ing, servings)}</span>${n ? macroRow(n) : ""}</li>`;
   }
   function ingEdit(ing) {
     const id = `ing-${ing.id}`;
@@ -123,6 +132,10 @@
     document.body.dataset.mode = mode;
     for (const id of ["edit-toggle", "edit-steps", "foot-view"]) $(id).hidden = edit;
     for (const id of ["add-ingredient", "add-step", "edit-note", "foot-edit"]) $(id).hidden = !edit;
+    // editing is per portion: the Servings row hides, and the list shows 1 portion again
+    $("servings-row").hidden = edit;
+    $("servings-text").textContent = portions(edit ? 1 : servings);
+    syncServings();
     if (focus) document.querySelector(focus)?.focus();
   }
 
@@ -148,6 +161,24 @@
       ? `<b>Contains: ${list.join(", ")}.</b> ${data.freeFrom}`
       : `<b>No major allergens</b> in these ingredients. Always check product labels.`;
     return t;
+  }
+
+  function syncServings() {
+    $("servings-input").value = servings;
+    $("servings-unit").textContent = servings === 1 ? "portion" : "portions";
+    $("servings-row").querySelector('[data-servings="-1"]').disabled = servings <= 1;
+    $("servings-row").querySelector('[data-servings="1"]').disabled = servings >= data.servingsMax;
+  }
+  function setServings(n, focusBtn) {
+    const v = Math.min(data.servingsMax, Math.max(1, Math.round(n) || 1));
+    servings = v;
+    render();
+    // at a limit the pressed button is disabled: keep focus on the stepper (the other button)
+    if (focusBtn) {
+      const b = $("servings-row").querySelector(`[data-servings="${focusBtn}"]`);
+      (b.disabled ? $("servings-row").querySelector(`[data-servings="${-focusBtn}"]`) : b).focus();
+    }
+    announce(`Ingredients for ${portions(v)}. Nutrition stays per portion: ${fmt(totals(work.ingredients).kcal)} kcal.`);
   }
 
   function announce(text) {
@@ -310,7 +341,8 @@
   document.addEventListener("click", (e) => {
     const t = e.target;
     const row = t.closest("[data-id]");
-    if (t.closest("#edit-toggle")) enterEdit(`[data-field="name"]`);
+    if (t.closest("[data-servings]")) setServings(servings + Number(t.closest("[data-servings]").dataset.servings), Number(t.closest("[data-servings]").dataset.servings));
+    else if (t.closest("#edit-toggle")) enterEdit(`[data-field="name"]`);
     else if (t.closest("#edit-steps")) enterEdit("[data-step-text]");
     else if (t.closest("#add-ingredient")) addIngredient();
     else if (t.closest("#add-step, #add-steps-empty")) addStep();
@@ -368,6 +400,11 @@
     st.touched = true;
     if (wasError !== !st.text.trim()) render(`[data-id="${st.id}"] [data-step-text]`);
   });
+  // typed servings: whole numbers from 1 to servingsMax; anything else snaps to the nearest valid value
+  $("servings-input").addEventListener("change", (e) => setServings(Number(String(e.target.value).replace(",", "."))));
+  $("servings-input").addEventListener("keydown", (e) => {
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") { e.preventDefault(); setServings(servings + (e.key === "ArrowUp" ? 1 : -1)); $("servings-input").focus(); }
+  });
   $("name-input").addEventListener("input", () => nameCheck($("name-field").classList.contains("is-error")));
   $("name-form").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -406,4 +443,5 @@
   if (["edit", "discard"].includes(state)) show("#ing-head");
   if (["edited", "saving"].includes(state)) show(".nutri");
   if (["method", "no-steps", "steps-edit"].includes(state)) show("#method-head");
+  if (state === "servings") { setServings(2); show("#ing-head"); }
 })();

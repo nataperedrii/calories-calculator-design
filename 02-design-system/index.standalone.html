@@ -308,6 +308,7 @@
   --size-macro-chip: 24px;  /* Compact macro chip height (P / F / C). Three chips with 3-digit values fit one row in a 320 pt card */
   --size-step-number: 28px;  /* Recipe step number disc */
   --size-measure: 40rem;  /* Maximum width of reading text such as recipe steps: 40rem ≈ 75 characters of 16 px body text (WCAG 1.4.8: ≤ 80 characters). In rem, so it scales with text size */
+  --size-day-ring: 32px;  /* Mini calorie ring around the date in the week strip (27). 7 days × 44 pt fit 308 pt; the ring leaves room for the date inside */
 
   /* ===== radius ===== */
   --radius-xs: 6px;  /* Badges */
@@ -1029,6 +1030,7 @@ button {
 .stepper {
   display: inline-flex;
   align-items: stretch;
+  max-width: 100%; /* never wider than its row; the unit wraps under the number instead (320 pt, 200 % text) */
   min-height: var(--size-touch-min);
   background: var(--color-bg-sunken);
   border-radius: var(--radius-md);
@@ -1037,6 +1039,7 @@ button {
 
 .stepper__btn {
   display: grid;
+  flex: none; /* 44 × 44 always: only the value shrinks when the row is narrow */
   place-items: center;
   width: var(--size-touch-min);
   min-height: var(--size-touch-min);
@@ -1058,8 +1061,10 @@ button {
 
 .stepper__value {
   display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  place-content: center;
   align-items: center;
-  justify-content: center;
   gap: var(--space-1);
   min-width: calc(var(--space-16) + var(--space-2));
   font: var(--type-num-m);
@@ -1718,6 +1723,10 @@ button {
   text-transform: uppercase;
   text-align: right;
   color: var(--color-text-secondary);
+}
+
+.facts th + th {
+  white-space: nowrap;
 }
 
 .facts th:first-child {
@@ -2810,8 +2819,19 @@ button {
 
 .ingredients__head {
   display: flex;
+  flex-wrap: wrap; /* 320 pt at 200 % text: "Amount" moves under "Ingredient", still on the right edge */
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: 0 var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.ingredients__head > :last-child {
+  margin-left: auto;
+}
+
+/* Servings row in the Ingredients card: a label + the weight stepper (06). It scales the ingredient list;
+   the dish summary stays per portion. The same gap above it as above the header row */
+.ingredients__servings {
   margin-top: var(--space-3);
 }
 
@@ -2900,6 +2920,270 @@ button {
 }
 
 /* =====================================================================
+   25. Step indicator (onboarding progress): the text is always shown, the bar repeats it
+   ===================================================================== */
+.progress {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.progress__text {
+  margin: 0;
+  font: var(--type-label);
+  color: var(--color-text-secondary);
+}
+
+.progress__bar {
+  display: flex;
+  gap: var(--space-1);
+}
+
+/* upcoming · done · current: done and current fill, current is the last filled one (the text says which) */
+.progress__seg {
+  flex: 1 1 0;
+  height: var(--space-1);
+  border-radius: var(--radius-full);
+  background: var(--color-macro-track);
+}
+
+.progress__seg.is-done,
+.progress__seg.is-current {
+  background: var(--color-bg-accent);
+}
+
+/* =====================================================================
+   26. Option card: a native radio or checkbox in a card with a title and a description
+   ===================================================================== */
+.option-group {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.option-group__legend {
+  margin-bottom: var(--space-2);
+  padding: 0;
+  font: var(--type-title);
+}
+
+.option-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--size-icon-l);
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--size-touch-min);
+  padding: var(--space-3) var(--space-card-inset);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
+  cursor: pointer;
+}
+
+.option-card__body {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.option-card__title {
+  font: var(--type-body-strong);
+  color: var(--color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.option-card__desc {
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+/* The mark: a ring (radio) or a rounded square (checkbox); the check shows only when selected */
+.option-card__mark {
+  display: grid;
+  place-items: center;
+  width: var(--size-icon-l);
+  height: var(--size-icon-l);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
+  color: var(--color-text-on-accent);
+}
+
+.option-card--check .option-card__mark {
+  border-radius: var(--radius-xs);
+}
+
+.option-card__mark .icon {
+  width: var(--size-icon-s);
+  height: var(--size-icon-s);
+  visibility: hidden;
+}
+
+.option-card:active,
+.option-card.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+.option-card:has(input:checked),
+.option-card.is-selected {
+  background: var(--color-bg-accent-subtle);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-accent);
+}
+
+/* Focus: a 2 px ring drawn just inside the card edge (it never leaves the group); the padding is the gap to the text */
+.option-card:has(input:focus-visible),
+.option-card.is-focus {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: calc(var(--border-width-focus) * -1);
+}
+
+.option-card:has(input:disabled),
+.option-card.is-disabled {
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-subtle);
+  cursor: not-allowed;
+}
+
+/* Error: the group needs an answer. The message names the fix; the cards get the error border */
+.option-group.is-error .option-card {
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-error);
+}
+
+.option-group__error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-inline-icon);
+  margin: 0;
+  font: var(--type-callout);
+  color: var(--color-status-error-text);
+}
+
+/* =====================================================================
+   27. Week strip (Diary): 7 day buttons, each a weekday, a date in a mini ring and a short note
+   ===================================================================== */
+
+/* One row of 7 at 100 % text (cells ≥ 44); at large text the cells grow with the text and the strip
+   reflows to two rows instead of clipping. 7 × 44 don't fit 280 pt: use the margins, never shrink targets */
+.week {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(var(--size-touch-min), 3.4em), 1fr));
+  margin-inline: max(calc(var(--space-4) * -1), min(0%, calc((100% - 7 * var(--size-touch-min)) / 2)));
+  font: var(--type-caption);
+}
+
+.week__day {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: var(--space-1);
+  min-width: var(--size-touch-min);
+  padding: var(--space-2) 0;
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+}
+
+.week__dow {
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.week__ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: max(var(--size-day-ring), 2.4em);
+  height: max(var(--size-day-ring), 2.4em);
+  font: var(--type-num-s);
+}
+
+.week__ring svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.week__track,
+.week__value {
+  fill: none;
+  stroke-width: 3;
+}
+
+.week__track {
+  stroke: var(--color-macro-track);
+}
+
+.week__value {
+  stroke: var(--color-macro-kcal);
+  stroke-linecap: round;
+}
+
+.week__date {
+  font: var(--type-num-s);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The note under the ring: "Today", or "+45" on a day over the goal (a number, never colour alone) */
+.week__note {
+  min-height: calc(var(--type-caption-size) * var(--type-caption-line));
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.week__day:active,
+.week__day.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+.week__day[aria-pressed="true"],
+.week__day.is-selected {
+  background: var(--color-bg-accent-subtle);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-accent);
+}
+
+.week__day[aria-current="date"] .week__date,
+.week__day[aria-current="date"] .week__note {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.week__day.is-over .week__value {
+  stroke: var(--color-status-warning);
+}
+
+.week__day.is-over .week__note {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-status-warning-text);
+}
+
+/* Empty day: nothing logged, the track is shown dashed */
+.week__day.is-empty .week__track {
+  stroke-dasharray: 3 3;
+}
+
+.week__day:disabled,
+.week__day.is-disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.week__day:disabled .week__dow,
+.week__day.is-disabled .week__dow {
+  color: var(--color-text-disabled);
+}
+
+/* Focus: drawn inside the day (the strip has no room around it); the padding is the gap to the content */
+.week__day:focus-visible,
+.week__day.is-focus {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: calc(var(--border-width-focus) * -1);
+}
+
+/* =====================================================================
    State overrides for descendants. Kept last so higher-specificity state
    selectors never precede generic ones (stylelint no-descending-specificity).
    ===================================================================== */
@@ -2967,6 +3251,7 @@ button {
 .ingredients--facts .ingredient__amount,
 .ingredients--facts .ingredient__kcal {
   padding-left: var(--space-3);
+  white-space: nowrap; /* a number never breaks; the name column wraps instead */
   font: var(--type-num-s);
   font-variant-numeric: tabular-nums;
   text-align: right;
@@ -2991,6 +3276,40 @@ button {
   grid-row: 1 / span 2;
   grid-column: 3;
   align-self: center;
+}
+
+/* Settings rows (Profile): a plain chevron button at the row end puts its glyph on the inset line */
+.product--nav > .product__end > .icon-btn:last-child {
+  margin-right: calc(var(--size-icon-inset) * -1);
+}
+
+/* Option card (26): the mark fills and shows its check when selected; disabled text */
+.option-card.is-selected .option-card__mark {
+  background: var(--color-bg-accent);
+  box-shadow: none;
+}
+
+.option-card:has(input:checked) .option-card__mark {
+  background: var(--color-bg-accent);
+  box-shadow: none;
+}
+
+.option-card.is-selected .option-card__mark .icon {
+  visibility: visible;
+}
+
+.option-card:has(input:checked) .option-card__mark .icon {
+  visibility: visible;
+}
+
+.option-card.is-disabled .option-card__title,
+.option-card.is-disabled .option-card__desc {
+  color: var(--color-text-disabled);
+}
+
+.option-card:has(input:disabled) .option-card__title,
+.option-card:has(input:disabled) .option-card__desc {
+  color: var(--color-text-disabled);
 }
 
 /* =====================================================================
@@ -3867,12 +4186,13 @@ abbr[title] {
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M10 4h4M6.5 7l1 13h9l1-13M10 11v5M14 11v5"/></symbol>
   <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
   <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></symbol>
 </svg>
 
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="doc-bar">
   <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgLTE3MCA2NzAgMjMwIj48dGl0bGU+UmlwZSBsb2dvPC90aXRsZT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIC0xNjApIHNjYWxlKDEuNSkiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzJCMjExOCIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0xMCAzNFYyMGExMCAxMCAwIDAgMSAxMC0xMGgxNE04NiAxMGgxNGExMCAxMCAwIDAgMSAxMCAxMHYxNE0xMTAgODZ2MTRhMTAgMTAgMCAwIDEtMTAgMTBIODZNMzQgMTEwSDIwYTEwIDEwIDAgMCAxLTEwLTEwVjg2Ii8+PC9nPgogIDxlbGxpcHNlIGN4PSI2MCIgY3k9IjY4IiByeD0iMzYiIHJ5PSIzMCIgZmlsbD0iI0UyNTUyQSIvPgogIDxlbGxpcHNlIGN4PSI0NiIgY3k9IjYwIiByeD0iOSIgcnk9IjUuNSIgZmlsbD0iI0Y0QTA2QiIgdHJhbnNmb3JtPSJyb3RhdGUoLTMwIDQ4IDU4KSIvPgogIDxwYXRoIGQ9Ik02MCA0MWMtOC03LTIwLTgtMjgtMyA3IDYgMTggNyAyOCAzek02MCA0MWM4LTcgMjAtOCAyOC0zLTcgNi0xOCA3LTI4IDN6TTYwIDQxYy03LTEtMTMgMi0xNSA3IDcgMSAxMi0yIDE1LTd6TTYwIDQxYzctMSAxMyAyIDE1IDctNyAxLTEyLTItMTUtN3oiIGZpbGw9IiM0QTczMjYiLz4KICA8cGF0aCBkPSJNNjAgNDFWMzEiIHN0cm9rZT0iIzRBNzMyNiIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjEwLjAgMCkgc2NhbGUoMC4yKSI+PHBhdGggZmlsbD0iIzJCMjExOCIgZD0iTTc3NSAtNjBRNzkwIC02MCA3OTAgLTQ1Vi0xNVE3OTAgMCA3NzUgMEg0NjhRNDUzIDAgNDUzIC0xNVYtNDVRNDUzIC02MCA0NjggLTYwSDQ3NFE0OTkgLTYwIDUxMS4wIC03NC41UTUyMyAtODkgNTIzIC0xMDlRNTIzIC0xMzIgNTEwIC0xNTVMNDE5IC0zMjVRMzg5IC0zMjIgMzU0IC0zMjJIMjc5Vi0xNTVRMjc5IC0xMTUgMjk0LjAgLTg3LjVRMzA5IC02MCAzNDYgLTYwSDM1MlEzNjcgLTYwIDM2NyAtNDVWLTE1UTM2NyAwIDM1MiAwSDQ1UTMwIDAgMzAgLTE1Vi00NVEzMCAtNjAgNDUgLTYwSDUyUTkwIC02MCAxMDQuNSAtODcuNVExMTkgLTExNSAxMTkgLTE1NVYtNTk1UTExOSAtNjM2IDEwMy41IC02NjMuMFE4OCAtNjkwIDQ2IC02OTBRMzEgLTY5MCAzMSAtNzA1Vi03MzVRMzEgLTc1MCA0NiAtNzUwSDQxM1E0OTQgLTc1MCA1NTQuMCAtNzIxLjBRNjE0IC02OTIgNjQ3LjAgLTY0NC4wUTY4MCAtNTk2IDY4MCAtNTM5UTY4MCAtNDg4IDY1My4wIC00NDAuMFE2MjYgLTM5MiA1NjEgLTM2MUw2NzAgLTE1NVE2OTAgLTExOCA3MTEuNSAtODkuMFE3MzMgLTYwIDc3MCAtNjBaTTMzNyAtMzkzUTQzNyAtMzkzIDQ4My41IC00MzIuMFE1MzAgLTQ3MSA1MzAgLTUzOVE1MzAgLTYwOCA0ODcuMCAtNjQ5LjBRNDQ0IC02OTAgMzY5IC02OTBIMjc5Vi0zOTNaTTExMDUuMCAtNjBRMTEyMC4wIC02MCAxMTIwLjAgLTQ1Vi0xNVExMTIwLjAgMCAxMTAzLjAgMEg4MjAuMFE4MDMuMCAwIDgwMy4wIC0xNVYtNDVRODAzLjAgLTYwIDgxOC4wIC02MEg4MjAuMFE4NTcuMCAtNjAgODc0LjUgLTg3LjVRODkyLjAgLTExNSA4OTIuMCAtMTU1Vi0yNjFRODkyLjAgLTI4NCA4ODguNSAtMzA3LjBRODg1LjAgLTMzMCA4NzMuMCAtMzQ3LjBRODYxLjAgLTM2NCA4MzMuMCAtMzY3UTgyMS4wIC0zNjggODIxLjAgLTM4MFYtNDE0UTgyMS4wIC00MjAgODI1LjAgLTQyMi41UTgyOS4wIC00MjUgODM2LjAgLTQyN1E5MTUuMCAtNDUzIDk1Ny41IC00ODAuNVExMDAwLjAgLTUwOCAxMDIwLjAgLTUyOVExMDIyLjAgLTUzMSAxMDI0LjAgLTUzMUgxMDI3LjBRMTAyOS4wIC01MzEgMTAyOS4wIC01MjlWLTE1NlExMDI5LjAgLTExNiAxMDQ3LjAgLTg4LjBRMTA2NS4wIC02MCAxMTAyLjAgLTYwWk05NjIuMCAtNzQwUTk4OC4wIC03NDAgMTAxMy4wIC03MTVRMTAzOC4wIC02OTAgMTAzOC4wIC02NjVRMTAzOC4wIC02NDAgMTAxMy4wIC02MTVROTg4LjAgLTU5MCA5NjIuMCAtNTkwUTkzOC4wIC01OTAgOTEyLjAgLTYxNVE4ODcuMCAtNjM5IDg4Ny4wIC02NjVRODg3LjAgLTY5MCA5MTIuMCAtNzE1UTkzNy4wIC03NDAgOTYyLjAgLTc0MFpNMTM1Mi4wIC00MjJRMTM1OC4wIC00MzYgMTM3NC4wIC00NTcuNVExMzkwLjAgLTQ3OSAxNDIyLjAgLTQ5Ni4wUTE0NTQuMCAtNTEzIDE1MDUuMCAtNTEzUTE1MzkuMCAtNTEzIDE1NzcuMCAtNDk5LjBRMTYxNS4wIC00ODUgMTY0OS4wIC00NTQuMFExNjgzLjAgLTQyMyAxNzA0LjUgLTM3My4wUTE3MjYuMCAtMzIzIDE3MjYuMCAtMjUwUTE3MjYuMCAtMTU4IDE2OTMuMCAtOTkuNVExNjYwLjAgLTQxIDE2MDcuMCAtMTQuMFExNTU0LjAgMTMgMTQ5My4wIDEzUTE0MTcuMCAxMyAxMzYzLjAgLTM1VjQ1UTEzNjMuMCA4NSAxMzgxLjAgMTEyLjVRMTM5OS4wIDE0MCAxNDM2LjAgMTQwUTE0NTEuMCAxNDAgMTQ1MS4wIDE1NVYxODVRMTQ1MS4wIDIwMCAxNDM2LjAgMjAwSDExNTAuMFExMTM1LjAgMjAwIDExMzUuMCAxODVWMTU1UTExMzUuMCAxNDAgMTE1MS4wIDE0MFExMTg4LjAgMTQwIDEyMDUuNSAxMTIuNVExMjIzLjAgODUgMTIyMy4wIDQ1Vi0yOTlRMTIyMy4wIC0zMjYgMTIyMC4wIC0zNTEuMFExMjE3LjAgLTM3NiAxMjA0LjUgLTM5My41UTExOTIuMCAtNDExIDExNjQuMCAtNDE0UTExNTcuMCAtNDE1IDExNTUuMCAtNDE4LjVRMTE1My4wIC00MjIgMTE1My4wIC00MjdWLTQ2MVExMTUzLjAgLTQ3NCAxMTY3LjAgLTQ3NFExMjE3LjAgLTQ3NCAxMjQ5LjAgLTQ3OC41UTEyODEuMCAtNDgzIDEzMDQuNSAtNDkyLjBRMTMyOC4wIC01MDEgMTM1MS4wIC01MTJRMTM1NC4wIC01MTQgMTM1Ni41IC01MTQuMFExMzU5LjAgLTUxNCAxMzYwLjAgLTUxNEgxMzYxLjBRMTM2My4wIC01MTQgMTM2My4wIC01MTFRMTM2My4wIC01MTAgMTM2Mi41IC01MDYuMFExMzYyLjAgLTUwMiAxMzYwLjAgLTQ4My41UTEzNTguMCAtNDY1IDEzNTIuMCAtNDIyWk0xMzYzLjAgLTE3OFExMzY3LjAgLTE0NyAxMzgwLjUgLTExOC4wUTEzOTQuMCAtODkgMTQxOC4wIC03MS4wUTE0NDIuMCAtNTMgMTQ3NS4wIC01M1ExNTIzLjAgLTUzIDE1NTAuMCAtNzcuMFExNTc3LjAgLTEwMSAxNTg3LjUgLTEzOS4wUTE1OTguMCAtMTc3IDE1OTguMCAtMjE4UTE1OTguMCAtMzE0IDE1NTkuNSAtMzcwLjBRMTUyMS4wIC00MjYgMTQ1OS4wIC00MjZRMTQxOS4wIC00MjYgMTM5NC41IC00MDMuNVExMzcwLjAgLTM4MSAxMzYzLjAgLTM2MFpNMTkyMS4wIC0xNzlRMTkzOC4wIC0xMzcgMTk3NS41IC0xMDQuMFEyMDEzLjAgLTcxIDIwNzEuMCAtNzFRMjEwMy4wIC03MSAyMTM4LjAgLTg5LjBRMjE3My4wIC0xMDcgMjE5OS4wIC0xNDVRMjIwMi4wIC0xNTAgMjIwNy4wIC0xNTBRMjIxMi4wIC0xNTAgMjIxNy41IC0xNDcuMFEyMjIzLjAgLTE0NCAyMjQ3LjAgLTEzMFEyMjUxLjAgLTEyNyAyMjUxLjAgLTEyMlEyMjUxLjAgLTExNSAyMjQ1LjAgLTEwNVEyMjE3LjAgLTUzIDIxNjkuMCAtMjAuMFEyMTIxLjAgMTMgMjA0NC4wIDEzUTE5NjEuMCAxMyAxOTAxLjAgLTI0LjBRMTg0MS4wIC02MSAxODA4LjUgLTEyMi4wUTE3NzYuMCAtMTgzIDE3NzYuMCAtMjU1UTE3NzYuMCAtMzI0IDE3OTYuNSAtMzczLjVRMTgxNy4wIC00MjMgMTg1MS4wIC00NTMuNVExODg1LjAgLTQ4NCAxOTI3LjUgLTQ5OC41UTE5NzAuMCAtNTEzIDIwMTQuMCAtNTEzUTIwNjQuMCAtNTEzIDIxMDIuMCAtNDkzLjVRMjE0MC4wIC00NzQgMjE2Ni41IC00NDQuMFEyMTkzLjAgLTQxNCAyMjA2LjUgLTM4MC41UTIyMjAuMCAtMzQ3IDIyMjAuMCAtMzE4UTIyMjAuMCAtMzEwIDIyMTEuMCAtMzA2Wk0yMDcwLjAgLTMyMlEyMDcwLjAgLTM3MCAyMDQ3LjAgLTQwMS4wUTIwMjQuMCAtNDMyIDE5ODkuMCAtNDMyUTE5NDguMCAtNDMyIDE5MjQuMCAtMzk5LjVRMTkwMC4wIC0zNjcgMTkwMC4wIC0zMThRMTkwMC4wIC0zMDMgMTkwMS41IC0yODEuMFExOTAzLjAgLTI1OSAxOTA5LjAgLTI0MVoiLz48L2c+Cjwvc3ZnPgo=" alt="Ripe" width="128" height="41">
-  <p class="doc-bar__meta">Design system · v1.2 · light theme · WCAG 2.2 AA, AAA for critical elements</p>
+  <p class="doc-bar__meta">Design system · v1.11 · light theme · WCAG 2.2 AA, AAA for critical elements</p>
 </header>
 
 <div class="doc">
@@ -3881,7 +4201,7 @@ abbr[title] {
       <p class="doc-nav__group">Foundations</p>
       <a href="#colour">Colour</a><a href="#type">Typography</a><a href="#space">Spacing</a><a href="#radius">Radius &amp; borders</a><a href="#elevation">Elevation</a><a href="#icons">Icons &amp; sizes</a><a href="#compliance">Platform compliance</a>
       <p class="doc-nav__group">Components</p>
-      <a href="#c1">01 Buttons</a><a href="#c2">02 Text field</a><a href="#c3">03 Search bar</a><a href="#c4">04 Chips</a><a href="#c5">05 Segmented control</a><a href="#c6">06 Weight stepper</a><a href="#c7">07 Product item</a><a href="#c8">08 Recipe card</a><a href="#c9">09 Nutrition summary</a><a href="#c10">10 Nutrition facts</a><a href="#c11">11 Top app bar</a><a href="#c12">12 Tab bar</a><a href="#c13">13 Bottom sheet</a><a href="#c14">14 Toast</a><a href="#c15">15 Empty state</a><a href="#c16">16 Badges</a><a href="#c17">17 Banner</a><a href="#c18">18 Skeleton</a><a href="#c19">19 Camera viewfinder</a><a href="#c20">20 Screen layout</a><a href="#c21">21 Date button</a><a href="#c22">22 Title + name edit</a><a href="#c23">23 Ingredient rows</a><a href="#c24">24 Recipe steps</a>
+      <a href="#c1">01 Buttons</a><a href="#c2">02 Text field</a><a href="#c3">03 Search bar</a><a href="#c4">04 Chips</a><a href="#c5">05 Segmented control</a><a href="#c6">06 Weight stepper</a><a href="#c7">07 Product item</a><a href="#c8">08 Recipe card</a><a href="#c9">09 Nutrition summary</a><a href="#c10">10 Nutrition facts</a><a href="#c11">11 Top app bar</a><a href="#c12">12 Tab bar</a><a href="#c13">13 Bottom sheet</a><a href="#c14">14 Toast</a><a href="#c15">15 Empty state</a><a href="#c16">16 Badges</a><a href="#c17">17 Banner</a><a href="#c18">18 Skeleton</a><a href="#c19">19 Camera viewfinder</a><a href="#c20">20 Screen layout</a><a href="#c21">21 Date button</a><a href="#c22">22 Title + name edit</a><a href="#c23">23 Ingredient rows</a><a href="#c24">24 Recipe steps</a><a href="#c25">25 Step indicator</a><a href="#c26">26 Option card</a><a href="#c27">27 Week strip</a>
       <p class="doc-nav__group">Checks</p>
       <a href="#abbreviations">Abbreviations</a><a href="#a11y">Accessibility</a>
     </nav>
@@ -3895,7 +4215,7 @@ abbr[title] {
         <p>Tokens and components for a photo-first calorie calculator. Every value comes from <code>tokens.json</code> (W3C format). <code>tokens.css</code> is generated from it, and <code>components.css</code> uses nothing but those variables. Screens are 390×844, light theme, WCAG AA. Verified with <code>npm run check</code>.</p>
       </div>
       <div class="facts-mini">
-        <div><b>283</b><span>CSS variables</span></div><div><b>24</b><span>components</span></div><div><b>AAA</b><span>critical text 7:1</span></div><div><b>44/48</b><span>pt / dp targets</span></div>
+        <div><b>268</b><span>CSS variables</span></div><div><b>27</b><span>components</span></div><div><b>AAA</b><span>critical text 7:1</span></div><div><b>44/48</b><span>pt / dp targets</span></div>
       </div>
     </header>
 
@@ -4158,6 +4478,7 @@ abbr[title] {
 <div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg><div><code>trash</code></div></div>
 <div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg><div><code>arrow-up</code></div></div>
 <div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg><div><code>arrow-down</code></div></div>
+<div class="sw sw--icon"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><div><code>copy</code></div></div>
 </div><h3 class="doc-h3">Component sizes and safe areas</h3><section class="table-scroll" data-scroll-x tabindex="0" aria-label="Component size tokens"><table class="tok-table"><caption class="visually-hidden">Component size tokens</caption><thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead><tbody>
 <tr><td><code>--size-touch-min</code></td><td class="ratio">44px</td><td>Minimum hit region on iOS: 44×44 pt (Apple HIG, Buttons &amp; Accessibility)</td></tr>
 <tr><td><code>--size-touch-android</code></td><td class="ratio">48px</td><td>Minimum touch target on Android: 48×48 dp (Android accessibility guide, Material 3)</td></tr>
@@ -4191,6 +4512,7 @@ abbr[title] {
 <tr><td><code>--size-macro-chip</code></td><td class="ratio">24px</td><td>Compact macro chip height (P / F / C). Three chips with 3-digit values fit one row in a 320 pt card</td></tr>
 <tr><td><code>--size-step-number</code></td><td class="ratio">28px</td><td>Recipe step number disc</td></tr>
 <tr><td><code>--size-measure</code></td><td class="ratio">40rem</td><td>Maximum width of reading text such as recipe steps: 40rem ≈ 75 characters of 16 px body text (WCAG 1.4.8: ≤ 80 characters). In rem, so it scales with text size</td></tr>
+<tr><td><code>--size-day-ring</code></td><td class="ratio">32px</td><td>Mini calorie ring around the date in the week strip (27). 7 days × 44 pt fit 308 pt; the ring leaves room for the date inside</td></tr>
 </tbody></table></section>
 <!-- tokens:end -->
 
@@ -4338,6 +4660,7 @@ abbr[title] {
         <li><b>kcal and P · F · C are per 100 g,</b> rounded to whole grams in lists. Decimals appear on the detail screen.</li>
         <li><b>Identical geometry in every state:</b> rows are inset 4 px in the list, have a 16 px radius, and draw outlines as a 2 px inset ring. Dividers hide next to a highlighted row.</li>
         <li><b>Search rows</b> (<code>.product--chips</code>): the product photo (the same <code>.product__thumb</code> as the Meals rows: <code>size-thumb</code>, <code>radius-sm</code>, cover; <code>alt=""</code> beside the name) with the name to its right, top-aligned, wrapping, never clipped. Under the photo, from the card-inset line, the P / F / C chips (<code>.product__macros</code>), <code>space-2</code> below the photo. kcal per 100 g and the Add button (44, "Add &lt;food&gt;", focus ring with a gap) sit on the right edge, centred on the whole row.</li>
+        <li><b>Settings rows</b> (<code>.product--nav</code>, Profile): an icon tile, the name and its value, and a plain chevron button (44, named "Edit allergies"). Its glyph sits on the inset line, like every plain icon button at a row end.</li>
         <li><b>Meal rows:</b> a logged meal shows its dish photo. An empty meal shows a <b>passive</b> meal-type icon in the same 48 slot (not a button: no hit area, no states) and exactly <b>one</b> Add button on the right, so rows never shift.</li>
         <li><b>Detected item</b> (photo result): the photo marker number, the name, a confidence label, a weight stepper and kcal. <b>Check portion</b> tints the row so the user confirms the weight. A thumbnail is a real photo (<code>&lt;img class="product__thumb"&gt;</code>) or, when there's none, an icon tile.</li>
       </ul>
@@ -4707,6 +5030,7 @@ abbr[title] {
       <ul class="doc-notes">
         <li><b>Looks like the Nutrition Facts card:</b> the list sits inside a <code>.facts</code> card (title, source line, an uppercase header row on the heavy rule, hairline row rules, 14 px names, mono values right-aligned). The facts table and <code>.ingredients--facts</code> share the same CSS rules.</li>
         <li><b>View is compact:</b> the name on the left, the amount + unit right-aligned on one edge, <b>two lines per ingredient:</b> name | amount, then the P / F / C macro chips ("P 34 g", the same <code>.macro-tile--chip</code> component as everywhere) | "158 kcal". Amount and kcal end on one right edge (tabular mono, the facts value style); names and chips start on one x; 8 between the lines (<code>--space-2</code>). Rows are 8 apart vertically; text starts on the card-inset line.</li>
+        <li><b>Servings</b> (<code>.ingredients__servings</code>): a label + the weight stepper (06, all its states) scales the ingredient amounts, row kcal and chips (1–8 portions; "−" disabled at 1, "+" at 8; typed values snap into range; the change is announced via <code>role="status"</code>). The dish summary and "Log 1 portion" stay per portion. In edit mode the row hides and amounts are edited per portion.</li>
         <li><b>Edit:</b> every value is a labelled field (Ingredient with suggestions, Amount, Unit g / ml / portion) plus a Delete button (44, inset focus ring). Totals, the calorie ring and macro bars recalculate as you type, announced via <code>role="status"</code>.</li>
         <li><b>Delete</b> moves focus to the next row and shows an Undo toast (no timer). <b>Leaving with changes</b> asks "Discard changes?" with "Keep editing" first.</li>
       </ul>
@@ -4714,6 +5038,7 @@ abbr[title] {
         <figure class="state"><div class="state__stage state__stage--start"><section class="facts" aria-labelledby="ing-doc-title">
           <div class="row-between"><h4 class="facts__title" id="ing-doc-title">Ingredients</h4><button type="button" class="btn btn--ghost btn--m" aria-label="Edit ingredients"><svg class="icon icon--m" aria-hidden="true"><use href="#i-edit"/></svg>Edit</button></div>
           <div class="facts__source">1 portion · <span class="badge badge--verified">✓ USDA</span></div>
+          <div class="row-between ingredients__servings"><span class="t-label">Servings</span><div class="stepper" role="group" aria-label="Servings"><button type="button" class="stepper__btn" aria-label="Less servings" disabled><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button><span class="stepper__value"><input class="stepper__input" type="text" inputmode="decimal" value="1" aria-label="Servings"><small aria-hidden="true">portion</small></span><button type="button" class="stepper__btn" aria-label="More servings"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
           <div class="ingredients__head" aria-hidden="true"><span>Ingredient</span><span>Amount</span></div>
           <ol class="ingredients ingredients--facts" aria-labelledby="ing-doc-title">
           <li class="ingredient"><span class="ingredient__name">Cod fillet, baked</span><span class="ingredient__amount">150 g</span><div class="macro-tiles macro-tiles--inline"><span class="macro-tile macro-tile--p macro-tile--chip"><span class="macro-tile__label" aria-hidden="true">P</span><span class="visually-hidden">Protein</span><span class="macro-tile__value">34<small> g</small></span></span><span class="macro-tile macro-tile--f macro-tile--chip"><span class="macro-tile__label" aria-hidden="true">F</span><span class="visually-hidden">Fat</span><span class="macro-tile__value">1<small> g</small></span></span><span class="macro-tile macro-tile--c macro-tile--chip"><span class="macro-tile__label" aria-hidden="true">C</span><span class="visually-hidden">Carbs</span><span class="macro-tile__value">0<small> g</small></span></span></div><span class="ingredient__kcal">158 kcal</span></li>
@@ -4758,6 +5083,51 @@ abbr[title] {
       </div>
     </section>
 
+    <!-- 25 Step indicator -->
+    <section class="doc-comp" id="c25">
+      <header><span class="n">25</span><h3>Step indicator</h3><code>.progress · .progress__text · .progress__bar · .progress__seg · .is-done · .is-current</code></header>
+      <ul class="doc-notes">
+        <li><b>Onboarding progress</b> on screens 02–06. The text <b>"Step 2 of 5"</b> is always shown; the bar only repeats it (<code>aria-hidden</code>), so progress is never dots or colour alone.</li>
+        <li><b>Segments:</b> upcoming (track) · done and current (accent). <code>--space-1</code> tall, <code>--space-1</code> apart, full width of the content.</li>
+        <li><b>Not interactive:</b> no pressed, focus or disabled state and no tab stop; going back is the app bar's Back button. No error state: progress can't be wrong.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--start"><div class="progress"><p class="progress__text">Step 1 of 5</p><div class="progress__bar" aria-hidden="true"><span class="progress__seg is-current"></span><span class="progress__seg"></span><span class="progress__seg"></span><span class="progress__seg"></span><span class="progress__seg"></span></div></div></div><figcaption><b>Step 1 of 5</b>Current only</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="progress"><p class="progress__text">Step 3 of 5</p><div class="progress__bar" aria-hidden="true"><span class="progress__seg is-done"></span><span class="progress__seg is-done"></span><span class="progress__seg is-current"></span><span class="progress__seg"></span><span class="progress__seg"></span></div></div></div><figcaption><b>Step 3 of 5</b>Done · current · upcoming</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="progress"><p class="progress__text">Step 5 of 5</p><div class="progress__bar" aria-hidden="true"><span class="progress__seg is-done"></span><span class="progress__seg is-done"></span><span class="progress__seg is-done"></span><span class="progress__seg is-done"></span><span class="progress__seg is-current"></span></div></div></div><figcaption><b>Step 5 of 5</b>Last step</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 26 Option card -->
+    <section class="doc-comp" id="c26">
+      <header><span class="n">26</span><h3>Option card</h3><code>.option-group · .option-card · .option-card--check · .option-card__mark · .is-error</code></header>
+      <ul class="doc-notes">
+        <li><b>A native radio or checkbox</b> inside a <code>label</code>: the whole card is the hit area (≥ 44 tall), arrows move between radios, Space toggles checkboxes. Grouped in a <code>fieldset</code> with a visible <code>legend</code>.</li>
+        <li><b>Title + description</b> (body strong + callout, wraps, never clipped). The mark on the right is a ring (radio) or a rounded square (checkbox); when selected it fills and shows a check, so selection is never colour alone.</li>
+        <li><b>States:</b> default · pressed · selected · focus (ring with a gap) · disabled · error (group). The error names the fix under the group.</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--start"><fieldset class="option-group fill"><legend class="option-group__legend">Your goal</legend><label class="option-card"><input class="visually-hidden" type="radio" name="g1" value="maintain" checked><span class="option-card__body"><span class="option-card__title">Maintain</span><span class="option-card__desc">Eat well and keep your weight.</span></span><span class="option-card__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></label><label class="option-card is-pressed"><input class="visually-hidden" type="radio" name="g1" value="lose"><span class="option-card__body"><span class="option-card__title">Lose slowly</span><span class="option-card__desc">About 0.25 kg a week (−250 kcal a day).</span></span><span class="option-card__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></label><label class="option-card is-focus"><input class="visually-hidden" type="radio" name="g1" value="gain"><span class="option-card__body"><span class="option-card__title">Gain</span><span class="option-card__desc">About 0.25 kg a week (+250 kcal a day).</span></span><span class="option-card__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></label><label class="option-card"><input class="visually-hidden" type="radio" name="g1" value="track" disabled><span class="option-card__body"><span class="option-card__title">Just track</span><span class="option-card__desc">No target. Only see what you eat.</span></span><span class="option-card__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></label></fieldset></div><figcaption><b>Radio</b>Selected · pressed · focus · disabled</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><fieldset class="option-group fill"><legend class="option-group__legend">Reminders</legend><label class="option-card option-card--check"><input class="visually-hidden" type="checkbox" name="remind-lunch" value="lunch" checked><span class="option-card__body"><span class="option-card__title">Lunch photo</span><span class="option-card__desc">12:30 on weekdays</span></span><span class="option-card__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></label><label class="option-card option-card--check"><input class="visually-hidden" type="checkbox" name="remind-evening" value="evening"><span class="option-card__body"><span class="option-card__title">Evening check</span><span class="option-card__desc">20:00, only if a meal is missing</span></span><span class="option-card__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></label></fieldset></div><figcaption><b>Checkbox</b>Selected · default</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><fieldset class="option-group is-error fill" aria-describedby="og-err"><legend class="option-group__legend">Activity</legend><label class="option-card"><input class="visually-hidden" type="radio" name="a1" value="sit"><span class="option-card__body"><span class="option-card__title">Mostly sitting</span><span class="option-card__desc">×1.2</span></span><span class="option-card__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></label><label class="option-card"><input class="visually-hidden" type="radio" name="a1" value="light"><span class="option-card__body"><span class="option-card__title">Lightly active</span><span class="option-card__desc">×1.375</span></span><span class="option-card__mark" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span></label><p class="option-group__error" id="og-err"><svg class="icon icon--s" aria-hidden="true"><use href="#i-alert"/></svg>Choose how active you are to get a target.</p></fieldset></div><figcaption><b>Error</b>Nothing chosen</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 27 Week strip -->
+    <section class="doc-comp" id="c27">
+      <header><span class="n">27</span><h3>Week strip</h3><code>.week · .week__day · .week__ring · .week__note · .is-over · .is-empty</code></header>
+      <ul class="doc-notes">
+        <li><b>Seven day buttons</b> (Mon–Sun) in a group: the weekday, the date inside a mini calorie ring (<code>--size-day-ring</code>, 32) and a short note. One day is selected (<code>aria-pressed="true"</code>); today has <code>aria-current="date"</code> and the note "Today".</li>
+        <li><b>Every day button is ≥ 44 × 44.</b> 7 × 44 = 308 pt doesn't fit the 280 pt content of a 320 pt screen, so there the strip uses up to 16 pt of each margin (14 at 320); targets never shrink. If even that doesn't fit, the days wrap.</li>
+        <li><b>Never colour alone:</b> a day over the goal fills its ring in Turmeric <b>and</b> shows "+45" (its name says "45 over"). An empty day has a dashed track; days before sign-up and future days are disabled.</li>
+        <li><b>States:</b> default · pressed · selected · focus · today · over · empty · disabled. No error state: days come from the phone; offline uses the inline banner (17).</li>
+      </ul>
+      <div class="states states--phone">
+        <figure class="state"><div class="state__stage state__stage--start"><div class="week" role="group" aria-label="Week of 28 September"><button type="button" class="week__day" aria-pressed="false" aria-label="Monday 28 September: 1,703 kcal"><span class="week__dow" aria-hidden="true">M</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="83 100"/></svg><span class="week__date">28</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day is-over" aria-pressed="false" aria-label="Tuesday 29 September: 2,095 kcal, 45 over"><span class="week__dow" aria-hidden="true">T</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="100 100"/></svg><span class="week__date">29</span></span><span class="week__note" aria-hidden="true">+45</span></button><button type="button" class="week__day" aria-pressed="false" aria-label="Wednesday 30 September: 1,661 kcal"><span class="week__dow" aria-hidden="true">W</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="81 100"/></svg><span class="week__date">30</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day" aria-pressed="true" aria-current="date" aria-label="Thursday 1 October, today: 1,171 kcal"><span class="week__dow" aria-hidden="true">T</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="57 100"/></svg><span class="week__date">1</span></span><span class="week__note" aria-hidden="true">Today</span></button><button type="button" class="week__day is-empty" aria-pressed="false" disabled aria-label="Friday 2 October: upcoming"><span class="week__dow" aria-hidden="true">F</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/></svg><span class="week__date">2</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day is-empty" aria-pressed="false" disabled aria-label="Saturday 3 October: upcoming"><span class="week__dow" aria-hidden="true">S</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/></svg><span class="week__date">3</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day is-empty" aria-pressed="false" disabled aria-label="Sunday 4 October: upcoming"><span class="week__dow" aria-hidden="true">S</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/></svg><span class="week__date">4</span></span><span class="week__note" aria-hidden="true"></span></button></div></div><figcaption><b>This week</b>Default · over · today + selected · upcoming (disabled)</figcaption></figure>
+        <figure class="state"><div class="state__stage state__stage--start"><div class="week" role="group" aria-label="Week of 21 September: states"><button type="button" class="week__day is-empty" aria-pressed="false" disabled aria-label="Monday 21 September: before sign-up"><span class="week__dow" aria-hidden="true">M</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/></svg><span class="week__date">21</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day is-empty" aria-pressed="false" aria-label="Tuesday 22 September: nothing logged"><span class="week__dow" aria-hidden="true">T</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/></svg><span class="week__date">22</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day is-pressed" aria-pressed="false" aria-label="Wednesday 23 September: 1,850 kcal, pressed"><span class="week__dow" aria-hidden="true">W</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="90 100"/></svg><span class="week__date">23</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day is-focus" aria-pressed="false" aria-label="Thursday 24 September: 2,010 kcal, focus"><span class="week__dow" aria-hidden="true">T</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="98 100"/></svg><span class="week__date">24</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day" aria-pressed="true" aria-label="Friday 25 September: 1,920 kcal, selected"><span class="week__dow" aria-hidden="true">F</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="94 100"/></svg><span class="week__date">25</span></span><span class="week__note" aria-hidden="true"></span></button><button type="button" class="week__day is-over" aria-pressed="false" aria-label="Saturday 26 September: 2,160 kcal, 110 over"><span class="week__dow" aria-hidden="true">S</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="100 100"/></svg><span class="week__date">26</span></span><span class="week__note" aria-hidden="true">+110</span></button><button type="button" class="week__day" aria-pressed="false" aria-label="Sunday 27 September: 1,640 kcal"><span class="week__dow" aria-hidden="true">S</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/><circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="80 100"/></svg><span class="week__date">27</span></span><span class="week__note" aria-hidden="true"></span></button></div></div><figcaption><b>States</b>Before sign-up · empty · pressed · focus · selected · over · default</figcaption></figure>
+      </div>
+    </section>
+
     <h2 class="doc-h2" id="a11y"><small>Checks</small>Accessibility</h2>
     <div class="states">
       <figure class="state"><div class="state__stage state__stage--start"><b class="t-num-l">AA</b><span class="t-callout text-secondary">Every text colour, state colour and focus ring passes WCAG 2.2 AA. The table is in README.md, generated by <code>tools/contrast.py</code>.</span></div><figcaption><b>Contrast</b></figcaption></figure>
@@ -4798,7 +5168,7 @@ abbr[title] {
 </dialog>
 
 <footer class="doc-footer">
-  <p>Ripe design system v1.2 · tokens generated from <code>tokens.json</code> · verified with <code>npm run check</code> and <code>npm run check:a11y</code> (WCAG 2.2 AA + AAA for critical elements).</p>
+  <p>Ripe design system v1.11 · tokens generated from <code>tokens.json</code> · verified with <code>npm run check</code> and <code>npm run check:a11y</code> (WCAG 2.2 AA + AAA for critical elements).</p>
 </footer>
 
 <script>

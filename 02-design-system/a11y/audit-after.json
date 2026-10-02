@@ -1,7 +1,7 @@
 {
   "summary": {
     "label": "after",
-    "date": "2026-10-02T19:55:27.523Z",
+    "date": "2026-10-02T22:06:24.689Z",
     "tier1": {
       "fail": 0,
       "pass": 39
@@ -57,7 +57,7 @@
       "rule": "summary",
       "tier": 1,
       "element": "all text",
-      "measured": "1847 text nodes in 79 colour pairs; worst non-disabled 4.79:1",
+      "measured": "1974 text nodes in 82 colour pairs; worst non-disabled 4.79:1",
       "required": "AA 4.5 / critical 7"
     },
     {
@@ -239,7 +239,7 @@
       "criterion": "2.5.5",
       "rule": "summary",
       "tier": 2,
-      "element": "248 targets",
+      "element": "268 targets",
       "measured": "smallest side 44 px; 0 overlapping pairs",
       "required": "≥ 44 (48 Android), no overlap"
     },
@@ -250,7 +250,7 @@
       "criterion": "2.1.1 / 2.4.3 / 2.4.7",
       "rule": "summary",
       "tier": 1,
-      "element": "219 focus stops",
+      "element": "238 focus stops",
       "measured": "0 without indicator; 0 obscured",
       "required": "all visible, none obscured"
     },
@@ -676,9 +676,11 @@
       "critical": false,
       "disabled": true,
       "state": "disabled",
-      "nodes": 1,
+      "nodes": 9,
       "examples": [
-        "#c1 button.btn.btn--ghost.btn--m \"Undo\""
+        "#c1 button.btn.btn--ghost.btn--m \"Undo\"",
+        "#c27 span.week__dow \"F\"",
+        "#c27 span.week__date \"2\""
       ]
     },
     {
@@ -733,7 +735,7 @@
       "critical": true,
       "disabled": true,
       "state": "disabled",
-      "nodes": 3,
+      "nodes": 5,
       "examples": [
         "#c7 span.product__kcal \"130\"",
         "#c7 small \"per 100 g\"",
@@ -1120,6 +1122,44 @@
       ]
     },
     {
+      "el": "#c26 span.option-card__desc",
+      "text": "About 0.25 kg a week (−250 kcal a day).",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#eae5dd",
+      "overImage": false,
+      "ratio": 7.95,
+      "size": 14,
+      "weight": 400,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 1,
+      "examples": [
+        "#c26 span.option-card__desc \"About 0.25 kg a week (−250 kcal a day).\""
+      ]
+    },
+    {
+      "el": "#c27 span.week__dow",
+      "text": "W",
+      "kind": "text",
+      "fg": "#4e4034",
+      "bg": "#eae5dd",
+      "overImage": false,
+      "ratio": 7.95,
+      "size": 12,
+      "weight": 500,
+      "large": false,
+      "critical": false,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 1,
+      "examples": [
+        "#c27 span.week__dow \"W\""
+      ]
+    },
+    {
       "el": "#c7 span.macro-tile__label",
       "text": "P",
       "kind": "text",
@@ -1193,9 +1233,11 @@
       "critical": false,
       "disabled": false,
       "state": "selected",
-      "nodes": 1,
+      "nodes": 3,
       "examples": [
-        "#c7 div.product__meta \"P 22 · F 12 · C 0\""
+        "#c7 div.product__meta \"P 22 · F 12 · C 0\"",
+        "#c27 span.week__dow \"T\"",
+        "#c27 span.week__dow \"F\""
       ]
     },
     {
@@ -1212,9 +1254,11 @@
       "critical": true,
       "disabled": false,
       "state": "selected",
-      "nodes": 1,
+      "nodes": 3,
       "examples": [
-        "#c7 small \"per 100 g\""
+        "#c7 small \"per 100 g\"",
+        "#c26 span.option-card__desc \"Eat well and keep your weight.\"",
+        "#c26 span.option-card__desc \"12:30 on weekdays\""
       ]
     },
     {
@@ -1231,9 +1275,11 @@
       "critical": false,
       "disabled": false,
       "state": "default",
-      "nodes": 1,
+      "nodes": 3,
       "examples": [
-        "#c16 span.confidence.confidence--check \"Check portion\""
+        "#c16 span.confidence.confidence--check \"Check portion\"",
+        "#c27 span.week__note \"+45\"",
+        "#c27 span.week__note \"+110\""
       ]
     },
     {
@@ -1269,7 +1315,7 @@
       "critical": true,
       "disabled": false,
       "state": "error",
-      "nodes": 6,
+      "nodes": 7,
       "examples": [
         "#c2 span.field__help \"Enter a weight between 1 and 10,000 g\"",
         "#c3 p.search__help \"No results. Did you mean ?\"",
@@ -1330,7 +1376,7 @@
       "critical": true,
       "disabled": false,
       "state": "default",
-      "nodes": 18,
+      "nodes": 19,
       "examples": [
         "#c5 label.segmented__opt \"ml\"",
         "#c5 label.segmented__opt \"portion\"",
@@ -1493,7 +1539,7 @@
       "critical": false,
       "disabled": false,
       "state": "default",
-      "nodes": 38,
+      "nodes": 41,
       "examples": [
         "#main span.t-overline.text-accent \"02 · Design system\"",
         "#main td.status-fixed \"fixed (stepper ± was 41 pt, segments 36 \"",
@@ -1542,7 +1588,7 @@
     },
     {
       "el": "#page p.doc-bar__meta",
-      "text": "Design system · v1.2 · light theme · WCA",
+      "text": "Design system · v1.11 · light theme · WC",
       "kind": "text",
       "fg": "#4e4034",
       "bg": "#fbf6ee",
@@ -1554,9 +1600,9 @@
       "critical": true,
       "disabled": false,
       "state": "default",
-      "nodes": 105,
+      "nodes": 120,
       "examples": [
-        "#page p.doc-bar__meta \"Design system · v1.2 · light theme · WCA\"",
+        "#page p.doc-bar__meta \"Design system · v1.11 · light theme · WC\"",
         "#main p \"Tokens and components for a photo-first \"",
         "#main p.doc-lead \"Two layers.  are the raw palette, and ev\""
       ]
@@ -1575,7 +1621,7 @@
       "critical": false,
       "disabled": false,
       "state": "default",
-      "nodes": 213,
+      "nodes": 228,
       "examples": [
         "#page p.doc-nav__group \"Foundations\"",
         "#page p.doc-nav__group \"Components\"",
@@ -1655,7 +1701,7 @@
       "critical": false,
       "disabled": false,
       "state": "default",
-      "nodes": 167,
+      "nodes": 168,
       "examples": [
         "#main code \"#FFFFFF\"",
         "#main small \"Only for text and icons on Persimmon. Ne\"",
@@ -1676,7 +1722,7 @@
       "critical": true,
       "disabled": false,
       "state": "default",
-      "nodes": 62,
+      "nodes": 66,
       "examples": [
         "#c2 span.field__suffix \"g\"",
         "#c2 span.field__suffix \"g\"",
@@ -1756,10 +1802,30 @@
       "critical": false,
       "disabled": false,
       "state": "pressed",
-      "nodes": 2,
+      "nodes": 3,
       "examples": [
         "#c21 b \"Thursday\"",
-        "#c21 span \"· 879 kcal left\""
+        "#c21 span \"· 879 kcal left\"",
+        "#c27 span.week__date \"23\""
+      ]
+    },
+    {
+      "el": "#c26 span.option-card__title",
+      "text": "Lose slowly",
+      "kind": "text",
+      "fg": "#2b2118",
+      "bg": "#eae5dd",
+      "overImage": false,
+      "ratio": 12.57,
+      "size": 16,
+      "weight": 600,
+      "large": false,
+      "critical": true,
+      "disabled": false,
+      "state": "pressed",
+      "nodes": 1,
+      "examples": [
+        "#c26 span.option-card__title \"Lose slowly\""
       ]
     },
     {
@@ -1776,7 +1842,7 @@
       "critical": false,
       "disabled": false,
       "state": "default",
-      "nodes": 17,
+      "nodes": 20,
       "examples": [
         "#c1 button.btn.btn--secondary \"Add a missing item\"",
         "#c1 button.btn.btn--secondary.btn--m \"Retake\"",
@@ -1797,7 +1863,7 @@
       "critical": true,
       "disabled": false,
       "state": "selected",
-      "nodes": 5,
+      "nodes": 7,
       "examples": [
         "#c7 span.product__kcal \"206\"",
         "#c24 span.recipe-step__num \"1\"",
@@ -1818,7 +1884,7 @@
       "critical": true,
       "disabled": false,
       "state": "default",
-      "nodes": 57,
+      "nodes": 70,
       "examples": [
         "#main code \"tokens.json\"",
         "#main code \"tokens.css\"",
@@ -1839,7 +1905,7 @@
       "critical": false,
       "disabled": false,
       "state": "default",
-      "nodes": 195,
+      "nodes": 199,
       "examples": [
         "#main code \"--color-bg-canvas\"",
         "#main code \"--color-oat-50\"",
@@ -2022,7 +2088,7 @@
       "critical": false,
       "disabled": false,
       "state": "default",
-      "nodes": 395,
+      "nodes": 418,
       "examples": [
         "#page a \"Colour\"",
         "#page a \"Typography\"",
@@ -2043,7 +2109,7 @@
       "critical": true,
       "disabled": false,
       "state": "default",
-      "nodes": 42,
+      "nodes": 45,
       "examples": [
         "#main h1 \"Ripe design system\"",
         "#abbreviations h2.doc-h2 \"Abbreviations\"",
@@ -2052,7 +2118,7 @@
     },
     {
       "el": "#main b",
-      "text": "283",
+      "text": "268",
       "kind": "text",
       "fg": "#2b2118",
       "bg": "#fbf6ee",
@@ -2066,8 +2132,8 @@
       "state": "default",
       "nodes": 6,
       "examples": [
-        "#main b \"283\"",
-        "#main b \"24\"",
+        "#main b \"268\"",
+        "#main b \"27\"",
         "#main b \"AAA\""
       ]
     },
@@ -2085,7 +2151,7 @@
       "critical": true,
       "disabled": false,
       "state": "default",
-      "nodes": 133,
+      "nodes": 147,
       "examples": [
         "#main h3.doc-h3 \"Primitives\"",
         "#main h3.doc-h3 \"Background\"",
@@ -2148,7 +2214,7 @@
       "critical": true,
       "disabled": false,
       "state": "default",
-      "nodes": 78,
+      "nodes": 83,
       "examples": [
         "#c5 label.segmented__opt \"g\"",
         "#c5 label.segmented__opt \"g\"",
@@ -2586,6 +2652,30 @@
     },
     {
       "el": "#page a",
+      "text": "25 Step indicator",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "26 Option card",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
+      "text": "27 Week strip",
+      "w": 183,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#page a",
       "text": "Abbreviations",
       "w": 183,
       "h": 44,
@@ -2644,7 +2734,7 @@
       "el": "#main section.table-scroll",
       "text": "Component size tokensTokenValu",
       "w": 1088,
-      "h": 1398,
+      "h": 1436,
       "min": 44,
       "inline": false
     },
@@ -4129,6 +4219,30 @@
       "inline": false
     },
     {
+      "el": "#c23 button.stepper__btn",
+      "text": "Less servings",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c23 input.stepper__input",
+      "text": "Servings",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c23 button.stepper__btn",
+      "text": "More servings",
+      "w": 44,
+      "h": 44,
+      "min": 44,
+      "inline": false
+    },
+    {
       "el": "#c23 input",
       "text": "",
       "w": 278,
@@ -4311,6 +4425,118 @@
       "h": 52,
       "min": 44,
       "inline": false
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "M28",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-over",
+      "text": "T29+45",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "W30",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "T1Today",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-empty",
+      "text": "F2",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-empty",
+      "text": "S3",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-empty",
+      "text": "S4",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-empty",
+      "text": "M21",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-empty",
+      "text": "T22",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-pressed",
+      "text": "W23",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-focus",
+      "text": "T24",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "F25",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day.is-over",
+      "text": "S26+110",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "S27",
+      "w": 44,
+      "h": 644,
+      "min": 44,
+      "inline": false
     }
   ],
   "focus": [
@@ -4326,7 +4552,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 121,
+      "order": 124,
       "path": "a",
       "tag": "A",
       "rect": {
@@ -4348,7 +4574,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 129,
+      "order": 132,
       "path": "div > aside > nav > a:nth-of-type(1)",
       "tag": "A",
       "rect": {
@@ -4370,7 +4596,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 130,
+      "order": 133,
       "path": "div > aside > nav > a:nth-of-type(2)",
       "tag": "A",
       "rect": {
@@ -4392,7 +4618,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 131,
+      "order": 134,
       "path": "div > aside > nav > a:nth-of-type(3)",
       "tag": "A",
       "rect": {
@@ -4414,7 +4640,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 132,
+      "order": 135,
       "path": "div > aside > nav > a:nth-of-type(4)",
       "tag": "A",
       "rect": {
@@ -4436,7 +4662,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 133,
+      "order": 136,
       "path": "div > aside > nav > a:nth-of-type(5)",
       "tag": "A",
       "rect": {
@@ -4458,7 +4684,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 134,
+      "order": 137,
       "path": "div > aside > nav > a:nth-of-type(6)",
       "tag": "A",
       "rect": {
@@ -4480,7 +4706,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 135,
+      "order": 138,
       "path": "div > aside > nav > a:nth-of-type(7)",
       "tag": "A",
       "rect": {
@@ -4502,7 +4728,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 137,
+      "order": 140,
       "path": "div > aside > nav > a:nth-of-type(8)",
       "tag": "A",
       "rect": {
@@ -4524,7 +4750,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 138,
+      "order": 141,
       "path": "div > aside > nav > a:nth-of-type(9)",
       "tag": "A",
       "rect": {
@@ -4546,7 +4772,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 139,
+      "order": 142,
       "path": "div > aside > nav > a:nth-of-type(10)",
       "tag": "A",
       "rect": {
@@ -4568,7 +4794,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 140,
+      "order": 143,
       "path": "div > aside > nav > a:nth-of-type(11)",
       "tag": "A",
       "rect": {
@@ -4590,7 +4816,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 141,
+      "order": 144,
       "path": "div > aside > nav > a:nth-of-type(12)",
       "tag": "A",
       "rect": {
@@ -4612,7 +4838,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 142,
+      "order": 145,
       "path": "div > aside > nav > a:nth-of-type(13)",
       "tag": "A",
       "rect": {
@@ -4634,7 +4860,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 143,
+      "order": 146,
       "path": "div > aside > nav > a:nth-of-type(14)",
       "tag": "A",
       "rect": {
@@ -4656,7 +4882,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 144,
+      "order": 147,
       "path": "div > aside > nav > a:nth-of-type(15)",
       "tag": "A",
       "rect": {
@@ -4678,7 +4904,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 145,
+      "order": 148,
       "path": "div > aside > nav > a:nth-of-type(16)",
       "tag": "A",
       "rect": {
@@ -4700,7 +4926,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 146,
+      "order": 149,
       "path": "div > aside > nav > a:nth-of-type(17)",
       "tag": "A",
       "rect": {
@@ -4722,7 +4948,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 147,
+      "order": 150,
       "path": "div > aside > nav > a:nth-of-type(18)",
       "tag": "A",
       "rect": {
@@ -4744,7 +4970,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 148,
+      "order": 151,
       "path": "div > aside > nav > a:nth-of-type(19)",
       "tag": "A",
       "rect": {
@@ -4766,7 +4992,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 149,
+      "order": 152,
       "path": "div > aside > nav > a:nth-of-type(20)",
       "tag": "A",
       "rect": {
@@ -4788,7 +5014,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 150,
+      "order": 153,
       "path": "div > aside > nav > a:nth-of-type(21)",
       "tag": "A",
       "rect": {
@@ -4810,7 +5036,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 151,
+      "order": 154,
       "path": "div > aside > nav > a:nth-of-type(22)",
       "tag": "A",
       "rect": {
@@ -4832,7 +5058,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 152,
+      "order": 155,
       "path": "div > aside > nav > a:nth-of-type(23)",
       "tag": "A",
       "rect": {
@@ -4854,7 +5080,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 153,
+      "order": 156,
       "path": "div > aside > nav > a:nth-of-type(24)",
       "tag": "A",
       "rect": {
@@ -4876,7 +5102,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 154,
+      "order": 157,
       "path": "div > aside > nav > a:nth-of-type(25)",
       "tag": "A",
       "rect": {
@@ -4898,7 +5124,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 155,
+      "order": 158,
       "path": "div > aside > nav > a:nth-of-type(26)",
       "tag": "A",
       "rect": {
@@ -4920,7 +5146,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 156,
+      "order": 159,
       "path": "div > aside > nav > a:nth-of-type(27)",
       "tag": "A",
       "rect": {
@@ -4942,7 +5168,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 157,
+      "order": 160,
       "path": "div > aside > nav > a:nth-of-type(28)",
       "tag": "A",
       "rect": {
@@ -4964,7 +5190,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 158,
+      "order": 161,
       "path": "div > aside > nav > a:nth-of-type(29)",
       "tag": "A",
       "rect": {
@@ -4986,12 +5212,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 159,
+      "order": 162,
       "path": "div > aside > nav > a:nth-of-type(30)",
       "tag": "A",
       "rect": {
         "x": 36,
-        "y": 727,
+        "y": 595,
         "w": 183,
         "h": 44
       }
@@ -5008,8 +5234,74 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 160,
+      "order": 163,
       "path": "div > aside > nav > a:nth-of-type(31)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 639,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "25 Step indicator",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 164,
+      "path": "div > aside > nav > a:nth-of-type(32)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 683,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "26 Option card",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 165,
+      "path": "div > aside > nav > a:nth-of-type(33)",
+      "tag": "A",
+      "rect": {
+        "x": 36,
+        "y": 727,
+        "w": 183,
+        "h": 44
+      }
+    },
+    {
+      "el": "#page a",
+      "text": "27 Week strip",
+      "section": "page",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 166,
+      "path": "div > aside > nav > a:nth-of-type(34)",
       "tag": "A",
       "rect": {
         "x": 36,
@@ -5030,8 +5322,8 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 162,
-      "path": "div > aside > nav > a:nth-of-type(32)",
+      "order": 168,
+      "path": "div > aside > nav > a:nth-of-type(35)",
       "tag": "A",
       "rect": {
         "x": 36,
@@ -5052,8 +5344,8 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 163,
-      "path": "div > aside > nav > a:nth-of-type(33)",
+      "order": 169,
+      "path": "div > aside > nav > a:nth-of-type(36)",
       "tag": "A",
       "rect": {
         "x": 36,
@@ -5074,7 +5366,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 582,
+      "order": 588,
       "path": "#main > section:nth-of-type(2)",
       "tag": "SECTION",
       "rect": {
@@ -5096,7 +5388,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 738,
+      "order": 744,
       "path": "#main > section:nth-of-type(3)",
       "tag": "SECTION",
       "rect": {
@@ -5118,7 +5410,7 @@
       "inView": false,
       "covered": 0,
       "sticky": false,
-      "order": 862,
+      "order": 868,
       "path": "#main > section:nth-of-type(4)",
       "tag": "SECTION",
       "rect": {
@@ -5140,7 +5432,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 952,
+      "order": 958,
       "path": "#main > section:nth-of-type(5)",
       "tag": "SECTION",
       "rect": {
@@ -5162,7 +5454,7 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1062,
+      "order": 1068,
       "path": "#main > section:nth-of-type(6)",
       "tag": "SECTION",
       "rect": {
@@ -5184,14 +5476,14 @@
       "inView": false,
       "covered": 0,
       "sticky": false,
-      "order": 1663,
+      "order": 1674,
       "path": "#main > section:nth-of-type(7)",
       "tag": "SECTION",
       "rect": {
         "x": 288,
         "y": 10134.703125,
         "w": 1088,
-        "h": 1398
+        "h": 1436
       }
     },
     {
@@ -5206,12 +5498,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1836,
+      "order": 1852,
       "path": "#main > section:nth-of-type(8)",
       "tag": "SECTION",
       "rect": {
         "x": 288,
-        "y": 11710.703125,
+        "y": 11748.703125,
         "w": 1088,
         "h": 524
       }
@@ -5228,12 +5520,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1920,
+      "order": 1936,
       "path": "#c1 > div > figure:nth-of-type(1) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 338.953125,
-        "y": 12760.703125,
+        "y": 12798.703125,
         "w": 250.078125,
         "h": 52
       }
@@ -5250,12 +5542,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1927,
+      "order": 1943,
       "path": "#c1 > div > figure:nth-of-type(2) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 709.4539184570312,
-        "y": 12761.223114013672,
+        "y": 12799.223114013672,
         "w": 245.0765380859375,
         "h": 50.959991455078125
       }
@@ -5272,12 +5564,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1934,
+      "order": 1950,
       "path": "#c1 > div > figure:nth-of-type(3) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1074.953125,
-        "y": 12760.703125,
+        "y": 12798.703125,
         "w": 250.078125,
         "h": 52
       }
@@ -5294,12 +5586,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1948,
+      "order": 1964,
       "path": "#c1 > div > figure:nth-of-type(5) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 724.03125,
-        "y": 12897.703125,
+        "y": 12935.703125,
         "w": 215.921875,
         "h": 52
       }
@@ -5316,12 +5608,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1951,
+      "order": 1967,
       "path": "#c1 > div > figure:nth-of-type(5) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 780.5499877929688,
-        "y": 12962.22314453125,
+        "y": 13000.22314453125,
         "w": 102.9000244140625,
         "h": 50.9599609375
       }
@@ -5338,12 +5630,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1956,
+      "order": 1972,
       "path": "#c1 > div > figure:nth-of-type(6) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 1071.8125,
-        "y": 12898.703125,
+        "y": 12936.703125,
         "w": 163.359375,
         "h": 52
       }
@@ -5360,12 +5652,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1959,
+      "order": 1975,
       "path": "#c1 > div > figure:nth-of-type(6) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 1247.171875,
-        "y": 12898.703125,
+        "y": 12936.703125,
         "w": 81,
         "h": 52
       }
@@ -5382,12 +5674,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1964,
+      "order": 1980,
       "path": "#c1 > div > figure:nth-of-type(7) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 326.703125,
-        "y": 13098.703125,
+        "y": 13136.703125,
         "w": 157.578125,
         "h": 52
       }
@@ -5404,12 +5696,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1965,
+      "order": 1981,
       "path": "#c1 > div > figure:nth-of-type(7) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 496.28125,
-        "y": 13098.703125,
+        "y": 13136.703125,
         "w": 105,
         "h": 52
       }
@@ -5426,12 +5718,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1970,
+      "order": 1986,
       "path": "#c1 > div > figure:nth-of-type(8) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 701.390625,
-        "y": 13102.703125,
+        "y": 13140.703125,
         "w": 104.46875,
         "h": 44
       }
@@ -5448,12 +5740,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1971,
+      "order": 1987,
       "path": "#c1 > div > figure:nth-of-type(8) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 817.859375,
-        "y": 13102.703125,
+        "y": 13140.703125,
         "w": 75.578125,
         "h": 44
       }
@@ -5470,12 +5762,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1977,
+      "order": 1993,
       "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 1066,
-        "y": 13097.703125,
+        "y": 13135.703125,
         "w": 44,
         "h": 44
       }
@@ -5492,12 +5784,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1980,
+      "order": 1996,
       "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 1122,
-        "y": 13097.703125,
+        "y": 13135.703125,
         "w": 44,
         "h": 44
       }
@@ -5514,12 +5806,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1983,
+      "order": 1999,
       "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 1178,
-        "y": 13097.703125,
+        "y": 13135.703125,
         "w": 44,
         "h": 44
       }
@@ -5536,12 +5828,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1986,
+      "order": 2002,
       "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(4)",
       "tag": "BUTTON",
       "rect": {
         "x": 1234,
-        "y": 13097.703125,
+        "y": 13135.703125,
         "w": 44,
         "h": 44
       }
@@ -5558,12 +5850,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1989,
+      "order": 2005,
       "path": "#c1 > div > figure:nth-of-type(9) > div > button:nth-of-type(5)",
       "tag": "BUTTON",
       "rect": {
         "x": 1290,
-        "y": 13097.703125,
+        "y": 13135.703125,
         "w": 44,
         "h": 44
       }
@@ -5580,12 +5872,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 1999,
+      "order": 2015,
       "path": "#c1 > div > figure:nth-of-type(10) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 351.765625,
-        "y": 13302.703125,
+        "y": 13340.703125,
         "w": 104.46875,
         "h": 48
       }
@@ -5602,12 +5894,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2000,
+      "order": 2016,
       "path": "#c1 > div > figure:nth-of-type(10) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 468.234375,
-        "y": 13302.703125,
+        "y": 13340.703125,
         "w": 48,
         "h": 48
       }
@@ -5624,12 +5916,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2003,
+      "order": 2019,
       "path": "#c1 > div > figure:nth-of-type(10) > div > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 528.234375,
-        "y": 13302.703125,
+        "y": 13340.703125,
         "w": 48,
         "h": 48
       }
@@ -5646,12 +5938,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2028,
+      "order": 2044,
       "path": "#c2 > div > figure:nth-of-type(1) > div > label > span:nth-of-type(2) > input",
       "tag": "INPUT",
       "rect": {
         "x": 325,
-        "y": 13693.703125,
+        "y": 13731.703125,
         "w": 259.59375,
         "h": 44
       }
@@ -5668,12 +5960,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2038,
+      "order": 2054,
       "path": "#c2 > div > figure:nth-of-type(2) > div > label > span:nth-of-type(2) > input",
       "tag": "INPUT",
       "rect": {
         "x": 693,
-        "y": 13693.703125,
+        "y": 13731.703125,
         "w": 259.59375,
         "h": 44
       }
@@ -5690,12 +5982,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2048,
+      "order": 2064,
       "path": "#c2 > div > figure:nth-of-type(3) > div > label > span:nth-of-type(2) > input",
       "tag": "INPUT",
       "rect": {
         "x": 1061,
-        "y": 13693.703125,
+        "y": 13731.703125,
         "w": 259.59375,
         "h": 44
       }
@@ -5712,12 +6004,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2058,
+      "order": 2074,
       "path": "#c2 > div > figure:nth-of-type(4) > div > label > span:nth-of-type(2) > input",
       "tag": "INPUT",
       "rect": {
         "x": 325,
-        "y": 13884.703125,
+        "y": 13922.703125,
         "w": 259.59375,
         "h": 44
       }
@@ -5734,12 +6026,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2070,
+      "order": 2086,
       "path": "#c2 > div > figure:nth-of-type(5) > div > label > span:nth-of-type(2) > input",
       "tag": "INPUT",
       "rect": {
         "x": 693,
-        "y": 13884.703125,
+        "y": 13922.703125,
         "w": 278,
         "h": 44
       }
@@ -5756,12 +6048,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2072,
+      "order": 2088,
       "path": "#c2 > div > figure:nth-of-type(5) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 677,
-        "y": 13988.703125,
+        "y": 14026.703125,
         "w": 310,
         "h": 52
       }
@@ -5778,12 +6070,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2073,
+      "order": 2089,
       "path": "#c2 > div > figure:nth-of-type(5) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 677,
-        "y": 14052.703125,
+        "y": 14090.703125,
         "w": 310,
         "h": 52
       }
@@ -5800,12 +6092,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2104,
+      "order": 2120,
       "path": "#c3 > div > figure:nth-of-type(1) > div > div > input",
       "tag": "INPUT",
       "rect": {
         "x": 357,
-        "y": 14365.703125,
+        "y": 14403.703125,
         "w": 204,
         "h": 44
       }
@@ -5822,12 +6114,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2105,
+      "order": 2121,
       "path": "#c3 > div > figure:nth-of-type(1) > div > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 569,
-        "y": 14365.703125,
+        "y": 14403.703125,
         "w": 44,
         "h": 44
       }
@@ -5844,12 +6136,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2115,
+      "order": 2131,
       "path": "#c3 > div > figure:nth-of-type(2) > div > div > input",
       "tag": "INPUT",
       "rect": {
         "x": 725,
-        "y": 14365.703125,
+        "y": 14403.703125,
         "w": 204,
         "h": 44
       }
@@ -5866,12 +6158,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2116,
+      "order": 2132,
       "path": "#c3 > div > figure:nth-of-type(2) > div > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 937,
-        "y": 14365.703125,
+        "y": 14403.703125,
         "w": 44,
         "h": 44
       }
@@ -5888,12 +6180,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2126,
+      "order": 2142,
       "path": "#c3 > div > figure:nth-of-type(3) > div > div > input",
       "tag": "INPUT",
       "rect": {
         "x": 1093,
-        "y": 14365.703125,
+        "y": 14403.703125,
         "w": 204,
         "h": 44
       }
@@ -5910,12 +6202,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2127,
+      "order": 2143,
       "path": "#c3 > div > figure:nth-of-type(3) > div > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1305,
-        "y": 14365.703125,
+        "y": 14403.703125,
         "w": 44,
         "h": 44
       }
@@ -5932,12 +6224,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2159,
+      "order": 2175,
       "path": "#c4 > div > figure:nth-of-type(1) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 367.546875,
-        "y": 14930.703125,
+        "y": 14968.703125,
         "w": 100.890625,
         "h": 36
       }
@@ -5954,12 +6246,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2160,
+      "order": 2176,
       "path": "#c4 > div > figure:nth-of-type(1) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 358.296875,
-        "y": 14978.703125,
+        "y": 15016.703125,
         "w": 119.40625,
         "h": 36
       }
@@ -5976,12 +6268,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2165,
+      "order": 2181,
       "path": "#c4 > div > figure:nth-of-type(2) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 643.546875,
-        "y": 14939.703125,
+        "y": 14977.703125,
         "w": 100.890625,
         "h": 36
       }
@@ -5998,12 +6290,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2170,
+      "order": 2186,
       "path": "#c4 > div > figure:nth-of-type(3) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 900.296875,
-        "y": 14939.703125,
+        "y": 14977.703125,
         "w": 139.40625,
         "h": 36
       }
@@ -6020,12 +6312,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2177,
+      "order": 2193,
       "path": "#c4 > div > figure:nth-of-type(4) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1200.046875,
-        "y": 14939.703125,
+        "y": 14977.703125,
         "w": 91.90625,
         "h": 36
       }
@@ -6042,12 +6334,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2218,
+      "order": 2234,
       "path": "#c5 > div > figure:nth-of-type(1) > div > fieldset > label:nth-of-type(1) > input",
       "tag": "INPUT",
       "rect": {
         "x": 313,
-        "y": 15457.703125,
+        "y": 15495.703125,
         "w": 95.328125,
         "h": 36
       }
@@ -6064,12 +6356,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2230,
+      "order": 2246,
       "path": "#c5 > div > figure:nth-of-type(2) > div > fieldset > label:nth-of-type(1) > input",
       "tag": "INPUT",
       "rect": {
         "x": 681,
-        "y": 15457.703125,
+        "y": 15495.703125,
         "w": 95.328125,
         "h": 36
       }
@@ -6086,12 +6378,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2246,
+      "order": 2262,
       "path": "#c5 > div > figure:nth-of-type(3) > div > fieldset > label:nth-of-type(3) > input",
       "tag": "INPUT",
       "rect": {
         "x": 1255.65625,
-        "y": 15457.703125,
+        "y": 15495.703125,
         "w": 95.34375,
         "h": 36
       }
@@ -6108,12 +6400,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2254,
+      "order": 2270,
       "path": "#c5 > div > figure:nth-of-type(4) > div > fieldset > label:nth-of-type(1) > input",
       "tag": "INPUT",
       "rect": {
         "x": 313,
-        "y": 15595.703125,
+        "y": 15633.703125,
         "w": 95.328125,
         "h": 36
       }
@@ -6130,12 +6422,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2266,
+      "order": 2282,
       "path": "#c5 > div > figure:nth-of-type(5) > div > fieldset > label:nth-of-type(1) > input",
       "tag": "INPUT",
       "rect": {
         "x": 681,
-        "y": 15593.703125,
+        "y": 15631.703125,
         "w": 95.328125,
         "h": 40
       }
@@ -6152,12 +6444,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2289,
+      "order": 2305,
       "path": "#c6 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 338,
-        "y": 15897.703125,
+        "y": 15935.703125,
         "w": 44,
         "h": 44
       }
@@ -6174,12 +6466,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2293,
+      "order": 2309,
       "path": "#c6 > div > figure:nth-of-type(1) > div > div > span > input",
       "tag": "INPUT",
       "rect": {
         "x": 389.765625,
-        "y": 15897.703125,
+        "y": 15935.703125,
         "w": 44,
         "h": 44
       }
@@ -6196,12 +6488,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2295,
+      "order": 2311,
       "path": "#c6 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 454,
-        "y": 15897.703125,
+        "y": 15935.703125,
         "w": 44,
         "h": 44
       }
@@ -6218,12 +6510,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2304,
+      "order": 2320,
       "path": "#c6 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 614,
-        "y": 15897.703125,
+        "y": 15935.703125,
         "w": 44,
         "h": 44
       }
@@ -6240,12 +6532,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2308,
+      "order": 2324,
       "path": "#c6 > div > figure:nth-of-type(2) > div > div > span > input",
       "tag": "INPUT",
       "rect": {
         "x": 665.765625,
-        "y": 15897.703125,
+        "y": 15935.703125,
         "w": 44,
         "h": 44
       }
@@ -6262,12 +6554,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2310,
+      "order": 2326,
       "path": "#c6 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 730,
-        "y": 15897.703125,
+        "y": 15935.703125,
         "w": 44,
         "h": 44
       }
@@ -6284,12 +6576,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2319,
+      "order": 2335,
       "path": "#c6 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 890,
-        "y": 15902.703125,
+        "y": 15940.703125,
         "w": 44,
         "h": 44
       }
@@ -6303,81 +6595,81 @@
       "gap": true,
       "ringContrast": 4.3,
       "ringVsOwn": 4.3,
-      "inView": true,
-      "covered": 0,
-      "sticky": false,
-      "order": 2323,
-      "path": "#c6 > div > figure:nth-of-type(3) > div > div > span > input",
-      "tag": "INPUT",
-      "rect": {
-        "x": 941.765625,
-        "y": 15902.703125,
-        "w": 44,
-        "h": 44
-      }
-    },
-    {
-      "el": "#c6 button.stepper__btn",
-      "text": "More",
-      "section": "c6",
-      "indicator": "outline 2px offset 2px",
-      "thick": true,
-      "gap": true,
-      "ringContrast": 13.43,
-      "ringVsOwn": 13.43,
-      "inView": true,
-      "covered": 0,
-      "sticky": false,
-      "order": 2325,
-      "path": "#c6 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(2)",
-      "tag": "BUTTON",
-      "rect": {
-        "x": 1006,
-        "y": 15902.703125,
-        "w": 44,
-        "h": 44
-      }
-    },
-    {
-      "el": "#c6 input.stepper__input",
-      "text": "Weight in grams",
-      "section": "c6",
-      "indicator": "ring 2px inset",
-      "thick": true,
-      "gap": true,
-      "ringContrast": 4.3,
-      "ringVsOwn": 4.3,
-      "inView": true,
-      "covered": 0,
-      "sticky": false,
-      "order": 2337,
-      "path": "#c6 > div > figure:nth-of-type(4) > div > div > span > input",
-      "tag": "INPUT",
-      "rect": {
-        "x": 1217.765625,
-        "y": 15902.703125,
-        "w": 44,
-        "h": 44
-      }
-    },
-    {
-      "el": "#c6 button.stepper__btn",
-      "text": "More",
-      "section": "c6",
-      "indicator": "outline 2px offset 2px",
-      "thick": true,
-      "gap": true,
-      "ringContrast": 13.43,
-      "ringVsOwn": 13.43,
       "inView": true,
       "covered": 0,
       "sticky": false,
       "order": 2339,
+      "path": "#c6 > div > figure:nth-of-type(3) > div > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 941.765625,
+        "y": 15940.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2341,
+      "path": "#c6 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 1006,
+        "y": 15940.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 input.stepper__input",
+      "text": "Weight in grams",
+      "section": "c6",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.3,
+      "ringVsOwn": 4.3,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2353,
+      "path": "#c6 > div > figure:nth-of-type(4) > div > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 1217.765625,
+        "y": 15940.703125,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c6 button.stepper__btn",
+      "text": "More",
+      "section": "c6",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 2355,
       "path": "#c6 > div > figure:nth-of-type(4) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 1282,
-        "y": 15902.703125,
+        "y": 15940.703125,
         "w": 44,
         "h": 44
       }
@@ -6394,12 +6686,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2347,
+      "order": 2363,
       "path": "#c6 > div > figure:nth-of-type(5) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 338,
-        "y": 16061.703125,
+        "y": 16099.703125,
         "w": 44,
         "h": 44
       }
@@ -6416,12 +6708,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2351,
+      "order": 2367,
       "path": "#c6 > div > figure:nth-of-type(5) > div > div > span > input",
       "tag": "INPUT",
       "rect": {
         "x": 389.765625,
-        "y": 16061.703125,
+        "y": 16099.703125,
         "w": 44,
         "h": 44
       }
@@ -6438,12 +6730,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2353,
+      "order": 2369,
       "path": "#c6 > div > figure:nth-of-type(5) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 454,
-        "y": 16061.703125,
+        "y": 16099.703125,
         "w": 44,
         "h": 44
       }
@@ -6460,12 +6752,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2414,
+      "order": 2433,
       "path": "#c7 > div > figure:nth-of-type(1) > div > div > div:nth-of-type(1) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 575,
-        "y": 16654.703125,
+        "y": 16826.703125,
         "w": 44,
         "h": 44
       }
@@ -6482,12 +6774,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2425,
+      "order": 2444,
       "path": "#c7 > div > figure:nth-of-type(1) > div > div > div:nth-of-type(2) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 575,
-        "y": 16718.703125,
+        "y": 16890.703125,
         "w": 44,
         "h": 44
       }
@@ -6504,12 +6796,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2436,
+      "order": 2455,
       "path": "#c7 > div > figure:nth-of-type(1) > div > div > div:nth-of-type(3) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 575,
-        "y": 16792.203125,
+        "y": 16964.203125,
         "w": 44,
         "h": 44
       }
@@ -6526,12 +6818,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2458,
+      "order": 2477,
       "path": "#c7 > div > figure:nth-of-type(1) > div > div > div:nth-of-type(5) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 575,
-        "y": 16929.703125,
+        "y": 17101.703125,
         "w": 44,
         "h": 44
       }
@@ -6548,12 +6840,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2475,
+      "order": 2494,
       "path": "#c7 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 713,
-        "y": 16712.703125,
+        "y": 16884.703125,
         "w": 44,
         "h": 44
       }
@@ -6570,12 +6862,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2479,
+      "order": 2498,
       "path": "#c7 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > div > span > input",
       "tag": "INPUT",
       "rect": {
         "x": 764.765625,
-        "y": 16712.703125,
+        "y": 16884.703125,
         "w": 44,
         "h": 44
       }
@@ -6592,12 +6884,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2481,
+      "order": 2500,
       "path": "#c7 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 829,
-        "y": 16712.703125,
+        "y": 16884.703125,
         "w": 44,
         "h": 44
       }
@@ -6614,12 +6906,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2495,
+      "order": 2514,
       "path": "#c7 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 713,
-        "y": 16836.703125,
+        "y": 17008.703125,
         "w": 44,
         "h": 44
       }
@@ -6636,12 +6928,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2499,
+      "order": 2518,
       "path": "#c7 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div > span > input",
       "tag": "INPUT",
       "rect": {
         "x": 764.765625,
-        "y": 16836.703125,
+        "y": 17008.703125,
         "w": 44,
         "h": 44
       }
@@ -6658,12 +6950,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2501,
+      "order": 2520,
       "path": "#c7 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 829,
-        "y": 16836.703125,
+        "y": 17008.703125,
         "w": 44,
         "h": 44
       }
@@ -6680,12 +6972,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2545,
+      "order": 2564,
       "path": "#c7 > div > figure:nth-of-type(3) > div > div > div:nth-of-type(2) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1311,
-        "y": 16720.203125,
+        "y": 16892.203125,
         "w": 44,
         "h": 44
       }
@@ -6702,12 +6994,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2556,
+      "order": 2575,
       "path": "#c7 > div > figure:nth-of-type(3) > div > div > div:nth-of-type(3) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1311,
-        "y": 16785.203125,
+        "y": 16957.203125,
         "w": 44,
         "h": 44
       }
@@ -6724,12 +7016,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2567,
+      "order": 2586,
       "path": "#c7 > div > figure:nth-of-type(3) > div > div > div:nth-of-type(4) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1311,
-        "y": 16850.203125,
+        "y": 17022.203125,
         "w": 44,
         "h": 44
       }
@@ -6746,12 +7038,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2592,
+      "order": 2611,
       "path": "#c7 > div > figure:nth-of-type(4) > div > div > div:nth-of-type(1) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 575,
-        "y": 17140.703125,
+        "y": 17312.703125,
         "w": 44,
         "h": 44
       }
@@ -6768,12 +7060,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2617,
+      "order": 2636,
       "path": "#c7 > div > figure:nth-of-type(4) > div > div > div:nth-of-type(2) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 575,
-        "y": 17268.703125,
+        "y": 17440.703125,
         "w": 44,
         "h": 44
       }
@@ -6790,12 +7082,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2642,
+      "order": 2661,
       "path": "#c7 > div > figure:nth-of-type(4) > div > div > div:nth-of-type(3) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 575,
-        "y": 17380.703125,
+        "y": 17552.703125,
         "w": 44,
         "h": 44
       }
@@ -6812,12 +7104,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2724,
+      "order": 2743,
       "path": "#c8 > div > figure:nth-of-type(1) > div > article > div:nth-of-type(1) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 563,
-        "y": 18212.703125,
+        "y": 18384.703125,
         "w": 44,
         "h": 44
       }
@@ -6834,12 +7126,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2742,
+      "order": 2761,
       "path": "#c8 > div > figure:nth-of-type(1) > div > article > div:nth-of-type(2) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 431.421875,
-        "y": 18580.421875,
+        "y": 18752.421875,
         "w": 132.46875,
         "h": 44
       }
@@ -6856,12 +7148,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2751,
+      "order": 2770,
       "path": "#c8 > div > figure:nth-of-type(2) > div > article > div:nth-of-type(1) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 929.02001953125,
-        "y": 18217.32000732422,
+        "y": 18389.32000732422,
         "w": 43.1199951171875,
         "h": 43.1199951171875
       }
@@ -6878,12 +7170,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2767,
+      "order": 2786,
       "path": "#c8 > div > figure:nth-of-type(2) > div > article > div:nth-of-type(2) > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 800.0734252929688,
-        "y": 18622.733764648438,
+        "y": 18794.733764648438,
         "w": 61.6328125,
         "h": 43.1199951171875
       }
@@ -6900,12 +7192,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2826,
+      "order": 2845,
       "path": "#c8 > div > figure:nth-of-type(5) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 719.921875,
-        "y": 18770.390625,
+        "y": 18942.390625,
         "w": 106.078125,
         "h": 44
       }
@@ -6922,12 +7214,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2827,
+      "order": 2846,
       "path": "#c8 > div > figure:nth-of-type(5) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 839.060791015625,
-        "y": 18770.830627441406,
+        "y": 18942.830627441406,
         "w": 103.95654296875,
         "h": 43.1199951171875
       }
@@ -6944,12 +7236,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 2828,
+      "order": 2847,
       "path": "#c8 > div > figure:nth-of-type(5) > div > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 719.921875,
-        "y": 18826.390625,
+        "y": 18998.390625,
         "w": 106.078125,
         "h": 44
       }
@@ -6966,12 +7258,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3034,
+      "order": 3053,
       "path": "#c11 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 303,
-        "y": 20877.375,
+        "y": 21067.375,
         "w": 44,
         "h": 44
       }
@@ -6988,12 +7280,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3038,
+      "order": 3057,
       "path": "#c11 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 581,
-        "y": 20877.375,
+        "y": 21067.375,
         "w": 44,
         "h": 44
       }
@@ -7010,12 +7302,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3046,
+      "order": 3065,
       "path": "#c11 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 671,
-        "y": 20877.375,
+        "y": 21067.375,
         "w": 44,
         "h": 44
       }
@@ -7032,12 +7324,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3050,
+      "order": 3069,
       "path": "#c11 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 949,
-        "y": 20877.375,
+        "y": 21067.375,
         "w": 44,
         "h": 44
       }
@@ -7054,12 +7346,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3060,
+      "order": 3079,
       "path": "#c11 > div > figure:nth-of-type(3) > div > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 1273,
-        "y": 20877.375,
+        "y": 21067.375,
         "w": 44,
         "h": 44
       }
@@ -7076,12 +7368,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3063,
+      "order": 3082,
       "path": "#c11 > div > figure:nth-of-type(3) > div > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 1317,
-        "y": 20877.375,
+        "y": 21067.375,
         "w": 44,
         "h": 44
       }
@@ -7098,12 +7390,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3071,
+      "order": 3090,
       "path": "#c11 > div > figure:nth-of-type(4) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 303,
-        "y": 21013.375,
+        "y": 21203.375,
         "w": 48,
         "h": 48
       }
@@ -7120,12 +7412,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3075,
+      "order": 3094,
       "path": "#c11 > div > figure:nth-of-type(4) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 577,
-        "y": 21013.375,
+        "y": 21203.375,
         "w": 48,
         "h": 48
       }
@@ -7142,12 +7434,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3097,
+      "order": 3116,
       "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 301,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7164,12 +7456,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3101,
+      "order": 3120,
       "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 367,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7186,12 +7478,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3105,
+      "order": 3124,
       "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 433,
-        "y": 21341.875,
+        "y": 21531.875,
         "w": 62,
         "h": 44
       }
@@ -7208,12 +7500,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3109,
+      "order": 3128,
       "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(4)",
       "tag": "BUTTON",
       "rect": {
         "x": 499,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7230,12 +7522,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3113,
+      "order": 3132,
       "path": "#c12 > div > figure:nth-of-type(1) > div > nav > button:nth-of-type(5)",
       "tag": "BUTTON",
       "rect": {
         "x": 565,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7252,12 +7544,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3122,
+      "order": 3141,
       "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 669,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7274,12 +7566,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3126,
+      "order": 3145,
       "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 735,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7296,12 +7588,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3130,
+      "order": 3149,
       "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 801,
-        "y": 21341.875,
+        "y": 21531.875,
         "w": 62,
         "h": 44
       }
@@ -7318,12 +7610,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3134,
+      "order": 3153,
       "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(4)",
       "tag": "BUTTON",
       "rect": {
         "x": 867,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7340,12 +7632,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3138,
+      "order": 3157,
       "path": "#c12 > div > figure:nth-of-type(2) > div > nav > button:nth-of-type(5)",
       "tag": "BUTTON",
       "rect": {
         "x": 933,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7362,12 +7654,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3147,
+      "order": 3166,
       "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 1037,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7384,12 +7676,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3151,
+      "order": 3170,
       "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 1103,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7406,12 +7698,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3155,
+      "order": 3174,
       "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 1169,
-        "y": 21341.875,
+        "y": 21531.875,
         "w": 62,
         "h": 44
       }
@@ -7428,12 +7720,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3159,
+      "order": 3178,
       "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(4)",
       "tag": "BUTTON",
       "rect": {
         "x": 1235,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7450,12 +7742,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3163,
+      "order": 3182,
       "path": "#c12 > div > figure:nth-of-type(3) > div > nav > button:nth-of-type(5)",
       "tag": "BUTTON",
       "rect": {
         "x": 1301,
-        "y": 21340.875,
+        "y": 21530.875,
         "w": 62,
         "h": 46
       }
@@ -7472,12 +7764,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3172,
+      "order": 3191,
       "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 301,
-        "y": 21513.375,
+        "y": 21703.375,
         "w": 62,
         "h": 48
       }
@@ -7494,12 +7786,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3176,
+      "order": 3195,
       "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 367,
-        "y": 21513.375,
+        "y": 21703.375,
         "w": 62,
         "h": 48
       }
@@ -7516,12 +7808,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3180,
+      "order": 3199,
       "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 433,
-        "y": 21513.375,
+        "y": 21703.375,
         "w": 62,
         "h": 48
       }
@@ -7538,12 +7830,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3184,
+      "order": 3203,
       "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(4)",
       "tag": "BUTTON",
       "rect": {
         "x": 499,
-        "y": 21513.375,
+        "y": 21703.375,
         "w": 62,
         "h": 48
       }
@@ -7560,12 +7852,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3188,
+      "order": 3207,
       "path": "#c12 > div > figure:nth-of-type(4) > div > nav > button:nth-of-type(5)",
       "tag": "BUTTON",
       "rect": {
         "x": 565,
-        "y": 21513.375,
+        "y": 21703.375,
         "w": 62,
         "h": 48
       }
@@ -7582,12 +7874,12 @@
       "inView": false,
       "covered": 0,
       "sticky": false,
-      "order": 3218,
+      "order": 3237,
       "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 571,
-        "y": 21967.390625,
+        "y": 22157.390625,
         "w": 44,
         "h": 44
       }
@@ -7604,12 +7896,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3225,
+      "order": 3244,
       "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(3) > fieldset > label:nth-of-type(1) > input",
       "tag": "INPUT",
       "rect": {
         "x": 317,
-        "y": 22045.375,
+        "y": 22235.375,
         "w": 92.65625,
         "h": 36
       }
@@ -7626,12 +7918,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3232,
+      "order": 3251,
       "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(3) > div:nth-of-type(1) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 313,
-        "y": 22101.375,
+        "y": 22291.375,
         "w": 44,
         "h": 44
       }
@@ -7648,12 +7940,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3236,
+      "order": 3255,
       "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(3) > div:nth-of-type(1) > div > span > input",
       "tag": "INPUT",
       "rect": {
         "x": 364.765625,
-        "y": 22101.375,
+        "y": 22291.375,
         "w": 44,
         "h": 44
       }
@@ -7670,12 +7962,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3238,
+      "order": 3257,
       "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(3) > div:nth-of-type(1) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 429,
-        "y": 22101.375,
+        "y": 22291.375,
         "w": 44,
         "h": 44
       }
@@ -7692,12 +7984,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3257,
+      "order": 3276,
       "path": "#c13 > div > figure:nth-of-type(1) > div > div > dialog > div:nth-of-type(4) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 313,
-        "y": 22243.375,
+        "y": 22433.375,
         "w": 302,
         "h": 52
       }
@@ -7714,12 +8006,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3262,
+      "order": 3281,
       "path": "#c13 > div > figure:nth-of-type(2) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 724.109375,
-        "y": 21865.375,
+        "y": 22055.375,
         "w": 215.765625,
         "h": 52
       }
@@ -7736,12 +8028,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3286,
+      "order": 3305,
       "path": "#c14 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 497.84375,
-        "y": 22599.375,
+        "y": 22789.375,
         "w": 57.15625,
         "h": 44
       }
@@ -7758,12 +8050,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3287,
+      "order": 3306,
       "path": "#c14 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 567,
-        "y": 22599.375,
+        "y": 22789.375,
         "w": 44,
         "h": 44
       }
@@ -7780,12 +8072,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3298,
+      "order": 3317,
       "path": "#c14 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 855.734375,
-        "y": 22599.375,
+        "y": 22789.375,
         "w": 67.265625,
         "h": 44
       }
@@ -7802,12 +8094,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3299,
+      "order": 3318,
       "path": "#c14 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 935,
-        "y": 22599.375,
+        "y": 22789.375,
         "w": 44,
         "h": 44
       }
@@ -7824,12 +8116,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3310,
+      "order": 3329,
       "path": "#c14 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 1232.921875,
-        "y": 22619.375,
+        "y": 22809.375,
         "w": 58.078125,
         "h": 44
       }
@@ -7846,12 +8138,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3311,
+      "order": 3330,
       "path": "#c14 > div > figure:nth-of-type(3) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 1303,
-        "y": 22619.375,
+        "y": 22809.375,
         "w": 44,
         "h": 44
       }
@@ -7868,12 +8160,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3336,
+      "order": 3355,
       "path": "#c15 > div > figure:nth-of-type(1) > div > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 379.71875,
-        "y": 23151.359375,
+        "y": 23341.359375,
         "w": 168.546875,
         "h": 52
       }
@@ -7890,12 +8182,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3339,
+      "order": 3358,
       "path": "#c15 > div > figure:nth-of-type(1) > div > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 379.71875,
-        "y": 23207.359375,
+        "y": 23397.359375,
         "w": 168.546875,
         "h": 52
       }
@@ -7912,12 +8204,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3351,
+      "order": 3370,
       "path": "#c15 > div > figure:nth-of-type(2) > div > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 743.484375,
-        "y": 23203.34375,
+        "y": 23393.34375,
         "w": 177.015625,
         "h": 52
       }
@@ -7934,12 +8226,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3352,
+      "order": 3371,
       "path": "#c15 > div > figure:nth-of-type(2) > div > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 743.484375,
-        "y": 23259.34375,
+        "y": 23449.34375,
         "w": 177.015625,
         "h": 52
       }
@@ -7956,12 +8248,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3445,
+      "order": 3464,
       "path": "#c17 > div > figure:nth-of-type(3) > div > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1280.59375,
-        "y": 23968.34375,
+        "y": 24158.34375,
         "w": 58.40625,
         "h": 44
       }
@@ -7978,12 +8270,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3517,
+      "order": 3536,
       "path": "#c19 > div > figure:nth-of-type(1) > div > div > div > div:nth-of-type(1) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 313,
-        "y": 24955.84375,
+        "y": 25145.84375,
         "w": 44,
         "h": 44
       }
@@ -8000,12 +8292,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3520,
+      "order": 3539,
       "path": "#c19 > div > figure:nth-of-type(1) > div > div > div > div:nth-of-type(1) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 571,
-        "y": 24955.84375,
+        "y": 25145.84375,
         "w": 44,
         "h": 44
       }
@@ -8022,12 +8314,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3533,
+      "order": 3552,
       "path": "#c19 > div > figure:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 313,
-        "y": 25421.84375,
+        "y": 25611.84375,
         "w": 48,
         "h": 48
       }
@@ -8044,78 +8336,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3535,
+      "order": 3554,
       "path": "#c19 > div > figure:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 428,
-        "y": 25409.84375,
-        "w": 72,
-        "h": 72
-      }
-    },
-    {
-      "el": "#c19 button.viewfinder__side",
-      "text": "Search",
-      "section": "c19",
-      "indicator": "outline 2px offset 2px",
-      "thick": true,
-      "gap": true,
-      "ringContrast": 14.64,
-      "ringVsOwn": 14.64,
-      "inView": true,
-      "covered": 0,
-      "sticky": false,
-      "order": 3538,
-      "path": "#c19 > div > figure:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div > button:nth-of-type(3)",
-      "tag": "BUTTON",
-      "rect": {
-        "x": 571,
-        "y": 25412.84375,
-        "w": 44,
-        "h": 66
-      }
-    },
-    {
-      "el": "#c19 button.viewfinder__side.is-focus",
-      "text": "Choose from library, focus",
-      "section": "c19",
-      "indicator": "outline 2px offset 2px",
-      "thick": true,
-      "gap": true,
-      "ringContrast": 14.64,
-      "ringVsOwn": 14.64,
-      "inView": true,
-      "covered": 0,
-      "sticky": false,
-      "order": 3552,
-      "path": "#c19 > div > figure:nth-of-type(2) > div > div > div > div > div > button:nth-of-type(1)",
-      "tag": "BUTTON",
-      "rect": {
-        "x": 681,
-        "y": 24975.84375,
-        "w": 48,
-        "h": 48
-      }
-    },
-    {
-      "el": "#c19 button.shutter.is-pressed",
-      "text": "Take photo, pressed",
-      "section": "c19",
-      "indicator": "outline 2px offset 8px",
-      "thick": true,
-      "gap": true,
-      "ringContrast": 14.64,
-      "ringVsOwn": 8.89,
-      "inView": true,
-      "covered": 0,
-      "sticky": false,
-      "order": 3554,
-      "path": "#c19 > div > figure:nth-of-type(2) > div > div > div > div > div > button:nth-of-type(2)",
-      "tag": "BUTTON",
-      "rect": {
-        "x": 796,
-        "y": 24963.84375,
+        "y": 25599.84375,
         "w": 72,
         "h": 72
       }
@@ -8133,11 +8359,77 @@
       "covered": 0,
       "sticky": false,
       "order": 3557,
+      "path": "#c19 > div > figure:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 571,
+        "y": 25602.84375,
+        "w": 44,
+        "h": 66
+      }
+    },
+    {
+      "el": "#c19 button.viewfinder__side.is-focus",
+      "text": "Choose from library, focus",
+      "section": "c19",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 3571,
+      "path": "#c19 > div > figure:nth-of-type(2) > div > div > div > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 681,
+        "y": 25165.84375,
+        "w": 48,
+        "h": 48
+      }
+    },
+    {
+      "el": "#c19 button.shutter.is-pressed",
+      "text": "Take photo, pressed",
+      "section": "c19",
+      "indicator": "outline 2px offset 8px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 8.89,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 3573,
+      "path": "#c19 > div > figure:nth-of-type(2) > div > div > div > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 796,
+        "y": 25153.84375,
+        "w": 72,
+        "h": 72
+      }
+    },
+    {
+      "el": "#c19 button.viewfinder__side",
+      "text": "Search",
+      "section": "c19",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 3576,
       "path": "#c19 > div > figure:nth-of-type(2) > div > div > div > div > div > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 939,
-        "y": 24966.84375,
+        "y": 25156.84375,
         "w": 44,
         "h": 66
       }
@@ -8154,12 +8446,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3593,
+      "order": 3612,
       "path": "#c20 > div > figure:nth-of-type(1) > div > div > div:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 303,
-        "y": 25946.34375,
+        "y": 26136.34375,
         "w": 44,
         "h": 44
       }
@@ -8176,12 +8468,12 @@
       "inView": false,
       "covered": 0,
       "sticky": false,
-      "order": 3598,
+      "order": 3617,
       "path": "#c20 > div > figure:nth-of-type(1) > div > div > div:nth-of-type(3)",
       "tag": "DIV",
       "rect": {
         "x": 293,
-        "y": 25996.34375,
+        "y": 26186.34375,
         "w": 342,
         "h": 438.875
       }
@@ -8198,12 +8490,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3614,
+      "order": 3633,
       "path": "#c20 > div > figure:nth-of-type(1) > div > div > div:nth-of-type(4) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 313,
-        "y": 26447.21875,
+        "y": 26637.21875,
         "w": 302,
         "h": 52
       }
@@ -8220,12 +8512,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3630,
+      "order": 3649,
       "path": "#c20 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(2)",
       "tag": "DIV",
       "rect": {
         "x": 661,
-        "y": 25940.34375,
+        "y": 26130.34375,
         "w": 342,
         "h": 164.875
       }
@@ -8242,12 +8534,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3639,
+      "order": 3658,
       "path": "#c20 > div > figure:nth-of-type(2) > div > div > section > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 861.84375,
-        "y": 26125.21875,
+        "y": 26315.21875,
         "w": 57.15625,
         "h": 44
       }
@@ -8264,12 +8556,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3640,
+      "order": 3659,
       "path": "#c20 > div > figure:nth-of-type(2) > div > div > section > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 931,
-        "y": 26125.21875,
+        "y": 26315.21875,
         "w": 44,
         "h": 44
       }
@@ -8286,12 +8578,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3644,
+      "order": 3663,
       "path": "#c20 > div > figure:nth-of-type(2) > div > div > nav > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 669,
-        "y": 26191.71875,
+        "y": 26381.71875,
         "w": 62,
         "h": 46
       }
@@ -8308,12 +8600,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3648,
+      "order": 3667,
       "path": "#c20 > div > figure:nth-of-type(2) > div > div > nav > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 735,
-        "y": 26191.71875,
+        "y": 26381.71875,
         "w": 62,
         "h": 46
       }
@@ -8330,12 +8622,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3652,
+      "order": 3671,
       "path": "#c20 > div > figure:nth-of-type(2) > div > div > nav > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 801,
-        "y": 26192.71875,
+        "y": 26382.71875,
         "w": 62,
         "h": 44
       }
@@ -8352,12 +8644,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3656,
+      "order": 3675,
       "path": "#c20 > div > figure:nth-of-type(2) > div > div > nav > button:nth-of-type(4)",
       "tag": "BUTTON",
       "rect": {
         "x": 867,
-        "y": 26191.71875,
+        "y": 26381.71875,
         "w": 62,
         "h": 46
       }
@@ -8374,12 +8666,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3660,
+      "order": 3679,
       "path": "#c20 > div > figure:nth-of-type(2) > div > div > nav > button:nth-of-type(5)",
       "tag": "BUTTON",
       "rect": {
         "x": 933,
-        "y": 26191.71875,
+        "y": 26381.71875,
         "w": 62,
         "h": 46
       }
@@ -8396,12 +8688,12 @@
       "inView": false,
       "covered": 0,
       "sticky": false,
-      "order": 3679,
+      "order": 3698,
       "path": "#c21 > div > figure:nth-of-type(1) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 309,
-        "y": 26836.21875,
+        "y": 27026.21875,
         "w": 218,
         "h": 44
       }
@@ -8418,12 +8710,12 @@
       "inView": false,
       "covered": 0,
       "sticky": false,
-      "order": 3688,
+      "order": 3707,
       "path": "#c21 > div > figure:nth-of-type(2) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 585,
-        "y": 26836.21875,
+        "y": 27026.21875,
         "w": 218,
         "h": 44
       }
@@ -8440,12 +8732,12 @@
       "inView": false,
       "covered": 0,
       "sticky": false,
-      "order": 3697,
+      "order": 3716,
       "path": "#c21 > div > figure:nth-of-type(3) > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 861,
-        "y": 26836.21875,
+        "y": 27026.21875,
         "w": 218,
         "h": 44
       }
@@ -8462,12 +8754,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3722,
+      "order": 3741,
       "path": "#c22 > div > figure:nth-of-type(1) > div > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 585,
-        "y": 27168.21875,
+        "y": 27358.21875,
         "w": 44,
         "h": 44
       }
@@ -8484,12 +8776,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3735,
+      "order": 3754,
       "path": "#dn-1",
       "tag": "INPUT",
       "rect": {
         "x": 693,
-        "y": 27201.21875,
+        "y": 27391.21875,
         "w": 278,
         "h": 44
       }
@@ -8506,12 +8798,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3738,
+      "order": 3757,
       "path": "#c22 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(2) > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 677,
-        "y": 27287.21875,
+        "y": 27477.21875,
         "w": 100.890625,
         "h": 44
       }
@@ -8528,12 +8820,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3739,
+      "order": 3758,
       "path": "#c22 > div > figure:nth-of-type(2) > div > div > div:nth-of-type(2) > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 785.890625,
-        "y": 27287.21875,
+        "y": 27477.21875,
         "w": 68.265625,
         "h": 44
       }
@@ -8550,12 +8842,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3750,
+      "order": 3769,
       "path": "#dn-2",
       "tag": "INPUT",
       "rect": {
         "x": 1061,
-        "y": 27201.21875,
+        "y": 27391.21875,
         "w": 278,
         "h": 44
       }
@@ -8572,12 +8864,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3753,
+      "order": 3772,
       "path": "#c22 > div > figure:nth-of-type(3) > div > div > div:nth-of-type(2) > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 1045,
-        "y": 27287.21875,
+        "y": 27477.21875,
         "w": 100.890625,
         "h": 44
       }
@@ -8594,12 +8886,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3754,
+      "order": 3773,
       "path": "#c22 > div > figure:nth-of-type(3) > div > div > div:nth-of-type(2) > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 1153.890625,
-        "y": 27287.21875,
+        "y": 27477.21875,
         "w": 68.265625,
         "h": 44
       }
@@ -8616,12 +8908,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3765,
+      "order": 3784,
       "path": "#dn-3",
       "tag": "INPUT",
       "rect": {
         "x": 325,
-        "y": 27448.21875,
+        "y": 27638.21875,
         "w": 278,
         "h": 44
       }
@@ -8638,12 +8930,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3769,
+      "order": 3788,
       "path": "#c22 > div > figure:nth-of-type(4) > div > div > div:nth-of-type(2) > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 400.328125,
-        "y": 27534.21875,
+        "y": 27724.21875,
         "w": 68.265625,
         "h": 44
       }
@@ -8660,13 +8952,57 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3799,
+      "order": 3822,
       "path": "#c23 > div > figure:nth-of-type(1) > div > section > div:nth-of-type(1) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 538.328125,
-        "y": 28069.21875,
+        "y": 28301.21875,
         "w": 76.671875,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c23 input.stepper__input",
+      "text": "Servings",
+      "section": "c23",
+      "indicator": "ring 2px inset",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 4.3,
+      "ringVsOwn": 4.3,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 3834,
+      "path": "#c23 > div > figure:nth-of-type(1) > div > section > div:nth-of-type(3) > div > span > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 451.84375,
+        "y": 28383.21875,
+        "w": 44,
+        "h": 44
+      }
+    },
+    {
+      "el": "#c23 button.stepper__btn",
+      "text": "More servings",
+      "section": "c23",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 13.43,
+      "ringVsOwn": 13.43,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 3836,
+      "path": "#c23 > div > figure:nth-of-type(1) > div > section > div:nth-of-type(3) > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 559,
+        "y": 28383.21875,
+        "w": 44,
         "h": 44
       }
     },
@@ -8682,12 +9018,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3877,
+      "order": 3912,
       "path": "#d-1-name",
       "tag": "INPUT",
       "rect": {
         "x": 693,
-        "y": 28086.21875,
+        "y": 28318.21875,
         "w": 278,
         "h": 44
       }
@@ -8704,12 +9040,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3882,
+      "order": 3917,
       "path": "#d-1-qty",
       "tag": "INPUT",
       "rect": {
         "x": 693,
-        "y": 28175.21875,
+        "y": 28407.21875,
         "w": 94,
         "h": 44
       }
@@ -8726,12 +9062,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3886,
+      "order": 3921,
       "path": "#d-1-unit",
       "tag": "SELECT",
       "rect": {
         "x": 831,
-        "y": 28175.21875,
+        "y": 28407.21875,
         "w": 94,
         "h": 44
       }
@@ -8748,12 +9084,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3890,
+      "order": 3925,
       "path": "#c23 > div > figure:nth-of-type(2) > div > ol > li:nth-of-type(1) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 953,
-        "y": 28175.21875,
+        "y": 28407.21875,
         "w": 44,
         "h": 44
       }
@@ -8770,12 +9106,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3898,
+      "order": 3933,
       "path": "#d-2-name",
       "tag": "INPUT",
       "rect": {
         "x": 693,
-        "y": 28306.21875,
+        "y": 28538.21875,
         "w": 278,
         "h": 44
       }
@@ -8792,12 +9128,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3903,
+      "order": 3938,
       "path": "#d-2-qty",
       "tag": "INPUT",
       "rect": {
         "x": 693,
-        "y": 28395.21875,
+        "y": 28627.21875,
         "w": 94,
         "h": 44
       }
@@ -8814,12 +9150,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3907,
+      "order": 3942,
       "path": "#d-2-unit",
       "tag": "SELECT",
       "rect": {
         "x": 831,
-        "y": 28395.21875,
+        "y": 28627.21875,
         "w": 94,
         "h": 44
       }
@@ -8836,12 +9172,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3911,
+      "order": 3946,
       "path": "#c23 > div > figure:nth-of-type(2) > div > ol > li:nth-of-type(2) > button",
       "tag": "BUTTON",
       "rect": {
         "x": 953,
-        "y": 28395.21875,
+        "y": 28627.21875,
         "w": 44,
         "h": 44
       }
@@ -8858,12 +9194,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3924,
+      "order": 3959,
       "path": "#d-3-name",
       "tag": "INPUT",
       "rect": {
         "x": 1061,
-        "y": 28086.21875,
+        "y": 28318.21875,
         "w": 278,
         "h": 44
       }
@@ -8880,12 +9216,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3929,
+      "order": 3964,
       "path": "#d-3-qty",
       "tag": "INPUT",
       "rect": {
         "x": 1061,
-        "y": 28175.21875,
+        "y": 28407.21875,
         "w": 94,
         "h": 44
       }
@@ -8902,12 +9238,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3933,
+      "order": 3968,
       "path": "#d-3-unit",
       "tag": "SELECT",
       "rect": {
         "x": 1199,
-        "y": 28175.21875,
+        "y": 28407.21875,
         "w": 94,
         "h": 44
       }
@@ -8924,12 +9260,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3937,
+      "order": 3972,
       "path": "#c23 > div > figure:nth-of-type(3) > div > ol > li > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1321,
-        "y": 28175.21875,
+        "y": 28407.21875,
         "w": 44,
         "h": 44
       }
@@ -8946,12 +9282,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3949,
+      "order": 3984,
       "path": "#c23 > div > figure:nth-of-type(4) > div > div > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 497.84375,
-        "y": 28566.21875,
+        "y": 28854.21875,
         "w": 57.15625,
         "h": 44
       }
@@ -8968,12 +9304,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 3950,
+      "order": 3985,
       "path": "#c23 > div > figure:nth-of-type(4) > div > div > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 567,
-        "y": 28566.21875,
+        "y": 28854.21875,
         "w": 44,
         "h": 44
       }
@@ -8990,12 +9326,12 @@
       "inView": false,
       "covered": 0,
       "sticky": false,
-      "order": 3997,
+      "order": 4032,
       "path": "#st-1",
       "tag": "TEXTAREA",
       "rect": {
         "x": 733,
-        "y": 28971.21875,
+        "y": 29259.21875,
         "w": 238,
         "h": 88
       }
@@ -9012,12 +9348,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 4003,
+      "order": 4038,
       "path": "#c24 > div > figure:nth-of-type(2) > div > ol > li:nth-of-type(1) > div:nth-of-type(2) > button:nth-of-type(2)",
       "tag": "BUTTON",
       "rect": {
         "x": 901,
-        "y": 29115.21875,
+        "y": 29403.21875,
         "w": 44,
         "h": 44
       }
@@ -9034,12 +9370,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 4006,
+      "order": 4041,
       "path": "#c24 > div > figure:nth-of-type(2) > div > ol > li:nth-of-type(1) > div:nth-of-type(2) > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 953,
-        "y": 29115.21875,
+        "y": 29403.21875,
         "w": 44,
         "h": 44
       }
@@ -9056,12 +9392,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 4014,
+      "order": 4049,
       "path": "#st-2",
       "tag": "TEXTAREA",
       "rect": {
         "x": 733,
-        "y": 29216.21875,
+        "y": 29504.21875,
         "w": 238,
         "h": 88
       }
@@ -9078,12 +9414,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 4017,
+      "order": 4052,
       "path": "#c24 > div > figure:nth-of-type(2) > div > ol > li:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(1)",
       "tag": "BUTTON",
       "rect": {
         "x": 849,
-        "y": 29342.21875,
+        "y": 29630.21875,
         "w": 44,
         "h": 44
       }
@@ -9100,12 +9436,12 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 4023,
+      "order": 4058,
       "path": "#c24 > div > figure:nth-of-type(2) > div > ol > li:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(3)",
       "tag": "BUTTON",
       "rect": {
         "x": 953,
-        "y": 29342.21875,
+        "y": 29630.21875,
         "w": 44,
         "h": 44
       }
@@ -9122,14 +9458,322 @@
       "inView": true,
       "covered": 0,
       "sticky": false,
-      "order": 4037,
+      "order": 4072,
       "path": "#c24 > div > figure:nth-of-type(3) > div > div > div > button",
       "tag": "BUTTON",
       "rect": {
         "x": 1124.03125,
-        "y": 29186.203125,
+        "y": 29474.203125,
         "w": 151.921875,
         "h": 52
+      }
+    },
+    {
+      "el": "#c26 label.option-card",
+      "text": "MaintainEat well and keep yo",
+      "section": "c26",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4151,
+      "path": "#c26 > div > figure:nth-of-type(1) > div > fieldset > label:nth-of-type(1) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 309,
+        "y": 30400.21875,
+        "w": 310,
+        "h": 73
+      }
+    },
+    {
+      "el": "#c26 input.visually-hidden",
+      "text": "",
+      "section": "c26",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 12.75,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4189,
+      "path": "#c26 > div > figure:nth-of-type(2) > div > fieldset > label:nth-of-type(1) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 676,
+        "y": 30436.21875,
+        "w": 1,
+        "h": 1
+      }
+    },
+    {
+      "el": "#c26 input.visually-hidden",
+      "text": "",
+      "section": "c26",
+      "indicator": "outline 2px offset 2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 15.38,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4197,
+      "path": "#c26 > div > figure:nth-of-type(2) > div > fieldset > label:nth-of-type(2) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 676,
+        "y": 30517.21875,
+        "w": 1,
+        "h": 1
+      }
+    },
+    {
+      "el": "#c26 label.option-card",
+      "text": "Mostly sitting×1.2",
+      "section": "c26",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 15.38,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4211,
+      "path": "#c26 > div > figure:nth-of-type(3) > div > fieldset > label:nth-of-type(1) > input",
+      "tag": "INPUT",
+      "rect": {
+        "x": 1045,
+        "y": 30400.21875,
+        "w": 310,
+        "h": 73
+      }
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "M28",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4253,
+      "path": "#c27 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(1)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 309,
+        "y": 31149.21875,
+        "w": 44.28125,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day.is-over",
+      "text": "T29+45",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4261,
+      "path": "#c27 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 353.28125,
+        "y": 31149.21875,
+        "w": 44.28125,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "W30",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4269,
+      "path": "#c27 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 397.5625,
+        "y": 31149.21875,
+        "w": 44.28125,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "T1Today",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4277,
+      "path": "#c27 > div > figure:nth-of-type(1) > div > div > button:nth-of-type(4)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 441.84375,
+        "y": 31149.21875,
+        "w": 44.296875,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day.is-empty",
+      "text": "T22",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4318,
+      "path": "#c27 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(2)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 721.28125,
+        "y": 31149.21875,
+        "w": 44.28125,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day.is-pressed",
+      "text": "W23",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.57,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4325,
+      "path": "#c27 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(3)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 765.5625,
+        "y": 31149.21875,
+        "w": 44.28125,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day.is-focus",
+      "text": "T24",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4333,
+      "path": "#c27 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(4)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 809.84375,
+        "y": 31149.21875,
+        "w": 44.296875,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "F25",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 12.75,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4341,
+      "path": "#c27 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(5)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 854.140625,
+        "y": 31149.21875,
+        "w": 44.28125,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day.is-over",
+      "text": "S26+110",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4349,
+      "path": "#c27 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(6)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 898.421875,
+        "y": 31149.21875,
+        "w": 44.28125,
+        "h": 644
+      }
+    },
+    {
+      "el": "#c27 button.week__day",
+      "text": "S27",
+      "section": "c27",
+      "indicator": "outline 2px offset -2px",
+      "thick": true,
+      "gap": true,
+      "ringContrast": 14.64,
+      "ringVsOwn": 14.64,
+      "inView": true,
+      "covered": 0,
+      "sticky": false,
+      "order": 4357,
+      "path": "#c27 > div > figure:nth-of-type(2) > div > div > button:nth-of-type(7)",
+      "tag": "BUTTON",
+      "rect": {
+        "x": 942.703125,
+        "y": 31149.21875,
+        "w": 44.28125,
+        "h": 644
       }
     }
   ],
@@ -9151,7 +9795,17 @@
         "nav[aria-label=\"Tab bar: pressed and focus\"] > .is-pressed.tab:nth-child(2) > span",
         ".is-pressed.is-focus.tab > span",
         "nav[aria-label=\"Tab bar: Android\"] > .is-pressed.tab > span",
-        "figure:nth-child(1) > .state__stage--flush.state__stage > .doc-camera > .viewfinder > .viewfinder__bottom > .viewfinder__controls > .viewfinder__side:nth-child(3)"
+        "figure:nth-child(1) > .state__stage--flush.state__stage > .doc-camera > .viewfinder > .viewfinder__bottom > .viewfinder__controls > .viewfinder__side:nth-child(3)",
+        "div[aria-label=\"Week of 28 September\"] > .week__day:nth-child(1) > .week__ring[aria-hidden=\"true\"] > .week__date",
+        "div[aria-label=\"Week of 28 September\"] > .is-over.week__day > .week__ring[aria-hidden=\"true\"] > .week__date",
+        "div[aria-label=\"Week of 28 September\"] > .week__day:nth-child(3) > .week__ring[aria-hidden=\"true\"] > .week__date",
+        "button[aria-current=\"date\"] > .week__ring[aria-hidden=\"true\"] > .week__date",
+        ".is-empty.week__day:nth-child(2) > .week__ring[aria-hidden=\"true\"] > .week__date",
+        ".week__day.is-pressed > .week__ring[aria-hidden=\"true\"] > .week__date",
+        ".week__day.is-focus > .week__ring[aria-hidden=\"true\"] > .week__date",
+        "div[aria-label=\"Week of 21 September: states\"] > .week__day:nth-child(5) > .week__ring[aria-hidden=\"true\"] > .week__date",
+        "div[aria-label=\"Week of 21 September: states\"] > .is-over.week__day > .week__ring[aria-hidden=\"true\"] > .week__date",
+        "div[aria-label=\"Week of 21 September: states\"] > .week__day:nth-child(7) > .week__ring[aria-hidden=\"true\"] > .week__date"
       ]
     }
   ]

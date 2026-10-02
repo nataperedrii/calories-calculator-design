@@ -73,7 +73,8 @@ try {
           const first = kids[0], last = kids[kids.length - 1];
           if (bar.matches(".app-bar--large")) check(bar.querySelector(".app-bar__title"), "left", L1, "large title on margin");
           else if (first && first.matches(".icon-btn")) check(first, "left", L1, "app bar leading glyph on margin");
-          const lastBtn = last && (last.matches(".icon-btn") ? last : last.querySelector?.(".icon-btn:last-child"));
+          // a lone Back button is the leading glyph, not a trailing one
+          const lastBtn = last && last !== first && (last.matches(".icon-btn") ? last : last.querySelector?.(".icon-btn:last-child"));
           if (lastBtn) check(lastBtn, "right", R1, "app bar trailing glyph on margin");
         }
         // 2. top-level blocks in the scrolling body
@@ -91,6 +92,13 @@ try {
                 if (wrapped) check(last, "left", L1, "wrapped row item starts on margin");
                 else check(last, "right", R1, "row ends on margin");
               }
+              continue;
+            }
+            // week strip (27): on the margins, or using part of them when 7 × 44 pt don't fit (documented bleed)
+            if (e.matches(".week")) {
+              const bleed = Math.max(0, (7 * 44 - (R1 - L1)) / 2);
+              check(e, "left", L1 - bleed, "week strip on margin (minus its bleed)");
+              check(e, "right", R1 + bleed, "week strip on margin (plus its bleed)");
               continue;
             }
             check(e, "left", L1, "block starts on margin");

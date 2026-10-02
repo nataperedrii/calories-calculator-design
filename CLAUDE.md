@@ -38,6 +38,8 @@ calories-calculator-design/
 ├── LINKS.md                   ← all external links: video, GitHub Pages, (Figma)
 ├── CLAUDE.md                  ← instructions for Claude Code (shows the process)
 ├── index.html                 ← GitHub Pages landing page linking to the 3 sections
+├── previews/                  ← 1200 × 675 previews for README and the landing page (tools/previews.mjs)
+├── PLAN-AUDIT.md              ← the screens plan vs the project, with evidence
 │
 ├── 01-branding/
 │   ├── BRAND.md               ← brief and rationale: audience, positioning, personality, why these colours/fonts
@@ -63,6 +65,7 @@ calories-calculator-design/
 │
 └── process/
     ├── PROMPTS.md             ← key prompts and what came out of them
+    ├── CHANGELOG.md           ← step-by-step change reports (moved out of README.md)
     └── research.md            ← short competitor analysis (MyFitnessPal, Yazio, Lifesum…)
 ```
 

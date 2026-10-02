@@ -14,7 +14,8 @@
     "build:screens": "python3 03-screens/tools/build_screens.py",
     "export:screens": "node 03-screens/tools/export.mjs",
     "check:screens": "node 03-screens/tools/check.mjs",
-    "check:align": "node 03-screens/tools/align.mjs"
+    "check:align": "node 03-screens/tools/align.mjs",
+    "previews": "node tools/previews.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -134,7 +134,9 @@ try {
         const left = num(document.querySelector(".nutri__big").textContent);
         const goal = num(document.querySelectorAll(".nutri__row b")[1].textContent);
         out.sums.push({ what: "meals = eaten", ok: meals === num(eaten.textContent), detail: `${meals} vs ${eaten.textContent}` });
-        out.sums.push({ what: "goal − eaten = left", ok: goal - num(eaten.textContent) === left, detail: `${goal} − ${eaten.textContent} = ${left}` });
+        // over the goal (Diary): the ring shows the amount over instead of what's left
+        if (document.querySelector(".nutri--over")) out.sums.push({ what: "eaten − goal = over", ok: num(eaten.textContent) - goal === left, detail: `${eaten.textContent} − ${goal} = ${left}` });
+        else out.sums.push({ what: "goal − eaten = left", ok: goal - num(eaten.textContent) === left, detail: `${goal} − ${eaten.textContent} = ${left}` });
       }
       if (document.querySelector(".product--detected")) {
         const items = kcal(".product--detected .product__kcal").reduce((a, b) => a + b, 0);
@@ -610,6 +612,160 @@ try {
     const stops = [];
     for (let i = 0; i < 30; i++) { await page.keyboard.press("Tab"); stops.push(await page.evaluate(() => document.activeElement.className)); }
     record("today-image", "keyboard: the card has one tab stop (View recipe); the image is never focused", !stops.some((c) => /recipe-card__img/.test(c)) && stops.some((c) => /btn--secondary/.test(c)), "");
+    await page.close();
+  }
+  // ---------- 7. plan audit gaps: servings stepper (14), unit switch (11), High protein chip (13) ----------
+  {
+    const page = await context.newPage();
+    for (const width of [390, 320]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(pathToFileURL(resolve(SCREENS, "14-recipe-detail.html")).href, { waitUntil: "networkidle" });
+      const read = () => page.evaluate(() => ({
+        rows: [...document.querySelectorAll("#ingredients > .ingredient")].map((li) => ({ amount: li.querySelector(".ingredient__amount").textContent, kcal: parseInt(li.querySelector(".ingredient__kcal").textContent, 10) })),
+        total: document.getElementById("sum-kcal").textContent, log: document.getElementById("log-btn-kcal").textContent,
+        value: document.getElementById("servings-input").value, unit: document.getElementById("servings-unit").textContent, text: document.getElementById("servings-text").textContent,
+        less: document.querySelector('[data-servings="-1"]').disabled, more: document.querySelector('[data-servings="1"]').disabled,
+        status: document.getElementById("dish-status").textContent,
+        btns: [...document.querySelectorAll("#servings-row .stepper__btn")].map((b) => { const r = b.getBoundingClientRect(); return `${Math.round(r.width)}×${Math.round(r.height)}`; }),
+      }));
+      const one = await read();
+      record("servings", `@${width}: Servings stepper (DS stepper) starts at 1 portion: “−” disabled, buttons 44 × 44, amounts per portion, summary 462`, one.value === "1" && one.unit === "portion" && one.less && !one.more && one.btns.every((b) => b === "44×44") && one.rows[0].amount === "150 g" && one.total === "462", JSON.stringify({ value: one.value, btns: one.btns, first: one.rows[0], total: one.total }));
+      // keyboard: focus “+”, Enter → 2, Space → 3
+      await page.locator('[data-servings="1"]').focus();
+      await page.keyboard.press("Enter");
+      await page.waitForTimeout(50);
+      const two = await read();
+      const focusOnPlus = await page.evaluate(() => document.activeElement.dataset.servings === "1");
+      const rowsOk = two.rows.map((r, i) => r.amount === one.rows[i].amount.replace(/^[\d.,]+/, (n) => String(Number(n.replace(",", "")) * 2))).every(Boolean);
+      record("servings", `@${width}: Enter on “+” → 2 portions: every amount doubles, row kcal from the doubled grams, the summary and Log stay 462; focus stays on “+”; announced`, two.value === "2" && two.unit === "portions" && two.text === "2 portions" && rowsOk && two.total === "462" && two.log === "462" && focusOnPlus && /Ingredients for 2 portions/.test(two.status),
+        `${two.rows.map((r) => `${r.amount}/${r.kcal}`).join(", ")} · total ${two.total} · “${two.status}”`);
+      await page.keyboard.press("Space");
+      for (let i = 0; i < 6; i++) await page.locator('[data-servings="1"]:not([disabled])').click().catch(() => {});
+      const max = await read();
+      const focusAtMax = await page.evaluate(() => document.activeElement.dataset.servings);
+      record("servings", `@${width}: at 8 portions “+” is disabled and focus moves to “−” (never lost)`, max.value === "8" && max.more && !max.less && focusAtMax === "-1", `value ${max.value}, focus on ${focusAtMax}`);
+      // typed values snap into 1–8
+      await page.fill("#servings-input", "0"); await page.locator("#servings-input").press("Tab");
+      const zero = (await read()).value;
+      await page.fill("#servings-input", "20"); await page.locator("#servings-input").press("Tab");
+      const twenty = (await read()).value;
+      record("servings", `@${width}: typed servings snap into range (0 → 1, 20 → 8)`, zero === "1" && twenty === "8", `${zero}, ${twenty}`);
+      // edit mode: the row hides, amounts are per portion again
+      await page.click("#edit-toggle");
+      const edit = await page.evaluate(() => ({ hidden: document.getElementById("servings-row").hidden, text: document.getElementById("servings-text").textContent, qty: document.querySelector('[data-field="qty"]').value }));
+      record("servings", `@${width}: Edit hides the Servings row and edits per portion (“1 portion”, cod 150)`, edit.hidden && edit.text === "1 portion" && edit.qty === "150", JSON.stringify(edit));
+      // 200 % text and long names with 8 servings: nothing clipped
+      await page.goto(pathToFileURL(resolve(SCREENS, "14-recipe-detail.html")).href, { waitUntil: "networkidle" });
+      await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
+      await page.fill("#servings-input", "8"); await page.locator("#servings-input").press("Tab");
+      const p = await layoutProblems(page);
+      record("servings", `@${width}, 200 % text, 8 portions (1,200 g cod, 1,401 kcal rows): nothing clipped or outside`, p.length === 0, p.slice(0, 2).join("; "));
+    }
+    // 11: unit switch g | portion
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(pathToFileURL(resolve(SCREENS, "11-food-detail.html")).href, { waitUntil: "networkidle" });
+    const units = await page.evaluate(() => [...document.querySelectorAll('input[name="unit"]')].map((r) => `${r.value}${r.checked ? "*" : ""}`));
+    await page.locator('input[name="unit"][value="g"]').focus();
+    await page.keyboard.press("ArrowRight");
+    const portion = await page.evaluate(() => ({ checked: document.querySelector('input[name="unit"]:checked').value, value: document.getElementById("portion-input").value, unit: document.getElementById("portion-unit").textContent, label: document.getElementById("portion-input").getAttribute("aria-label"), kcal: document.querySelector(".t-num-l").textContent.trim() }));
+    const segFocus = await page.evaluate(() => { const l = document.activeElement.closest(".segmented__opt"); const cs = l && getComputedStyle(l); return !!l && cs.outlineStyle !== "none"; });
+    record("unit", "11: unit switch (DS segmented) offers g | portion, keyboard arrows switch to portion: the stepper shows 1 portion (= 30 g), kcal stays 174", units.join(",") === "g*,portion" && portion.checked === "portion" && portion.value === "1" && portion.unit === "portion" && /30 g/.test(portion.label) && /^174/.test(portion.kcal), `${units.join(",")} → ${JSON.stringify(portion)}; focus ring ${segFocus}`);
+    // 13: the High protein filter chip
+    for (const width of [390, 320]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(pathToFileURL(resolve(SCREENS, "13-recipes.html")).href, { waitUntil: "networkidle" });
+      const chips = await page.evaluate(() => [...document.querySelectorAll('[aria-label="Filters"] .chip')].map((c) => `${c.textContent.trim().replace(/\s+/g, " ")}${c.getAttribute("aria-pressed") === "true" ? "*" : ""}`));
+      const p = await layoutProblems(page);
+      record("filters", `13 @${width}: filter chips meal, ≤ kcal, diet, allergy (locked), High protein, ≤ 30 min; nothing clipped`, chips.join(" | ") === "Dinner* | ≤ 879 kcal* | Pescatarian* | Peanut-free Allergy | High protein | ≤ 30 min" && p.length === 0, chips.join(" | "));
+    }
+    await page.close();
+  }
+  // ---------- 8. onboarding, Diary, Profile (flows 0 and 3) ----------
+  {
+    const page = await context.newPage();
+    const go = async (f, width = 390) => { await page.setViewportSize({ width, height: 844 }); await page.goto(pathToFileURL(resolve(SCREENS, f)).href, { waitUntil: "networkidle" }); await page.evaluate(() => document.fonts.ready); };
+    // step indicator: text on every onboarding step, in order; the bar is hidden from screen readers
+    const order = [["02-goal.html", 1], ["03-about-you.html", 2], ["04-diet.html", 3], ["05-allergies.html", 4], ["06-target.html", 5]];
+    const seen = [];
+    for (const [f, k] of order) {
+      await go(f);
+      seen.push(await page.evaluate(() => ({ text: document.querySelector(".progress__text")?.textContent, hidden: document.querySelector(".progress__bar")?.getAttribute("aria-hidden"), done: document.querySelectorAll(".progress__seg.is-done, .progress__seg.is-current").length })));
+    }
+    record("onboarding", "step indicator: “Step 1 of 5” … “Step 5 of 5” on 02–06, filled segments match, the bar is aria-hidden", seen.every((s, i) => s.text === `Step ${i + 1} of 5` && s.hidden === "true" && s.done === i + 1), JSON.stringify(seen));
+    // option cards: native radios, arrow keys move the choice, focus ring with a gap on the card, ≥ 44 tall
+    for (const width of [390, 320]) {
+      await go("02-goal.html", width);
+      await page.locator('input[name="goal"][value="maintain"]').focus();
+      await page.keyboard.press("ArrowDown");
+      const r = await page.evaluate(() => {
+        const card = document.activeElement.closest(".option-card"), cs = getComputedStyle(card);
+        return { checked: document.querySelector('input[name="goal"]:checked').value, ring: cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) >= 2,
+          heights: [...document.querySelectorAll(".option-card")].map((c) => Math.round(c.getBoundingClientRect().height)), legend: !!document.querySelector("fieldset.option-group > legend") };
+      });
+      record("onboarding", `02 @${width}: goal option cards are native radios; ArrowDown selects “Lose slowly”; focus ring on the card; every card ≥ 44 tall; fieldset + legend`, r.checked === "lose" && r.ring && r.heights.every((h) => h >= 44) && r.legend, JSON.stringify(r));
+    }
+    await go("03-about-you-error.html");
+    const err = await page.evaluate(() => ({ invalid: document.getElementById("height").getAttribute("aria-invalid"), help: document.getElementById("height-help").textContent, cta: document.querySelector(".screen__foot .btn--primary").disabled }));
+    record("onboarding", "03 error: height 1650 is aria-invalid with “Enter a height between 120 and 230 cm”; Continue disabled", err.invalid === "true" && /between 120 and 230 cm/.test(err.help) && err.cta, JSON.stringify(err));
+    await go("05-allergies.html");
+    const al = await page.evaluate(() => ({ chips: document.querySelectorAll('[aria-labelledby="allergy-title"] .chip').length, peanuts: document.querySelector('[aria-labelledby="allergy-title"] .chip[aria-pressed="true"]')?.textContent.trim() }));
+    record("onboarding", "05: None + 14 major allergens as toggle chips; Peanuts selected (aria-pressed)", al.chips === 15 && al.peanuts === "Peanuts", JSON.stringify(al));
+    // 06 target: −50 steps to the floor; the macros always add up to the kcal; How we calculated this toggles
+    await go("06-target.html");
+    for (let i = 0; i < 12; i++) await page.locator("#target-less:not([disabled])").click().catch(() => {});
+    const fl = await page.evaluate(() => {
+      const g = (k) => Number(document.querySelector(`[data-macro="${k}"] .macro__value`).textContent.replace(/[^\d]/g, ""));
+      const pct = [...document.querySelectorAll('[data-macro] .macro__bar')].map((b) => Number(b.getAttribute("aria-valuenow")));
+      return { kcal: document.getElementById("target-kcal").textContent, less: document.getElementById("target-less").disabled, note: !document.getElementById("floor-note").hidden, focus: document.activeElement.id,
+        sum: g("p") * 4 + g("f") * 9 + g("c") * 4, pctSum: pct.reduce((a, b) => a + b, 0), status: document.getElementById("target-status").textContent };
+    });
+    record("onboarding", "06: “−” stops at the floor 1,550 (disabled, focus moves to “+”, floor note shown, announced); P×4 + F×9 + C×4 = kcal ±10; % of kcal sums to 100 ±1", fl.kcal === "1,550" && fl.less && fl.note && fl.focus === "target-more" && Math.abs(fl.sum - 1550) <= 10 && Math.abs(fl.pctSum - 100) <= 1 && /lowest/.test(fl.status), JSON.stringify(fl));
+    await page.click("#calc-toggle");
+    const calc = await page.evaluate(() => ({ exp: document.getElementById("calc-toggle").getAttribute("aria-expanded"), hidden: document.getElementById("calc").hidden }));
+    record("onboarding", "06: “How we calculated this” is a disclosure (aria-expanded true → false hides the table)", calc.exp === "false" && calc.hidden, JSON.stringify(calc));
+    await go("07-today-empty.html");
+    const empty = await page.evaluate(() => ({ eaten: document.querySelector(".nutri__row b").textContent, adds: document.querySelectorAll('.list .icon-btn[aria-label^="Add "]').length, cta: [...document.querySelectorAll(".empty .btn")].map((b) => b.textContent.trim()), dot: !!document.querySelector(".nutri__value") }));
+    record("onboarding", "07 first day: 0 eaten, an Add button on all 4 meals, “Open camera” + “Search instead”, no stray ring dot", empty.eaten === "0" && empty.adds === 4 && empty.cta.join("|") === "Open camera|Search instead" && !empty.dot, JSON.stringify(empty));
+    // Diary: the week strip
+    for (const width of [390, 320]) {
+      for (const f of ["15-diary.html", "15-diary-tue.html"]) {
+        await go(f, width);
+        const w = await page.evaluate(() => {
+          const days = [...document.querySelectorAll(".week__day")];
+          const sw = document.querySelector(".screen__body").getBoundingClientRect();
+          return { n: days.length, sizes: days.map((d) => { const r = d.getBoundingClientRect(); return Math.round(r.width) >= 44 && Math.round(r.height) >= 44; }), pressed: days.filter((d) => d.getAttribute("aria-pressed") === "true").map((d) => d.getAttribute("aria-label")),
+            today: days.filter((d) => d.getAttribute("aria-current") === "date").length, disabled: days.filter((d) => d.disabled).length, inside: days.every((d) => { const r = d.getBoundingClientRect(); return r.left >= sw.left - 0.5 && r.right <= sw.right + 0.5; }),
+            over: days.find((d) => d.classList.contains("is-over"))?.getAttribute("aria-label"), note: document.querySelector(".week__day.is-over .week__note")?.textContent,
+            copies: document.querySelectorAll('.list [aria-label$=" to today"]').length };
+        });
+        const tue = f.includes("tue");
+        record("diary", `${f} @${width}: 7 day buttons ≥ 44 × 44 inside the screen; one selected (${tue ? "Tuesday" : "today"}); today aria-current; Fri–Sun disabled; the over day says “45 over” and shows “+45”; copy buttons only on past days`,
+          w.n === 7 && w.sizes.every(Boolean) && w.inside && w.pressed.length === 1 && w.pressed[0].startsWith(tue ? "Tuesday" : "Thursday") && w.today === 1 && w.disabled === 3 && /2,095 kcal, 45 over/.test(w.over) && w.note === "+45" && w.copies === (tue ? 4 : 0), JSON.stringify(w));
+      }
+    }
+    await go("15-diary.html");
+    await page.locator('.week__day[aria-label^="Tuesday"]').focus();
+    // the ring is drawn inside the day button; its padding is the gap to the content
+    const wf = await page.evaluate(() => { const e = document.activeElement, cs = getComputedStyle(e); return cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) >= 2 && parseFloat(cs.paddingTop) >= 4 && e.getBoundingClientRect().top >= e.parentElement.getBoundingClientRect().top - 0.5; });
+    await Promise.all([page.waitForURL(/15-diary-tue\.html$/), page.keyboard.press("Enter")]);
+    record("diary", "keyboard: a day button has a focus ring with a gap; Enter on Tuesday opens Tuesday", wf, `ring ${wf}`);
+    // Profile and the delete confirm
+    await go("16-profile.html");
+    const pr = await page.evaluate(() => ({ rows: [...document.querySelectorAll(".list .icon-btn")].map((b) => b.getAttribute("aria-label")), del: document.querySelector(".btn--destructive")?.getAttribute("aria-haspopup") }));
+    record("profile", "16: every plan row has a named 44 × 44 edit button; Delete account is destructive and opens a dialog", pr.rows.length === 6 && pr.rows.every((l) => /^Edit /.test(l)) && pr.del === "dialog", JSON.stringify(pr));
+    await go("16-profile-delete.html");
+    const cf = await page.evaluate(() => ({ modal: document.querySelector("dialog.sheet")?.getAttribute("aria-modal"), first: document.querySelector(".sheet__foot .btn")?.textContent.trim(), inert: [...document.querySelectorAll(".screen > [inert]")].length }));
+    record("profile", "16 delete: a modal confirm sheet, “Keep my account” first, the page behind is inert", cf.modal === "true" && cf.first === "Keep my account" && cf.inert >= 3, JSON.stringify(cf));
+    // Flow 3: Allergies → add Shellfish → Save → Profile → Recipes re-filtered
+    await go("16-profile.html");
+    await Promise.all([page.waitForURL(/05-allergies-edit\.html$/), page.click('[aria-label="Edit allergies"]')]);
+    const ed = await page.evaluate(() => [...document.querySelectorAll('.chip[aria-pressed="true"]')].map((c) => c.textContent.trim()));
+    await Promise.all([page.waitForURL(/16-profile-updated\.html$/), page.click(".screen__foot .btn--primary")]);
+    const up = await page.evaluate(() => document.body.innerText.includes("Peanuts, shellfish"));
+    await Promise.all([page.waitForURL(/13-recipes-filtered\.html$/), page.click('.tab-bar [data-href*="13-recipes"]')]);
+    const rf = await page.evaluate(() => ({ cards: [...document.querySelectorAll(".recipe-card__title")].map((h) => h.textContent.trim()), locked: document.querySelectorAll(".chip--locked").length, note: document.querySelector(".banner__text").textContent }));
+    record("flow3", "Profile → Allergies (Peanuts, Shellfish, Mushrooms selected) → Save → Profile shows “Peanuts, shellfish” → Recipes: shrimp hidden, 2 locked chips, “2 recipes hidden”",
+      ed.includes("Shellfish") && ed.includes("Peanuts") && up && rf.cards.length === 2 && !rf.cards.some((c) => /Shrimp/.test(c)) && rf.locked === 2 && /2 recipes hidden/.test(rf.note), JSON.stringify({ ed, up, rf }));
     await page.close();
   }
 } finally {

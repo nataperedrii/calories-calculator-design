@@ -1,8 +1,68 @@
 {
-  "date": "2026-10-02T19:54:59.102Z",
-  "passed": 362,
+  "date": "2026-10-02T22:05:55.455Z",
+  "passed": 603,
   "failed": 0,
   "results": [
+    {
+      "group": "html",
+      "name": "03-screens/screens/01-welcome-link.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/01-welcome.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/02-goal.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/03-about-you-error.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/03-about-you.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/04-diet.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/05-allergies-edit.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/05-allergies.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/06-target-floor.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/06-target.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
     {
       "group": "html",
       "name": "03-screens/screens/07-today-before-lunch.html is valid (html-validate:recommended)",
@@ -18,6 +78,12 @@
     {
       "group": "html",
       "name": "03-screens/screens/07-today-dinner-added.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/07-today-empty.html is valid (html-validate:recommended)",
       "ok": true,
       "detail": ""
     },
@@ -72,6 +138,12 @@
     {
       "group": "html",
       "name": "03-screens/screens/12-dish-calculator.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/13-recipes-filtered.html is valid (html-validate:recommended)",
       "ok": true,
       "detail": ""
     },
@@ -137,6 +209,12 @@
     },
     {
       "group": "html",
+      "name": "03-screens/screens/14-recipe-detail-servings.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
       "name": "03-screens/screens/14-recipe-detail-step-deleted.html is valid (html-validate:recommended)",
       "ok": true,
       "detail": ""
@@ -161,6 +239,48 @@
     },
     {
       "group": "html",
+      "name": "03-screens/screens/15-diary-mon.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/15-diary-tue.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/15-diary-wed.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/15-diary.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/16-profile-delete.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/16-profile-updated.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
+      "name": "03-screens/screens/16-profile.html is valid (html-validate:recommended)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "html",
       "name": "03-screens/flows.html is valid (html-validate:recommended)",
       "ok": true,
       "detail": ""
@@ -179,6 +299,186 @@
     },
     {
       "group": "ds",
+      "name": "03-screens/screens/01-welcome-link.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/01-welcome-link.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/01-welcome-link.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "5 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/01-welcome.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/01-welcome.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/01-welcome.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "6 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/02-goal.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/02-goal.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/02-goal.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "4 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/03-about-you-error.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/03-about-you-error.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/03-about-you-error.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "4 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/03-about-you.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/03-about-you.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/03-about-you.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "4 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/04-diet.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/04-diet.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/04-diet.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "4 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/05-allergies-edit.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/05-allergies-edit.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/05-allergies-edit.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "4 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/05-allergies.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/05-allergies.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/05-allergies.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "4 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/06-target-floor.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/06-target-floor.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "3 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/06-target-floor.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "4 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/06-target.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/06-target.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "3 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/06-target.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "4 targets"
+    },
+    {
+      "group": "ds",
       "name": "03-screens/screens/07-today-before-lunch.html loads only the design system",
       "ok": true,
       "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
@@ -193,7 +493,7 @@
       "group": "links",
       "name": "03-screens/screens/07-today-before-lunch.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "7 targets"
+      "detail": "9 targets"
     },
     {
       "group": "ds",
@@ -211,7 +511,7 @@
       "group": "links",
       "name": "03-screens/screens/07-today-card.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "11 targets"
+      "detail": "13 targets"
     },
     {
       "group": "ds",
@@ -229,7 +529,25 @@
       "group": "links",
       "name": "03-screens/screens/07-today-dinner-added.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "9 targets"
+      "detail": "11 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/07-today-empty.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/07-today-empty.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "3 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/07-today-empty.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "8 targets"
     },
     {
       "group": "ds",
@@ -247,7 +565,7 @@
       "group": "links",
       "name": "03-screens/screens/07-today-lunch-added.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "8 targets"
+      "detail": "10 targets"
     },
     {
       "group": "ds",
@@ -265,7 +583,7 @@
       "group": "links",
       "name": "03-screens/screens/07-today-meals.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "11 targets"
+      "detail": "13 targets"
     },
     {
       "group": "ds",
@@ -283,7 +601,7 @@
       "group": "links",
       "name": "03-screens/screens/07-today.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "11 targets"
+      "detail": "13 targets"
     },
     {
       "group": "ds",
@@ -395,6 +713,24 @@
     },
     {
       "group": "ds",
+      "name": "03-screens/screens/13-recipes-filtered.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/13-recipes-filtered.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/13-recipes-filtered.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "10 targets"
+    },
+    {
+      "group": "ds",
       "name": "03-screens/screens/13-recipes.html loads only the design system",
       "ok": true,
       "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
@@ -409,7 +745,7 @@
       "group": "links",
       "name": "03-screens/screens/13-recipes.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "9 targets"
+      "detail": "11 targets"
     },
     {
       "group": "ds",
@@ -575,6 +911,24 @@
     },
     {
       "group": "ds",
+      "name": "03-screens/screens/14-recipe-detail-servings.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/14-recipe-detail-servings.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "3 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/14-recipe-detail-servings.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "6 targets"
+    },
+    {
+      "group": "ds",
       "name": "03-screens/screens/14-recipe-detail-step-deleted.html loads only the design system",
       "ok": true,
       "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
@@ -647,6 +1001,132 @@
     },
     {
       "group": "ds",
+      "name": "03-screens/screens/15-diary-mon.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/15-diary-mon.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "3 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/15-diary-mon.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "14 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/15-diary-tue.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/15-diary-tue.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "3 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/15-diary-tue.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "14 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/15-diary-wed.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/15-diary-wed.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "3 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/15-diary-wed.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "14 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/15-diary.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/15-diary.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "3 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/15-diary.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "13 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/16-profile-delete.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/16-profile-delete.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/16-profile-delete.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "14 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/16-profile-updated.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/16-profile-updated.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/16-profile-updated.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "14 targets"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/16-profile.html loads only the design system",
+      "ok": true,
+      "detail": "../../02-design-system/tokens.css, ../../02-design-system/components.css"
+    },
+    {
+      "group": "ds",
+      "name": "03-screens/screens/16-profile.html inline styles are data only (--w / --x / --y in %)",
+      "ok": true,
+      "detail": "0 data values"
+    },
+    {
+      "group": "links",
+      "name": "03-screens/screens/16-profile.html every relative link, image and data-href exists",
+      "ok": true,
+      "detail": "14 targets"
+    },
+    {
+      "group": "ds",
       "name": "03-screens/flows.html loads only the design system + flows.css",
       "ok": true,
       "detail": "../02-design-system/tokens.css, ../02-design-system/components.css, ./flows.css"
@@ -655,19 +1135,19 @@
       "group": "ds",
       "name": "03-screens/flows.html inline styles are data only (--w / --x / --y in %)",
       "ok": true,
-      "detail": "23 data values"
+      "detail": "34 data values"
     },
     {
       "group": "links",
       "name": "03-screens/flows.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "26 targets"
+      "detail": "43 targets"
     },
     {
       "group": "export",
       "name": "every screen has exports/<name>.png at 780×1688 (@2x)",
       "ok": true,
-      "detail": "26 PNGs"
+      "detail": "46 PNGs"
     },
     {
       "group": "export",
@@ -679,7 +1159,367 @@
       "group": "export",
       "name": "flows.png exists at 2× the board width",
       "ok": true,
-      "detail": "4800×9756"
+      "detail": "4800×18030"
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/01-welcome-link.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/01-welcome-link.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "38 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/01-welcome-link.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/01-welcome-link.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/01-welcome-link.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/01-welcome-link.html: all 5 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/01-welcome.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/01-welcome.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "24 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/01-welcome.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/01-welcome.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/01-welcome.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/01-welcome.html: all 3 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/02-goal.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/02-goal.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "32 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/02-goal.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/02-goal.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/02-goal.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/02-goal.html: all 4 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/03-about-you-error.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/03-about-you-error.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "35 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/03-about-you-error.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/03-about-you-error.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/03-about-you-error.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/03-about-you-error.html: all 4 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/03-about-you.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/03-about-you.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "35 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/03-about-you.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/03-about-you.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/03-about-you.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/03-about-you.html: all 9 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/04-diet.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/04-diet.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "32 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/04-diet.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/04-diet.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/04-diet.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/04-diet.html: all 5 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/05-allergies-edit.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/05-allergies-edit.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "38 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/05-allergies-edit.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/05-allergies-edit.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/05-allergies-edit.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/05-allergies-edit.html: all 10 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/05-allergies.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/05-allergies.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "39 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/05-allergies.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/05-allergies.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/05-allergies.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/05-allergies.html: all 18 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/06-target-floor.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/06-target-floor.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "45 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/06-target-floor.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/06-target-floor.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/06-target-floor.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/06-target-floor.html: all 6 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/06-target.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/06-target.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "45 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/06-target.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/06-target.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/06-target.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/06-target.html: all 7 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
     },
     {
       "group": "load",
@@ -725,7 +1565,7 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/07-today-before-lunch.html: all 9 focus stops show a visible indicator",
+      "name": "03-screens/screens/07-today-before-lunch.html: all 10 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -773,7 +1613,7 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/07-today-card.html: all 6 focus stops show a visible indicator",
+      "name": "03-screens/screens/07-today-card.html: all 7 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -821,7 +1661,55 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/07-today-dinner-added.html: all 8 focus stops show a visible indicator",
+      "name": "03-screens/screens/07-today-dinner-added.html: all 9 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/07-today-empty.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/07-today-empty.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "35 rules pass, 1 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/07-today-empty.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/07-today-empty.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/07-today-empty.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/07-today-empty.html: meals = eaten",
+      "ok": true,
+      "detail": "0 vs 0"
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/07-today-empty.html: goal − eaten = left",
+      "ok": true,
+      "detail": "2050 − 0 = 2050"
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/07-today-empty.html: all 13 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -869,7 +1757,7 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/07-today-lunch-added.html: all 10 focus stops show a visible indicator",
+      "name": "03-screens/screens/07-today-lunch-added.html: all 11 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -917,7 +1805,7 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/07-today-meals.html: all 7 focus stops show a visible indicator",
+      "name": "03-screens/screens/07-today-meals.html: all 8 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -965,7 +1853,7 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/07-today.html: all 9 focus stops show a visible indicator",
+      "name": "03-screens/screens/07-today.html: all 10 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -1151,7 +2039,7 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/11-food-detail.html: all 11 focus stops show a visible indicator",
+      "name": "03-screens/screens/11-food-detail.html: all 12 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -1194,6 +2082,42 @@
     {
       "group": "keyboard",
       "name": "03-screens/screens/12-dish-calculator.html: all 10 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/13-recipes-filtered.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/13-recipes-filtered.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "37 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/13-recipes-filtered.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/13-recipes-filtered.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/13-recipes-filtered.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/13-recipes-filtered.html: all 4 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -1423,7 +2347,7 @@
       "group": "axe",
       "name": "03-screens/screens/14-recipe-detail-method.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
       "ok": true,
-      "detail": "41 rules pass, 0 need review"
+      "detail": "44 rules pass, 0 need review"
     },
     {
       "group": "frame",
@@ -1481,7 +2405,7 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/14-recipe-detail-name-error.html: all 5 focus stops show a visible indicator",
+      "name": "03-screens/screens/14-recipe-detail-name-error.html: all 7 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -1495,7 +2419,7 @@
       "group": "axe",
       "name": "03-screens/screens/14-recipe-detail-no-steps.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
       "ok": true,
-      "detail": "41 rules pass, 0 need review"
+      "detail": "44 rules pass, 0 need review"
     },
     {
       "group": "frame",
@@ -1554,6 +2478,42 @@
     {
       "group": "keyboard",
       "name": "03-screens/screens/14-recipe-detail-saving.html: all 27 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/14-recipe-detail-servings.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/14-recipe-detail-servings.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "45 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/14-recipe-detail-servings.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/14-recipe-detail-servings.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/14-recipe-detail-servings.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/14-recipe-detail-servings.html: all 6 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -1675,7 +2635,7 @@
       "group": "axe",
       "name": "03-screens/screens/14-recipe-detail.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
       "ok": true,
-      "detail": "42 rules pass, 1 need review"
+      "detail": "45 rules pass, 1 need review"
     },
     {
       "group": "frame",
@@ -1697,7 +2657,307 @@
     },
     {
       "group": "keyboard",
-      "name": "03-screens/screens/14-recipe-detail.html: all 7 focus stops show a visible indicator",
+      "name": "03-screens/screens/14-recipe-detail.html: all 9 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/15-diary-mon.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/15-diary-mon.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "38 rules pass, 1 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/15-diary-mon.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/15-diary-mon.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/15-diary-mon.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/15-diary-mon.html: meals = eaten",
+      "ok": true,
+      "detail": "1703 vs 1,703"
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/15-diary-mon.html: goal − eaten = left",
+      "ok": true,
+      "detail": "2050 − 1,703 = 347"
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/15-diary-mon.html: all 14 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/15-diary-tue.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/15-diary-tue.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "38 rules pass, 1 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/15-diary-tue.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/15-diary-tue.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/15-diary-tue.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/15-diary-tue.html: meals = eaten",
+      "ok": true,
+      "detail": "2095 vs 2,095"
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/15-diary-tue.html: eaten − goal = over",
+      "ok": true,
+      "detail": "2,095 − 2050 = 45"
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/15-diary-tue.html: all 14 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/15-diary-wed.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/15-diary-wed.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "38 rules pass, 1 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/15-diary-wed.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/15-diary-wed.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/15-diary-wed.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/15-diary-wed.html: meals = eaten",
+      "ok": true,
+      "detail": "1661 vs 1,661"
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/15-diary-wed.html: goal − eaten = left",
+      "ok": true,
+      "detail": "2050 − 1,661 = 389"
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/15-diary-wed.html: all 14 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/15-diary.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/15-diary.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "38 rules pass, 1 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/15-diary.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/15-diary.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/15-diary.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/15-diary.html: meals = eaten",
+      "ok": true,
+      "detail": "1171 vs 1,171"
+    },
+    {
+      "group": "data",
+      "name": "03-screens/screens/15-diary.html: goal − eaten = left",
+      "ok": true,
+      "detail": "2050 − 1,171 = 879"
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/15-diary.html: all 11 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/16-profile-delete.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/16-profile-delete.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "24 rules pass, 1 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/16-profile-delete.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/16-profile-delete.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/16-profile-delete.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/16-profile-delete.html: all 3 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/16-profile-updated.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/16-profile-updated.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "35 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/16-profile-updated.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/16-profile-updated.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/16-profile-updated.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/16-profile-updated.html: all 17 focus stops show a visible indicator",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "load",
+      "name": "03-screens/screens/16-profile.html: no console errors, failed requests or broken images",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "axe",
+      "name": "03-screens/screens/16-profile.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
+      "ok": true,
+      "detail": "31 rules pass, 0 need review"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/16-profile.html: frame is 390×844 with no horizontal scroll",
+      "ok": true,
+      "detail": "390×844, scrollWidth 390"
+    },
+    {
+      "group": "frame",
+      "name": "03-screens/screens/16-profile.html: no clipped text, nothing outside the screen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "targets",
+      "name": "03-screens/screens/16-profile.html: every control is at least 44×44",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "keyboard",
+      "name": "03-screens/screens/16-profile.html: all 15 focus stops show a visible indicator",
       "ok": true,
       "detail": ""
     },
@@ -1715,13 +2975,13 @@
     },
     {
       "group": "stress",
-      "name": "320 px: no horizontal scroll, nothing clipped or outside the screen (all 26 screens)",
+      "name": "320 px: no horizontal scroll, nothing clipped or outside the screen (all 46 screens)",
       "ok": true,
       "detail": ""
     },
     {
       "group": "stress",
-      "name": "200% text: no horizontal scroll, nothing clipped or outside the screen (all 26 screens)",
+      "name": "200% text: no horizontal scroll, nothing clipped or outside the screen (all 46 screens)",
       "ok": true,
       "detail": ""
     },
@@ -2174,6 +3434,192 @@
       "name": "keyboard: the card has one tab stop (View recipe); the image is never focused",
       "ok": true,
       "detail": ""
+    },
+    {
+      "group": "servings",
+      "name": "@390: Servings stepper (DS stepper) starts at 1 portion: “−” disabled, buttons 44 × 44, amounts per portion, summary 462",
+      "ok": true,
+      "detail": "{\"value\":\"1\",\"btns\":[\"44×44\",\"44×44\"],\"first\":{\"amount\":\"150 g\",\"kcal\":158},\"total\":\"462\"}"
+    },
+    {
+      "group": "servings",
+      "name": "@390: Enter on “+” → 2 portions: every amount doubles, row kcal from the doubled grams, the summary and Log stay 462; focus stays on “+”; announced",
+      "ok": true,
+      "detail": "300 g/315, 400 g/348, 200 g/70, 20 g/177, 10 g/15 · total 462 · “Ingredients for 2 portions. Nutrition stays per portion: 462 kcal.”"
+    },
+    {
+      "group": "servings",
+      "name": "@390: at 8 portions “+” is disabled and focus moves to “−” (never lost)",
+      "ok": true,
+      "detail": "value 8, focus on -1"
+    },
+    {
+      "group": "servings",
+      "name": "@390: typed servings snap into range (0 → 1, 20 → 8)",
+      "ok": true,
+      "detail": "1, 8"
+    },
+    {
+      "group": "servings",
+      "name": "@390: Edit hides the Servings row and edits per portion (“1 portion”, cod 150)",
+      "ok": true,
+      "detail": "{\"hidden\":true,\"text\":\"1 portion\",\"qty\":\"150\"}"
+    },
+    {
+      "group": "servings",
+      "name": "@390, 200 % text, 8 portions (1,200 g cod, 1,401 kcal rows): nothing clipped or outside",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "servings",
+      "name": "@320: Servings stepper (DS stepper) starts at 1 portion: “−” disabled, buttons 44 × 44, amounts per portion, summary 462",
+      "ok": true,
+      "detail": "{\"value\":\"1\",\"btns\":[\"44×44\",\"44×44\"],\"first\":{\"amount\":\"150 g\",\"kcal\":158},\"total\":\"462\"}"
+    },
+    {
+      "group": "servings",
+      "name": "@320: Enter on “+” → 2 portions: every amount doubles, row kcal from the doubled grams, the summary and Log stay 462; focus stays on “+”; announced",
+      "ok": true,
+      "detail": "300 g/315, 400 g/348, 200 g/70, 20 g/177, 10 g/15 · total 462 · “Ingredients for 2 portions. Nutrition stays per portion: 462 kcal.”"
+    },
+    {
+      "group": "servings",
+      "name": "@320: at 8 portions “+” is disabled and focus moves to “−” (never lost)",
+      "ok": true,
+      "detail": "value 8, focus on -1"
+    },
+    {
+      "group": "servings",
+      "name": "@320: typed servings snap into range (0 → 1, 20 → 8)",
+      "ok": true,
+      "detail": "1, 8"
+    },
+    {
+      "group": "servings",
+      "name": "@320: Edit hides the Servings row and edits per portion (“1 portion”, cod 150)",
+      "ok": true,
+      "detail": "{\"hidden\":true,\"text\":\"1 portion\",\"qty\":\"150\"}"
+    },
+    {
+      "group": "servings",
+      "name": "@320, 200 % text, 8 portions (1,200 g cod, 1,401 kcal rows): nothing clipped or outside",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "unit",
+      "name": "11: unit switch (DS segmented) offers g | portion, keyboard arrows switch to portion: the stepper shows 1 portion (= 30 g), kcal stays 174",
+      "ok": true,
+      "detail": "g*,portion → {\"checked\":\"portion\",\"value\":\"1\",\"unit\":\"portion\",\"label\":\"Almond amount in portions (1 portion = 30 g)\",\"kcal\":\"174 kcal\"}; focus ring false"
+    },
+    {
+      "group": "filters",
+      "name": "13 @390: filter chips meal, ≤ kcal, diet, allergy (locked), High protein, ≤ 30 min; nothing clipped",
+      "ok": true,
+      "detail": "Dinner* | ≤ 879 kcal* | Pescatarian* | Peanut-free Allergy | High protein | ≤ 30 min"
+    },
+    {
+      "group": "filters",
+      "name": "13 @320: filter chips meal, ≤ kcal, diet, allergy (locked), High protein, ≤ 30 min; nothing clipped",
+      "ok": true,
+      "detail": "Dinner* | ≤ 879 kcal* | Pescatarian* | Peanut-free Allergy | High protein | ≤ 30 min"
+    },
+    {
+      "group": "onboarding",
+      "name": "step indicator: “Step 1 of 5” … “Step 5 of 5” on 02–06, filled segments match, the bar is aria-hidden",
+      "ok": true,
+      "detail": "[{\"text\":\"Step 1 of 5\",\"hidden\":\"true\",\"done\":1},{\"text\":\"Step 2 of 5\",\"hidden\":\"true\",\"done\":2},{\"text\":\"Step 3 of 5\",\"hidden\":\"true\",\"done\":3},{\"text\":\"Step 4 of 5\",\"hidden\":\"true\",\"done\":4},{\"text\":\"Step 5 of 5\",\"hidden\":\"true\",\"done\":5}]"
+    },
+    {
+      "group": "onboarding",
+      "name": "02 @390: goal option cards are native radios; ArrowDown selects “Lose slowly”; focus ring on the card; every card ≥ 44 tall; fieldset + legend",
+      "ok": true,
+      "detail": "{\"checked\":\"lose\",\"ring\":true,\"heights\":[73,73,73,73],\"legend\":true}"
+    },
+    {
+      "group": "onboarding",
+      "name": "02 @320: goal option cards are native radios; ArrowDown selects “Lose slowly”; focus ring on the card; every card ≥ 44 tall; fieldset + legend",
+      "ok": true,
+      "detail": "{\"checked\":\"lose\",\"ring\":true,\"heights\":[73,94,94,73],\"legend\":true}"
+    },
+    {
+      "group": "onboarding",
+      "name": "03 error: height 1650 is aria-invalid with “Enter a height between 120 and 230 cm”; Continue disabled",
+      "ok": true,
+      "detail": "{\"invalid\":\"true\",\"help\":\"Enter a height between 120 and 230 cm\",\"cta\":true}"
+    },
+    {
+      "group": "onboarding",
+      "name": "05: None + 14 major allergens as toggle chips; Peanuts selected (aria-pressed)",
+      "ok": true,
+      "detail": "{\"chips\":15,\"peanuts\":\"Peanuts\"}"
+    },
+    {
+      "group": "onboarding",
+      "name": "06: “−” stops at the floor 1,550 (disabled, focus moves to “+”, floor note shown, announced); P×4 + F×9 + C×4 = kcal ±10; % of kcal sums to 100 ±1",
+      "ok": true,
+      "detail": "{\"kcal\":\"1,550\",\"less\":true,\"note\":true,\"focus\":\"target-more\",\"sum\":1549,\"pctSum\":100,\"status\":\"Daily target 1,550 kcal. This is the lowest target for you.\"}"
+    },
+    {
+      "group": "onboarding",
+      "name": "06: “How we calculated this” is a disclosure (aria-expanded true → false hides the table)",
+      "ok": true,
+      "detail": "{\"exp\":\"false\",\"hidden\":true}"
+    },
+    {
+      "group": "onboarding",
+      "name": "07 first day: 0 eaten, an Add button on all 4 meals, “Open camera” + “Search instead”, no stray ring dot",
+      "ok": true,
+      "detail": "{\"eaten\":\"0\",\"adds\":4,\"cta\":[\"Open camera\",\"Search instead\"],\"dot\":false}"
+    },
+    {
+      "group": "diary",
+      "name": "15-diary.html @390: 7 day buttons ≥ 44 × 44 inside the screen; one selected (today); today aria-current; Fri–Sun disabled; the over day says “45 over” and shows “+45”; copy buttons only on past days",
+      "ok": true,
+      "detail": "{\"n\":7,\"sizes\":[true,true,true,true,true,true,true],\"pressed\":[\"Thursday 1 October, today: 1,171 kcal\"],\"today\":1,\"disabled\":3,\"inside\":true,\"over\":\"Tuesday 29 September: 2,095 kcal, 45 over\",\"note\":\"+45\",\"copies\":0}"
+    },
+    {
+      "group": "diary",
+      "name": "15-diary-tue.html @390: 7 day buttons ≥ 44 × 44 inside the screen; one selected (Tuesday); today aria-current; Fri–Sun disabled; the over day says “45 over” and shows “+45”; copy buttons only on past days",
+      "ok": true,
+      "detail": "{\"n\":7,\"sizes\":[true,true,true,true,true,true,true],\"pressed\":[\"Tuesday 29 September: 2,095 kcal, 45 over\"],\"today\":1,\"disabled\":3,\"inside\":true,\"over\":\"Tuesday 29 September: 2,095 kcal, 45 over\",\"note\":\"+45\",\"copies\":4}"
+    },
+    {
+      "group": "diary",
+      "name": "15-diary.html @320: 7 day buttons ≥ 44 × 44 inside the screen; one selected (today); today aria-current; Fri–Sun disabled; the over day says “45 over” and shows “+45”; copy buttons only on past days",
+      "ok": true,
+      "detail": "{\"n\":7,\"sizes\":[true,true,true,true,true,true,true],\"pressed\":[\"Thursday 1 October, today: 1,171 kcal\"],\"today\":1,\"disabled\":3,\"inside\":true,\"over\":\"Tuesday 29 September: 2,095 kcal, 45 over\",\"note\":\"+45\",\"copies\":0}"
+    },
+    {
+      "group": "diary",
+      "name": "15-diary-tue.html @320: 7 day buttons ≥ 44 × 44 inside the screen; one selected (Tuesday); today aria-current; Fri–Sun disabled; the over day says “45 over” and shows “+45”; copy buttons only on past days",
+      "ok": true,
+      "detail": "{\"n\":7,\"sizes\":[true,true,true,true,true,true,true],\"pressed\":[\"Tuesday 29 September: 2,095 kcal, 45 over\"],\"today\":1,\"disabled\":3,\"inside\":true,\"over\":\"Tuesday 29 September: 2,095 kcal, 45 over\",\"note\":\"+45\",\"copies\":4}"
+    },
+    {
+      "group": "diary",
+      "name": "keyboard: a day button has a focus ring with a gap; Enter on Tuesday opens Tuesday",
+      "ok": true,
+      "detail": "ring true"
+    },
+    {
+      "group": "profile",
+      "name": "16: every plan row has a named 44 × 44 edit button; Delete account is destructive and opens a dialog",
+      "ok": true,
+      "detail": "{\"rows\":[\"Edit daily target\",\"Edit goal\",\"Edit body data\",\"Edit diet\",\"Edit allergies\",\"Edit foods to skip\"],\"del\":\"dialog\"}"
+    },
+    {
+      "group": "profile",
+      "name": "16 delete: a modal confirm sheet, “Keep my account” first, the page behind is inert",
+      "ok": true,
+      "detail": "{\"modal\":\"true\",\"first\":\"Keep my account\",\"inert\":3}"
+    },
+    {
+      "group": "flow3",
+      "name": "Profile → Allergies (Peanuts, Shellfish, Mushrooms selected) → Save → Profile shows “Peanuts, shellfish” → Recipes: shrimp hidden, 2 locked chips, “2 recipes hidden”",
+      "ok": true,
+      "detail": "{\"ed\":[\"Peanuts\",\"Shellfish\",\"Mushrooms\"],\"up\":true,\"rf\":{\"cards\":[\"Baked cod, potatoes & broccoli\",\"Chickpea & spinach curry with rice\"],\"locked\":2,\"note\":\"2 recipes hidden: they contain peanuts or shellfish. Change allergies in Profile.\"}}"
     }
   ],
   "open": [
@@ -2199,6 +3645,56 @@
     }
   ],
   "facts": {
+    "03-screens/screens/01-welcome-link.html": {
+      "axePasses": 38,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/01-welcome.html": {
+      "axePasses": 24,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/02-goal.html": {
+      "axePasses": 32,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/03-about-you-error.html": {
+      "axePasses": 35,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/03-about-you.html": {
+      "axePasses": 35,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/04-diet.html": {
+      "axePasses": 32,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/05-allergies-edit.html": {
+      "axePasses": 38,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/05-allergies.html": {
+      "axePasses": 39,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/06-target-floor.html": {
+      "axePasses": 45,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/06-target.html": {
+      "axePasses": 45,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
     "03-screens/screens/07-today-before-lunch.html": {
       "axePasses": 38,
       "axeIncomplete": [
@@ -2213,6 +3709,13 @@
     },
     "03-screens/screens/07-today-dinner-added.html": {
       "axePasses": 38,
+      "axeIncomplete": [
+        "color-contrast:2"
+      ],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/07-today-empty.html": {
+      "axePasses": 35,
       "axeIncomplete": [
         "color-contrast:2"
       ],
@@ -2269,6 +3772,11 @@
       "axeIncomplete": [],
       "aaaContrastBelow7": []
     },
+    "03-screens/screens/13-recipes-filtered.html": {
+      "axePasses": 37,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
     "03-screens/screens/13-recipes.html": {
       "axePasses": 37,
       "axeIncomplete": [],
@@ -2304,7 +3812,7 @@
       "aaaContrastBelow7": []
     },
     "03-screens/screens/14-recipe-detail-method.html": {
-      "axePasses": 41,
+      "axePasses": 44,
       "axeIncomplete": [],
       "aaaContrastBelow7": []
     },
@@ -2316,7 +3824,7 @@
       "aaaContrastBelow7": []
     },
     "03-screens/screens/14-recipe-detail-no-steps.html": {
-      "axePasses": 41,
+      "axePasses": 44,
       "axeIncomplete": [],
       "aaaContrastBelow7": []
     },
@@ -2325,6 +3833,11 @@
       "axeIncomplete": [
         "color-contrast:2"
       ],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/14-recipe-detail-servings.html": {
+      "axePasses": 45,
+      "axeIncomplete": [],
       "aaaContrastBelow7": []
     },
     "03-screens/screens/14-recipe-detail-step-deleted.html": {
@@ -2343,10 +3856,55 @@
       "aaaContrastBelow7": []
     },
     "03-screens/screens/14-recipe-detail.html": {
-      "axePasses": 42,
+      "axePasses": 45,
       "axeIncomplete": [
         "color-contrast:2"
       ],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/15-diary-mon.html": {
+      "axePasses": 38,
+      "axeIncomplete": [
+        "color-contrast:6"
+      ],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/15-diary-tue.html": {
+      "axePasses": 38,
+      "axeIncomplete": [
+        "color-contrast:6"
+      ],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/15-diary-wed.html": {
+      "axePasses": 38,
+      "axeIncomplete": [
+        "color-contrast:6"
+      ],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/15-diary.html": {
+      "axePasses": 38,
+      "axeIncomplete": [
+        "color-contrast:6"
+      ],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/16-profile-delete.html": {
+      "axePasses": 24,
+      "axeIncomplete": [
+        "color-contrast:1"
+      ],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/16-profile-updated.html": {
+      "axePasses": 35,
+      "axeIncomplete": [],
+      "aaaContrastBelow7": []
+    },
+    "03-screens/screens/16-profile.html": {
+      "axePasses": 31,
+      "axeIncomplete": [],
       "aaaContrastBelow7": []
     },
     "03-screens/flows.html": {

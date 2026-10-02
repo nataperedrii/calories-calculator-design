@@ -2,7 +2,11 @@
 
 This is the plan for `03-screens/`: which screens exist, why, what they show, and every state they can be in. The screens use only the [design system](../02-design-system/README.md) (tokens and components). Missing pieces are listed in [section 6](#6-design-system-gaps-to-add-before-building) and are added to the design system first.
 
-**Built so far (steps 10–12):** the screens of flows 1 and 2 (07–14), 26 HTML files in 8 screens and their key states (including dish and method editing), exported to PNG, plus the [flows board](flows.html) ([flows.png](flows.png)). See [section 8](#8-built-screens-and-exports). Onboarding (01–06), Diary (15) and Profile (16) are specified here but not built yet.
+**Built (steps 10–18):** all 16 screens, as 46 HTML files with their key states, exported to PNG, plus the [flows board](flows.html) ([flows.png](flows.png)). See [section 8](#8-built-screens-and-exports).
+- **Flows 1 and 2 (07–14):** built in steps 10–17.
+- **Onboarding (01–06), Diary (15) and Profile (16):** built in step 18, with flows 0 and 3 end to end.
+
+The audit of this plan against the project is in [PLAN-AUDIT.md](../PLAN-AUDIT.md).
 
 - **Brand:** [01-branding/BRAND.md](../01-branding/BRAND.md): photo first, honest estimates, food not guilt, two taps to log.
 - **Research:** [process/research.md](../process/research.md): five insights. The numbers in brackets below, such as (insight 3), point to them.
@@ -111,7 +115,7 @@ Arrows are taps. Numbers are screens.
 ### Flow 1B: Calories in a product (search or barcode)
 
 ```
-07 Today ─ Snack "+ Add" ─▶ 10 Add food ─ type "alm" ─▶ "Almonds ✓ USDA" ─▶ 11 Food detail
+07 Today ─ Snack "+ Add" ─▶ 10 Add food ─ type "alm" ─▶ "Almonds" ─▶ 11 Food detail (USDA)
    ─ chip "30 g · 1 handful" ─▶ 174 kcal ─ "Add to Snack" ─▶ toast ─▶ 10 (stays open for the apple, from Recents) ─ Done ─▶ 07 (1,171 kcal)
 
 08 Scan ─ Barcode ─▶ code found ─▶ 11 Food detail ("Greek yogurt 2%, 170 g pot · 124 kcal", source: package label)
@@ -205,9 +209,10 @@ Every screen lists:
 - **Key content:**
   - Fields:
     - Age: **34**
-    - Height: **165 cm** (unit segmented control: cm | ft in)
-    - Weight: **63 kg** (kg | lb)
-    - Sex for the formula: Female | Male | Prefer not to say
+    - **Units:** Metric | Imperial (one switch for height and weight, as in Profile)
+    - Height: **165 cm**
+    - Weight: **63 kg**
+    - Sex for the formula, as option cards: Female | Male | Prefer not to say ("We use the average of both formulas")
   - Activity, as option cards:
     - Mostly sitting ×1.2
     - Lightly active ×1.375
@@ -215,7 +220,7 @@ Every screen lists:
     - Very active ×1.725
   - Why we ask: "We use these only to estimate your daily calories. They stay on your account and are never shared."
   - "Prefer not to say" uses the average of the two formulas.
-- **DS:** `.field` with `.field__suffix` (cm, kg), `.segmented` (units, sex), option card **(new)**, `.field__help`.
+- **DS:** step indicator (25), `.field` with `.field__suffix` (years, cm, kg), `.segmented` (units), option card (26) for sex and activity, `.field__help`.
 
 | State | What the user sees |
 |---|---|
@@ -363,7 +368,7 @@ Every screen lists:
 - **Key content:**
   - Search field "Search foods and dishes" with a barcode icon.
   - Tabs: Recents · Favourites · My dishes.
-  - **Recents:** Apple, raw 52 kcal / 100 g · Almonds 579 / 100 g · Greek yogurt 2% 73 / 100 g.
+  - **Recents:** Apple 52 kcal / 100 g · Almonds 579 / 100 g · Greek yogurt 73 / 100 g (short names, step 14).
   - Results show one canonical entry per food (step 16):
     - A matching product photo (the Meals thumbnail, 48 × 48) with the name beside it, top-aligned and wrapping. No ✓.
     - The P / F / C chips sit under the photo, from the card-inset line (insight 2). The USDA source is named on the food detail (11).
@@ -387,9 +392,9 @@ Every screen lists:
 - **Key content (Almonds):**
   - Nutrition facts table **per 100 g: 579 kcal · Protein 21.2 g · Fat 49.9 g · Carbs 21.6 g**.
   - Source line: "USDA FoodData Central".
-  - Portion: weight stepper, unit segmented control g | portion, quick chips **30 g · 1 handful**, **50 g**, **100 g**.
+  - Portion: unit segmented control **g | portion** above the quick chips **30 g · 1 handful**, **50 g**, **100 g**, then the weight stepper. "portion" shows the same 30 g as **1 portion** (1 handful). The unit set follows the food: **ml** is offered only for liquids such as milk or olive oil, so almonds show g | portion.
   - Live result for 30 g: **174 kcal · P 6.3 · F 15.0 · C 6.5 g**.
-  - Meal picker (Snack, from the time). Primary button **"Add to Snack · 174 kcal"**. A favourite star.
+  - Meal picker (Snack, from the time). Primary button **"Add to Snack · 174 kcal"**. A favourite button (heart) in the app bar.
   - **Barcode variant:** "Greek yogurt 2%, 170 g pot · 124 kcal". Source line: "Package label", with "Report a wrong value".
 - **DS:** `.facts` + `.facts__source`, `.stepper`, `.segmented`, `.chip`, `.macro-tiles`, `.btn--primary`, `.icon-btn`.
 
@@ -442,7 +447,7 @@ Every screen lists:
     1. **Baked cod, potatoes & broccoli:** 462 kcal · P 41 g · 30 min · "Covers your protein" · "Fits: 462 of 879 kcal".
     2. **Shrimp & broccoli stir-fry with rice:** 532 kcal · P 46 g · 20 min · "Fits: 532 of 879 kcal · covers your protein".
     3. **Chickpea & spinach curry with rice:** 587 kcal · P 21 g · 35 min · "Fits: 587 of 879 kcal". Vegan.
-  - Footer note: **"1 recipe hidden: contains peanuts."** (Peanut noodle bowl with tofu.)
+  - Footer note: **"1 recipe hidden: it contains peanuts. Change allergies in Profile."** (Peanut noodle bowl with tofu.)
   - Tabs at the top: For you · Saved · My dishes.
 - **DS:** `.chip` / `.chip--fresh` / `.chip.is-selected`, `.recipe-card`, `.badge--fresh`, `.segmented`, `.empty`, `.tab-bar`.
 
@@ -461,7 +466,8 @@ Every screen lists:
   - Photo (scrolls with the content), the title with an **Edit name** button, "30 min · Serves 2", the badge "Fits your dinner".
   - **Allergens: Fish.** Shown as words with an icon, never colour alone. "Free from peanuts, milk, gluten and egg."
   - Nutrition summary: calorie ring **462 of the 879 kcal left for dinner**, "Per 100 g 99", macro bars P 41 / F 12 / C 49 g against the daily goal.
-  - Ingredients for 1 portion: the name on the left, the amount on one right edge, in **two lines** (step 15): name | amount, then the P / F / C **macro chips** ("P 34 g", the same component as everywhere) | "158 kcal". Amount and kcal end on one right edge:
+  - **Servings stepper** (the DS weight stepper) in the Ingredients card, **1** by default, 1–8. It scales the ingredient amounts, row kcal and chips for cooking; the summary, the ring and "Log 1 portion" stay per portion. "−" is disabled at 1, "+" at 8; the change is announced. In edit mode the row hides and amounts are edited per portion.
+  - Ingredients for the chosen servings: the name on the left, the amount on one right edge, in **two lines** (step 15): name | amount, then the P / F / C **macro chips** ("P 34 g", the same component as everywhere) | "158 kcal". Amount and kcal end on one right edge:
     - cod fillet 150 g
     - potatoes 200 g
     - broccoli 100 g
@@ -478,7 +484,7 @@ Every screen lists:
   - **Dish name:** a pencil next to the title opens an inline field with a visible label and a live count (max 60). Errors: "Enter a name, for example …" and "Use 60 characters or fewer. It's 73 now."
   - **Steps:** each step becomes a labelled field ("Step 2") with Move up / Move down (no dragging needed, WCAG 2.5.7) and Delete (Undo toast). Focus stays on the moved step. An empty step blocks Save with "Write what to do in this step, or delete it."
   - Units: ml uses each food's density (olive oil 0.91 g/ml); "portion" uses a standard portion (olive oil 1 tbsp = 13.5 g).
-- **DS:** `.app-bar`, `.photo`, `.title-row`, `.name-edit`, `.nutri`, `.macros`, `.ingredients` / `.ingredient` (view and edit), `.macro-tile--chip`, `.field` + `.field__count`, `.banner`, `.btn--primary`, `.screen__foot--split`, `.toast`, `.sheet-dialog`, `.sheet`.
+- **DS:** `.app-bar`, `.photo`, `.title-row`, `.name-edit`, `.nutri`, `.macros`, `.stepper` + `.ingredients__servings`, `.ingredients` / `.ingredient` (view and edit), `.macro-tile--chip`, `.field` + `.field__count`, `.banner`, `.btn--primary`, `.screen__foot--split`, `.toast`, `.sheet-dialog`, `.sheet`.
 
 | State | What the user sees |
 |---|---|
@@ -486,6 +492,7 @@ Every screen lists:
 | Empty | Not possible: you only reach this screen with a recipe. A recipe with no nutrition data is never listed. If every ingredient is deleted while editing, the list says "No ingredients yet" and the totals are 0 |
 | Loading | Photo and text skeleton **(new)**. The title and kcal from the card show at once |
 | Error | Can't load: empty error state "Couldn't load this recipe" with "Try again" and "Back to recipes". Editing: an unknown food or an amount outside 1–5,000 marks the row (`aria-invalid`) with a hint; Save moves focus to the first problem |
+| Servings | 2 portions: cod 300 g, potatoes 400 g, broccoli 200 g, olive oil 20 g, garlic 10 g; the summary still says 462 kcal per portion |
 | Editing | Edit · Edited (totals updated) · Deleted (Undo) · Discard changes? · Saving… · Name error · Method · Edit steps · Step error · Step deleted (Undo) · No steps. Each state has its own export |
 | After log | Portion sheet (Dinner · 1 portion · 462 kcal), then the toast "Added to Dinner · Undo". Today shows **1,633 of 2,050** |
 
@@ -494,10 +501,10 @@ Every screen lists:
 - **From:** the Diary tab. **To:** 11 (tap a food), 07 (today).
 - **Key content:**
   - Week strip **(new)**: Mon–Sun, each day with a small ring.
-  - Example week (day totals):
-    - Mon 1,985
-    - Tue 2,140 (Turmeric "90 over")
-    - Wed 1,920
+  - Example week (day totals: sums of logged meals, asserted in the generator):
+    - Mon 1,703 (breakfast 344 + salmon lunch 559 + snack 268 + shrimp stir-fry 532)
+    - Tue 2,095, Turmeric "45 over" (… + baked cod, 2 portions, 924)
+    - Wed 1,661 (… chickpea curry 587 for lunch + baked cod 462)
     - **Thu 1,171 (today)**
   - Tapping a day shows its meals, like 07 but read-only, with "Copy to today" on each meal.
 - **DS:** date / week strip **(new)**, `.nutri` (small), `.list` / `.product`, `.app-bar`, `.btn--ghost`.
@@ -644,7 +651,7 @@ These are missing from [02-design-system](../02-design-system/index.html). Per t
 
 Everything else uses the existing 16 components.
 
-**Status (step 10):** inline banner (17), skeleton (18), camera viewfinder (19) and the locked chip (variant of 04) are now in the design system, plus the screen layout (20) and a few variants found while building: the detected-item row and "check portion" tint (07), photo and icon thumbnails (07), the compact recipe card (08), and macro keys for tables (09). The step indicator, option card and week strip come with onboarding and the Diary.
+**Status (step 10, checked again in the plan audit):** inline banner (17), skeleton (18), camera viewfinder (19) and the locked chip (variant of 04) are now in the design system, plus the screen layout (20) and a few variants found while building: the detected-item row and "check portion" tint (07), photo and icon thumbnails (07), the compact recipe card (08), and macro keys for tables (09). **Step 18:** the step indicator (25), option card (26) and week strip (27) are in the design system too, so every gap in this section is closed.
 
 ---
 
@@ -670,6 +677,17 @@ The design system already meets WCAG 2.2 AA and AAA for critical elements. These
   - The camera screen has a keyboard and VoiceOver path to Library and Search, not only the shutter.
 - **Targets:** at least 44 × 44 pt (48 dp on Android), including the stepper buttons, chips and the week strip.
 - **Calm language:** no "bad", "cheat" or "warning" for food choices. The over-target colour is Turmeric, never error red.
+
+### Per flow
+
+| Flow | Focus order and keyboard | No time limits | Never colour alone | Targets | Undo vs confirm |
+|---|---|---|---|---|---|
+| **0 Onboarding** | Back → title → options (native radios / checkboxes in option cards) → Continue; the step indicator is text ("Step 2 of 5") | Sign-in link lasts 15 minutes but no countdown forces anything | Selected option cards have a check and the native control state; allergy chips have a check icon | Option cards, chips and the target stepper ≥ 44 | Nothing to undo; every choice is editable later in Profile |
+| **1A Photo** | Camera: Close → mode → tips → Library → Shutter → Search (keyboard and VoiceOver reach Library and Search, not only the shutter); result: rows in marker order | Analysis has Cancel and no fake percentage; the toast stays until dismissed | Confidence is an icon + a word (High / Check portion / Not sure); markers carry numbers | Steppers, choices, the meal button ≥ 44 | Adding is reversible: toast with **Undo**, no confirm |
+| **1B Product** | Search → results (each row: name, then its "Add &lt;food&gt;" button) → Create a dish; food detail: unit switch → quick chips → stepper → meal → Add | Search waits for a typing pause, never a timeout | Macros always carry P / F / C and "g"; the source is named in words | "+" 44 × 44 with a focus ring and a gap; chips and stepper ≥ 44 | Toast with Undo |
+| **1C Dish** | Name → ingredients → cooked weight (visible label + help) → portions stepper → Save / Log | None | Per-100 g and per-portion values are labelled in words | Delete, stepper, buttons ≥ 44 | Delete an ingredient: Undo toast; deleting a saved dish uses a real confirm |
+| **2 Recipes** | Filter chips (allergy chips locked, not focusable as toggles) → cards in rank order → "View recipe"; detail: Edit → servings stepper → ingredients → Method → Log | Toasts and sheets have no timer | Locked chips: lock icon + "Allergy"; allergens in words; "over" is a number + the word | Chips, "View recipe", servings stepper, Move up / down ≥ 44 | Log: Undo toast; leaving with unsaved edits: "Discard changes?" with "Keep editing" first |
+| **3 Preferences** | Profile rows in reading order → edit screen → Save returns focus to the row | Saving shows "Saving…", no timeout | "Not set" is text, not a grey style alone | Rows ≥ 44 | Delete account: the DS confirm sheet (destructive, 30 days to change your mind) |
 
 ---
 
@@ -702,14 +720,50 @@ Generated by [`tools/build_screens.py`](tools/build_screens.py) from the USDA va
 | 14 Dish detail | Step deleted, Undo toast | [14-recipe-detail-step-deleted.html](screens/14-recipe-detail-step-deleted.html) | [png](exports/14-recipe-detail-step-deleted.png) |
 | 14 Dish detail | No steps: empty state | [14-recipe-detail-no-steps.html](screens/14-recipe-detail-no-steps.html) | [png](exports/14-recipe-detail-no-steps.png) |
 | 07 Today | Scrolled to the dish card (View recipe) | [07-today-card.html](screens/07-today-card.html) | [png](exports/07-today-card.png) |
+| 14 Dish detail | Servings 2: the ingredient list scales, the summary stays per portion | [14-recipe-detail-servings.html](screens/14-recipe-detail-servings.html) | [png](exports/14-recipe-detail-servings.png) |
 | 14 Recipe detail | Log sheet (Dinner, 1 portion) | [14-recipe-detail-log.html](screens/14-recipe-detail-log.html) | [png](exports/14-recipe-detail-log.png) |
 | 07 Today | Dinner added: 1,633 kcal, protein 10 g over | [07-today-dinner-added.html](screens/07-today-dinner-added.html) | [png](exports/07-today-dinner-added.png) |
+| 01 Welcome | Passkey or email link | [01-welcome.html](screens/01-welcome.html) | [png](exports/01-welcome.png) |
+| 01 Welcome | Check your inbox (link sent) | [01-welcome-link.html](screens/01-welcome-link.html) | [png](exports/01-welcome-link.png) |
+| 02 Your goal | Step 1 of 5, Maintain preselected | [02-goal.html](screens/02-goal.html) | [png](exports/02-goal.png) |
+| 03 About you | Step 2 of 5, Sam's data | [03-about-you.html](screens/03-about-you.html) | [png](exports/03-about-you.png) |
+| 03 About you | Height out of range, Continue disabled | [03-about-you-error.html](screens/03-about-you-error.html) | [png](exports/03-about-you-error.png) |
+| 04 Diet | Step 3 of 5, Pescatarian | [04-diet.html](screens/04-diet.html) | [png](exports/04-diet.png) |
+| 05 Allergies | Step 4 of 5, Peanuts · skip Mushrooms | [05-allergies.html](screens/05-allergies.html) | [png](exports/05-allergies.png) |
+| 05 Allergies | Edit from Profile: + Shellfish | [05-allergies-edit.html](screens/05-allergies-edit.html) | [png](exports/05-allergies-edit.png) |
+| 06 Daily target | Step 5 of 5: 2,050 kcal, the maths | [06-target.html](screens/06-target.html) | [png](exports/06-target.png) |
+| 06 Daily target | At the floor: 1,550 kcal | [06-target-floor.html](screens/06-target-floor.html) | [png](exports/06-target-floor.png) |
+| 07 Today | First day: 0 of 2,050, Snap your first meal | [07-today-empty.html](screens/07-today-empty.html) | [png](exports/07-today-empty.png) |
+| 13 Recipes | After a shellfish allergy: 2 recipes hidden | [13-recipes-filtered.html](screens/13-recipes-filtered.html) | [png](exports/13-recipes-filtered.png) |
+| 15 Diary | Thursday (today) | [15-diary.html](screens/15-diary.html) | [png](exports/15-diary.png) |
+| 15 Diary | Monday · Tuesday (45 over) · Wednesday | [15-diary-mon.html](screens/15-diary-mon.html) · [tue](screens/15-diary-tue.html) · [wed](screens/15-diary-wed.html) | [png](exports/15-diary-mon.png) · [tue](exports/15-diary-tue.png) · [wed](exports/15-diary-wed.png) |
+| 16 Profile | Your plan, units, account | [16-profile.html](screens/16-profile.html) | [png](exports/16-profile.png) |
+| 16 Profile | Allergies saved (toast) | [16-profile-updated.html](screens/16-profile-updated.html) | [png](exports/16-profile-updated.png) |
+| 16 Profile | Delete account: confirm sheet | [16-profile-delete.html](screens/16-profile-delete.html) | [png](exports/16-profile-delete.png) |
 
 **Decisions made while building:**
 - **Meal picker:** a button ("Lunch ▾"), not a segmented control. Four meals don't fit one row at 390 pt, and a wrapped segmented control reads as two groups.
 - **Toast placement:** the toast takes its own row above the tab bar instead of floating over the list. It never covers content or a focused control (WCAG 2.4.11).
 - **Analyzing state:** keeps the photo visible behind a small status card, so the user sees what is being analysed.
 - **Allergens on recipe detail:** sit above the per-portion numbers, so they're always above the fold.
-- **Search results:** two extra rows use USDA values: "Almonds, dry roasted" (598 kcal · P 20.96 · F 52.54 · C 21.01 per 100 g) and "Almond butter" (614 kcal · P 20.96 · F 55.5 · C 18.82).
+- **Search results:** two extra rows use USDA values: "Roasted almonds" (USDA "Almonds, dry roasted", 598 kcal · P 20.96 · F 52.54 · C 21.01 per 100 g) and "Almond butter" (614 kcal · P 20.96 · F 55.5 · C 18.82). Each row has its own product photo (step 16, credits in [CREDITS.md](../01-branding/assets/CREDITS.md)).
 - **Recipe photos:** the cod recipe now matches its photo exactly: Pixabay's baked cod with potatoes and broccoli, so the recipe uses broccoli instead of peas (step 11). The shrimp and curry photos are close matches from Unsplash. Credits are in [CREDITS.md](../01-branding/assets/CREDITS.md).
+- **Onboarding (step 18):**
+  - **Units:** one Units switch (Metric | Imperial) instead of a unit control per field, the same switch as in Profile.
+  - **Sex for the formula:** option cards instead of a 3-way segmented control, because "Prefer not to say" needs its one-line explanation and doesn't fit a segment at 320 pt.
+  - **Skip:** a text button in the app bar.
+  - **Link-sent state:** leads with "Check your inbox" (no hero photo), so the message is above the fold.
+- **Diary (step 18):**
+  - **Example totals:** the example week now uses totals computed from logged meals (1,703 / 2,095 / 1,661) instead of the earlier spec example (1,985 / 2,140 / 1,920), which no combination of the USDA meals produces.
+  - **Copy to today:** a 44 pt button with a new `copy` icon on each past meal.
+- **Profile (step 18):** settings rows are product rows with a plain chevron button (`.product--nav`). Saving allergies shows a toast, and the Recipes tab opens the re-filtered list.
 - **Prototype links:** every screen links to the next one through `data-href` and real links. The full clickable prototype (`index.html`) is a later step.
+
+**Spec vs build.** The catalogue (section 4) is the spec. The built exports show one state per file. These spec details aren't in any built export (checked in the plan audit, [PLAN-AUDIT.md](../PLAN-AUDIT.md)):
+
+| Screen | In the spec, not in the built exports | Why |
+|---|---|---|
+| 10 Add food | The default state (empty search, tabs Recents · Favourites · My dishes) | The export is the search state "alm" with Recents below |
+| 12 Dish calculator | The name field and a delete button per ingredient | The export is the result view: the name is the title, ingredients are a facts table |
+| 13 Recipes | Tabs For you · Saved · My dishes | Not built |
+| 07–16 | Loading and offline states (skeleton, banner); 08 camera states; 10, 13 and 15 empty states | Specified only; the DS has the components (15, 17, 18). Built: 07 first-day empty state, 03 and 06 error/limit states |

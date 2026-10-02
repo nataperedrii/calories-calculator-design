@@ -85,8 +85,11 @@ Every component has **default, pressed, disabled, focus and error** states where
 | 19 | Camera viewfinder | `.viewfinder`, `.shutter`, `.icon-btn--inverse` | live (plate found) · shutter pressed · library focused |
 | 21 | Date button | `.date-btn` | default · pressed · focus |
 | 22 | Title row and name editing | `.title-row`, `.name-edit` | view · edit · error · saving |
-| 23 | Ingredient rows | `.ingredients`, `.ingredient`, `.ingredient--edit`, `.macro-line` | compact view (amount right-aligned, letter + value macros) · edit · delete focused · error · deleted (Undo toast) |
+| 23 | Ingredient rows | `.ingredients`, `.ingredient`, `.ingredient--edit`, `.ingredients__servings` | two-line view (name \| amount, chips \| kcal) · servings · edit · delete focused · error · deleted (Undo toast) |
 | 24 | Recipe steps (Method) | `.recipe-steps`, `.recipe-step`, `.recipe-step--edit`, `.recipe-step__actions` | view · edit · move disabled / focus / pressed · empty-step error · empty state |
+| 25 | Step indicator | `.progress`, `.progress__text`, `.progress__seg` | step 1 / 3 / 5 of 5: upcoming · done · current. Not interactive, so no pressed, focus, disabled or error state |
+| 26 | Option card | `.option-group`, `.option-card`, `.option-card--check` | radio: default · pressed · selected · focus · disabled · checkbox · group error |
+| 27 | Week strip | `.week`, `.week__day`, `.week__ring`, `.week__note` | default · pressed · selected · focus · today · over · empty · disabled. No error state: days come from the phone |
 | 20 | Screen layout | `.screen`, `.status-bar`, `.screen__body`, `.screen__foot`, `.screen__toast`, `.card`, `.photo` | frame with photo markers and footer · inverse status bar · toast row |
 
 ---
@@ -332,6 +335,25 @@ Gaps are 8.00 / 8.00. The last tile ends at 615.00, exactly the sheet margin. Nu
 - **axe "incomplete" nodes** are covered by the custom contrast scan and `contrast.py` rather than by axe itself (see [Open issues](#open-issues)).
 
 ---
+
+## Changelog (v1.10 → v1.11): onboarding, Diary and Profile (step 18)
+
+| Area | Before | After |
+|---|---|---|
+| **New components** | Listed as gaps in FLOWS.md §6 | **25 Step indicator** (`.progress`): "Step 2 of 5" text + an `aria-hidden` bar.<br><br>**26 Option card**: a native radio or checkbox in a labelled card, with a filled mark + check when selected, an inset 2 px focus ring, and a group error.<br><br>**27 Week strip**: 7 day buttons ≥ 44 with a mini ring. "Today" and "+45" as text, so never colour alone. It uses up to 16 pt of the margins when 7 × 44 don't fit, and reflows to two rows at large text |
+| **Token** | – | `size.day-ring` 32 px (285 declarations) |
+| **Icon** | – | `copy` (Diary "Copy to today") |
+| **Settings rows** | – | `.product--nav`: a plain chevron button at the row end, its glyph on the inset line (Profile) |
+| **Facts table** | Values could break mid-number when the name column was long ("1,3 / 30") | `.facts td + td` and `.facts th + th` don't wrap; the name column wraps instead. 11 and 12 render identically |
+| **Docs** | Component 23 listed `.macro-line` (removed in step 15) | Corrected: `.ingredients__servings`, two-line view |
+
+## Changelog (v1.9 → v1.10): plan audit (step 17)
+
+| Area | Before | After |
+|---|---|---|
+| **Stepper** (06) | `inline-flex` with a fixed minimum value width: at 320 pt with 200 % text, "8 portions" made it 346 px wide | `max-width: 100%`; the value grows and wraps the unit under the number. The ± buttons are `flex: none`, so they're always 44 × 44 |
+| **Ingredient rows** (23) | – | `.ingredients__servings`: a "Servings" row (label + stepper) with `space-3` above it. It scales the ingredient list; the summary stays per portion. Documented in c23 |
+| **Ingredients header** (23) | One line: "Amount" ran off a 320 pt screen at 200 % text | Wraps, and "Amount" stays on the right edge |
 
 ## Changelog (v1.8 → v1.9): photos in search rows (step 16)
 

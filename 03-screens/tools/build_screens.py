@@ -150,8 +150,8 @@ def status_bar(time, inverse=False):
 
 
 def tab_bar(active):
-    tabs = [("today", "Today", "07-today.html"), ("diary", "Diary", None), ("scan", None, "08-scan.html"),
-            ("recipes", "Recipes", "13-recipes.html"), ("profile", "Profile", None)]
+    tabs = [("today", "Today", "07-today.html"), ("diary", "Diary", "15-diary.html"), ("scan", None, "08-scan.html"),
+            ("recipes", "Recipes", "13-recipes.html"), ("profile", "Profile", "16-profile.html")]
     out = ['<nav class="tab-bar" aria-label="Main">']
     for icon, label, href in tabs:
         go = f' data-href="{href}"' if href else ""
@@ -215,8 +215,9 @@ def toast(msg):
 ARC = 351.86  # length of the ring's half circle (radius 112)
 
 
-def nutri(d):
+def nutri(d, label="Today's calories and macros", left_text="kcal left today"):
     eaten, left = d["kcal"], GOAL["kcal"] - d["kcal"]
+    over_kcal = left < 0
     dash = round(min(eaten / GOAL["kcal"], 1) * ARC)
     rows = []
     for k, cls, name in (("p", "p", "Protein"), ("f", "f", "Fat"), ("c", "c", "Carbs")):
@@ -228,11 +229,11 @@ def nutri(d):
                     f'<div class="macro__value">{v}<small> g</small></div>'
                     f'<div class="macro__bar" role="meter" aria-label="{name}" aria-valuemin="0" aria-valuemax="{g}" aria-valuenow="{min(v, g)}" aria-valuetext="{text}"><i style="--w: {min(100, round(v / g * 100))}%"></i></div>'
                     f'<div class="macro__goal">{goal}</div></div>')
-    return ('<section class="nutri" aria-label="Today\'s calories and macros">'
-            f'<div class="nutri__ring"><svg viewBox="0 0 256 136" role="img" aria-label="{n(eaten)} of {n(GOAL["kcal"])} kcal eaten">'
+    return (f'<section class="nutri{" nutri--over" if over_kcal else ""}" aria-label="{label}">'
+            f'<div class="nutri__ring"><svg viewBox="0 0 256 136" role="img" aria-label="{n(eaten)} of {n(GOAL["kcal"])} kcal eaten{f", {n(-left)} over" if over_kcal else ""}">'
             '<path class="nutri__track" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20"/>'
-            f'<path class="nutri__value" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20" stroke-dasharray="{dash} 400"/></svg>'
-            f'<div class="nutri__center"><b class="nutri__big">{n(left)}</b><small>kcal left today</small></div></div>'
+            + (f'<path class="nutri__value" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20" stroke-dasharray="{dash} 400"/>' if dash else "") + '</svg>'
+            f'<div class="nutri__center"><b class="nutri__big">{n(abs(left))}</b><small>{"kcal over" if over_kcal else left_text}</small></div></div>'
             f'<div class="nutri__row"><span>Eaten <b>{n(eaten)}</b></span><span>Goal <b>{n(GOAL["kcal"])}</b></span></div>'
             f'<div class="macros">{"".join(rows)}</div></section>')
 
@@ -297,7 +298,13 @@ def page(file, title, description, body, body_attrs="", extra=""):
 # ---------------------------------------------------------------------------
 # 07 Today
 # ---------------------------------------------------------------------------
-def today(file, time, meals, toast_msg=None, card=False, title_note="Thursday", scroll=None):
+FIRST_DAY = (f'<div class="empty"><span class="empty__icon">{ic("scan", "icon--xl")}</span><h2 class="empty__title">Snap your first meal</h2>'
+             f'<p class="empty__text">We\'ll find the foods and portions. You check them, then add.</p>'
+             f'<div class="empty__actions"><button type="button" class="btn btn--primary" data-href="08-scan.html">{ic("scan")}Open camera</button>'
+             f'<button type="button" class="btn btn--secondary" data-href="10-add-food.html">{ic("search")}Search instead</button></div></div>')
+
+
+def today(file, time, meals, toast_msg=None, card=False, title_note="Thursday", scroll=None, first_day=False):
     d = day(*[m["total"] for m in meals if m.get("total")])
     rows = "".join(meal_row(m["name"], m["meta"], m.get("total", {}).get("kcal"), m.get("img"), m.get("href"), m.get("add")) for m in meals)
     left = GOAL["kcal"] - d["kcal"]
@@ -313,7 +320,7 @@ def today(file, time, meals, toast_msg=None, card=False, title_note="Thursday", 
 <main class="screen__body" tabindex="0">
 <button type="button" class="date-btn">{ic("calendar")}<span><b>{title_note}</b> · {n(left)} kcal left<span class="visually-hidden">. Pick another day</span></span></button>
 {nutri(d)}
-<div class="section-head" id="meals-head"><h2>Meals</h2><span class="t-callout text-secondary"><b class="t-num-m">{n(d["kcal"])}</b> kcal eaten</span></div>
+{FIRST_DAY if first_day else ""}<div class="section-head" id="meals-head"><h2>Meals</h2><span class="t-callout text-secondary"><b class="t-num-m">{n(d["kcal"])}</b> kcal eaten</span></div>
 <div class="list">{rows}</div>
 {rec}
 </main>
@@ -480,8 +487,9 @@ body = f"""{status_bar("16:30")}
 <div class="row-between"><span class="t-callout text-secondary"><b class="t-num-m">{a100[1]}</b> kcal per 100 g</span><span class="badge badge--verified">✓ USDA</span></div>
 <section class="card" aria-labelledby="portion-title">
 <h2 class="t-title" id="portion-title">Portion</h2>
+{segmented("Unit", "unit", ["g", "portion"], "g")}
 <div class="chip-row" role="group" aria-label="Quick portions"><button type="button" class="chip is-selected" aria-pressed="true">{ic("check")}30 g · 1 handful</button><button type="button" class="chip" aria-pressed="false">50 g</button><button type="button" class="chip" aria-pressed="false">100 g</button></div>
-<div class="row-between">{stepper("Almond weight", 30, "g", "almonds")}<span class="t-num-l">{a30["kcal"]} <span class="t-callout text-secondary">kcal</span></span></div>
+<div class="row-between">{stepper("Almond weight", 30, "g", "almonds").replace('class="stepper__input"', 'class="stepper__input" id="portion-input"').replace('<small aria-hidden="true">g</small>', '<small aria-hidden="true" id="portion-unit">g</small>')}<span class="t-num-l">{a30["kcal"]} <span class="t-callout text-secondary">kcal</span></span></div>
 {macro_tiles(a30)}
 {meal_picker("Snack")}
 </section>
@@ -489,7 +497,18 @@ body = f"""{status_bar("16:30")}
 <table><caption class="visually-hidden">Nutrition facts for almonds: per 100 grams and per 30 gram portion</caption><thead><tr><th scope="col">Nutrient</th><th scope="col">Per 100 g</th><th scope="col">Per 30 g</th></tr></thead><tbody>{tr}</tbody></table></section>
 </main>
 <footer class="screen__foot"><button type="button" class="btn btn--primary btn--block" data-href="10-add-food.html">{ic("check")}Add to Snack · {a30["kcal"]} kcal</button></footer>"""
-files.append(page("11-food-detail.html", "Almonds", "Ripe food detail: almonds per 100 g from USDA, a 30 g portion is 174 kcal.", body))
+# Unit switch: the same 30 g shown as grams or as 1 portion (1 handful); kcal and macros don't change
+UNIT_SCRIPT = """
+<script>
+  document.querySelectorAll('input[name="unit"]').forEach((r) => r.addEventListener("change", () => {
+    const portion = r.value === "portion";
+    const input = document.getElementById("portion-input");
+    input.value = portion ? "1" : "30";
+    input.setAttribute("aria-label", portion ? "Almond amount in portions (1 portion = 30 g)" : "Almond weight in grams");
+    document.getElementById("portion-unit").textContent = portion ? "portion" : "g";
+  }));
+</script>"""
+files.append(page("11-food-detail.html", "Almonds", "Ripe food detail: almonds per 100 g from USDA, a 30 g portion is 174 kcal.", body, extra=UNIT_SCRIPT))
 
 # ---------------------------------------------------------------------------
 # 12 Dish calculator (red lentil soup)
@@ -531,27 +550,39 @@ RECIPES = [
     ("Shrimp &amp; broccoli stir-fry with rice", SHRIMP, "recipe-shrimp-vegetables.jpg", 20, "Covers your protein", None),
     ("Chickpea &amp; spinach curry with rice", CURRY, "recipe-chickpea-curry.jpg", 35, "Vegan", None),
 ]
-cards = []
-for i, (title, items, img, mins, why, href) in enumerate(RECIPES):
-    t = total(items)
-    best = f'<span class="badge badge--fresh">{ic("fresh")}Best fit</span>' if i == 0 else ""
-    ttl = f'<a href="{href}">{title}</a>' if href else title
-    cards.append(f'<article class="recipe-card recipe-card--compact"><div class="recipe-card__img"><img src="{IMG}/{img}" alt="" width="80" height="80"></div>'
-                 f'<div class="recipe-card__body">{best}<h3 class="recipe-card__title">{ttl}</h3>'
-                 f'<div class="recipe-card__meta"><span>{ic("time", "icon--s")}{mins} min</span></div><div class="recipe-card__meta"><span>{why}</span></div>'
-                 f'{macro_chips(t)}'
-                 f'<span class="recipe-card__fit">{ic("fresh", "icon--s")}Fits: {t["kcal"]} of {LEFT} kcal</span>'
-                 f'<span class="recipe-card__kcal">{t["kcal"]} <small>kcal</small></span></div></article>')
-body = f"""{status_bar("18:31")}
+RECIPE_ALLERGENS = {RECIPES[1][0]: "shellfish"}  # the shrimp stir-fry; the hidden peanut bowl is counted below
+
+
+def recipes_screen(file, allergies=("peanuts",), description="Ripe recipes that fit the 879 kcal left for dinner, pescatarian and peanut-free."):
+    cards = []
+    shown = [r for r in RECIPES if RECIPE_ALLERGENS.get(r[0]) not in allergies]
+    for i, (title, items, img, mins, why, href) in enumerate(shown):
+        t = total(items)
+        best = f'<span class="badge badge--fresh">{ic("fresh")}Best fit</span>' if i == 0 else ""
+        ttl = f'<a href="{href}">{title}</a>' if href else title
+        cards.append(f'<article class="recipe-card recipe-card--compact"><div class="recipe-card__img"><img src="{IMG}/{img}" alt="" width="80" height="80"></div>'
+                     f'<div class="recipe-card__body">{best}<h3 class="recipe-card__title">{ttl}</h3>'
+                     f'<div class="recipe-card__meta"><span>{ic("time", "icon--s")}{mins} min</span></div><div class="recipe-card__meta"><span>{why}</span></div>'
+                     f'{macro_chips(t)}'
+                     f'<span class="recipe-card__fit">{ic("fresh", "icon--s")}Fits: {t["kcal"]} of {LEFT} kcal</span>'
+                     f'<span class="recipe-card__kcal">{t["kcal"]} <small>kcal</small></span></div></article>')
+    locked = "".join(f'<span class="chip chip--locked">{ic("lock")}{a.capitalize()[:-1] if a.endswith("s") else a.capitalize()}-free <small>Allergy</small></span>' for a in allergies)
+    hidden = 1 + (len(RECIPES) - len(shown))  # the peanut noodle bowl is always hidden for Sam
+    note = ("<b>1 recipe hidden:</b> it contains peanuts." if hidden == 1
+            else f"<b>{hidden} recipes hidden:</b> they contain {' or '.join(allergies)}.")
+    body = f"""{status_bar("18:31")}
 <header class="app-bar app-bar--large"><h1 class="app-bar__title">Recipes</h1><div class="app-bar__actions"><button type="button" class="icon-btn" aria-label="Search recipes">{ic("search")}</button><button type="button" class="icon-btn" aria-label="Saved recipes">{ic("heart")}</button></div></header>
 <main class="screen__body" tabindex="0">
 <div class="section-head"><h2>Fits your dinner</h2><span class="t-callout text-secondary"><b class="t-num-m">{LEFT}</b> kcal left</span></div>
-<div class="chip-row" role="group" aria-label="Filters"><button type="button" class="chip is-selected" aria-pressed="true">{ic("check")}Dinner</button><button type="button" class="chip is-selected" aria-pressed="true">{ic("check")}≤ {LEFT} kcal</button><button type="button" class="chip is-selected" aria-pressed="true">{ic("check")}Pescatarian</button><span class="chip chip--locked">{ic("lock")}Peanut-free <small>Allergy</small></span><button type="button" class="chip" aria-pressed="false">≤ 30 min</button></div>
+<div class="chip-row" role="group" aria-label="Filters"><button type="button" class="chip is-selected" aria-pressed="true">{ic("check")}Dinner</button><button type="button" class="chip is-selected" aria-pressed="true">{ic("check")}≤ {LEFT} kcal</button><button type="button" class="chip is-selected" aria-pressed="true">{ic("check")}Pescatarian</button>{locked}<button type="button" class="chip" aria-pressed="false">High protein</button><button type="button" class="chip" aria-pressed="false">≤ 30 min</button></div>
 {"".join(cards)}
-<div class="banner" role="note">{ic("info")}<p class="banner__text"><b>1 recipe hidden:</b> it contains peanuts. Change allergies in Profile.</p></div>
+<div class="banner" role="note">{ic("info")}<p class="banner__text">{note} Change allergies in Profile.</p></div>
 </main>
 {tab_bar("recipes")}"""
-files.append(page("13-recipes.html", "Recipes", "Ripe recipes that fit the 879 kcal left for dinner, pescatarian and peanut-free.", body))
+    return page(file, "Recipes", description, body)
+
+
+files.append(recipes_screen("13-recipes.html"))
 
 # ---------------------------------------------------------------------------
 # 14 Dish detail: view, edit (ingredients, name) and the log sheet
@@ -581,6 +612,7 @@ dish_g = sum(i["g"] for i in COD)
 dish_data = {
     "name": "Baked cod, potatoes & broccoli",
     "nameMax": 60,
+    "servingsMax": 8,
     "budget": LEFT,
     "goal": {k: GOAL[k] for k in ("p", "f", "c")},
     "back": "13-recipes.html",
@@ -610,6 +642,14 @@ def dish_summary():
             f'<div class="nutri__center"><b class="nutri__big" id="sum-kcal">{t["kcal"]}</b><small>kcal per portion</small></div></div>'
             f'<div class="nutri__row"><span>Dinner budget <b>{n(LEFT)}</b></span><span>Per 100 g <b id="sum-100">{r0(t["kcal"] * 100 / dish_g)}</b></span></div>'
             f'<div class="macros">{"".join(rows)}</div><p class="t-caption text-secondary">Bars show this portion against your daily goal.</p></section>')
+
+
+# Servings: the DS weight stepper (component 06) scales the ingredient amounts; the summary stays per portion.
+servings_stepper = (stepper("Servings", 1, "portion", "servings")
+                    .replace('aria-label="Less servings"', 'aria-label="Less servings" data-servings="-1" disabled')
+                    .replace('aria-label="More servings"', 'aria-label="More servings" data-servings="1"')
+                    .replace('class="stepper__input"', 'class="stepper__input" id="servings-input"')
+                    .replace('<small aria-hidden="true">portion</small>', '<small aria-hidden="true" id="servings-unit">portion</small>'))
 
 
 def recipe_detail(file, state="view", sheet=False):
@@ -643,7 +683,8 @@ def recipe_detail(file, state="view", sheet=False):
 {dish_summary()}
 <section class="facts" id="ing-head" aria-labelledby="ing-title">
 <div class="row-between"><h2 class="facts__title" id="ing-title">Ingredients</h2><button type="button" class="btn btn--ghost btn--m" id="edit-toggle" aria-label="Edit ingredients">{ic("edit", "icon--m")}Edit</button></div>
-<div class="facts__source">1 portion · <span class="badge badge--verified">✓ USDA</span></div>
+<div class="facts__source"><span><span id="servings-text">1 portion</span> · </span><span class="badge badge--verified">✓ USDA</span></div>
+<div class="row-between ingredients__servings" id="servings-row"><span class="t-label" id="servings-label">Servings</span>{servings_stepper}</div>
 <div class="ingredients__head" aria-hidden="true"><span>Ingredient</span><span>Amount</span></div>
 <ol class="ingredients ingredients--facts" id="ingredients" aria-labelledby="ing-title"></ol>
 </section>
@@ -670,16 +711,372 @@ def recipe_detail(file, state="view", sheet=False):
              '\n<script src="js/dish-editor.js"></script>')
     titles = {"view": DISH, "edit": "Edit ingredients", "edited": "Edited ingredients", "deleted": "Ingredient deleted",
               "name-error": "Dish name error", "saving": "Saving changes", "discard": "Discard changes?",
-              "method": "Method", "steps-edit": "Edit method", "step-error": "Step error", "step-deleted": "Step deleted", "no-steps": "No steps yet"}
+              "method": "Method", "steps-edit": "Edit method", "step-error": "Step error", "step-deleted": "Step deleted", "no-steps": "No steps yet", "servings": "Ingredients for 2 portions"}
     return page(file, "Log to Dinner" if sheet else titles[state],
                 f"Ripe dish detail: {DISH}, {DINNER['kcal']} kcal per portion. Edit ingredients and the dish name; totals update live.",
                 body, body_attrs=f' data-state="{state}"', extra=extra)
 
 
 files.append(recipe_detail("14-recipe-detail.html"))
-for st in ("edit", "edited", "deleted", "name-error", "saving", "discard", "method", "steps-edit", "step-error", "step-deleted", "no-steps"):
+for st in ("edit", "edited", "deleted", "name-error", "saving", "discard", "method", "steps-edit", "step-error", "step-deleted", "no-steps", "servings"):
     files.append(recipe_detail(f"14-recipe-detail-{st}.html", state=st))
 files.append(recipe_detail("14-recipe-detail-log.html", sheet=True))
+
+# ---------------------------------------------------------------------------
+# Onboarding 01–06 (flow 0), first-day Today, Diary 15, Profile 16 (flow 3)
+# New DS components: 25 step indicator (.progress), 26 option card, 27 week strip
+# ---------------------------------------------------------------------------
+def progress(cur, total_steps=5):
+    segs = "".join(f'<span class="progress__seg{" is-done" if i < cur else (" is-current" if i == cur else "")}"></span>' for i in range(1, total_steps + 1))
+    return f'<div class="progress"><p class="progress__text">Step {cur} of {total_steps}</p><div class="progress__bar" aria-hidden="true">{segs}</div></div>'
+
+
+def option_card(name, value, title, desc="", checked=False, kind="radio"):
+    d = f'<span class="option-card__desc">{desc}</span>' if desc else ""
+    mod = " option-card--check" if kind == "checkbox" else ""
+    chk = " checked" if checked else ""
+    return (f'<label class="option-card{mod}"><input class="visually-hidden" type="{kind}" name="{name}" value="{value}"{chk}>'
+            f'<span class="option-card__body"><span class="option-card__title">{title}</span>{d}</span><span class="option-card__mark" aria-hidden="true">{ic("check")}</span></label>')
+
+
+def option_group(legend, cards, visible=True):
+    lg = "option-group__legend" if visible else "visually-hidden"
+    return f'<fieldset class="option-group"><legend class="{lg}">{legend}</legend>{"".join(cards)}</fieldset>'
+
+
+def setup_bar(back, action=""):
+    left = f'<button type="button" class="icon-btn" aria-label="Back" data-href="{back}">{ic("back")}</button>' if back else "<span></span>"
+    return f'<header class="app-bar">{left}<span></span>{action or "<span></span>"}</header>'
+
+
+def onboarding(file, title, description, step, heading, content, cta_href, back, skip=None, cta="Continue", cta_attrs="", extra="", body_attrs=""):
+    action = f'<button type="button" class="btn btn--ghost btn--m" data-href="{skip}">Skip</button>' if skip else ""
+    body = f"""{status_bar("08:02")}
+{setup_bar(back, action)}
+<main class="screen__body" tabindex="0">
+{progress(step)}
+<h1 class="t-h1">{heading}</h1>
+{content}
+</main>
+<footer class="screen__foot"><button type="button" class="btn btn--primary btn--block" data-href="{cta_href}"{cta_attrs}>{cta}</button></footer>"""
+    return page(file, title, description, body, extra=extra, body_attrs=body_attrs)
+
+
+def field(fid, label, value, help_text, suffix="", error=None, mode="numeric"):
+    err = " is-error" if error else ""
+    inv = ' aria-invalid="true"' if error else ""
+    sfx = f'<span class="field__suffix">{suffix}</span>' if suffix else ""
+    hp = f'{ic("alert", "icon--s")}{error}' if error else help_text
+    return (f'<div class="field{err}"><label class="field__label" for="{fid}">{label}</label><div class="field__control">'
+            f'<input id="{fid}" type="text" inputmode="{mode}" value="{value}" autocomplete="off" aria-describedby="{fid}-help"{inv}>{sfx}</div>'
+            f'<p class="field__help" id="{fid}-help">{hp}</p></div>')
+
+
+# 01 Welcome & sign-in: passkey first, an email link second, never a password
+def welcome(file, sent=False):
+    if sent:
+        main = (f'<div><img src="{IMG}/logo/ripe-logo.svg" alt="Ripe" width="134" height="46"></div>'
+                f'<h1 class="t-h1">Check your inbox</h1>'
+                f'<p class="t-body text-secondary" role="status">We sent a sign-in link to <b>sam@example.com</b>. It works for 15 minutes. Open it on this phone to continue.</p>'
+                f'<div class="field"><label class="field__label" for="email">Email</label><div class="field__control"><input id="email" type="email" value="sam@example.com" autocomplete="email" aria-describedby="email-help"></div>'
+                f'<p class="field__help" id="email-help">Wrong address? Change it and send the link again.</p></div>'
+                f'<button type="button" class="btn btn--ghost btn--m">Resend link</button>')
+        foot = (f'<button type="button" class="btn btn--primary btn--block" data-href="02-goal.html">Open your email app</button>'
+                f'<button type="button" class="btn btn--secondary btn--block" data-href="01-welcome.html">Continue with a passkey</button>')
+    else:
+        main = (f'<div class="photo screen__bleed"><img src="{IMG}/dish-salmon-rice-broccoli.jpg" alt="A plate of salmon, rice and broccoli" width="390" height="244"></div>'
+                f'<div><img src="{IMG}/logo/ripe-logo.svg" alt="Ripe" width="134" height="46"></div>'
+                f'<h1 class="t-display">Point, snap, know.</h1>'
+                f'<p class="t-body text-secondary">Calories from a photo. Check them, tap once, back to your meal.</p>')
+        foot = (f'<button type="button" class="btn btn--primary btn--block" data-href="02-goal.html">Continue with a passkey</button>'
+                f'<button type="button" class="btn btn--secondary btn--block" data-href="01-welcome-link.html">Email me a sign-in link</button>')
+    body = f"""{status_bar("08:00")}
+<main class="screen__body" tabindex="0">
+{main}
+</main>
+<footer class="screen__foot">{foot}<p class="screen__note">By continuing you agree to the Terms and Privacy Policy. Not medical advice.</p></footer>"""
+    return page(file, "Welcome" if not sent else "Check your inbox", "Ripe welcome: sign in with a passkey or an email link, no password.", body)
+
+
+files.append(welcome("01-welcome.html"))
+files.append(welcome("01-welcome-link.html", sent=True))
+
+# 02 Your goal
+files.append(onboarding("02-goal.html", "Your goal", "Ripe onboarding step 1 of 5: choose a goal. Maintain is preselected.", 1,
+    "What would you like Ripe to help with?",
+    option_group("Your goal", [
+        option_card("goal", "maintain", "Maintain", "Eat well and keep your weight.", checked=True),
+        option_card("goal", "lose", "Lose slowly", "About 0.25 kg a week (−250 kcal a day)."),
+        option_card("goal", "gain", "Gain", "About 0.25 kg a week (+250 kcal a day)."),
+        option_card("goal", "track", "Just track", "No target. Only see what you eat."),
+    ], visible=False) + '<p class="t-callout text-secondary">You can change this any time in Profile.</p>',
+    "03-about-you.html", "01-welcome.html"))
+
+
+# 03 About you (Sam): Mifflin-St Jeor needs age, height, weight and the sex for the formula
+def about_you(file, height="165", error=None):
+    content = (f'<p class="t-callout text-secondary">We use these only to estimate your daily calories. They stay on your account and are never shared.</p>'
+               + segmented("Units", "units", ["Metric", "Imperial"], "Metric")
+               + field("age", "Age", "34", "18 to 100 years", "years")
+               + field("height", "Height", height, "120 to 230 cm", "cm", error)
+               + field("weight", "Weight", "63", "35 to 250 kg", "kg")
+               + option_group("Sex for the formula", [
+                   option_card("sex", "female", "Female", checked=True),
+                   option_card("sex", "male", "Male"),
+                   option_card("sex", "unsaid", "Prefer not to say", "We use the average of both formulas."),
+               ])
+               + option_group("How active are you?", [
+                   option_card("activity", "1.2", "Mostly sitting", "×1.2 · little or no exercise"),
+                   option_card("activity", "1.375", "Lightly active", "×1.375 · 1–3 workouts a week"),
+                   option_card("activity", "1.55", "Moderately active", "×1.55 · 3–5 workouts a week", checked=True),
+                   option_card("activity", "1.725", "Very active", "×1.725 · hard exercise 6–7 days a week"),
+               ]))
+    return onboarding(file, "About you" if not error else "About you: check height", "Ripe onboarding step 2 of 5: age, height, weight, sex for the formula and activity.", 2,
+                      "About you", content, "04-diet.html", "02-goal.html", cta_attrs=" disabled" if error else "",
+                      body_attrs=' data-scroll-to="age"' if error else "")
+
+
+files.append(about_you("03-about-you.html"))
+files.append(about_you("03-about-you-error.html", height="1650", error="Enter a height between 120 and 230 cm"))
+
+# 04 Diet type: a hard filter for recipes
+DIETS = [("none", "No preference", "Everything"), ("vegetarian", "Vegetarian", "No meat or fish"), ("vegan", "Vegan", "No animal products"),
+         ("pescatarian", "Pescatarian", "Fish and seafood, no meat"), ("mediterranean", "Mediterranean", "Vegetables, fish, olive oil"),
+         ("lowcarb", "Lower-carb", "Under 130 g carbs a day")]
+files.append(onboarding("04-diet.html", "Diet", "Ripe onboarding step 3 of 5: diet type, a hard filter for recipe suggestions.", 3,
+    "Do you follow a diet?",
+    '<p class="t-callout text-secondary">Recipes that don\'t fit it are never suggested.</p>'
+    + option_group("Diet", [option_card("diet", v, ttl, d, checked=v == "pescatarian") for v, ttl, d in DIETS], visible=False),
+    "05-allergies.html", "03-about-you.html", skip="05-allergies.html"))
+
+# 05 Allergies & dislikes: allergies are a hard filter, dislikes a soft one
+ALLERGENS = ["Gluten", "Milk", "Egg", "Peanuts", "Tree nuts", "Soy", "Fish", "Shellfish", "Sesame", "Mustard", "Celery", "Lupin", "Sulphites", "Molluscs"]
+
+
+def chip(label, selected=False):
+    return (f'<button type="button" class="chip{" is-selected" if selected else ""}" aria-pressed="{"true" if selected else "false"}">'
+            f'{ic("check") if selected else ""}{label}</button>')
+
+
+def allergies_content(selected):
+    return (f'<h2 class="t-title" id="allergy-title">Allergies</h2>'
+            f'<div class="chip-row" role="group" aria-labelledby="allergy-title">{chip("None")}{"".join(chip(a, a in selected) for a in ALLERGENS)}</div>'
+            f'<div class="banner" role="note">{ic("info")}<p class="banner__text">We hide recipes with these allergens. Always check product labels: we can\'t guarantee packaged foods are free of traces.</p></div>'
+            f'<h2 class="t-title" id="dislike-title">Foods you\'d rather skip</h2>'
+            f'<div class="chip-row" role="group" aria-labelledby="dislike-title">{chip("Mushrooms", True)}{chip("Olives")}{chip("Coriander")}{chip("Blue cheese")}</div>'
+            + field("dislike", "Add another food", "", "Recipes with these move to the end of the list.", mode="text"))
+
+
+files.append(onboarding("05-allergies.html", "Allergies", "Ripe onboarding step 4 of 5: allergies (a hard filter) and foods to skip (a soft one).", 4,
+    "Allergies and dislikes", allergies_content({"Peanuts"}), "06-target.html", "04-diet.html", skip="06-target.html"))
+
+
+# 05 in edit mode, from Profile (flow 3): no step indicator, Save returns to Profile
+def allergies_edit(file):
+    body = f"""{status_bar("19:05")}
+{app_bar("Allergies and dislikes", back="16-profile.html")}
+<main class="screen__body" tabindex="0">
+{allergies_content({"Peanuts", "Shellfish"})}
+</main>
+<footer class="screen__foot"><button type="button" class="btn btn--primary btn--block" data-href="16-profile-updated.html">{ic("check")}Save</button></footer>"""
+    return page(file, "Edit allergies", "Ripe Profile: edit allergies. Shellfish added; Save re-filters recipes.", body)
+
+
+files.append(allergies_edit("05-allergies-edit.html"))
+
+# 06 Your daily target: Mifflin-St Jeor for Sam, macros, Adjust with a safety floor
+BMR = r0(10 * 63 + 6.25 * 165 - 5 * 34 - 161)
+TDEE = r0(BMR * 1.55)
+FLOOR = max(r0((TDEE - 500) / 50) * 50, BMR)
+assert (BMR, TDEE, GOAL["kcal"], FLOOR) == (1330, 2062, 2050, 1550), (BMR, TDEE, FLOOR)
+TARGET_SCRIPT = """
+<script>
+  // Adjust in 50 kcal steps; never below the floor. Fat is about 30.75 percent of kcal, protein 1.6 g/kg, carbs the rest.
+  (() => {
+    const FLOOR = %d, P = %d;
+    let kcal = %d;
+    const $ = (id) => document.getElementById(id);
+    const fmt = (x) => x.toLocaleString("en-US");
+    function render(announce) {
+      const f = Math.round(kcal * 0.3075 / 9), c = Math.round((kcal - P * 4 - f * 9) / 4);
+      $("target-kcal").textContent = fmt(kcal);
+      $("target-input").value = String(kcal);
+      $("macro-f").textContent = f; $("macro-c").textContent = c;
+      for (const [k, g, per] of [["p", P, 4], ["f", f, 9], ["c", c, 4]]) {
+        const pct = Math.round(g * per / kcal * 100), m = document.querySelector(`[data-macro="${k}"]`), bar = m.querySelector(".macro__bar");
+        bar.setAttribute("aria-valuenow", pct); bar.setAttribute("aria-valuetext", `${pct}%% of calories`);
+        bar.querySelector("i").style.setProperty("--w", `${pct}%%`);
+        m.querySelector(".macro__goal").textContent = `${pct}%% of kcal`;
+      }
+      const less = $("target-less");
+      less.disabled = kcal <= FLOOR;
+      $("floor-note").hidden = kcal > FLOOR;
+      if (announce) $("target-status").textContent = `Daily target ${fmt(kcal)} kcal` + (kcal <= FLOOR ? ". This is the lowest target for you." : ".");
+    }
+    $("target-less").addEventListener("click", () => { kcal = Math.max(FLOOR, kcal - 50); render(true); if ($("target-less").disabled) $("target-more").focus(); });
+    $("target-more").addEventListener("click", () => { kcal += 50; render(true); });
+    $("calc-toggle").addEventListener("click", (e) => { const open = e.currentTarget.getAttribute("aria-expanded") === "true"; e.currentTarget.setAttribute("aria-expanded", String(!open)); $("calc").hidden = open; });
+    if (document.body.dataset.state === "floor") { kcal = FLOOR; render(false); }
+  })();
+</script>""" % (FLOOR, GOAL["p"], GOAL["kcal"])
+
+
+def target_screen(file, state=""):
+    rows = []
+    for k, name, g, unit_kcal, mid in (("p", "Protein", GOAL["p"], 4, ""), ("f", "Fat", GOAL["f"], 9, ' id="macro-f"'), ("c", "Carbs", GOAL["c"], 4, ' id="macro-c"')):
+        pct = r0(g * unit_kcal / GOAL["kcal"] * 100)
+        rows.append(f'<div class="macro macro--{k}" data-macro="{k}"><div class="macro__label"><i class="macro__key"></i>{k.upper()} · {name}</div>'
+                    f'<div class="macro__value"><span{mid}>{g}</span><small> g</small></div>'
+                    f'<div class="macro__bar" role="meter" aria-label="{name} share of calories" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{pct}" aria-valuetext="{pct}% of calories"><i style="--w: {pct}%"></i></div>'
+                    f'<div class="macro__goal">{pct}% of kcal</div></div>')
+    calc = [("Resting energy, kcal (Mifflin-St Jeor): 10 × 63 + 6.25 × 165 − 5 × 34 − 161", n(BMR)),
+            ("× 1.55 moderately active, kcal", n(TDEE)), ("Maintain ± 0, rounded to 50, kcal", n(GOAL['kcal'])),
+            ("Protein, g: 1.6 per kg × 63 kg", GOAL['p']), ("Fat, g: about 30 % of kcal", GOAL['f']), ("Carbs, g: the rest", GOAL['c'])]
+    tr = "".join(f"<tr><td>{a}</td><td>{b}</td></tr>" for a, b in calc)
+    step = (stepper("Daily target", GOAL["kcal"], "kcal", "calories")
+            .replace('aria-label="Less calories"', 'aria-label="Less calories" id="target-less"')
+            .replace('aria-label="More calories"', 'aria-label="More calories" id="target-more"')
+            .replace('class="stepper__input"', 'class="stepper__input" id="target-input"'))
+    content = (f'<section class="card" aria-label="Your daily target"><div><b class="nutri__big" id="target-kcal">{n(GOAL["kcal"])}</b><span class="t-callout text-secondary">kcal a day</span></div>'
+               f'<div class="macros">{"".join(rows)}</div></section>'
+               f'<div class="row-between"><span class="t-label">Adjust</span>{step}</div>'
+               f'<p class="t-callout text-secondary">Steps of 50 kcal. The lowest target for you is {n(FLOOR)} kcal.</p>'
+               f'<div class="banner" role="note" id="floor-note" hidden>{ic("info")}<p class="banner__text"><b>We don\'t go lower than this.</b> Talk to a doctor or dietitian about bigger changes.</p></div>'
+               f'<p class="visually-hidden" role="status" id="target-status"></p>'
+               f'<button type="button" class="btn btn--ghost btn--m" id="calc-toggle" aria-expanded="true" aria-controls="calc">How we calculated this</button>'
+               f'<section class="facts" id="calc" aria-label="How we calculated this"><table><caption class="visually-hidden">How the daily target is calculated</caption>'
+               f'<thead><tr><th scope="col">Step</th><th scope="col">Value</th></tr></thead><tbody>{tr}</tbody></table></section>'
+               f'<p class="t-caption text-secondary">Pregnant, breastfeeding, or a history of eating disorders? Choose “Just track” and talk to your doctor.</p>')
+    return onboarding(file, "Your daily target" if not state else "Daily target: lowest", "Ripe onboarding step 5 of 5: 2,050 kcal a day, P 100 · F 70 · C 255 g, how it's calculated, adjust with a safety floor.", 5,
+                      "Your daily target", content, "07-today-empty.html", "05-allergies.html", cta="Start tracking", extra=TARGET_SCRIPT,
+                      body_attrs=f' data-state="{state}"' if state else "")
+
+
+files.append(target_screen("06-target.html"))
+files.append(target_screen("06-target-floor.html", state="floor"))
+
+# 07 Today on the first day (end of onboarding): nothing logged, the empty state points at the camera
+EMPTY_MEALS = [{"name": m, "meta": "Nothing yet", "add": "10-add-food.html"} for m in ("Breakfast", "Lunch", "Snack", "Dinner")]
+files.append(today("07-today-empty.html", "08:05", EMPTY_MEALS, title_note="Thursday", first_day=True))
+
+# 15 Diary: the week of 28 Sep – 4 Oct 2026; Thursday 1 Oct is today. Every day total is a sum of logged meals.
+SHRIMP_T, CURRY_T = total(SHRIMP), total(CURRY)
+COD2 = {k: DINNER[k] * 2 for k in ("kcal", "p", "f", "c")}
+WEEK = [
+    ("mon", "Mon", "Monday", 28, "September", [("Breakfast", "Greek yogurt, oats, blueberries", B, "breakfast-granola-blueberries.jpg"), ("Lunch", "Salmon, rice, broccoli", L, "dish-salmon-rice-broccoli.jpg"),
+                                               ("Snack", "Apple, almonds", S, "food-apple.jpg"), ("Dinner", "Shrimp &amp; broccoli stir-fry · 1 portion", SHRIMP_T, "recipe-shrimp-vegetables.jpg")]),
+    ("tue", "Tue", "Tuesday", 29, "September", [("Breakfast", "Greek yogurt, oats, blueberries", B, "breakfast-granola-blueberries.jpg"), ("Lunch", "Salmon, rice, broccoli", L, "dish-salmon-rice-broccoli.jpg"),
+                                                ("Snack", "Apple, almonds", S, "food-apple.jpg"), ("Dinner", f"{DISH} · 2 portions", COD2, DISH_IMG)]),
+    ("wed", "Wed", "Wednesday", 30, "September", [("Breakfast", "Greek yogurt, oats, blueberries", B, "breakfast-granola-blueberries.jpg"), ("Lunch", "Chickpea &amp; spinach curry · 1 portion", CURRY_T, "recipe-chickpea-curry.jpg"),
+                                                  ("Snack", "Apple, almonds", S, "food-apple.jpg"), ("Dinner", f"{DISH} · 1 portion", DINNER, DISH_IMG)]),
+    ("thu", "Thu", "Thursday", 1, "October", [("Breakfast", "Greek yogurt, oats, blueberries", B, "breakfast-granola-blueberries.jpg"), ("Lunch", "From a photo · 4 items", L, "dish-salmon-rice-broccoli.jpg"),
+                                              ("Snack", "Apple, almonds", S, "food-apple.jpg"), ("Dinner", None, None, None)]),
+]
+DAY_TOTALS = {key: day(*[m[2] for m in meals if m[2]]) for key, *_, meals in WEEK}
+assert [DAY_TOTALS[k]["kcal"] for k in ("mon", "tue", "wed", "thu")] == [1703, 2095, 1661, 1171], DAY_TOTALS
+
+
+def week_day(key, short, long_name, date, month, selected, today_=False, disabled=False):
+    d = DAY_TOTALS.get(key)
+    kcal = d["kcal"] if d else 0
+    over = kcal - GOAL["kcal"]
+    pct = min(100, r0(kcal / GOAL["kcal"] * 100)) if d else 0
+    val = f'<circle class="week__value" cx="18" cy="18" r="15.9155" stroke-dasharray="{pct} 100"/>' if d else ""
+    note = "Today" if today_ else (f"+{over}" if over > 0 else "")
+    cls = (" is-over" if over > 0 else "") + ("" if d else " is-empty")
+    label = f"{long_name} {date} {month}" + (", today" if today_ else "") + (f": {n(kcal)} kcal" if d else ": upcoming") + (f", {over} over" if over > 0 else "")
+    cur = ' aria-current="date"' if today_ else ""
+    dis = " disabled" if disabled else ""
+    go = f' data-href="15-diary{"" if key == "thu" else "-" + key}.html"' if d else ""
+    return (f'<button type="button" class="week__day{cls}" aria-pressed="{"true" if selected else "false"}"{cur}{dis} aria-label="{label}"{go}>'
+            f'<span class="week__dow" aria-hidden="true">{short[0]}</span><span class="week__ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="week__track" cx="18" cy="18" r="15.9155"/>{val}</svg>'
+            f'<span class="week__date">{date}</span></span><span class="week__note" aria-hidden="true">{note}</span></button>')
+
+
+def diary(file, sel):
+    days = [week_day(k, s, ln, dt, mo, k == sel, today_=k == "thu") for k, s, ln, dt, mo, _ in WEEK]
+    days += [week_day(k, s, ln, dt, "October", False, disabled=True) for k, s, ln, dt in (("fri", "Fri", "Friday", 2), ("sat", "Sat", "Saturday", 3), ("sun", "Sun", "Sunday", 4))]
+    key, short, long_name, date, month, meals = next(w for w in WEEK if w[0] == sel)
+    is_today = sel == "thu"
+    rows = []
+    for name, meta, tot, img in meals:
+        if tot is None:
+            rows.append(f'<div class="product"><span class="product__thumb product__thumb--icon product__thumb--meal" aria-hidden="true">{ic(MEAL_ICONS[name])}</span>'
+                        f'<div><div class="product__name">{name}</div><div class="product__meta product__meta--text">Nothing logged yet</div></div><div class="product__end"></div></div>')
+            continue
+        copy = "" if is_today else f'<button type="button" class="icon-btn icon-btn--tint" aria-label="Copy {name.lower()} to today">{ic("copy")}</button>'
+        rows.append(f'<div class="product"><img class="product__thumb" src="{IMG}/{img}" alt="" width="48" height="48"><div><div class="product__name">{name}</div><div class="product__meta product__meta--text">{meta}</div></div>'
+                    f'<div class="product__end"><span class="product__kcal">{n(tot["kcal"])}<small>kcal</small></span>{copy}</div></div>')
+    when = f"{long_name}, {date} {month}" + (" · today" if is_today else "")
+    extra = (f'<button type="button" class="btn btn--secondary" data-href="07-today.html">{ic("today")}Open Today</button>' if is_today
+             else '<p class="t-callout text-secondary">Copy a meal to today with the button next to it. Past days are read-only.</p>')
+    body = f"""{status_bar("18:40")}
+<header class="app-bar app-bar--large"><h1 class="app-bar__title">Diary</h1></header>
+<main class="screen__body" tabindex="0">
+<div class="section-head"><h2>This week</h2><span class="t-callout text-secondary">28 Sep – 4 Oct</span></div>
+<div class="week" role="group" aria-label="Days of this week">{"".join(days)}</div>
+<div class="section-head" id="day-head"><h2>{when}</h2></div>
+{nutri(DAY_TOTALS[sel], label=f"{long_name}: calories and macros", left_text="kcal left" if not is_today else "kcal left today")}
+<div class="list">{"".join(rows)}</div>
+{extra}
+</main>
+{tab_bar("diary")}"""
+    return page(file, f"Diary: {long_name}", f"Ripe Diary: {long_name} {date} {month}, {n(DAY_TOTALS[sel]['kcal'])} of {n(GOAL['kcal'])} kcal.", body)
+
+
+files.append(diary("15-diary.html", "thu"))
+for k in ("mon", "tue", "wed"):
+    files.append(diary(f"15-diary-{k}.html", k))
+
+
+# 16 Profile & preferences
+def profile(file, allergies="Peanuts", toast_msg=None, confirm=False):
+    inert = " inert" if confirm else ""
+
+    def row(icon, name, value, label, href):
+        return (f'<div class="product product--nav"><span class="product__thumb product__thumb--icon" aria-hidden="true">{ic(icon)}</span>'
+                f'<div><div class="product__name">{name}</div><div class="product__meta product__meta--text">{value}</div></div>'
+                f'<div class="product__end"><button type="button" class="icon-btn" aria-label="{label}"{f" data-href={chr(34)}{href}{chr(34)}" if href else ""}>{ic("chev-r")}</button></div></div>')
+    plan = "".join([
+        row("calendar", "Daily target", f"{n(GOAL['kcal'])} kcal a day", "Edit daily target", "06-target.html"),
+        row("fresh", "Goal", "Maintain", "Edit goal", "02-goal.html"),
+        row("profile", "About you", "34 · 165 cm · 63 kg · moderately active", "Edit body data", "03-about-you.html"),
+        row("recipes", "Diet", "Pescatarian", "Edit diet", "04-diet.html"),
+        row("lock", "Allergies", allergies, "Edit allergies", "05-allergies-edit.html"),
+        row("close", "Foods you'd rather skip", "Mushrooms", "Edit foods to skip", "05-allergies-edit.html"),
+    ])
+    sheet = ""
+    if confirm:
+        sheet = f"""<div class="screen__overlay"><div class="scrim"></div>
+<dialog open class="sheet confirm" aria-labelledby="cd-title" aria-describedby="cd-desc" aria-modal="true">
+<div class="sheet__handle"></div>
+<div class="sheet__head"><div><h2 class="sheet__title" id="cd-title">Delete your account?</h2><p class="sheet__sub" id="cd-desc">This deletes your diary, recipes and photos from Ripe. You have 30 days to change your mind: sign in again and everything comes back.</p></div><button type="button" class="icon-btn" aria-label="Cancel and close" data-href="16-profile.html">{ic("close")}</button></div>
+<ul class="sheet__confirm"><li>4 days of diary entries</li><li>1 edited recipe</li><li>3 meal photos</li></ul>
+<div class="sheet__foot"><button type="button" class="btn btn--secondary btn--block" data-href="16-profile.html">Keep my account</button><button type="button" class="btn btn--destructive btn--block" data-href="01-welcome.html">Delete account and data</button></div>
+</dialog></div>"""
+    body = f"""{status_bar("19:00")}
+<header class="app-bar app-bar--large"{inert}><h1 class="app-bar__title">Profile</h1></header>
+<main class="screen__body" tabindex="0"{inert}>
+<div class="section-head"><h2>Your plan</h2><span class="t-callout text-secondary">Recipes follow it</span></div>
+<div class="list">{plan}</div>
+<div class="section-head"><h2>Units</h2></div>
+{segmented("Units", "units", ["Metric", "Imperial"], "Metric")}
+<div class="section-head"><h2>Account</h2></div>
+<div class="list"><div class="product"><span class="product__thumb product__thumb--icon" aria-hidden="true">{ic("profile")}</span><div><div class="product__name">sam@example.com</div><div class="product__meta product__meta--text">Signs in with a passkey or an email link</div></div><div class="product__end"></div></div></div>
+<button type="button" class="btn btn--secondary" data-href="01-welcome.html">Sign out</button>
+<button type="button" class="btn btn--destructive" data-href="16-profile-delete.html" aria-haspopup="dialog">Delete account</button>
+</main>
+{toast(toast_msg) if toast_msg else ""}
+<div{inert}>{tab_bar("profile").replace('data-href="13-recipes.html"', 'data-href="13-recipes-filtered.html"') if "shellfish" in allergies else tab_bar("profile")}</div>
+{sheet}"""
+    return page(file, "Profile" if not confirm else "Delete your account?", "Ripe Profile: daily target, goal, body, diet, allergies, units and account.", body)
+
+
+files.append(profile("16-profile.html"))
+files.append(profile("16-profile-delete.html", confirm=True))
+files.append(profile("16-profile-updated.html", allergies="Peanuts, shellfish", toast_msg="Allergies saved. Recipes are updated."))
+files.append(recipes_screen("13-recipes-filtered.html", allergies=("peanuts", "shellfish"),
+                            description="Ripe recipes after adding a shellfish allergy in Profile: the shrimp stir-fry is hidden too."))
 
 for f in files:
     print("wrote 03-screens/screens/" + f)
@@ -711,6 +1108,24 @@ SCREEN_NAMES = {
     "14-recipe-detail-steps-edit": ("14 Dish detail", "Edit steps: move, delete"),
     "14-recipe-detail-step-deleted": ("14 Dish detail", "Step deleted, Undo"),
     "14-recipe-detail-no-steps": ("14 Dish detail", "No steps: empty state"),
+    "14-recipe-detail-servings": ("14 Dish detail", "Servings 2: amounts scale"),
+    "01-welcome": ("01 Welcome", "Passkey or email link"),
+    "01-welcome-link": ("01 Welcome", "Check your inbox"),
+    "02-goal": ("02 Your goal", "Step 1 of 5"),
+    "03-about-you": ("03 About you", "Step 2 of 5"),
+    "03-about-you-error": ("03 About you", "Height out of range"),
+    "04-diet": ("04 Diet", "Step 3 of 5"),
+    "05-allergies": ("05 Allergies", "Step 4 of 5"),
+    "06-target": ("06 Daily target", "Step 5 of 5 · 2,050 kcal"),
+    "06-target-floor": ("06 Daily target", "At the floor: 1,550 kcal"),
+    "07-today-empty": ("07 Today", "First day: 0 of 2,050"),
+    "15-diary": ("15 Diary", "This week, today selected"),
+    "15-diary-tue": ("15 Diary", "Tuesday: 45 over"),
+    "16-profile": ("16 Profile", "Your plan, units, account"),
+    "05-allergies-edit": ("05 Allergies", "Edit from Profile: + Shellfish"),
+    "16-profile-updated": ("16 Profile", "Saved: recipes update"),
+    "13-recipes-filtered": ("13 Recipes", "Shrimp hidden: 2 recipes"),
+    "16-profile-delete": ("16 Profile", "Delete account: confirm"),
     "07-today-dinner-added": ("07 Today", f"Dinner added · {n(day(B, L, S, DINNER)['kcal'])} kcal"),
 }
 
@@ -737,6 +1152,17 @@ NOTES = {
     21: ("The method is part of the dish", "Numbered steps in an ordered list after Ingredients: 16 px text, line height 1.5, ≤ 80 characters a line. Time and servings above, in the card style."),
     22: ("Reorder without dragging", "Move up / Move down buttons (WCAG 2.5.7) keep focus on the moved step and announce its new position. Disabled at the ends, not hidden."),
     23: ("Never a blank section", "A recipe without steps shows “No steps yet” with “Add steps”, which opens a focused Step 1 field."),
+    24: ("No password to forget", "A passkey first, an email link second (WCAG 3.3.8: no memory or puzzle test). Nothing is asked before the value is shown."),
+    25: ("One question per screen", "Option cards are native radios: the whole card is the target, arrows move the choice. Maintain is preselected; nothing extreme is offered."),
+    26: ("Say why we ask", "Body data is only for the formula and never shared. “Prefer not to say” uses the average of both formulas; errors say the valid range."),
+    27: ("Allergies are a hard filter", "14 major allergens as toggle chips, with “always check labels”. Foods you'd rather skip only move recipes down."),
+    28: ("A target that's safe", "The maths is shown (Mifflin-St Jeor × activity). −50 steps stop at 1,550 kcal with a calm note; the macros always add up."),
+    29: ("The first day has one next step", "Ring 0 of 2,050, four Add buttons, and “Snap your first meal” with Open camera or Search instead."),
+    30: ("Profile keeps “suits me” right", "Each row edits one onboarding answer with a named 44 pt button. Changing an allergy re-filters recipes at once."),
+    31: ("Hidden recipes are explained", "Shellfish added: the shrimp stir-fry disappears, a second locked chip appears, and the note says why 2 recipes are hidden."),
+    32: ("Destructive needs a real confirm", "What is deleted, 30 days to change your mind, and “Keep my account” first. The page behind is inert."),
+    33: ("A week at a glance", "Seven day buttons (≥ 44 pt, even at 320 pt) with mini rings. Today is marked in words, future days are disabled."),
+    34: ("Calm when over, in Diary too", "Tuesday is 45 over: a Turmeric ring and “+45” in the strip, “45 kcal over” in words. Past meals copy to today in one tap."),
     19: ("Errors say how to fix them", "Empty or too-long names get a message with an example; the field keeps its visible label and a live character count."),
 }
 
@@ -763,6 +1189,22 @@ FLOW2C = [
     ("14-recipe-detail-step-deleted", []), ("No steps", "another recipe", "gap"),
     ("14-recipe-detail-no-steps", [(23, "50%", "78%")]),
 ]
+FLOW0 = [
+    ("01-welcome", [(24, "90%", "80%")]), ("Email me a link", ""), ("01-welcome-link", []), ("Open the link", "email app"),
+    ("02-goal", [(25, "93%", "28%")]), ("Continue", ""), ("03-about-you", [(26, "88%", "27%")]), ("Continue", ""),
+    ("04-diet", []),
+]
+FLOW0C = [
+    ("05-allergies", [(27, "93%", "24%")]), ("Continue", "or Skip"),
+    ("06-target", [(28, "82%", "52%")]), ("Start tracking", ""), ("07-today-empty", [(29, "88%", "68%")]),
+]
+FLOW0B = [("03-about-you-error", []), ("Fix the height", "", "gap"), ("06-target-floor", [])]
+FLOW3 = [
+    ("16-profile", [(30, "92%", "50%")]), ("Allergies", "edit"), ("05-allergies-edit", []), ("Save", "toast"),
+    ("16-profile-updated", []), ("Recipes tab", ""), ("13-recipes-filtered", [(31, "60%", "26%")]),
+    ("Delete account", "from Profile", "gap"), ("16-profile-delete", [(32, "90%", "85%")]),
+]
+FLOW3B = [("15-diary", [(33, "50%", "23%")]), ("Tap Tuesday", "week strip"), ("15-diary-tue", [(34, "24%", "25%")])]
 FLOW2B = [
     ("14-recipe-detail-edit", [(16, "93%", "80%")]), ("Change an amount", "totals update live"),
     ("14-recipe-detail-edited", []), ("Delete Garlic", ""),
@@ -818,6 +1260,16 @@ board = f"""<!DOCTYPE html>
   <ul class="legend"><li>{ic("chev-r")}Tap or system step</li><li><span class="pin" aria-hidden="true">1</span>UX decision, explained below</li><li><span class="badge badge--verified">✓ USDA</span>Real nutrition data</li></ul>
 </header>
 <main>
+<section class="flow" aria-labelledby="f0">
+  <div class="flow__head"><span class="t-overline text-accent">Flow 0 · Onboarding</span><h2 id="f0">Set up what “suits me” means</h2>
+  <p>About a minute: sign in without a password, then goal, body data, diet, allergies and a daily target that shows its maths. Only the goal is required.</p></div>
+  {steps(FLOW0)}
+  <h3 class="flow__sub">0 · continued: allergies, target, first day</h3>
+  {steps(FLOW0C)}
+  <h3 class="flow__sub">0B · Errors and limits</h3>
+  {steps(FLOW0B)}
+  {notes(range(24, 30))}
+</section>
 <section class="flow" aria-labelledby="f1">
   <div class="flow__head"><span class="t-overline text-accent">Flow 1 · User story 1</span><h2 id="f1">Calculate calories in a dish or product</h2>
   <p>The main path is a photo: snap, check, add. Search and the dish calculator cover packaged foods and home cooking, and all three end in the same “add a portion” step.</p></div>
@@ -836,6 +1288,14 @@ board = f"""<!DOCTYPE html>
   <h3 class="flow__sub">2C · From the Today card to the method</h3>
   {steps(FLOW2C)}
   {notes(range(10, 24))}
+</section>
+<section class="flow" aria-labelledby="f3">
+  <div class="flow__head"><span class="t-overline text-accent">Flow 3 · Profile and Diary</span><h2 id="f3">Change preferences, look back at the week</h2>
+  <p>Profile edits the onboarding answers, and recipes re-filter at once. Diary shows the week; a day over the goal is calm, and past meals copy to today.</p></div>
+  {steps(FLOW3)}
+  <h3 class="flow__sub">3B · Diary</h3>
+  {steps(FLOW3B)}
+  {notes(range(30, 35))}
 </section>
 </main>
 <footer class="board-foot">Screens: 390 × 844 pt, exported at 2× with Playwright. Built only from 02-design-system tokens and components. Photos: Unsplash and Pixabay (see 01-branding/assets/CREDITS.md). Full spec: 03-screens/FLOWS.md.</footer>

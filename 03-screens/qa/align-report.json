@@ -1,10 +1,50 @@
 {
-  "date": "2026-10-02T19:53:01.157Z",
+  "date": "2026-10-02T22:00:34.434Z",
   "widths": [
     390,
     320
   ],
   "screens": {
+    "01-welcome-link.html@390": {
+      "measured": 11,
+      "deviations": []
+    },
+    "01-welcome.html@390": {
+      "measured": 8,
+      "deviations": []
+    },
+    "02-goal.html@390": {
+      "measured": 11,
+      "deviations": []
+    },
+    "03-about-you-error.html@390": {
+      "measured": 21,
+      "deviations": []
+    },
+    "03-about-you.html@390": {
+      "measured": 21,
+      "deviations": []
+    },
+    "04-diet.html@390": {
+      "measured": 11,
+      "deviations": []
+    },
+    "05-allergies-edit.html@390": {
+      "measured": 14,
+      "deviations": []
+    },
+    "05-allergies.html@390": {
+      "measured": 18,
+      "deviations": []
+    },
+    "06-target-floor.html@390": {
+      "measured": 27,
+      "deviations": []
+    },
+    "06-target.html@390": {
+      "measured": 24,
+      "deviations": []
+    },
     "07-today-before-lunch.html@390": {
       "measured": 24,
       "deviations": []
@@ -14,6 +54,10 @@
       "deviations": []
     },
     "07-today-dinner-added.html@390": {
+      "measured": 26,
+      "deviations": []
+    },
+    "07-today-empty.html@390": {
       "measured": 26,
       "deviations": []
     },
@@ -46,11 +90,15 @@
       "deviations": []
     },
     "11-food-detail.html@390": {
-      "measured": 25,
+      "measured": 27,
       "deviations": []
     },
     "12-dish-calculator.html@390": {
       "measured": 26,
+      "deviations": []
+    },
+    "13-recipes-filtered.html@390": {
+      "measured": 27,
       "deviations": []
     },
     "13-recipes.html@390": {
@@ -74,23 +122,27 @@
       "deviations": []
     },
     "14-recipe-detail-log.html@390": {
-      "measured": 71,
+      "measured": 73,
       "deviations": []
     },
     "14-recipe-detail-method.html@390": {
-      "measured": 71,
+      "measured": 73,
       "deviations": []
     },
     "14-recipe-detail-name-error.html@390": {
-      "measured": 71,
+      "measured": 73,
       "deviations": []
     },
     "14-recipe-detail-no-steps.html@390": {
-      "measured": 53,
+      "measured": 55,
       "deviations": []
     },
     "14-recipe-detail-saving.html@390": {
       "measured": 76,
+      "deviations": []
+    },
+    "14-recipe-detail-servings.html@390": {
+      "measured": 73,
       "deviations": []
     },
     "14-recipe-detail-step-deleted.html@390": {
@@ -106,7 +158,75 @@
       "deviations": []
     },
     "14-recipe-detail.html@390": {
-      "measured": 71,
+      "measured": 73,
+      "deviations": []
+    },
+    "15-diary-mon.html@390": {
+      "measured": 28,
+      "deviations": []
+    },
+    "15-diary-tue.html@390": {
+      "measured": 28,
+      "deviations": []
+    },
+    "15-diary-wed.html@390": {
+      "measured": 28,
+      "deviations": []
+    },
+    "15-diary.html@390": {
+      "measured": 27,
+      "deviations": []
+    },
+    "16-profile-delete.html@390": {
+      "measured": 34,
+      "deviations": []
+    },
+    "16-profile-updated.html@390": {
+      "measured": 36,
+      "deviations": []
+    },
+    "16-profile.html@390": {
+      "measured": 34,
+      "deviations": []
+    },
+    "01-welcome-link.html@320": {
+      "measured": 11,
+      "deviations": []
+    },
+    "01-welcome.html@320": {
+      "measured": 8,
+      "deviations": []
+    },
+    "02-goal.html@320": {
+      "measured": 11,
+      "deviations": []
+    },
+    "03-about-you-error.html@320": {
+      "measured": 21,
+      "deviations": []
+    },
+    "03-about-you.html@320": {
+      "measured": 21,
+      "deviations": []
+    },
+    "04-diet.html@320": {
+      "measured": 11,
+      "deviations": []
+    },
+    "05-allergies-edit.html@320": {
+      "measured": 14,
+      "deviations": []
+    },
+    "05-allergies.html@320": {
+      "measured": 18,
+      "deviations": []
+    },
+    "06-target-floor.html@320": {
+      "measured": 27,
+      "deviations": []
+    },
+    "06-target.html@320": {
+      "measured": 24,
       "deviations": []
     },
     "07-today-before-lunch.html@320": {
@@ -118,6 +238,10 @@
       "deviations": []
     },
     "07-today-dinner-added.html@320": {
+      "measured": 26,
+      "deviations": []
+    },
+    "07-today-empty.html@320": {
       "measured": 26,
       "deviations": []
     },
@@ -150,11 +274,15 @@
       "deviations": []
     },
     "11-food-detail.html@320": {
-      "measured": 25,
+      "measured": 27,
       "deviations": []
     },
     "12-dish-calculator.html@320": {
       "measured": 26,
+      "deviations": []
+    },
+    "13-recipes-filtered.html@320": {
+      "measured": 27,
       "deviations": []
     },
     "13-recipes.html@320": {
@@ -178,23 +306,27 @@
       "deviations": []
     },
     "14-recipe-detail-log.html@320": {
-      "measured": 71,
+      "measured": 73,
       "deviations": []
     },
     "14-recipe-detail-method.html@320": {
-      "measured": 71,
+      "measured": 73,
       "deviations": []
     },
     "14-recipe-detail-name-error.html@320": {
-      "measured": 71,
+      "measured": 73,
       "deviations": []
     },
     "14-recipe-detail-no-steps.html@320": {
-      "measured": 53,
+      "measured": 55,
       "deviations": []
     },
     "14-recipe-detail-saving.html@320": {
       "measured": 76,
+      "deviations": []
+    },
+    "14-recipe-detail-servings.html@320": {
+      "measured": 73,
       "deviations": []
     },
     "14-recipe-detail-step-deleted.html@320": {
@@ -210,7 +342,35 @@
       "deviations": []
     },
     "14-recipe-detail.html@320": {
-      "measured": 71,
+      "measured": 73,
+      "deviations": []
+    },
+    "15-diary-mon.html@320": {
+      "measured": 28,
+      "deviations": []
+    },
+    "15-diary-tue.html@320": {
+      "measured": 28,
+      "deviations": []
+    },
+    "15-diary-wed.html@320": {
+      "measured": 28,
+      "deviations": []
+    },
+    "15-diary.html@320": {
+      "measured": 27,
+      "deviations": []
+    },
+    "16-profile-delete.html@320": {
+      "measured": 34,
+      "deviations": []
+    },
+    "16-profile-updated.html@320": {
+      "measured": 36,
+      "deviations": []
+    },
+    "16-profile.html@320": {
+      "measured": 34,
       "deviations": []
     }
   },
@@ -248,6 +408,14 @@
       "text": "Meals"
     },
     {
+      "screen": "07-today-empty.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
       "screen": "07-today-lunch-added.html",
       "width": 390,
       "size": "18px",
@@ -318,6 +486,14 @@
       "weight": "600",
       "gap": 8,
       "text": "Recent"
+    },
+    {
+      "screen": "13-recipes-filtered.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
     },
     {
       "screen": "13-recipes.html",
@@ -400,6 +576,14 @@
       "text": "Method"
     },
     {
+      "screen": "14-recipe-detail-servings.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
       "screen": "14-recipe-detail-step-deleted.html",
       "width": 390,
       "size": "18px",
@@ -430,6 +614,142 @@
       "weight": "600",
       "gap": 8,
       "text": "Method"
+    },
+    {
+      "screen": "15-diary-mon.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "This week"
+    },
+    {
+      "screen": "15-diary-mon.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Monday, 28 September"
+    },
+    {
+      "screen": "15-diary-tue.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "This week"
+    },
+    {
+      "screen": "15-diary-tue.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Tuesday, 29 September"
+    },
+    {
+      "screen": "15-diary-wed.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "This week"
+    },
+    {
+      "screen": "15-diary-wed.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Wednesday, 30 September"
+    },
+    {
+      "screen": "15-diary.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "This week"
+    },
+    {
+      "screen": "15-diary.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Thursday, 1 October · today"
+    },
+    {
+      "screen": "16-profile-delete.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Your plan"
+    },
+    {
+      "screen": "16-profile-delete.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Units"
+    },
+    {
+      "screen": "16-profile-delete.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Account"
+    },
+    {
+      "screen": "16-profile-updated.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Your plan"
+    },
+    {
+      "screen": "16-profile-updated.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Units"
+    },
+    {
+      "screen": "16-profile-updated.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Account"
+    },
+    {
+      "screen": "16-profile.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Your plan"
+    },
+    {
+      "screen": "16-profile.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Units"
+    },
+    {
+      "screen": "16-profile.html",
+      "width": 390,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Account"
     },
     {
       "screen": "07-today-before-lunch.html",
@@ -464,6 +784,14 @@
       "text": "Meals"
     },
     {
+      "screen": "07-today-empty.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Meals"
+    },
+    {
       "screen": "07-today-lunch-added.html",
       "width": 320,
       "size": "18px",
@@ -534,6 +862,14 @@
       "weight": "600",
       "gap": 8,
       "text": "Recent"
+    },
+    {
+      "screen": "13-recipes-filtered.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Fits your dinner"
     },
     {
       "screen": "13-recipes.html",
@@ -616,6 +952,14 @@
       "text": "Method"
     },
     {
+      "screen": "14-recipe-detail-servings.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Method"
+    },
+    {
       "screen": "14-recipe-detail-step-deleted.html",
       "width": 320,
       "size": "18px",
@@ -646,8 +990,144 @@
       "weight": "600",
       "gap": 8,
       "text": "Method"
+    },
+    {
+      "screen": "15-diary-mon.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "This week"
+    },
+    {
+      "screen": "15-diary-mon.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Monday, 28 September"
+    },
+    {
+      "screen": "15-diary-tue.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "This week"
+    },
+    {
+      "screen": "15-diary-tue.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Tuesday, 29 September"
+    },
+    {
+      "screen": "15-diary-wed.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "This week"
+    },
+    {
+      "screen": "15-diary-wed.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Wednesday, 30 September"
+    },
+    {
+      "screen": "15-diary.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "This week"
+    },
+    {
+      "screen": "15-diary.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Thursday, 1 October · today"
+    },
+    {
+      "screen": "16-profile-delete.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Your plan"
+    },
+    {
+      "screen": "16-profile-delete.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Units"
+    },
+    {
+      "screen": "16-profile-delete.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Account"
+    },
+    {
+      "screen": "16-profile-updated.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Your plan"
+    },
+    {
+      "screen": "16-profile-updated.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Units"
+    },
+    {
+      "screen": "16-profile-updated.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Account"
+    },
+    {
+      "screen": "16-profile.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Your plan"
+    },
+    {
+      "screen": "16-profile.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Units"
+    },
+    {
+      "screen": "16-profile.html",
+      "width": 320,
+      "size": "18px",
+      "weight": "600",
+      "gap": 8,
+      "text": "Account"
     }
   ],
-  "measured": 2598,
+  "measured": 3636,
   "deviations": 0
 }

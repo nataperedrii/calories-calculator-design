@@ -154,7 +154,7 @@ out.append("</div>")
 
 # ---------------- icons + sizes ----------------
 ICONS = ["today", "diary", "scan", "recipes", "profile", "search", "barcode", "plus", "minus", "check", "close", "back",
-         "high", "check-portion", "unsure", "fresh", "viewfinder", "portion", "time", "heart", "calendar", "alert", "info", "lock", "flash", "image", "chev-r", "signal", "wifi", "battery", "breakfast", "sun", "snack", "dinner", "edit", "trash", "arrow-up", "arrow-down"]
+         "high", "check-portion", "unsure", "fresh", "viewfinder", "portion", "time", "heart", "calendar", "alert", "info", "lock", "flash", "image", "chev-r", "signal", "wifi", "battery", "breakfast", "sun", "snack", "dinner", "edit", "trash", "arrow-up", "arrow-down", "copy"]
 out.append('<h2 class="doc-h2" id="icons"><small>Foundations</small>Icons &amp; sizes</h2>'
            '<p class="doc-lead">Drawn on a 24 px grid with a 2 px round stroke, coloured with <code>currentColor</code>. SVG files are in <code>01-branding/assets/icons/</code>. '
            'Confidence icons are always paired with a word.</p><div class="tiles">')
@@ -173,5 +173,14 @@ out.append("</tbody></table></section>")
 page = DS / "index.html"
 text = page.read_text()
 text = re.sub(r"<!-- tokens:start -->.*<!-- tokens:end -->", "<!-- tokens:start -->\n" + "\n".join(out) + "\n<!-- tokens:end -->", text, flags=re.S)
+# Header and footer figures, computed so they never drift: CSS variables in tokens.css, documented
+# components (sections c1…cN) and the version from the latest changelog heading in README.md
+n_vars = len(set(re.findall(r"(--[\w-]+)\s*:", (DS / "tokens.css").read_text())))  # unique variables (modes redefine some)
+n_comp = len(re.findall(r'<section class="doc-comp" id="c\d+">', text))
+version = re.search(r"## Changelog \(v[\d.]+ → (v[\d.]+)\)", (DS / "README.md").read_text()).group(1)
+text = re.sub(r"<b>\d+</b><span>CSS variables</span>", f"<b>{n_vars}</b><span>CSS variables</span>", text)
+text = re.sub(r"<b>\d+</b><span>components</span>", f"<b>{n_comp}</b><span>components</span>", text)
+text = re.sub(r"Design system · v[\d.]+ ·", f"Design system · {version} ·", text)
+text = re.sub(r"Ripe design system v[\d.]+ ·", f"Ripe design system {version} ·", text)
 page.write_text(text)
 print("Token sections rendered into", page.relative_to(ROOT))

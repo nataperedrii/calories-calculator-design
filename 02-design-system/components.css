@@ -662,6 +662,7 @@ button {
 .stepper {
   display: inline-flex;
   align-items: stretch;
+  max-width: 100%; /* never wider than its row; the unit wraps under the number instead (320 pt, 200 % text) */
   min-height: var(--size-touch-min);
   background: var(--color-bg-sunken);
   border-radius: var(--radius-md);
@@ -670,6 +671,7 @@ button {
 
 .stepper__btn {
   display: grid;
+  flex: none; /* 44 × 44 always: only the value shrinks when the row is narrow */
   place-items: center;
   width: var(--size-touch-min);
   min-height: var(--size-touch-min);
@@ -691,8 +693,10 @@ button {
 
 .stepper__value {
   display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  place-content: center;
   align-items: center;
-  justify-content: center;
   gap: var(--space-1);
   min-width: calc(var(--space-16) + var(--space-2));
   font: var(--type-num-m);
@@ -1351,6 +1355,10 @@ button {
   text-transform: uppercase;
   text-align: right;
   color: var(--color-text-secondary);
+}
+
+.facts th + th {
+  white-space: nowrap;
 }
 
 .facts th:first-child {
@@ -2443,8 +2451,19 @@ button {
 
 .ingredients__head {
   display: flex;
+  flex-wrap: wrap; /* 320 pt at 200 % text: "Amount" moves under "Ingredient", still on the right edge */
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: 0 var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.ingredients__head > :last-child {
+  margin-left: auto;
+}
+
+/* Servings row in the Ingredients card: a label + the weight stepper (06). It scales the ingredient list;
+   the dish summary stays per portion. The same gap above it as above the header row */
+.ingredients__servings {
   margin-top: var(--space-3);
 }
 
@@ -2533,6 +2552,270 @@ button {
 }
 
 /* =====================================================================
+   25. Step indicator (onboarding progress): the text is always shown, the bar repeats it
+   ===================================================================== */
+.progress {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.progress__text {
+  margin: 0;
+  font: var(--type-label);
+  color: var(--color-text-secondary);
+}
+
+.progress__bar {
+  display: flex;
+  gap: var(--space-1);
+}
+
+/* upcoming · done · current: done and current fill, current is the last filled one (the text says which) */
+.progress__seg {
+  flex: 1 1 0;
+  height: var(--space-1);
+  border-radius: var(--radius-full);
+  background: var(--color-macro-track);
+}
+
+.progress__seg.is-done,
+.progress__seg.is-current {
+  background: var(--color-bg-accent);
+}
+
+/* =====================================================================
+   26. Option card: a native radio or checkbox in a card with a title and a description
+   ===================================================================== */
+.option-group {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.option-group__legend {
+  margin-bottom: var(--space-2);
+  padding: 0;
+  font: var(--type-title);
+}
+
+.option-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--size-icon-l);
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--size-touch-min);
+  padding: var(--space-3) var(--space-card-inset);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
+  cursor: pointer;
+}
+
+.option-card__body {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.option-card__title {
+  font: var(--type-body-strong);
+  color: var(--color-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.option-card__desc {
+  font: var(--type-callout);
+  color: var(--color-text-secondary);
+}
+
+/* The mark: a ring (radio) or a rounded square (checkbox); the check shows only when selected */
+.option-card__mark {
+  display: grid;
+  place-items: center;
+  width: var(--size-icon-l);
+  height: var(--size-icon-l);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-strong);
+  color: var(--color-text-on-accent);
+}
+
+.option-card--check .option-card__mark {
+  border-radius: var(--radius-xs);
+}
+
+.option-card__mark .icon {
+  width: var(--size-icon-s);
+  height: var(--size-icon-s);
+  visibility: hidden;
+}
+
+.option-card:active,
+.option-card.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+.option-card:has(input:checked),
+.option-card.is-selected {
+  background: var(--color-bg-accent-subtle);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-accent);
+}
+
+/* Focus: a 2 px ring drawn just inside the card edge (it never leaves the group); the padding is the gap to the text */
+.option-card:has(input:focus-visible),
+.option-card.is-focus {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: calc(var(--border-width-focus) * -1);
+}
+
+.option-card:has(input:disabled),
+.option-card.is-disabled {
+  background: var(--color-bg-surface);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-subtle);
+  cursor: not-allowed;
+}
+
+/* Error: the group needs an answer. The message names the fix; the cards get the error border */
+.option-group.is-error .option-card {
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-error);
+}
+
+.option-group__error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-inline-icon);
+  margin: 0;
+  font: var(--type-callout);
+  color: var(--color-status-error-text);
+}
+
+/* =====================================================================
+   27. Week strip (Diary): 7 day buttons, each a weekday, a date in a mini ring and a short note
+   ===================================================================== */
+
+/* One row of 7 at 100 % text (cells ≥ 44); at large text the cells grow with the text and the strip
+   reflows to two rows instead of clipping. 7 × 44 don't fit 280 pt: use the margins, never shrink targets */
+.week {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(var(--size-touch-min), 3.4em), 1fr));
+  margin-inline: max(calc(var(--space-4) * -1), min(0%, calc((100% - 7 * var(--size-touch-min)) / 2)));
+  font: var(--type-caption);
+}
+
+.week__day {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: var(--space-1);
+  min-width: var(--size-touch-min);
+  padding: var(--space-2) 0;
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+}
+
+.week__dow {
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.week__ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: max(var(--size-day-ring), 2.4em);
+  height: max(var(--size-day-ring), 2.4em);
+  font: var(--type-num-s);
+}
+
+.week__ring svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.week__track,
+.week__value {
+  fill: none;
+  stroke-width: 3;
+}
+
+.week__track {
+  stroke: var(--color-macro-track);
+}
+
+.week__value {
+  stroke: var(--color-macro-kcal);
+  stroke-linecap: round;
+}
+
+.week__date {
+  font: var(--type-num-s);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The note under the ring: "Today", or "+45" on a day over the goal (a number, never colour alone) */
+.week__note {
+  min-height: calc(var(--type-caption-size) * var(--type-caption-line));
+  font: var(--type-caption);
+  color: var(--color-text-secondary);
+}
+
+.week__day:active,
+.week__day.is-pressed {
+  background: var(--color-bg-pressed);
+}
+
+.week__day[aria-pressed="true"],
+.week__day.is-selected {
+  background: var(--color-bg-accent-subtle);
+  box-shadow: inset 0 0 0 var(--border-width-default) var(--color-border-accent);
+}
+
+.week__day[aria-current="date"] .week__date,
+.week__day[aria-current="date"] .week__note {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.week__day.is-over .week__value {
+  stroke: var(--color-status-warning);
+}
+
+.week__day.is-over .week__note {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-status-warning-text);
+}
+
+/* Empty day: nothing logged, the track is shown dashed */
+.week__day.is-empty .week__track {
+  stroke-dasharray: 3 3;
+}
+
+.week__day:disabled,
+.week__day.is-disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.week__day:disabled .week__dow,
+.week__day.is-disabled .week__dow {
+  color: var(--color-text-disabled);
+}
+
+/* Focus: drawn inside the day (the strip has no room around it); the padding is the gap to the content */
+.week__day:focus-visible,
+.week__day.is-focus {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: calc(var(--border-width-focus) * -1);
+}
+
+/* =====================================================================
    State overrides for descendants. Kept last so higher-specificity state
    selectors never precede generic ones (stylelint no-descending-specificity).
    ===================================================================== */
@@ -2600,6 +2883,7 @@ button {
 .ingredients--facts .ingredient__amount,
 .ingredients--facts .ingredient__kcal {
   padding-left: var(--space-3);
+  white-space: nowrap; /* a number never breaks; the name column wraps instead */
   font: var(--type-num-s);
   font-variant-numeric: tabular-nums;
   text-align: right;
@@ -2624,6 +2908,40 @@ button {
   grid-row: 1 / span 2;
   grid-column: 3;
   align-self: center;
+}
+
+/* Settings rows (Profile): a plain chevron button at the row end puts its glyph on the inset line */
+.product--nav > .product__end > .icon-btn:last-child {
+  margin-right: calc(var(--size-icon-inset) * -1);
+}
+
+/* Option card (26): the mark fills and shows its check when selected; disabled text */
+.option-card.is-selected .option-card__mark {
+  background: var(--color-bg-accent);
+  box-shadow: none;
+}
+
+.option-card:has(input:checked) .option-card__mark {
+  background: var(--color-bg-accent);
+  box-shadow: none;
+}
+
+.option-card.is-selected .option-card__mark .icon {
+  visibility: visible;
+}
+
+.option-card:has(input:checked) .option-card__mark .icon {
+  visibility: visible;
+}
+
+.option-card.is-disabled .option-card__title,
+.option-card.is-disabled .option-card__desc {
+  color: var(--color-text-disabled);
+}
+
+.option-card:has(input:disabled) .option-card__title,
+.option-card:has(input:disabled) .option-card__desc {
+  color: var(--color-text-disabled);
 }
 
 /* =====================================================================

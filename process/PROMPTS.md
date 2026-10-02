@@ -897,3 +897,132 @@ The key prompts used with Claude Code, and what came out of each one.
   - Analyzing and the dish calculator vary between any two exports.
 - **Open:** at 320 the chips wrap (they need 183–200 px, the space is 137). At 390 they're one row (200 of 207); 3-digit values also wrap at 390.
 - **Before / after:** `03-screens/qa/compare-step16/` (`tools/compare-step16.mjs`).
+
+
+## 17 — Plan audit: FLOWS.md plan vs the project, gaps built
+
+**Prompt**
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Audit the plan against the actual project state: build what is missing and verify the result. You are acting as a senior product designer with 20 years of experience AND a strict QA engineer and technical project manager. Invent nothing: every statement about the state must be backed by evidence (a file, a line, git history, a check result, a screenshot).
+>
+> ## Golden rule
+> Never consider the work done without verifying it in a browser: make the change → render → screenshot → look at it → measure → fix → repeat. Do not say "done" until every check in Phase 4 passes. If something could not be verified, say so plainly.
+>
+> ## Phase 0. Find the plan
+> Look for the plan created earlier in planning mode, in this order: ~/.claude/plans/ (all .md files, newest and most relevant to this project), the project root and docs/, plan/, .claude/ folders (PLAN.md, plan*.md, TODO.md, ROADMAP.md), the project README.md, git history (git log) and commit messages. If you find several versions, take the latest relevant one and state which and why. If you cannot find a plan, stop and ask the user for the path. Do NOT reconstruct or invent a plan from memory.
+>
+> ## Phase 1. Turn the plan into a checklist
+> Break the plan into atomic items and save it as PLAN-AUDIT.md (in the project root or docs/): ID, item, expected result, acceptance criteria (what exactly must be true for the item to count as done), files where it should live. Keep the plan's structure and order (steps, phases). Skip nothing and do not merge items in a way that loses requirements.
+>
+> ## Phase 2. Audit the actual state
+> For every item determine a status with evidence:
+> - Done: fully implemented, evidence exists, acceptance criteria pass;
+> - Partial: partly implemented (describe what is missing);
+> - Missing: absent;
+> - Superseded: replaced by a later user decision (e.g. later targeted mockup tweaks changed or cancelled the original item). This is NOT a defect: do not revert such changes. Cite the file or commit that confirms it, and if the evidence is missing, mark it "unconfirmed" and ask;
+> - Unclear: ambiguous item or contradiction; do not guess, put it in the questions list.
+> Evidence for each status: what exactly you opened, ran and saw (file path, command, result, screenshot). A "Done" status for visual items without a browser check is forbidden. Separately run the project's existing checks (`npm run check`, `npm run check:a11y`, html-validate, stylelint, tokens.json validation) and factor the results into the statuses.
+> Also find what exists in the project but is NOT in the plan (extra screens, components, files) and record it under "Outside the plan".
+>
+> ## Phase 3. Gap report and build-out
+> 1. Show the gap table: ID | item | status | evidence | what to do. Execution starts right from it (no separate confirmation needed), but do not execute items with status Unclear; list the questions for the user at the end.
+> 2. Build everything with status Missing and Partial in priority order: first what other items depend on, then the rest; sequentially, in batches, with verification after each batch (re-audit exactly those items, screenshots, `npm run check`). Do not stop after the first batch until all Missing and Partial items are closed or you hit a blocker; describe the blocker precisely.
+> 3. Follow the already agreed design and requirements: tokens, light theme, equal side margins and the grid (zero deviations), text never clipped, nothing extends beyond its container, touch targets ≥ 44×44, WCAG 2.2 AA as the baseline and AAA for critical elements (7:1 contrast for calorie and macro numbers, focus with a gap), compliance with Apple App Store and Google Play requirements. Do not break anything fixed earlier.
+> 4. Do NOT change or delete anything outside the gaps. No destructive actions (force git commands, deleting files outside the gaps). Do not create parallel versions: fix the existing files. Add new components to the design system (tokens, components, docs) with states default / pressed / focus / disabled / error; tokens.json and tokens.css stay in sync.
+> 5. If the gap is very large, do not rush: work by priority and honestly leave whatever you could not finish with status Missing and a reason.
+>
+> ## Phase 4. Verify yourself
+> After the build-out, go through the WHOLE checklist again regardless of what you just did (do not trust your own notes; check the actual state again):
+> 1. Re-audit all items with evidence; each item's status must be confirmed by a fresh check.
+> 2. `npm run check`, `npm run check:a11y` (zero AA violations and zero AAA violations for critical elements), html-validate, stylelint, tokens.json validation and parity with tokens.css: 0 errors. For checks the project does not have yet but needs, create them or state plainly that they are missing.
+> 3. Browser checks: 390px and 320px widths, 200% font scaling, long texts, keyboard traversal of new and changed elements. LOOK at the screenshots and describe what you see. For the relevant screens: dish photos match their names, nothing is clipped, spacing is consistent.
+> 4. Regression: compare screenshots of the screens that should remain unchanged with the previous ones.
+> 5. Reconcile the plan with reality and UPDATE the plan: in PLAN-AUDIT.md and in the plan file itself (if it lives in the project) record the actual statuses, deviations (Superseded) with the reason and a reference, and the "Outside the plan" section. The plan must match the project state exactly; after updating, do a last pass and confirm that every line of the plan matches what is in the code and in the screenshots.
+>
+> ## Deliverables
+> - PLAN-AUDIT.md: the checklist "before" and "after" with statuses and evidence.
+> - The gap table and what exactly was built (files, before and after screenshots).
+> - A checks report (what was run and the results).
+> - The updated plan file that matches reality.
+> - Final message: the item counts by status (Done / Partial / Missing / Superseded / Unclear) before and after, what was built, what remains and why, and the list of questions for the user. If any check fails, say so plainly and keep fixing.
+
+</details>
+
+**Result**
+
+- **Plan:** `~/.claude/plans/valiant-wandering-sparrow.md` is the only plan file. Its in-project result is `03-screens/FLOWS.md`.
+- **Checklist:** `PLAN-AUDIT.md` has 53 atomic items with evidence (scripts, Playwright text, screenshots, checks, git history and PROMPTS.md).
+  - Before: 43 Done, 3 Partial, 1 Missing, 5 Superseded, 1 Unclear.
+  - After: 47 Done, 0 Partial, 0 Missing, 5 Superseded, 1 Unclear.
+- **Built:**
+  - S14b: the servings stepper on dish detail. It had been dropped in step 11 without a request (transcript evidence).
+  - S11: the unit switch g | portion.
+  - S13: the "High protein" chip.
+  - F6: accessibility per flow.
+  - Fixed while verifying: the DS stepper and the Ingredients header overflowed at 320 pt with 200 % text.
+  - FLOWS.md reconciled with the build: corrected statements and a "Spec vs build" table.
+- **Checks:**
+  - `npm run check`: 61/61 + alignment 0 (2,768 edges);
+  - `check:screens`: 387/387;
+  - `check:a11y`: Tier 1 0/39, Tier 2 0/9;
+  - tokens, stylelint, html-validate 0; contrast 67/67.
+- **Regression:** 21 of 26 screen PNGs are identical.
+- **Questions (not executed):**
+  1. The ±2 % Atwater rule vs USDA kcal.
+  2. Build 01–06, 15, 16?
+  3. Landing page, LINKS.md, prototype?
+  4. The Recipes filter row wraps to 3 rows.
+- **Before / after:** `03-screens/qa/compare-audit/` (`tools/compare-audit.mjs`), "before" exports in `03-screens/qa/before-audit/`.
+
+
+## 18 — Build onboarding (01–06), Diary (15) and Profile (16)
+
+**Prompt** (verbatim, the user's answer to question 2 of the plan audit):
+
+> << Should I build onboarding (01–06), Diary (15) and Profile (16)? In step 10 you chose to build flows 1 and 2 only. They'd also need three new design-system components: a step indicator, an option card and a week strip. >>
+>
+> Yes, please build
+
+**Result**
+
+- **Design system v1.11:**
+  - Components 25 Step indicator (`.progress`; the class `.steps` was taken by the flows board), 26 Option card and 27 Week strip, each with all its states and documented in `index.html`.
+  - Token `size.day-ring`, icon `copy`, `.product--nav`, and facts values with `nowrap`.
+- **Screens:** 19 new, 46 total.
+  - 01 welcome + link sent, 02 goal, 03 about you + error, 04 diet, 05 allergies (+ edit from Profile), 06 target + floor, 07 first day, 13 re-filtered, 15 Diary × 4 days, 16 Profile + saved + delete confirm.
+  - Diary totals come from logged meals (1,703 / 2,095 / 1,661 / 1,171); FLOWS.md's example week was updated (the old totals have no exact USDA combination).
+- **Board:** Flow 0 (2 rows + errors) and Flow 3 (+ Diary), notes 24–34. Tab bar Diary and Profile now link.
+- **Checks:**
+  - `npm run check`: 61/61 + alignment 0 (3,636 edges);
+  - `check:screens`: 603/603;
+  - `check:a11y`: Tier 1 0/39, Tier 2 0/9;
+  - tokens in sync (285); stylelint 0; html-validate 0; contrast 67/67.
+  - Regression: the committed screens are unchanged apart from the plan audit's known changes.
+- **Fixed while verifying:** option-card focus (error group, ring outside the group); week strip at 200 % and in a narrow docs stage; target input clipping; stale "% of kcal" at the floor; numbers breaking in facts tables; the chevron rule scoped; the board width; the link-sent message below the fold.
+- **Checker corrections:** a lone app-bar Back button is the leading glyph; the week strip's documented bleed; the over-goal day in the data check.
+
+
+## 19 — Landing page, README and LINKS.md
+
+**Prompt**
+
+> Create root index.html (a landing page linking to the stylescape, design system, prototype and flows board)
+> and write root README.md in English: overview, links (GitHub Pages + video placeholder),
+> embedded preview images, concept summary, how I used Claude Code (link to process/PROMPTS.md),
+> repository structure, what I'd do next. Create LINKS.md with the same external links.
+
+**Result**
+
+- **`index.html` (landing):**
+  - Uses the brand tokens and fonts; layout CSS uses tokens only.
+  - **Content:** a hero with both user stories; four deliverable cards with previews (stylescape, design system, prototype, flows board); documents; a video placeholder; credits.
+  - **Checks:** html-validate 0; axe WCAG 2.2 AA 0 violations at 1440, 390 and 320 px; no horizontal scroll; 44 px skip link as the first tab stop; every relative link resolves.
+- **Previews:** `tools/previews.mjs` (`npm run previews`) renders four 1200 × 675 JPGs into `previews/`. The full exports are too tall to embed.
+- **README.md:** rewritten as overview, links, previews, concept, how I used Claude Code, repository structure, rebuild commands, what I'd do next, and credits. The step 11–18 reports moved unchanged to `process/CHANGELOG.md`, with their links re-pointed.
+- **LINKS.md:** every external link, the video as a placeholder, and how to enable GitHub Pages. On 2–3 Oct 2026 the Pages address returns 404, because Pages isn't enabled and the work isn't on `main` yet.
+- **Found while making previews:** the docs page header still said "v1.2 · 283 CSS variables · 24 components". `tools/build_docs.py` now computes the version, unique variables (268) and components (27) on every build. The old "283" counted semicolons.
+- **Also:** `.nojekyll` (Pages serves the files as-is) and the CLAUDE.md structure list (previews, PLAN-AUDIT.md, process/CHANGELOG.md).
+- **Not built (not asked for):** `03-screens/index.html`, a phone-frame prototype shell. The prototype link opens the start screen (01 Welcome) directly; on a desktop it shows at phone width in the top-left corner.
+- **Checks:** `npm run check` 61/61 + alignment 0 (3,636 edges); `check:screens` 603/603; `check:a11y` Tier 1 0/39, Tier 2 0/9; tokens in sync.

@@ -296,6 +296,7 @@
   --size-macro-chip: 24px;  /* Compact macro chip height (P / F / C). Three chips with 3-digit values fit one row in a 320 pt card */
   --size-step-number: 28px;  /* Recipe step number disc */
   --size-measure: 40rem;  /* Maximum width of reading text such as recipe steps: 40rem ≈ 75 characters of 16 px body text (WCAG 1.4.8: ≤ 80 characters). In rem, so it scales with text size */
+  --size-day-ring: 32px;  /* Mini calorie ring around the date in the week strip (27). 7 days × 44 pt fit 308 pt; the ring leaves room for the date inside */
 
   /* ===== radius ===== */
   --radius-xs: 6px;  /* Badges */
