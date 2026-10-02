@@ -102,6 +102,17 @@ try {
           const r = s.getBoundingClientRect();
           for (const k of kids) {
             if (!visible(k)) continue;
+            if (k.matches(".row-between")) { // title + text button: label edges on the inset lines
+              const ks = [...k.children].filter(visible);
+              check(ks[0], "left", r.left + I, `row on card inset (${s.className.split(" ")[0]})`);
+              if (ks.length > 1) {
+                const last = ks[ks.length - 1];
+                const wrapped = last.getBoundingClientRect().top >= ks[0].getBoundingClientRect().bottom - 0.5;
+                if (wrapped) check(last, "left", r.left + I, `wrapped row item on card inset (${s.className.split(" ")[0]})`);
+                else check(last, "right", r.right - I, `row on card inset (${s.className.split(" ")[0]})`);
+              }
+              continue;
+            }
             check(k, "left", r.left + I, `content on card inset (${s.className.split(" ")[0]})`);
             if (both && fullWidth(k)) check(k, "right", r.right - I, `content on card inset (${s.className.split(" ")[0]})`);
           }
@@ -114,16 +125,18 @@ try {
         // rows in lists and ingredient lists: first and last column on line 2
         for (const list of document.querySelectorAll(".list, .ingredients, .recipe-steps")) {
           const r = list.getBoundingClientRect();
+          // a list inside a facts card has no surface of its own: it already sits on the inset lines
+          const inset = list.matches(".ingredients--facts") ? 0 : I;
           for (const row of list.children) {
             if (!visible(row)) continue;
             const kids = [...row.children].filter((k) => visible(k) && getComputedStyle(k).position !== "absolute");
             if (!kids.length) continue;
-            check(kids[0], "left", r.left + I, "row content on card inset");
+            check(kids[0], "left", r.left + inset, "row content on card inset");
             // the last item of each row line ends on the inset line: values, the add/delete button, full-width fields
             for (const e of kids.filter((k) => k.matches(".product__end, .product__kcal, .ingredient__kcal, .ingredient__amount, .icon-btn, .field.ingredient__wide, .recipe-step__actions"))) {
               // .product__end and step actions wrap their buttons: measure the last button inside
               const target = e.matches(".product__end, .recipe-step__actions") ? [...e.children].filter(visible).pop() : e;
-              check(target, "right", r.right - I, "row end on card inset");
+              check(target, "right", r.right - inset, "row end on card inset");
             }
           }
         }
@@ -138,10 +151,16 @@ try {
         };
         for (const list of document.querySelectorAll(".list")) column([...list.querySelectorAll(":scope > .product")].map((p) => p.children[1]), "text column equal in every row");
         column(document.querySelectorAll(".recipe-card--compact .recipe-card__body"), "compact card text column equal");
-        column(document.querySelectorAll(".recipe-card--compact .recipe-card__foot > *"), "compact card chips row equal");
-        for (const card of document.querySelectorAll(".recipe-card--compact")) {
-          const r = card.getBoundingClientRect();
-          for (const k of card.querySelectorAll(".recipe-card__foot > *")) check(k, "left", r.left + I, "chips row on card inset");
+        // search rows: the name column on one x in every row; the chips start under the photo (card-inset line)
+        for (const list of document.querySelectorAll(".list")) {
+          const rows = [...list.querySelectorAll(":scope > .product--chips")];
+          column(rows.map((p) => p.querySelector(".product__name")), "search-row names on one x");
+          for (const p of rows) check(p.querySelector(".product__macros"), "left", p.querySelector(".product__thumb").getBoundingClientRect().left, "chips start under the photo");
+        }
+        // ingredient rows: the chips start under the name (line 2 of every ingredient)
+        for (const li of document.querySelectorAll(".ingredients--facts > .ingredient:not(.ingredient--edit)")) {
+          const nm = li.querySelector(".ingredient__name"), ch = li.querySelector(":scope > .macro-tiles");
+          if (nm && ch) check(ch, "left", nm.getBoundingClientRect().left, "ingredient chips start under the name");
         }
         for (const list of document.querySelectorAll(".recipe-steps")) {
           column([...list.children].map((li) => li.children[1]), "step text starts on one x");

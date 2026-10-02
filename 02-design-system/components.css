@@ -800,7 +800,8 @@ button {
   padding-block: var(--space-3);
 }
 
-.product--detected + .product--detected::before {
+.product--detected + .product--detected::before,
+.product--chips + .product--chips::before {
   left: var(--space-3);
 }
 
@@ -822,12 +823,6 @@ button {
   overflow-wrap: anywhere;
 }
 
-.product__verified {
-  width: var(--size-icon-s);
-  height: var(--size-icon-s);
-  color: var(--color-status-success);
-}
-
 .product__meta {
   margin-top: var(--space-1);
   font: var(--type-num-s);
@@ -837,6 +832,19 @@ button {
 /* Words instead of numbers (for example the foods in a meal) */
 .product__meta--text {
   font: var(--type-callout);
+}
+
+/* Search rows: the photo (the Meals thumbnail, .product__thumb) with the name beside it, top-aligned; the
+   P / F / C chips under the photo from the card-inset line; kcal per 100 g + Add on the right edge, centred
+   on the whole row (both lines) */
+.product--chips {
+  grid-template-columns: var(--size-thumb) minmax(0, 1fr) auto;
+  align-items: start;
+  row-gap: var(--space-2);
+}
+
+.product__macros {
+  grid-column: 1 / 3;
 }
 
 .product__end {
@@ -980,6 +988,26 @@ button {
   color: var(--color-text-secondary);
 }
 
+/* The image of a card with a "View recipe" button is a pointer-only shortcut to the same recipe
+   (aria-hidden; the button is the keyboard and screen-reader path) */
+.recipe-card__img--link {
+  cursor: pointer;
+}
+
+.recipe-card__img--link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: transparent;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.recipe-card__img--link:active::after,
+.recipe-card__img--link.is-pressed::after {
+  background: var(--color-bg-pressed);
+}
+
 .recipe-card__img > img {
   display: block;
   width: 100%;
@@ -999,35 +1027,27 @@ button {
 /* Compact card for ranked lists: image on the left, the same content on the right */
 .recipe-card--compact {
   display: grid;
-  grid-template-areas:
-    "img body"
-    "foot foot";
   grid-template-columns: var(--size-recipe-thumb) minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--space-3);
+  padding: var(--space-card-inset);
 }
 
+/* Same width in every card; the height runs from the top to the bottom padding of the card and grows
+   with the text. Own rounded corners (the card itself never clips); the photo is cropped with cover */
 .recipe-card--compact .recipe-card__img {
-  grid-area: img;
+  width: var(--size-recipe-thumb);
+  min-height: 0;
   aspect-ratio: auto;
-  min-height: 100%;
-  border-radius: var(--radius-lg) 0 0;
+  border-radius: var(--radius-md);
 }
 
-.recipe-card--compact .recipe-card__img:only-child,
-.recipe-card--compact:not(:has(.recipe-card__foot)) .recipe-card__img {
-  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-}
-
-/* Macro chips span the whole card width, so P, F and C stay on one row even at 320 pt */
-.recipe-card--compact .recipe-card__foot {
-  grid-area: foot;
-  margin: 0;
-  padding: var(--space-3) var(--space-card-inset) var(--space-card-inset);
-}
-
+/* One text column, everything left-aligned, one gap between all rows:
+   title → time → reason → P / F / C → "Fits" → kcal */
 .recipe-card--compact .recipe-card__body {
-  grid-area: body;
+  min-width: 0;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-card-inset);
+  padding: 0;
 }
 
 .recipe-card--compact .recipe-card__title {
@@ -1313,7 +1333,8 @@ button {
   color: var(--color-text-secondary);
 }
 
-.facts table {
+.facts table,
+.ingredients--facts {
   width: 100%;
   overflow-wrap: anywhere; /* long names and headers wrap at 200% text instead of widening the card */
   margin-top: var(--space-3);
@@ -1321,7 +1342,8 @@ button {
   font: var(--type-callout);
 }
 
-.facts th {
+.facts th,
+.ingredients__head {
   padding: var(--space-2) 0;
   border-bottom: var(--border-width-rule) solid var(--color-text-primary);
   font: var(--type-overline);
@@ -1333,33 +1355,6 @@ button {
 
 .facts th:first-child {
   text-align: left;
-}
-
-.facts td {
-  padding: var(--space-2) 0;
-  border-bottom: var(--border-width-hairline) solid var(--color-border-subtle);
-}
-
-.facts td + td {
-  padding-left: var(--space-3);
-  font: var(--type-num-s);
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-}
-
-.facts tr.is-energy td {
-  border-bottom: var(--border-width-rule) solid var(--color-text-primary);
-  font: var(--type-body-strong);
-}
-
-.facts tr.is-energy td + td {
-  font: var(--type-num-m);
-  font-weight: var(--font-weight-semibold);
-}
-
-.facts tr.is-sub td:first-child {
-  padding-left: var(--space-4);
-  color: var(--color-text-secondary);
 }
 
 .facts .macro__key {
@@ -2385,42 +2380,6 @@ button {
   white-space: nowrap;
 }
 
-/* Compact macro text: letter + value + unit, no colour fills. The letter carries the meaning, the colour helps */
-.macro-line {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-chip-gap);
-  margin: 0;
-  font: var(--type-num-s);
-  font-variant-numeric: tabular-nums;
-  color: var(--color-text-secondary);
-}
-
-.macro-line__item {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--space-inline-icon);
-  white-space: nowrap;
-}
-
-.macro-line__key {
-  font: var(--type-caption);
-  font-weight: var(--font-weight-bold);
-}
-
-.macro-line__item--p .macro-line__key {
-  color: var(--color-macro-protein-text);
-}
-
-.macro-line__item--f .macro-line__key {
-  color: var(--color-macro-fat-text);
-}
-
-.macro-line__item--c .macro-line__key {
-  color: var(--color-macro-carbs-text);
-}
-
 .ingredient__kcal {
   font: var(--type-num-m);
   font-variant-numeric: tabular-nums;
@@ -2433,7 +2392,6 @@ button {
   color: var(--color-text-secondary);
 }
 
-.ingredient > .macro-tiles--inline,
 .ingredient__wide {
   grid-column: 1 / -1;
 }
@@ -2465,6 +2423,43 @@ button {
 /* Meal-type icon in an empty meal row: passive, muted but legible (not a button) */
 .product__thumb--meal {
   pointer-events: none;
+}
+
+/* Ingredients in the Nutrition Facts look: no own surface, rows ruled like table rows */
+.ingredients--facts {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  font: var(--type-callout);
+}
+
+.ingredients--facts > .ingredient {
+  border-radius: 0;
+}
+
+.ingredients__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.ingredients--facts .ingredient__name {
+  font: var(--type-callout);
+}
+
+.ingredients--facts > .ingredient.ingredient--edit {
+  margin-inline: calc(var(--space-3) * -1);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+}
+
+.row-between:has(> .btn--ghost:last-child) {
+  margin-right: calc(var(--space-3) * -1);
 }
 
 /* =====================================================================
@@ -2583,6 +2578,7 @@ button {
   color: var(--color-status-error-text);
 }
 
+.ingredients--facts > .ingredient::before,
 .ingredient:is(.ingredient--edit, .is-error)::before,
 .ingredient:is(.ingredient--edit, .is-error) + .ingredient::before {
   visibility: hidden;
@@ -2591,6 +2587,43 @@ button {
 .tab[aria-current="page"] .icon,
 .tab.is-active .icon {
   fill: var(--color-bg-accent-subtle);
+}
+
+/* Nutrition Facts rows, shared with the Ingredients card (one definition for both) */
+.facts td,
+.ingredients--facts > .ingredient {
+  padding: var(--space-2) 0;
+  border-bottom: var(--border-width-hairline) solid var(--color-border-subtle);
+}
+
+.facts td + td,
+.ingredients--facts .ingredient__amount,
+.ingredients--facts .ingredient__kcal {
+  padding-left: var(--space-3);
+  font: var(--type-num-s);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.facts tr.is-energy td {
+  border-bottom: var(--border-width-rule) solid var(--color-text-primary);
+  font: var(--type-body-strong);
+}
+
+.facts tr.is-energy td + td {
+  font: var(--type-num-m);
+  font-weight: var(--font-weight-semibold);
+}
+
+.facts tr.is-sub td:first-child {
+  padding-left: var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+.product--chips > .product__end {
+  grid-row: 1 / span 2;
+  grid-column: 3;
+  align-self: center;
 }
 
 /* =====================================================================
@@ -2712,4 +2745,16 @@ button {
   .tab.is-active span {
     text-decoration-color: highlight;
   }
+}
+
+/* Compact recipe card: the photo fills the image column from the top to the bottom padding */
+.recipe-card--compact .recipe-card__img > img {
+  position: absolute;
+  inset: 0;
+  object-position: center;
+}
+
+/* View row, two lines: name | amount, then P / F / C chips | kcal. The right column ends on one edge */
+.ingredients--facts > .ingredient:not(.ingredient--edit) {
+  row-gap: var(--space-2);
 }

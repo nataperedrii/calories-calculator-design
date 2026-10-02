@@ -603,3 +603,297 @@ The key prompts used with Claude Code, and what came out of each one.
   - the audit didn't map `textarea` focus;
   - a chip test counted screen-reader labels as clipped.
 - **Open:** the cod photo still shows broccoli, not peas (no free photo exists); prototype edits are not persisted.
+
+
+## 13 — Targeted tweaks: Add-food rows, Ingredients in the Nutrition Facts look, recipe card order
+
+**Prompt**
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Targeted tweaks to the existing mockup. You are acting as a senior product designer with 20 years of experience AND a strict QA engineer. These are SMALL fixes: fix the existing files, do not create parallel versions, and DO NOT TOUCH anything not mentioned here (content, spacing, colors, other screens and components stay unchanged). Keep the tokens, light theme and everything fixed earlier: equal side margins and the grid, text never clipped, nothing extends beyond its container, touch targets ≥ 44×44, WCAG 2.2 AA as the baseline and AAA for critical elements (7:1 contrast for calorie and macro numbers).
+>
+> ## Golden rule
+> Never consider the work done without verifying it in a browser: make the change → render → screenshot → look at it → measure → fix → repeat. Save before and after screenshots for every changed screen. Find screens and components by the text in the UI and in the code. If you cannot unambiguously find something described here, say so plainly and show what you found instead of guessing.
+>
+> ## Fix 1. Add-food screen for Snack: the product row (e.g. "Almonds dry roasted")
+> Currently the product row takes three lines. It must take two:
+> - Line 1: the product name and the checkmark (selection button/indicator) side by side on one line. The name on the left at the left margin, the checkmark on the right at the right margin (hit area ≥ 44×44, accessible name, states default / pressed / focus / disabled, focus ring with a gap). A long name wraps within its own column, is not clipped and does not push the checkmark out.
+> - Line 2: P — number, F — number, C — number in EXACTLY the same form as everywhere in the app: colored chips in the macro colors, the same component and tokens (not a copy of the styles), no dots between them, the same gap between number and letter, in ONE row (nowrap) at 390px and 320px at the default font size.
+> - Do not delete any other information that was in the line that disappears (if there is any, e.g. kcal or serving size): place it in line 2 before the chips if everything fits in one row at 390px. If it does not fit, do not invent a solution: leave it as it was and describe the problem with a screenshot in the report.
+> - Do not change anything else on this screen.
+>
+> ## Fix 2. Recipes → dish detail: the Ingredients section
+> The Ingredients section must look like the Nutrition Facts card of the Almonds dish (the same design: background, border, radius, internal padding, row dividers, fonts, value alignment). The structure is different (a list of ingredients, not a table of nutrients), so reproduce the LOOK and reuse the same tokens and styles of the Nutrition Facts card rather than copying values by hand. Keep what was already agreed: compact rows without colored chips (number + P/F/C letter + unit), the ingredient name on the left, amount and unit right-aligned on one common edge, control hit areas ≥ 44×44, plus all the editing functionality (change name, amount, unit, delete, add) and nutrient recalculation. The screen order is unchanged: Ingredients, then the Method.
+>
+> ## Fix 3. Recipes: recipe cards (in ALL cards)
+> The row of three chips P — number, F — number, C — number (colored chips, the same component) must sit in ONE row after the "covers your protein" line and BEFORE the "fits" line. Order in the card: ... → "covers your protein" → P / F / C row → "fits" → ... Apply to every card in the section. Do not change anything else in the cards. Test the longest values (e.g. 100+ g) at 390px and 320px: the row stays on one line, nothing is clipped; at enlarged fonts (150% and above) wrapping is allowed but nothing may be clipped.
+>
+> ## Verification (mandatory)
+> 1. Before and after screenshots for every changed screen; LOOK at them and describe what you see.
+> 2. `npm run check` (CSS loads via file:// and HTTP, no text clipping, touch targets) together with the alignment check: zero deviations from the grid on the left and right. Separately: on the Snack screen every product row is exactly two lines, P/F/C in one row at 390px and 320px; in the Recipes cards the order "covers your protein" → P/F/C → "fits" in all cards.
+> 3. `npm run check:a11y`: zero AA violations and zero AAA violations for critical elements (chip and number contrast, touch targets, checkmark focus).
+> 4. html-validate, stylelint, tokens.json validation and its parity with tokens.css: 0 errors.
+> 5. 390px and 320px widths, 200% font scaling, long product names, the longest macro values. Keyboard check of the checkmark.
+> 6. Regression: show that no other screen or component changed (compare before/after screenshots of the unchanged screens).
+>
+> ## Deliverables
+> Fixed files, before and after screenshots, a short note in README.md (Changelog: 3 items, before → after) and a final message: what changed, what was verified, what remains open. If any check fails, say so plainly and keep fixing.
+
+</details>
+
+**Clarifications:**
+- **Which "checkmark":** the screen had two candidates, the green ✓ next to the name (a USDA "verified" indicator) and the "+" add button. The user chose the green ✓: it becomes a button on the right margin, and the "+" stays next to it.
+- **Line 2 at 320 px:** the chips don't fit under the name at 320. The user chose "chips under the name", accepting a wrap at 320.
+
+**Result**
+
+- **Fix 1:**
+  - `.product--chips` rows on Add to Snack. Line 1: name, "598 / per 100 g" (kept as it was), "+", and the Verified button (`.icon-btn--verified`, 44 × 44, inset focus ring, Enter / Space shows the USDA source in a toast). Line 2: the P/F/C chips (the same macro-chip component), in one row at 390.
+  - **Open:** with two buttons and kcal on line 1, the name column is about 82 px at 390 and about 42 px at 320. 3 of 5 rows are two lines at 390; at 320 names break mid-word and rows take 4–7 lines. Reported with a screenshot; no solution was invented.
+- **Fix 2:** the Ingredients list sits in a `.facts` card. Its rows, header and fonts come from the same CSS rules as the Nutrition Facts table (shared selectors); a test compares 27 computed styles, all equal. Editing and recalculation are unchanged.
+- **Fix 3:** compact recipe cards read reason → P/F/C (full width, one row at 390 / 320, also 110 g) → Fits → kcal, in all cards.
+- **Checks:**
+  - `npm run check`: 61/61 + alignment 0 (2,490 edges);
+  - `check:a11y`: Tier 1 0/40, Tier 2 0/9;
+  - `check:screens`: 331/331 (new tests for the Verified button, chips, card order, the facts look; open items reported separately);
+  - lint 0; tokens unchanged.
+- **Regression:**
+  - 13 screens are pixel-identical.
+  - The method states are shifted by about 1 px (the Ingredients card above changed height).
+  - The analyzing screen's shimmer frame differs between any two exports.
+- **Fixed while verifying:**
+  - the Verified button's outward focus ring left its row by 2 px (now drawn inside the box);
+  - the alignment check did not handle rows that wrap inside cards;
+  - two test bugs (mouse-dismissed toast, the Energy row compared instead of a nutrient row).
+- **Before / after:** `03-screens/qa/compare-step13/` (`tools/compare-step13.mjs`).
+
+
+## 14 — Targeted tweaks: Today photo link, Add-to-Snack rows, recipe card column, Ingredients chips
+
+**Prompt**
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Targeted tweaks to the existing mockup. You are acting as a senior product designer with 20 years of experience AND a strict QA engineer. These are SMALL fixes: fix the existing files, do not create parallel versions, and DO NOT TOUCH anything not mentioned here (content, copy, colors, other screens and components stay unchanged). Keep the tokens, light theme and everything fixed earlier: equal side margins and the grid, text never clipped, nothing extends beyond its container, touch targets ≥ 44×44, WCAG 2.2 AA as the baseline and AAA for critical elements (7:1 contrast for calorie and macro numbers). The new fixes take priority over earlier ones where they conflict (noted below).
+>
+> ## Golden rule
+> Never consider the work done without verifying it in a browser: make the change → render → screenshot → look at it → measure → fix → repeat. Save before and after screenshots for every changed screen. Find screens and components by the text in the UI and in the code. If you cannot unambiguously find something, say so plainly and show what you found instead of guessing.
+>
+> ## Fix 1. Today → "Fits your dinner" section
+> Tapping the dish image in this section opens that dish's recipe (the same detail screen in Recipes that the "View recipe" button opens). Do not change anything else on the Today screen.
+> - The whole image block is clickable (tap and click), with visible pressed feedback and a pointer cursor on desktop.
+> - Accessibility: the "View recipe" button already provides keyboard access, so the image must not create a redundant duplicate focus stop: make it a clickable area (aria-hidden, tabindex=-1) or the single link with the same accessible name "View recipe: <dish name>". Choose one and explain it in the report.
+> - Verify that navigation works: clicking the image, clicking the button, keyboard (Enter / Space on the button), and that it opens exactly this dish's recipe.
+>
+> ## Fix 2. "Add to snack" screen: product rows (Almond and others)
+> New layout (it replaces the previous one where the checkmark was on the right):
+> - Left: the green circle with a checkmark next to the product name, in a narrow fixed-width column so ALL names start at the same x coordinate. The circle is top-aligned with the first line of the name.
+> - Names are aligned to the top and to the top-left corner (not vertically centered in the row). A long name wraps within its own column and is not clipped. Below the name stays the P / F / C chip row in one line (as done earlier, unchanged).
+> - Right: the "per 100 g" calories and the red button with a plus are aligned to the RIGHT edge (the right margin) and to the VERTICAL CENTER of the row. Button: hit area ≥ 44×44, states default / pressed / focus / disabled, accessible name ("Add <product name>"), focus ring with a gap.
+> - The circle with a checkmark: if it is a selection indicator rather than a button, do not make it interactive; if it is a button, give it a hit area ≥ 44×44 (invisible padding), an accessible name and states.
+> - Do not change anything else on this screen.
+>
+> ## Fix 3. Recipes → recipe cards (identical in ALL cards)
+> Card structure: the dish image on the left, all information on the right, EVERYTHING left-aligned within the text column. Order in the column from top to bottom: title → cooking time → "covers your protein" → P / F / C chip row in one line → "Fits …" with the calorie information → the calorie amount. Use the existing copy and components; invent and change nothing in the content, only the layout changes.
+> - Image: the same size and aspect ratio in every card (tokens), object-fit: cover, pinned to the left; the text column has min-width: 0 and wraps without clipping; card height grows with content.
+> - The same vertical gap between all rows of the column (one token from the 4pt/8pt scale), identical in every card. Identical card padding and image-to-text gap.
+> - The first lines of the text columns start at the same x coordinate in every card; the first lines of titles start at the same distance from the top of the card.
+> - The P/F/C row must stay in one line at 390px and 320px at the default font size. Choose the image size (token) so that the row fits even at 320px. If it cannot fit without clipping, do not clip or silently break the row: show measurements and a screenshot in the report. At enlarged fonts (150% and above) wrapping is allowed but nothing may be clipped.
+>
+> ## Fix 4. Recipes → dish detail: Ingredients
+> In the ingredient rows, add the unit g to the P, F, C values and show colored chips of different colors, THE SAME as everywhere in the design (the same component and tokens, not a copy of the styles): "P 12 g", "F 3 g", "C 20 g" in the macro colors, no dots between them, the same gap between letter and number, in ONE row. This replaces the current compact text form of P/F/C in these rows and overrides the earlier decision "no chips in Ingredients". Placement: in the ingredient row in place of the current P/F/C text (or as a second line under the name if it does not fit in the first line). Change nothing else in this section: the structure, card look, alignment, editing and recalculation stay as they are. Macros are distinguished by more than color (letter + number + g); numbers use tabular numerals.
+>
+> ## Verification (mandatory)
+> 1. Before and after screenshots for every changed screen; LOOK at them and describe what you see.
+> 2. `npm run check` (CSS loads via file:// and HTTP, no text clipping, touch targets) with the alignment check: zero deviations from the grid. Separately: on the Snack screen all names and circles start at the same x coordinate, the button and calories sit on the right margin at the vertical center; in the Recipes cards the gaps between rows are identical (measure and output a table across all cards), images are the same size, P/F/C in one row at 390px and 320px; in Ingredients all chips are in one row.
+> 3. `npm run check:a11y`: zero AA violations and zero AAA violations for critical elements (chip and number contrast, touch targets, button focus).
+> 4. html-validate, stylelint, tokens.json validation and its parity with tokens.css: 0 errors.
+> 5. 390px and 320px widths, 200% font scaling, long product and dish names, the longest macro values (100+ g). Keyboard check of the "View recipe" button, the plus and the circle.
+> 6. Regression: show that no other screen or component changed (compare screenshots of the unchanged screens).
+>
+> ## Deliverables
+> Fixed files, before and after screenshots, a short note in README.md (Changelog: 4 items, before → after) and a final message: what changed, what was verified, what remains open. If any check fails, say so plainly and keep fixing.
+
+</details>
+
+**Clarifications:**
+- **Fix 2, fit:** at 390 the right block (kcal + 44 px "+") left too little room for long names. The user chose "Make the name shorter so that everything fits properly": "Almonds, dry roasted" → "Roasted almonds", "Greek yogurt, 2%" → "Greek yogurt", "Apple, raw" → "Apple".
+- **Fix 2, layout:** "Keep photo, chips under name". The chips run from the name to the right margin, and kcal + "+" sit on line 1.
+- **Fix 3, badge:** "Keep above the title". Card 1's title offset therefore differs, and this is reported as open.
+
+**Result**
+
+- **Fix 1:**
+  - The Today card photo is `.recipe-card__img--link` with `data-href="14-recipe-detail.html"`: pointer cursor and a pressed overlay (`:active` and `.is-pressed` on pointerdown).
+  - Chosen approach: `aria-hidden`, no tab stop. "View recipe" stays the only keyboard and screen-reader path, so there is no duplicate stop.
+  - The unused toast script from step 13 was replaced by the press handler.
+- **Fix 2:**
+  - `.product--chips` grid: thumb · `.product__check` (a passive ✓ "Verified: USDA" in a `size-icon-l` column, centred on the name's first line) · name · end. Chips sit under the name. kcal + Add (44) are on the right margin.
+  - `.icon-btn--verified` was removed.
+  - The name column grew from 82 to 111 px at 390.
+- **Fix 3:**
+  - The compact card is an 80 px square image (token 112 → 80; 88 was tried first, but 3-digit chips need 225 px and 88 left 218) plus one text column: title → time → reason → chips → fits → kcal, all `space-2` apart.
+  - The foot was removed.
+- **Fix 4:**
+  - `dish-editor.js` `macroLine` renders "158 kcal" + `.macro-tile--chip` chips (the same markup as `macro_chips()` in the generator).
+  - The `.macro-line__key` rules were removed. Docs c7, c8 and c23 were updated.
+- **Checks:**
+  - `npm run check`: 61/61 + alignment 0 (2,498 edges);
+  - `check:a11y`: Tier 1 0/40, Tier 2 0/9;
+  - `check:screens`: 350/350 (new step 14 tests, a recipe-card gap table in `qa/report.json`);
+  - stylelint 0, html-validate 0, contrast 67/67, tokens in sync.
+- **Regression:**
+  - 21 of 28 PNGs are pixel-identical.
+  - The rest changed by the fixes, or (analyzing) by the shimmer frame.
+- **Fixed while verifying:**
+  - 88 px image → 80 (3-digit chips wrapped at 390);
+  - the pressed-overlay test read the colour mid-transition;
+  - the right-block test measured `.product__end`, which carries 4 px of focus-ring room;
+  - a local `facts` variable in `check.mjs` shadowed the report's `facts`.
+- **Open:**
+  - P/F/C wrap at 320 (Recipes 156 px column, Snack 152 px; they need 183–200);
+  - Snack names break mid-word at 320 (41 px column; this was already so before);
+  - kcal + "+" are centred on line 1, not on the whole row;
+  - card 1's title is 34 px lower because of the badge.
+- **Before / after:** `03-screens/qa/compare-step14/` (`tools/compare-step14.mjs`).
+
+
+## 15 — Targeted tweaks: no ✓ in search rows, full-height recipe images, two-line ingredients
+
+**Prompt**
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Targeted tweaks to the existing mockup. You are acting as a senior product designer with 20 years of experience AND a strict QA engineer. These are SMALL fixes: fix the existing files, do not create parallel versions, and DO NOT TOUCH anything not mentioned here (content, copy, colors, other screens and components stay unchanged). Keep the tokens, light theme and everything fixed earlier: equal side margins and the grid, text never clipped, nothing extends beyond its container, touch targets ≥ 44×44, WCAG 2.2 AA as the baseline and AAA for critical elements (7:1 contrast for calorie and macro numbers). The new fixes take priority over earlier ones where they conflict (noted below).
+>
+> ## Golden rule
+> Never consider the work done without verifying it in a browser: make the change → render → screenshot → look at it → measure → fix → repeat. Save before and after screenshots for every changed screen. Find screens and components by the text in the UI and in the code. If you cannot unambiguously find something, say so plainly and show what you found instead of guessing.
+>
+> ## Fix 1. "Add to snack" screen: product rows
+> - REMOVE the green circle with the green checkmark. Delete it from ALL screens and components of the app where it appears (find it by searching the code and the screenshots), together with its styles, tokens and states if nothing else uses them. If it carries a function somewhere (e.g. selection), do not delete it silently: show in the report where, and what you did.
+> - On the left of the row only the product name remains (at the left margin, top-aligned; a long name wraps within its column and is not clipped). Right under the name, the three P / F / C chips in the macro colors in one row (as done earlier, unchanged).
+> - On the right: the calorie amount with the "per 100 g" label and the red button with a plus are aligned to the RIGHT edge (the right margin) and to the VERTICAL CENTER of the row. Button: hit area ≥ 44×44, states default / pressed / focus / disabled, accessible name ("Add <product name>"), focus ring with a gap.
+> - After removing the circle, all names start at the same x coordinate (the left margin). Do not change anything else on this screen.
+>
+> ## Fix 2. Recipes → recipe cards: full-height image respecting the card padding
+> - The dish image stretches vertically from the card's top inner padding to its bottom inner padding (the card's top and bottom padding is preserved, the image does NOT touch the card edges). The left and top insets are the same as now. Currently the image is a small square; it must become a tall vertical block spanning the full height of the card's content.
+> - The image width stays as it is now (token) so it does not take space from the text and the P/F/C row fits on one line. Do not widen it.
+> - The image has its own rounded corners on all four corners (as the current thumbnail does). Do not round via overflow: hidden on the whole card, so that text is never clipped.
+> - object-fit: cover: the image may be cropped, keep the dish in frame (use object-position if needed). The "Best fit" badge stays over the image in the same place as now (or as in the current design) and does not shift.
+> - Card height grows with content and the image stretches with it (CSS grid: two columns, align-items: stretch; the image column with min-height: 0).
+> - The same image width and the same insets in every card.
+> - The P/F/C row must stay in one line at 390px and 320px at the default font size. If it cannot fit without clipping, do not silently break the row: show measurements and a screenshot in the report. At enlarged fonts (150% and above) wrapping is allowed but nothing may be clipped.
+> - Leave everything else in the cards (row order, gaps between rows, copy, alignment, chips) unchanged.
+>
+> ## Fix 3. Recipes → dish detail: the Ingredients section, each ingredient in TWO rows
+> This replaces the previous ingredient row layout. For EVERY ingredient:
+> - Top row: on the LEFT the ingredient name (e.g. "Cod Fillet Baked"), left-aligned; on the RIGHT the amount in grams (e.g. "150 g"), right-aligned.
+> - Bottom row: on the LEFT, under the name, the three colored chips P — number g, F — number g, C — number g (the same chips as everywhere in the design: the same component and tokens, no dots between them, the same gap between letter and number, in one row); on the RIGHT, under the grams, the calorie amount (e.g. "158 kcal"; use the same unit and format as in the rest of the app), right-aligned.
+> - The right column (grams and calories) ends on one common edge, with tabular numerals so numbers do not jump between rows. The left column starts at the same x coordinate.
+> - Apply identically to all ingredients in all dishes. The same vertical gap between the two rows and between ingredients (tokens from the 4pt/8pt scale).
+> - Do not change anything else in the section: the card look, editing functions (name, amount, unit, delete, add) and nutrient recalculation stay. Editing controls do not break the layout, hit areas ≥ 44×44.
+>
+> ## Verification (mandatory)
+> 1. Before and after screenshots for every changed screen; LOOK at them and describe what you see.
+> 2. `npm run check` (CSS loads via file:// and HTTP, no text clipping, touch targets) with the alignment check: zero deviations from the grid. Separately:
+> - the green circle appears nowhere any more (search the code and the DOM);
+> - on the Snack screen all names start at the same x coordinate, and the button and calories sit on the right margin at the vertical center;
+> - in the Recipes cards the image stretches from the card's top inner padding to its bottom inner padding, does not touch the edges, has the same width in every card, and P/F/C stay in one row at 390px and 320px;
+> - in Ingredients every ingredient has two rows and the right column is on one line.
+> 3. `npm run check:a11y`: zero AA violations and zero AAA violations for critical elements (chip and number contrast, touch targets, button focus). The card image has alt text (or an empty alt if it is purely decorative next to the dish name).
+> 4. html-validate, stylelint, tokens.json validation and its parity with tokens.css: 0 errors.
+> 5. 390px and 320px widths, 200% font scaling, long product, dish and ingredient names, the longest values (100+ g, four-digit kcal). Keyboard check of the plus button and the editing controls.
+> 6. Regression: show that no other screen or component changed (compare screenshots of the unchanged screens).
+>
+> ## Deliverables
+> Fixed files, before and after screenshots, a short note in README.md (Changelog: 3 items, before → after) and a final message: what changed, what was verified, what remains open. If any check fails, say so plainly and keep fixing.
+
+</details>
+
+**Interpretations (stated in the README):**
+- **"Only the product name remains (at the left margin)":** the photo was removed from the Add to Snack rows too, not only the ✓.
+- **"The badge stays over the image, as now":** "Best fit" has always been above the title, so it stays there.
+- **"The same vertical gap between the two rows and between ingredients":** one token, `space-2` (8).
+
+**Result**
+
+- **Fix 1:**
+  - `food_row` renders only the name, chips, kcal and "+". The `.product--chips` grid is `1fr auto`; `.product__end` spans both lines, centred on the row. The search-row divider starts on the name line.
+  - Removed the ✓ markup and CSS everywhere: `.product__check`, `.product__verified`, the docs rows, and the audit's contrast entry for that icon.
+  - Kept the functional uses of the `high` glyph (toasts, "High confidence", scan hint, "done" step) and listed them in the README.
+- **Fix 2:**
+  - The compact card uses `align-items: stretch`. The image column is 80 wide (token unchanged) with `min-height: 0`; the photo is absolutely positioned with cover / centre and has its own radius.
+  - The image runs 16 px from the top and bottom edges: 239 / 205 / 205 px tall at 390.
+- **Fix 3:**
+  - `dish-editor.js` renders name | amount, then chips | `.ingredient__kcal`. kcal shares the facts value rule (mono, tabular, right-aligned).
+  - The gap between the two lines is `space-2`. `.macro-line` was removed and docs c23 updated.
+- **Checks:**
+  - `npm run check`: 61/61 + alignment 0 (2,598 edges);
+  - `check:a11y`: Tier 1 0/39 (one entry fewer: the removed icon), Tier 2 0/9;
+  - `check:screens`: 356/356;
+  - stylelint 0, html-validate 0, contrast 67/67, tokens in sync (no token changes).
+- **Regression:**
+  - 21 of 28 PNGs are identical.
+  - The rest changed by the fixes, plus 5 px of anti-aliasing in Method and the shimmer frame.
+- **Open:**
+  - P/F/C wrap at 320 on Snack (137 px), Recipes (156 px) and Ingredients (156–173 px); they need 174–200;
+  - card 1's title offset (badge).
+- **Before / after:** `03-screens/qa/compare-step15/` (`tools/compare-step15.mjs`).
+
+
+## 16 — Add to Snack: a matching photo per product, chips under the photo
+
+**Prompt**
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Targeted tweak to the existing mockup. You are acting as a senior product designer with 20 years of experience AND a strict QA engineer. This is a SMALL fix: fix the existing files, do not create parallel versions, and DO NOT TOUCH anything not mentioned here (content, copy, colors, other screens and components stay unchanged). Keep the tokens, light theme and everything fixed earlier: equal side margins and the grid, text never clipped, nothing extends beyond its container, touch targets ≥ 44×44, WCAG 2.2 AA as the baseline and AAA for critical elements (7:1 contrast for calorie and macro numbers).
+>
+> ## Golden rule
+> Never consider the work done without verifying it in a browser: make the change → render → screenshot → look at it → measure → fix → repeat. Save before and after screenshots. Find the screen by "Add to snack" in the UI text and in the code. If you cannot unambiguously find something, say so plainly instead of guessing.
+>
+> ## Fix. "Add to snack" screen: product photos
+> For EVERY product in the list (Almonds, Roasted almonds and all the others) use this row layout:
+> - On the left the product photo, with the product name next to it (to the right of the photo). The name is top-aligned with the photo; a long name wraps within its own column and is not clipped.
+> - UNDER the photo, a row of three colored chips P / F / C (the same chips as everywhere in the design: the same component and tokens, no dots between them, the same gap between letter and number, in one row), starting at the left margin (the left edge of the photo). The same vertical gap between the photo and the chips in every row (token from the 4pt/8pt scale).
+> - On the right, as before: the calorie amount with the "per 100 g" label and the red button with a plus are aligned to the RIGHT edge (the right margin) and to the vertical center of the row. Change nothing about them (hit area ≥ 44×44, states, accessible name).
+> - The photo size is EXACTLY the same as the thumbnails in the Meals section on the Today screen: take the same size token, radius and object-fit (cover) rather than new values; if the Meals thumbnail is its own component, use it. All photos in the list have the same size and proportions.
+> - The photo must match the product name: "Almonds" shows almonds, "Roasted almonds" shows roasted almonds, and likewise for every product. Pick a separate matching photo for each product. Source: freely licensed photos (Unsplash / Pexels / Pixabay) with author, link and license recorded, or files provided by the user in the project folder. No competitor photos and no copyrighted images. After choosing, LOOK at each photo and confirm with your own eyes that it shows exactly this product; do not rely on the file name or the search result alone. If there is no network access or no suitable photo, put a clearly labeled placeholder and list in the report which products need files.
+> - Store photos in assets, one file per product, optimized size, stable file names; alt text with the product name (or an empty alt if the adjacent name already carries the meaning).
+> - Do not change anything else on this screen (product order, copy, values, buttons, edge insets).
+>
+> ## Verification (mandatory)
+> 1. Before and after screenshots of the screen; LOOK at them and describe what you see, and separately describe what each photo shows and whether it matches the name.
+> 2. `npm run check` (CSS loads via file:// and HTTP, no text clipping, touch targets) with the alignment check: zero deviations from the grid. Separately: all photos on the screen have exactly the same size as the Meals thumbnails on Today (measure and compare bounding boxes); all names start at the same x coordinate; the P/F/C chips under the photo are in one row at 390px and 320px; the button and calories sit on the right margin at the vertical center.
+> 3. `npm run check:a11y`: zero AA violations and zero AAA violations for critical elements (chip and number contrast, touch targets, button focus).
+> 4. html-validate, stylelint, tokens.json validation and its parity with tokens.css: 0 errors.
+> 5. 390px and 320px widths, 200% font scaling, long product names, the longest macro values (100+ g). Check that photos are not stretched or distorted.
+> 6. Regression: show that no other screen or component changed (compare screenshots of the unchanged screens).
+>
+> ## Deliverables
+> Fixed files, before and after screenshots, a table "product → photo file → author / source / license", a short note in README.md (Changelog) and a final message: what changed, what was verified, what remains open. If any check fails, say so plainly and keep fixing.
+
+</details>
+
+**Clarification:** downloading needs explicit permission. I asked to download 3 photos (file, source and size listed); the answer was "Yes, download all 3".
+
+**Result**
+
+- **Photos:** checked by eye.
+  - Almonds and Apple keep the photos already in the repo.
+  - New: roasted almonds (Pixabay 83766, PublicDomainPictures), almond butter (Pexels 33657317, cole yap) and Greek yogurt (Unsplash NFHeBysjCTI, Micheile Henderson). Each was cropped to a centred square and saved at 240 px (19–33 KB). Credits are in `01-branding/assets/CREDITS.md`.
+  - Rejected: hazelnut-like salted nuts, sugar-coated fair almonds, a branded yogurt cup, a thin yogurt.
+- **Layout:**
+  - `.product--chips` grid: `size-thumb | 1fr | auto`. The photo is `.product__thumb` (the Meals thumbnail) with the name top-aligned beside it.
+  - The chips span columns 1–2 under the photo, `space-2` below it. kcal + Add stay centred on the row. Docs c7 updated.
+- **Checks:**
+  - `npm run check`: 61/61 + alignment 0 (one earlier run had a file:// vs http:// flake on the docs page, then passed);
+  - `check:a11y`: Tier 1 0/39, Tier 2 0/9;
+  - `check:screens`: 362/362 (photo boxes equal the Meals thumbnail, 48 × 48, r10, cover);
+  - lint 0, tokens in sync.
+- **Regression:**
+  - 23 of 28 PNGs are identical.
+  - Analyzing and the dish calculator vary between any two exports.
+- **Open:** at 320 the chips wrap (they need 183–200 px, the space is 137). At 390 they're one row (200 of 207); 3-digit values also wrap at 390.
+- **Before / after:** `03-screens/qa/compare-step16/` (`tools/compare-step16.mjs`).

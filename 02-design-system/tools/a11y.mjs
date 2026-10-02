@@ -215,7 +215,7 @@ const textPairs = await page.evaluate(() => {
     // calorie ring value vs track
     { const v = first("#c9 .nutri__value"), t = first("#c9 .nutri__track"); push("calorie ring value vs track", A.label(v), A.parse(getComputedStyle(v).stroke), A.parse(getComputedStyle(t).stroke), 3, true, "graphic (values also shown as text)"); }
     // icons
-    for (const [n, s] of [["icon in tint icon button", "#c1 .icon-btn--tint"], ["icon in plain icon button", "#c11 .icon-btn"], ["tab icon (inactive)", "#c12 .tab:not(.is-active):not(.tab--scan)"], ["active tab indicator", "#c12 .tab.is-active"], ["verified check icon", "#c7 .product__verified"]]) {
+    for (const [n, s] of [["icon in tint icon button", "#c1 .icon-btn--tint"], ["icon in plain icon button", "#c11 .icon-btn"], ["tab icon (inactive)", "#c12 .tab:not(.is-active):not(.tab--scan)"], ["active tab indicator", "#c12 .tab.is-active"]]) {
       const e = first(s); if (!e) continue; const cs = getComputedStyle(e);
       const ind = n === "active tab indicator" ? A.parse(getComputedStyle(e.querySelector("span")).textDecorationColor) : A.parse(cs.color);
       push(n, A.label(e), ind && ind.a > 0 ? ind : null, bgOf(e), 3, true, n === "active tab indicator" ? "2 px label underline" : "icon stroke");

@@ -291,7 +291,7 @@
   --size-empty-icon: 72px;
   --size-shutter: 72px;  /* Camera shutter button (larger than a normal target: the main action on the camera screen) */
   --size-plate-guide: 280px;  /* Plate outline in the camera viewfinder */
-  --size-recipe-thumb: 112px;  /* Image width in compact recipe cards */
+  --size-recipe-thumb: 80px;  /* Image size (1:1) in compact recipe cards. 80 leaves 226 px for the text column at 390 pt: the P / F / C row needs 200 px (225 with 3-digit values), so it stays one row */
   --size-icon-inset: 10px;  /* (touch-min 44 − icon 24) / 2: the space between a hit area and its glyph. Bars subtract it so the glyph, not the hit box, sits on the grid line */
   --size-macro-chip: 24px;  /* Compact macro chip height (P / F / C). Three chips with 3-digit values fit one row in a 320 pt card */
   --size-step-number: 28px;  /* Recipe step number disc */

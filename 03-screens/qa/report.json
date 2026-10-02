@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-01T21:59:32.611Z",
-  "passed": 322,
+  "date": "2026-10-02T19:54:59.102Z",
+  "passed": 362,
   "failed": 0,
   "results": [
     {
@@ -355,7 +355,7 @@
       "group": "links",
       "name": "03-screens/screens/10-add-food.html every relative link, image and data-href exists",
       "ok": true,
-      "detail": "9 targets"
+      "detail": "11 targets"
     },
     {
       "group": "ds",
@@ -679,7 +679,7 @@
       "group": "export",
       "name": "flows.png exists at 2× the board width",
       "ok": true,
-      "detail": "4800×9714"
+      "detail": "4800×9756"
     },
     {
       "group": "load",
@@ -1093,7 +1093,7 @@
       "group": "axe",
       "name": "03-screens/screens/10-add-food.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
       "ok": true,
-      "detail": "39 rules pass, 0 need review"
+      "detail": "34 rules pass, 0 need review"
     },
     {
       "group": "frame",
@@ -1315,7 +1315,7 @@
       "group": "axe",
       "name": "03-screens/screens/14-recipe-detail-edit.html: axe WCAG 2.2 A/AA + best practice, 0 violations",
       "ok": true,
-      "detail": "46 rules pass, 0 need review"
+      "detail": "47 rules pass, 0 need review"
     },
     {
       "group": "frame",
@@ -1829,15 +1829,15 @@
     },
     {
       "group": "chips",
-      "name": "13-recipes.html @320: P, F, C in ONE row (also with 110 g in every chip), nothing clipped or outside the card",
+      "name": "13-recipes.html @320: chips may wrap in the 156 px text column, but nothing clipped or outside the card",
       "ok": true,
-      "detail": "{\"normal\":[{\"rows\":1,\"outside\":false,\"clipped\":false},{\"rows\":1,\"outside\":false,\"clipped\":false},{\"rows\":1,\"outside\":false,\"clipped\":false}],\"longest\":[{\"rows\":1,\"outside\":false,\"clipped\":false},{\"rows\":1,\"outside\":false,\"clipped\":false},{\"rows\":1,\"outside\":false,\"clipped\":false}]}"
+      "detail": "{\"normal\":[{\"rows\":2,\"outside\":false,\"clipped\":false},{\"rows\":2,\"outside\":false,\"clipped\":false},{\"rows\":2,\"outside\":false,\"clipped\":false}],\"longest\":[{\"rows\":2,\"outside\":false,\"clipped\":false},{\"rows\":2,\"outside\":false,\"clipped\":false},{\"rows\":2,\"outside\":false,\"clipped\":false}]}"
     },
     {
       "group": "chips",
       "name": "13-recipes.html @150% text: chips may wrap, but nothing clipped or outside the card",
       "ok": true,
-      "detail": "[{\"rows\":1,\"outside\":false,\"clipped\":false},{\"rows\":1,\"outside\":false,\"clipped\":false},{\"rows\":1,\"outside\":false,\"clipped\":false}]"
+      "detail": "[{\"rows\":2,\"outside\":false,\"clipped\":false},{\"rows\":2,\"outside\":false,\"clipped\":false},{\"rows\":2,\"outside\":false,\"clipped\":false}]"
     },
     {
       "group": "chips",
@@ -1934,6 +1934,268 @@
       "name": "no steps: an empty state (“No steps yet”) with “Add steps”, which opens a focused Step 1 field",
       "ok": true,
       "detail": "{\"emptyState\":{\"visible\":true,\"title\":\"No steps yet\"},\"added\":{\"mode\":\"edit\",\"focus\":\"Step 1\"}}"
+    },
+    {
+      "group": "add-food",
+      "name": "@390: every photo is the Meals thumbnail on Today (48×48 r10px cover): same box, radius and object-fit",
+      "ok": true,
+      "detail": "48×48 r10px cover | 48×48 r10px cover | 48×48 r10px cover | 48×48 r10px cover | 48×48 r10px cover"
+    },
+    {
+      "group": "add-food",
+      "name": "@390: each product has its own matching photo file, cropped with cover (never stretched), alt=\"\" beside the name",
+      "ok": true,
+      "detail": "Almonds → food-almonds.jpg (1600×1067, cover) | Roasted almonds → food-roasted-almonds.jpg (240×240, cover) | Almond butter → food-almond-butter.jpg (240×240, cover) | Apple → food-apple.jpg (1600×2416, cover) | Greek yogurt → food-greek-yogurt.jpg (240×240, cover)"
+    },
+    {
+      "group": "add-food",
+      "name": "@390: photos and chips start on the card-inset line; every name on one x, top-aligned with its photo",
+      "ok": true,
+      "detail": "Almonds: photo 36.0, chips 36.0, name 96.0, name top 0 | Roasted almonds: photo 36.0, chips 36.0, name 96.0, name top 0 | Almond butter: photo 36.0, chips 36.0, name 96.0, name top 0 | Apple: photo 36.0, chips 36.0, name 96.0, name top 0 | Greek yogurt: photo 36.0, chips 36.0, name 96.0, name top 0"
+    },
+    {
+      "group": "add-food",
+      "name": "@390: the same gap photo → chips in every row (--space-2 = 8)",
+      "ok": true,
+      "detail": "8, 8, 8, 8, 8"
+    },
+    {
+      "group": "add-food",
+      "name": "@390: “+” is 44×44, named “Add <food>”, on the right edge; “+” and kcal centred on the whole row",
+      "ok": true,
+      "detail": "Add almonds: 44×44, right 0 | Add roasted almonds: 44×44, right 0 | Add almond butter: 44×44, right 0 | Add apple: 44×44, right 0 | Add greek yogurt: 44×44, right 0"
+    },
+    {
+      "group": "add-food",
+      "name": "@390: names wrap, never clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "add-food",
+      "name": "@390: P, F, C chips in one row in every row",
+      "ok": true,
+      "detail": "Almonds: 1 row(s), needs 200 of 207 px | Roasted almonds: 1 row(s), needs 200 of 207 px | Almond butter: 1 row(s), needs 200 of 207 px | Apple: 1 row(s), needs 183 of 207 px | Greek yogurt: 1 row(s), needs 183 of 207 px"
+    },
+    {
+      "group": "add-food",
+      "name": "@320: every photo is the Meals thumbnail on Today (48×48 r10px cover): same box, radius and object-fit",
+      "ok": true,
+      "detail": "48×48 r10px cover | 48×48 r10px cover | 48×48 r10px cover | 48×48 r10px cover | 48×48 r10px cover"
+    },
+    {
+      "group": "add-food",
+      "name": "@320: each product has its own matching photo file, cropped with cover (never stretched), alt=\"\" beside the name",
+      "ok": true,
+      "detail": "Almonds → food-almonds.jpg (1600×1067, cover) | Roasted almonds → food-roasted-almonds.jpg (240×240, cover) | Almond butter → food-almond-butter.jpg (240×240, cover) | Apple → food-apple.jpg (1600×2416, cover) | Greek yogurt → food-greek-yogurt.jpg (240×240, cover)"
+    },
+    {
+      "group": "add-food",
+      "name": "@320: photos and chips start on the card-inset line; every name on one x, top-aligned with its photo",
+      "ok": true,
+      "detail": "Almonds: photo 36.0, chips 36.0, name 96.0, name top 0 | Roasted almonds: photo 36.0, chips 36.0, name 96.0, name top 0 | Almond butter: photo 36.0, chips 36.0, name 96.0, name top 0 | Apple: photo 36.0, chips 36.0, name 96.0, name top 0 | Greek yogurt: photo 36.0, chips 36.0, name 96.0, name top 0"
+    },
+    {
+      "group": "add-food",
+      "name": "@320: the same gap photo → chips in every row (--space-2 = 8)",
+      "ok": true,
+      "detail": "8, 8, 8, 8, 8"
+    },
+    {
+      "group": "add-food",
+      "name": "@320: “+” is 44×44, named “Add <food>”, on the right edge; “+” and kcal centred on the whole row",
+      "ok": true,
+      "detail": "Add almonds: 44×44, right 0 | Add roasted almonds: 44×44, right 0 | Add almond butter: 44×44, right 0 | Add apple: 44×44, right 0 | Add greek yogurt: 44×44, right 0"
+    },
+    {
+      "group": "add-food",
+      "name": "@320: names wrap, never clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "add-food",
+      "name": "the green ✓ indicator is gone from every screen and from components.css (the glyph stays only in toasts, confidence, the scan hint and the analysing step)",
+      "ok": true,
+      "detail": "none left"
+    },
+    {
+      "group": "add-food",
+      "name": "@320: a long name and 110 g chips wrap; nothing clipped or outside",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "add-food",
+      "name": "@390, 200 % text: a long name and 110 g chips wrap; nothing clipped or outside",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "add-food",
+      "name": "keyboard: Tab goes “+” → next “+”; focus ring 2 px with a gap",
+      "ok": true,
+      "detail": "next stop: Add roasted almonds; ring true"
+    },
+    {
+      "group": "add-food",
+      "name": "keyboard: Enter on “Add almonds” opens the food detail",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ingredients",
+      "name": "Ingredients card = Nutrition Facts card: background, radius, shadow, padding, title, header row, row rules, fonts, value alignment",
+      "ok": true,
+      "detail": "all computed styles equal"
+    },
+    {
+      "group": "ingredients",
+      "name": "amounts end on one common right edge; Ingredients come before Method",
+      "ok": true,
+      "detail": "1 right edge(s)"
+    },
+    {
+      "group": "ingredients",
+      "name": "@390: every ingredient has two lines (name | amount, then P/F/C chips | kcal); names and chips on one x; amount and kcal on one right edge; tabular numbers",
+      "ok": true,
+      "detail": "Cod fillet, baked: gap 8 | Potatoes, boiled in skin: gap 8 | Broccoli, boiled: gap 8 | Olive oil: gap 8 | Garlic: gap 8 · left x 36.00 · right x 354.00"
+    },
+    {
+      "group": "ingredients",
+      "name": "@390: the gap between the two lines is one token (--space-2 = 8) in every ingredient",
+      "ok": true,
+      "detail": "8, 8, 8, 8, 8"
+    },
+    {
+      "group": "ingredients",
+      "name": "@390: P / F / C chips in one row in every ingredient",
+      "ok": true,
+      "detail": "Cod fillet, baked: 1 row(s), needs 183 of 226 px | Potatoes, boiled in skin: 1 row(s), needs 183 of 226 px | Broccoli, boiled: 1 row(s), needs 174 of 235 px | Olive oil: 1 row(s), needs 183 of 235 px | Garlic: 1 row(s), needs 174 of 243 px"
+    },
+    {
+      "group": "ingredients",
+      "name": "@390: 110 g chips, 1234 kcal and a long name: nothing clipped; the right column still on one edge",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "ingredients",
+      "name": "@320: every ingredient has two lines (name | amount, then P/F/C chips | kcal); names and chips on one x; amount and kcal on one right edge; tabular numbers",
+      "ok": true,
+      "detail": "Cod fillet, baked: gap 8 | Potatoes, boiled in skin: gap 8 | Broccoli, boiled: gap 8 | Olive oil: gap 8 | Garlic: gap 8 · left x 36.00 · right x 284.00"
+    },
+    {
+      "group": "ingredients",
+      "name": "@320: the gap between the two lines is one token (--space-2 = 8) in every ingredient",
+      "ok": true,
+      "detail": "8, 8, 8, 8, 8"
+    },
+    {
+      "group": "ingredients",
+      "name": "@320: 110 g chips, 1234 kcal and a long name: nothing clipped; the right column still on one edge",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "cards",
+      "name": "@390: every card reads title → time → reason → P/F/C → Fits → kcal",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: title → time → reason → chips → fits → kcal | Shrimp & broccoli stir-fry with rice: title → time → reason → chips → fits → kcal | Chickpea & spinach curry with rice: title → time → reason → chips → fits → kcal"
+    },
+    {
+      "group": "cards",
+      "name": "@390: one vertical gap between all rows in all cards (--space-2 = 8)",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: 8, 8, 8, 8, 8, 8 | Shrimp & broccoli stir-fry with rice: 8, 8, 8, 8, 8 | Chickpea & spinach curry with rice: 8, 8, 8, 8, 8"
+    },
+    {
+      "group": "cards",
+      "name": "@390: the image runs from the top to the bottom padding (16 from each edge), the same 80 px width and insets in every card, cover, own radius on 4 corners, the card does not clip, alt present",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: 80×239, top 16, bottom 16, left 16, radius 16px 16px 16px 16px | Shrimp & broccoli stir-fry with rice: 80×205, top 16, bottom 16, left 16, radius 16px 16px 16px 16px | Chickpea & spinach curry with rice: 80×205, top 16, bottom 16, left 16, radius 16px 16px 16px 16px"
+    },
+    {
+      "group": "cards",
+      "name": "@390: same padding and image → text gap; text column min-width 0 and left-aligned",
+      "ok": true,
+      "detail": "pad 16px 16px 16px 16px, gap 12 | pad 16px 16px 16px 16px, gap 12 | pad 16px 16px 16px 16px, gap 12"
+    },
+    {
+      "group": "cards",
+      "name": "@390: title offset equal in the cards without a badge",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: 50 | Shrimp & broccoli stir-fry with rice: 16 | Chickpea & spinach curry with rice: 16"
+    },
+    {
+      "group": "cards",
+      "name": "@390: P / F / C in one row in every card",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: 1 row(s), needs 200 of 226 px | Shrimp & broccoli stir-fry with rice: 1 row(s), needs 200 of 226 px | Chickpea & spinach curry with rice: 1 row(s), needs 200 of 226 px"
+    },
+    {
+      "group": "cards",
+      "name": "@320: every card reads title → time → reason → P/F/C → Fits → kcal",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: title → time → reason → chips → fits → kcal | Shrimp & broccoli stir-fry with rice: title → time → reason → chips → fits → kcal | Chickpea & spinach curry with rice: title → time → reason → chips → fits → kcal"
+    },
+    {
+      "group": "cards",
+      "name": "@320: one vertical gap between all rows in all cards (--space-2 = 8)",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: 8, 8, 8, 8, 8, 8 | Shrimp & broccoli stir-fry with rice: 8, 8, 8, 8, 8 | Chickpea & spinach curry with rice: 8, 8, 8, 8, 8"
+    },
+    {
+      "group": "cards",
+      "name": "@320: the image runs from the top to the bottom padding (16 from each edge), the same 80 px width and insets in every card, cover, own radius on 4 corners, the card does not clip, alt present",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: 80×298, top 16, bottom 16, left 16, radius 16px 16px 16px 16px | Shrimp & broccoli stir-fry with rice: 80×237, top 16, bottom 16, left 16, radius 16px 16px 16px 16px | Chickpea & spinach curry with rice: 80×264, top 16, bottom 16, left 16, radius 16px 16px 16px 16px"
+    },
+    {
+      "group": "cards",
+      "name": "@320: same padding and image → text gap; text column min-width 0 and left-aligned",
+      "ok": true,
+      "detail": "pad 16px 16px 16px 16px, gap 12 | pad 16px 16px 16px 16px, gap 12 | pad 16px 16px 16px 16px, gap 12"
+    },
+    {
+      "group": "cards",
+      "name": "@320: title offset equal in the cards without a badge",
+      "ok": true,
+      "detail": "Baked cod, potatoes & broccoli: 50 | Shrimp & broccoli stir-fry with rice: 16 | Chickpea & spinach curry with rice: 16"
+    },
+    {
+      "group": "today-image",
+      "name": "image click opens 14-recipe-detail; pointer cursor; pressed overlay; aria-hidden and not a tab stop (View recipe stays the one keyboard path)",
+      "ok": true,
+      "detail": "{\"hidden\":\"true\",\"tab\":-1,\"focusables\":0,\"cursor\":\"pointer\"}; pressed rgba(43, 33, 24, 0.08)"
+    },
+    {
+      "group": "today-image",
+      "name": "keyboard: the card has one tab stop (View recipe); the image is never focused",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "open": [
+    {
+      "name": "Add to Snack @320: the chips under the photo wrap where the photo + name columns are narrower than the chip row",
+      "detail": "Almonds: 2 row(s), needs 200 of 137 px | Roasted almonds: 2 row(s), needs 200 of 137 px | Almond butter: 2 row(s), needs 200 of 137 px | Apple: 2 row(s), needs 183 of 137 px | Greek yogurt: 2 row(s), needs 183 of 137 px"
+    },
+    {
+      "name": "Ingredients @320: the chip row beside the kcal is narrower than the three chips, so C wraps",
+      "detail": "Cod fillet, baked: 2 row(s), needs 183 of 156 px | Potatoes, boiled in skin: 2 row(s), needs 183 of 156 px | Broccoli, boiled: 2 row(s), needs 174 of 165 px | Olive oil: 2 row(s), needs 183 of 165 px | Garlic: 2 row(s), needs 174 of 173 px"
+    },
+    {
+      "name": "Recipes @390: card 1 title starts lower (the “Best fit” badge sits above it, as decided)",
+      "detail": "Baked cod, potatoes & broccoli: title at 50 px | Shrimp & broccoli stir-fry with rice: title at 16 px | Chickpea & spinach curry with rice: title at 16 px"
+    },
+    {
+      "name": "Recipes @320: card 1 title starts lower (the “Best fit” badge sits above it, as decided)",
+      "detail": "Baked cod, potatoes & broccoli: title at 50 px | Shrimp & broccoli stir-fry with rice: title at 16 px | Chickpea & spinach curry with rice: title at 16 px"
+    },
+    {
+      "name": "Recipes @320: P / F / C wrap in the 156 px text column (needs 200)",
+      "detail": "Baked cod, potatoes & broccoli: 2 row(s), needs 200 of 156 px | Shrimp & broccoli stir-fry with rice: 2 row(s), needs 200 of 156 px | Chickpea & spinach curry with rice: 2 row(s), needs 200 of 156 px"
     }
   ],
   "facts": {
@@ -1993,7 +2255,7 @@
       "aaaContrastBelow7": []
     },
     "03-screens/screens/10-add-food.html": {
-      "axePasses": 39,
+      "axePasses": 34,
       "axeIncomplete": [],
       "aaaContrastBelow7": []
     },
@@ -2023,7 +2285,7 @@
       "aaaContrastBelow7": []
     },
     "03-screens/screens/14-recipe-detail-edit.html": {
-      "axePasses": 46,
+      "axePasses": 47,
       "axeIncomplete": [],
       "aaaContrastBelow7": []
     },
@@ -2091,6 +2353,202 @@
       "axePasses": 31,
       "axeIncomplete": [],
       "aaaContrastBelow7": []
-    }
+    },
+    "recipeCardTable": [
+      {
+        "width": 390,
+        "title": "Baked cod, potatoes & broccoli",
+        "order": "title → time → reason → chips → fits → kcal",
+        "gaps": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "img": "80×239",
+        "fit": "cover",
+        "minW": "0px",
+        "imgTop": 16,
+        "imgBottom": 16,
+        "imgLeft": 16,
+        "imgW": 80,
+        "radius": "16px 16px 16px 16px",
+        "cardClips": false,
+        "alt": true,
+        "pad": "16px 16px 16px 16px",
+        "imgGap": 12,
+        "titleOffset": 50,
+        "left": 1,
+        "chips": {
+          "rows": 1,
+          "need": 200,
+          "have": 200
+        },
+        "textCol": 226
+      },
+      {
+        "width": 390,
+        "title": "Shrimp & broccoli stir-fry with rice",
+        "order": "title → time → reason → chips → fits → kcal",
+        "gaps": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "img": "80×205",
+        "fit": "cover",
+        "minW": "0px",
+        "imgTop": 16,
+        "imgBottom": 16,
+        "imgLeft": 16,
+        "imgW": 80,
+        "radius": "16px 16px 16px 16px",
+        "cardClips": false,
+        "alt": true,
+        "pad": "16px 16px 16px 16px",
+        "imgGap": 12,
+        "titleOffset": 16,
+        "left": 1,
+        "chips": {
+          "rows": 1,
+          "need": 200,
+          "have": 200
+        },
+        "textCol": 226
+      },
+      {
+        "width": 390,
+        "title": "Chickpea & spinach curry with rice",
+        "order": "title → time → reason → chips → fits → kcal",
+        "gaps": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "img": "80×205",
+        "fit": "cover",
+        "minW": "0px",
+        "imgTop": 16,
+        "imgBottom": 16,
+        "imgLeft": 16,
+        "imgW": 80,
+        "radius": "16px 16px 16px 16px",
+        "cardClips": false,
+        "alt": true,
+        "pad": "16px 16px 16px 16px",
+        "imgGap": 12,
+        "titleOffset": 16,
+        "left": 1,
+        "chips": {
+          "rows": 1,
+          "need": 200,
+          "have": 200
+        },
+        "textCol": 226
+      },
+      {
+        "width": 320,
+        "title": "Baked cod, potatoes & broccoli",
+        "order": "title → time → reason → chips → fits → kcal",
+        "gaps": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "img": "80×298",
+        "fit": "cover",
+        "minW": "0px",
+        "imgTop": 16,
+        "imgBottom": 16,
+        "imgLeft": 16,
+        "imgW": 80,
+        "radius": "16px 16px 16px 16px",
+        "cardClips": false,
+        "alt": true,
+        "pad": "16px 16px 16px 16px",
+        "imgGap": 12,
+        "titleOffset": 50,
+        "left": 1,
+        "chips": {
+          "rows": 2,
+          "need": 200,
+          "have": 156
+        },
+        "textCol": 156
+      },
+      {
+        "width": 320,
+        "title": "Shrimp & broccoli stir-fry with rice",
+        "order": "title → time → reason → chips → fits → kcal",
+        "gaps": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "img": "80×237",
+        "fit": "cover",
+        "minW": "0px",
+        "imgTop": 16,
+        "imgBottom": 16,
+        "imgLeft": 16,
+        "imgW": 80,
+        "radius": "16px 16px 16px 16px",
+        "cardClips": false,
+        "alt": true,
+        "pad": "16px 16px 16px 16px",
+        "imgGap": 12,
+        "titleOffset": 16,
+        "left": 1,
+        "chips": {
+          "rows": 2,
+          "need": 200,
+          "have": 156
+        },
+        "textCol": 156
+      },
+      {
+        "width": 320,
+        "title": "Chickpea & spinach curry with rice",
+        "order": "title → time → reason → chips → fits → kcal",
+        "gaps": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "img": "80×264",
+        "fit": "cover",
+        "minW": "0px",
+        "imgTop": 16,
+        "imgBottom": 16,
+        "imgLeft": 16,
+        "imgW": 80,
+        "radius": "16px 16px 16px 16px",
+        "cardClips": false,
+        "alt": true,
+        "pad": "16px 16px 16px 16px",
+        "imgGap": 12,
+        "titleOffset": 16,
+        "left": 1,
+        "chips": {
+          "rows": 2,
+          "need": 200,
+          "have": 156
+        },
+        "textCol": 156
+      }
+    ]
   }
 }

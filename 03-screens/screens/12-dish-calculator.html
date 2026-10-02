@@ -77,6 +77,11 @@
 <script>
   // Exports of scrolled states: <body data-scroll-to="id"> scrolls that element to the top of the screen body.
   if (document.body.dataset.scrollTo) document.getElementById(document.body.dataset.scrollTo).scrollIntoView({ block: "start" });
+  // Pointer-only image links (aria-hidden, no tab stop): pressed feedback for touch, where :active on a div is unreliable.
+  const pressable = ".recipe-card__img--link";
+  document.addEventListener("pointerdown", (e) => e.target.closest(pressable)?.classList.add("is-pressed"));
+  ["pointerup", "pointercancel", "pointerleave"].forEach((ev) =>
+    document.addEventListener(ev, () => document.querySelectorAll(pressable + ".is-pressed").forEach((el) => el.classList.remove("is-pressed")), true));
   // Prototype navigation: any element with data-href opens that screen.
   document.addEventListener("click", (e) => {
     const t = e.target.closest("[data-href]");

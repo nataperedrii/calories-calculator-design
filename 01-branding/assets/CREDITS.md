@@ -22,6 +22,14 @@ All photos are from **Unsplash** under the [Unsplash License](https://unsplash.c
 | `food-apple.jpg` | Red apple on wood | Food "Apple" (recents) | Frank Albrecht | [unsplash.com/photos/5uxgJmZGiVk](https://unsplash.com/photos/red-apple-on-brown-surface-5uxgJmZGiVk) |
 | `dish-lentil-soup.jpg` | Red lentil and pumpkin soup | Dish calculator "Red lentil soup" | Karyna Panchenko | [unsplash.com/photos/2beCqCd8mAc](https://unsplash.com/photos/a-bowl-of-carrot-soup-with-parsley-on-top-2beCqCd8mAc) |
 
+**Added on 2 Oct 2026** for the Add to Snack search rows (step 16). One photo per product, each checked by eye against its name. Downloaded at 640 px wide, then cropped to a square centred on the product and saved at 240 × 240 (JPEG, 19–33 KB) for the 48 pt thumbnail. "Almonds" and "Apple" keep `food-almonds.jpg` and `food-apple.jpg` above.
+
+| File | What it shows | Used for | Author | Source · license |
+|---|---|---|---|---|
+| `food-roasted-almonds.jpg` | Close-up of whole roasted almonds: darker, glossy skins with salt flecks | Food "Roasted almonds" (search row) | PublicDomainPictures | [pixabay.com/photos/83766](https://pixabay.com/photos/almond-almonds-roasted-roast-nut-83766/) · **Pixabay Content License** (free for commercial and non-commercial use, no attribution required) |
+| `food-almond-butter.jpg` | A glass jar of almond butter with a wooden spoon, whole almonds and crackers | Food "Almond butter" (search row) | cole yap | [pexels.com/photo/33657317](https://www.pexels.com/photo/delicious-almond-butter-with-crackers-on-plate-33657317/) · **Pexels License** (free to use, no attribution required) |
+| `food-greek-yogurt.jpg` | A bowl of thick plain yogurt with a mint sprig | Food "Greek yogurt" (recents) | Micheile Henderson | [unsplash.com/photos/NFHeBysjCTI](https://unsplash.com/photos/a-bowl-of-yogurt-with-a-spoon-in-it-NFHeBysjCTI) · **Unsplash License** |
+
 **Notes for store use**
 - `snap-phone.jpg` shows a recognisable phone and its built-in camera app. That's fine in a design board, but **don't use it in App Store or Google Play screenshots or ads**, where third-party devices and UI can cause review problems.
 - The Unsplash License doesn't let you sell the photos unaltered or build a competing stock-photo service from them. Neither applies here.

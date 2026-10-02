@@ -55,16 +55,18 @@
   const dirty = () => sig(work) !== sig(saved);
 
   // ---------- rendering: ingredients ----------
-  const macroLine = (n) =>
-    `<p class="macro-line ingredient__wide"><span class="macro-line__item">${n.kcal} kcal</span>` +
+  // Two lines per ingredient: name | amount, then the P / F / C chips (the same macro-chip component as the rest
+  // of the app) | kcal. Amount and kcal end on one right edge.
+  const macroRow = (n) =>
+    `<div class="macro-tiles macro-tiles--inline">` +
     [["p", "P", "Protein", n.p], ["f", "F", "Fat", n.f], ["c", "C", "Carbs", n.c]]
-      .map(([k, L, W, v]) => `<span class="macro-line__item macro-line__item--${k}"><span class="macro-line__key" aria-hidden="true">${L}</span><span class="visually-hidden">${W}</span>${r0(v)} g</span>`)
-      .join("") + "</p>";
+      .map(([k, L, W, v]) => `<span class="macro-tile macro-tile--${k} macro-tile--chip"><span class="macro-tile__label" aria-hidden="true">${L}</span><span class="visually-hidden">${W}</span><span class="macro-tile__value">${r0(v)}<small> g</small></span></span>`)
+      .join("") + `</div><span class="ingredient__kcal">${n.kcal} kcal</span>`;
   const amountText = (ing) => (ing.unit === "portion" ? `${ing.qty} portion${qtyOf(ing) === 1 ? "" : "s"}` : `${fmt(qtyOf(ing))} ${ing.unit}`);
 
   function ingView(ing) {
     const n = nutrition(ing);
-    return `<li class="ingredient" data-id="${ing.id}"><span class="ingredient__name">${esc(ing.name)}</span><span class="ingredient__amount">${amountText(ing)}</span>${n ? macroLine(n) : ""}</li>`;
+    return `<li class="ingredient" data-id="${ing.id}"><span class="ingredient__name">${esc(ing.name)}</span><span class="ingredient__amount">${amountText(ing)}</span>${n ? macroRow(n) : ""}</li>`;
   }
   function ingEdit(ing) {
     const id = `ing-${ing.id}`;

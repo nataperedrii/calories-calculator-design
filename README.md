@@ -12,6 +12,203 @@ Background: [process/research.md](process/research.md) (MyFitnessPal, Yazio, Lif
 
 ---
 
+## Update: product photos on Add to Snack (step 16)
+
+Before / after images: [03-screens/qa/compare-step16/](03-screens/qa/compare-step16/), made with `node 03-screens/tools/compare-step16.mjs <step-15 copy>`. The "before" exports are in [qa/before-step16/](03-screens/qa/before-step16/).
+
+### Changelog (before → after)
+
+| Where | Before | After | Compare |
+|---|---|---|---|
+| **Add to Snack: rows** | Only the name on the left, chips under it, no photo | **Photo:** a product photo on the left, the name to its right, top-aligned with the photo. The photo is the same `.product__thumb` component as the Meals rows on Today: 48 × 48, radius 10, cover.<br><br>**Chips:** the P / F / C chips sit under the photo, from the left margin, 8 px (`space-2`) below the photo in every row.<br><br>**Unchanged:** kcal "per 100 g" and "+" on the right margin, centred on the row; order, copy, values and insets. | [390](03-screens/qa/compare-step16/10-add-food@390.png) · [320](03-screens/qa/compare-step16/10-add-food@320.png) · [Meals reference](03-screens/qa/compare-step16/07-today-meals@390.png) |
+
+### Product → photo
+
+Each photo was checked by eye against its name. Details are in [01-branding/assets/CREDITS.md](01-branding/assets/CREDITS.md).
+
+| Product | File | What it shows | Author / source / license |
+|---|---|---|---|
+| Almonds | `food-almonds.jpg` (already in the repo) | Whole natural almonds, matte skins, in a white bowl | Mockupo · [Unsplash 8LvXmMZuAU0](https://unsplash.com/photos/brown-almond-nuts-on-white-ceramic-bowl-8LvXmMZuAU0) · Unsplash License |
+| Roasted almonds | `food-roasted-almonds.jpg` (new, 240 × 240, 33 KB) | Roasted almonds: darker, glossy skins with salt flecks | PublicDomainPictures · [Pixabay 83766](https://pixabay.com/photos/almond-almonds-roasted-roast-nut-83766/) · Pixabay Content License |
+| Almond butter | `food-almond-butter.jpg` (new, 240 × 240, 23 KB) | A jar of almond butter with a wooden spoon, whole almonds and crackers | cole yap · [Pexels 33657317](https://www.pexels.com/photo/delicious-almond-butter-with-crackers-on-plate-33657317/) · Pexels License |
+| Apple | `food-apple.jpg` (already in the repo, also the Snack meal photo) | One red apple on wood | Frank Albrecht · [Unsplash 5uxgJmZGiVk](https://unsplash.com/photos/red-apple-on-brown-surface-5uxgJmZGiVk) · Unsplash License |
+| Greek yogurt | `food-greek-yogurt.jpg` (new, 240 × 240, 19 KB; replaces the granola photo, which didn't match) | A bowl of thick plain yogurt with a mint sprig | Micheile Henderson · [Unsplash NFHeBysjCTI](https://unsplash.com/photos/a-bowl-of-yogurt-with-a-spoon-in-it-NFHeBysjCTI) · Unsplash License |
+
+**Rejected:**
+- **Pixabay 3027764:** round, salt-crusted nuts that look like hazelnuts.
+- **"Roasted almonds" fair sweets (gebrannte Mandeln):** sugar-coated, so not dry-roasted.
+- **A "Greek style" yogurt photo:** a branded cup (Alpro), blueberry-flavoured, with an Apple computer behind it.
+- **A plain yogurt bowl on Pexels:** too thin, reads as milk.
+
+**File handling:**
+- **New files:** downloaded at 640 px, cropped to a square centred on the product, saved at 240 px.
+- **Almonds and Apple:** keep their existing larger files, which other screens also use. `object-fit: cover` crops them, so they're never stretched. `alt=""`: the name next to the photo already names the product.
+
+### Checks
+
+| Check | Result |
+|---|---|
+| **Photo size vs Meals** (bounding boxes) | Meals thumbnail on Today: **48 × 48, radius 10 px, cover**. All 5 photos at 390 and 320: **48 × 48, radius 10 px, cover**, identical |
+| **Alignment** (`check:screens`, 390 and 320) | Photos and chips at x = 36, the card-inset line. Every name at x = 96, top-aligned with its photo (offset 0). Photo → chips gap 8 in all 5 rows. "+" 44 × 44, named, 0 px from the right edge, centred on the row with kcal |
+| `npm run check` (incl. alignment) | **61 / 61**, alignment **0 deviations** (2,598 edges). Rule changed: search-row chips start under the photo. One earlier run failed the docs page's file:// vs http:// pixel comparison (226,516 px). I hadn't edited the docs page then; it passed on the next two runs and on the final run, so it was a loading-timing flake |
+| `npm run check:a11y` | **Tier 1: 0 / 39 · Tier 2: 0 / 9** |
+| `npm run check:screens` | **362 / 362**: Meals-size photos; each product has its own matching file; cover and alt; insets; gap; "+"; long name + 110 g at 320 and 200%; names never clipped |
+| Lint, tokens | stylelint 0 · html-validate 0 · contrast 67 / 67 · tokens in sync (no token changes) |
+| **Regression** (28 PNGs) | **23 identical.** Changed: Add food, the docs page (search rows) and the board.<br><br>Analyzing (shimmer frame) and the dish calculator (317 px) differ between any two exports of the same files. The latest dish-calculator export matches "before" exactly |
+
+### Open
+
+- **At 320 px the P / F / C chips wrap** to two rows (they need 183–200 px; the photo + name columns give 137). The kcal + "+" column takes the rest of the width. At 390 they're one row (200 of 207). With 3-digit values (110 g, 225 px) they also wrap at 390. Nothing is clipped.
+- **At 320 longer names wrap** at word boundaries ("Roasted / almonds", "Almond / butter"). The row then grows, but the photo → chips gap stays 8 because the name fits within the photo's 48 px height.
+
+---
+
+## Update: targeted tweaks (step 15)
+
+Before / after images: [03-screens/qa/compare-step15/](03-screens/qa/compare-step15/), made with `node 03-screens/tools/compare-step15.mjs <step-14 copy>`. The "before" exports are in [qa/before-step15/](03-screens/qa/before-step15/).
+
+### Changelog (before → after)
+
+| # | Where | Before | After | Compare |
+|---|---|---|---|---|
+| 1 | **Add to Snack: rows** | Photo · green ✓ circle · name; kcal + "+" centred on the name line | **Only the name** on the left, on the card-inset line (x = 36 at 390 and 320), top-aligned and wrapping. The P / F / C chips sit right under it.<br><br>kcal "per 100 g" + **"+"** (44 × 44, "Add &lt;food&gt;", 4 states, ring with a gap) sit on the right margin, **centred on the whole row**.<br><br>The ✓ is gone from every screen and component (see "Where the ✓ was" below). | [390](03-screens/qa/compare-step15/10-add-food@390.png) · [320](03-screens/qa/compare-step15/10-add-food@320.png) |
+| 2 | **Recipes: cards** | 80 × 80 square photo | **Full-height photo:** 80 wide (token unchanged), from the top padding to the bottom padding (16 from each edge, never touching them). Its own radius on all 4 corners; the card doesn't clip. Cover crop, centred. It grows with the card: 239 / 205 / 205 px tall at 390.<br><br>"Best fit" stays where it was (above the title). Everything else is unchanged: order, 8 px gaps, copy, chips. | [390](03-screens/qa/compare-step15/13-recipes@390.png) · [320](03-screens/qa/compare-step15/13-recipes@320.png) |
+| 3 | **Dish detail: Ingredients** | Name \| amount, then "158 kcal" + chips on one line | **Two lines per ingredient:** name \| amount, then **P / F / C chips** \| **"158 kcal"**.<br><br>Amount and kcal end on one right edge (x = 354 at 390), in tabular mono. Names and chips start on one x. 8 px between the two lines in every ingredient.<br><br>Unchanged: edit mode, delete, Undo, add, recalculation. | [390](03-screens/qa/compare-step15/14-recipe-detail-ingredients@390.png) · [320](03-screens/qa/compare-step15/14-recipe-detail-ingredients@320.png) · [edit](03-screens/qa/compare-step15/14-recipe-detail-edit-ingredients@390.png) |
+
+### Where the ✓ was, and what I did
+
+| Where | What it did | Action |
+|---|---|---|
+| Add to Snack: 5 rows (`.product__check`) | Informational "Verified: USDA" | **Removed**, with its CSS |
+| Docs, product rows (5) + search rows (4) (`.product__verified`, `.product__check`) | Informational | **Removed**, with its CSS and the audit's contrast entry for that icon |
+| Toasts "Added to Lunch / Dinner", "Garlic deleted" | Success status, next to the message | **Kept**: functional (status) |
+| Photo result "High confidence" | One of 3 confidence levels, each with its own glyph + word | **Kept**: functional. Removing it would leave High as the only level without a glyph |
+| Scan "Plate found. Hold still", Analyzing "Finding foods… done" | Live status | **Kept**: functional |
+
+The "✓ USDA" text badge (Food detail, Ingredients) isn't the circle and wasn't touched. Tell me if the functional uses should go too.
+
+### Measurements
+
+**Recipe cards** (from `check:screens`):
+
+| Card | Image at 390 | Image at 320 | Top / bottom / left inset | P/F/C at 390 | P/F/C at 320 |
+|---|---|---|---|---|---|
+| Baked cod | 80 × 239 | 80 × 298 | 16 / 16 / 16 | 1 row (200 of 226) | 2 rows (200 of 156) |
+| Shrimp stir-fry | 80 × 205 | 80 × 237 | 16 / 16 / 16 | 1 row | 2 rows |
+| Chickpea curry | 80 × 205 | 80 × 264 | 16 / 16 / 16 | 1 row | 2 rows |
+
+**Chip rows at 320** (needed width / available width):
+
+| Where | Needed | Available |
+|---|---|---|
+| Add to Snack | 183–200 | 137 |
+| Ingredients (beside "158 kcal") | 174–183 | 156–173 |
+
+### Checks
+
+| Check | Result |
+|---|---|
+| `npm run check` (incl. alignment) | **61 / 61**, alignment **0 deviations** (2,598 edges). New rule: ingredient chips start under the name |
+| `npm run check:a11y` | **Tier 1: 0 / 39 · Tier 2: 0 / 9**. Tier 1 has 1 entry fewer: the contrast of the removed ✓ icon |
+| `npm run check:screens` | **356 / 356**. New:<br>- **Snack:** name and chips on the inset line; "+" 44 × 44, named, centred with kcal on the row; no clipping.<br>- **✓ gone:** no ✓ markup on any of the 26 screens and none in `components.css`. Every remaining `high` glyph is in a toast, confidence label, scan hint or status step.<br>- **Recipe cards:** image inset 16 / 16 / 16, same width, 4 radii, the card doesn't clip, alt present (empty: decorative next to the dish name).<br>- **Ingredients:** two lines, one left x and one right x, 8 px gap, tabular numbers. With 110 g chips, 1234 kcal and a long name: nothing clipped and the right edge holds.<br>- **Keyboard:** "+" (Tab, Enter, ring); editor Edit / Delete / Undo / Discard / Save tests. |
+| Lint, tokens | stylelint 0 · html-validate 0 · contrast 67 / 67 · tokens.json ↔ tokens.css in sync (283, no token changes) |
+| **Regression** (28 PNGs) | **21 identical.**<br><br>**Changed by the fixes:** Add food, Recipes, the no-steps state (it shows ingredient rows), the docs page and the board.<br><br>**Method state:** 5 px of anti-aliasing in the Method text below the taller Ingredients card.<br><br>**Not real changes:** Analyzing (shimmer frame). The edited state also gave 102 px in one run; two exports of the same files differ by those same 102 px. |
+
+### Open
+
+- **P / F / C wrap at 320 px:** on Snack, Recipes and Ingredients (see "Chip rows at 320" above). Nothing is clipped. At 390 all three are one row.
+- **Resolved as a side effect:** Snack names no longer break mid-word at 320 (step 14's open issue). With the photo and ✓ gone, the name column is 137 px.
+- **Recipes:** card 1's title is still 34 px lower than the others because of the "Best fit" badge.
+- **Fix 2 asked for "the badge over the image, as now":** the badge has never been over the image. It sits above the title, so it stays there.
+- **Fix 3 "same gap between the two rows and between ingredients":** I read this as one token, `space-2` (8 px). It's the gap between the two lines, and the padding on each side of the hairline between ingredients (8 + 1 + 8).
+
+---
+
+## Update: targeted tweaks (step 14)
+
+Before / after images: [03-screens/qa/compare-step14/](03-screens/qa/compare-step14/), made with `node 03-screens/tools/compare-step14.mjs <step-13 folder>`. The step 13 state was rebuilt in a scratch folder and checked against the saved "before" exports ([qa/before-step14/](03-screens/qa/before-step14/)): 5 of 6 screens are pixel-identical, and the 6th differs by 29 px.
+
+### Changelog (before → after)
+
+| # | Where | Before | After | Compare |
+|---|---|---|---|---|
+| 1 | **Today: "Fits your dinner" photo** | Only "View recipe" opened the dish | **The whole photo opens 14 (Baked cod)** on tap or click, with a pointer cursor and a pressed overlay.<br><br>**Choice:** the photo is a pointer-only area (`aria-hidden`, no tab stop). "View recipe" is already a real, named button, so a second link would only add a duplicate stop and a duplicate announcement. | [390](03-screens/qa/compare-step14/07-today-card@390.png) (no visual change at rest) |
+| 2 | **Add to Snack: rows** | ✓ as a 44 button on the far right after "+"; names in an 82 px column | **Layout:** photo · **green ✓ in a fixed 24 px column** · name (top-aligned, wraps, never clipped). The ✓ is centred on the name's first line. Every ✓ and every name starts at one x. P / F / C chips go under the name.<br><br>**Right side:** kcal "per 100 g" and **"+"** (44 × 44, "Add &lt;food&gt;", default / pressed / focus / disabled, ring with a gap) sit on the right margin, centred on each other.<br><br>**The ✓ is an indicator**, not a button ("Verified: USDA"): no hit area, no states, no tab stop.<br><br>**Names shortened (your choice):** "Roasted almonds", "Greek yogurt", "Apple". The name column is now 111 px. | [390](03-screens/qa/compare-step14/10-add-food@390.png) · [320](03-screens/qa/compare-step14/10-add-food@320.png) |
+| 3 | **Recipes: cards** | Image beside the title block; chips, Fits and kcal in a full-width foot | **Identical in all 3 cards:** an 80 × 80 photo (token `size-recipe-thumb`, cover) and **one left-aligned text column**: title → time → "Covers your protein" → P/F/C → "Fits …" → kcal.<br><br>**Spacing:** every row is 8 apart (`space-2`); padding 16, image → text 12. "Best fit" stays above the title in card 1 (your choice). | [390](03-screens/qa/compare-step14/13-recipes@390.png) · [320](03-screens/qa/compare-step14/13-recipes@320.png) |
+| 4 | **Dish detail: Ingredients** | "158 kcal P 34 g F 1 g C 0 g" as text | "158 kcal" + **macro chips** "P 34 g" "F 1 g" "C 0 g": the same `.macro-tile--chip` component and tokens, in **one row**. At 320 px the chip group moves under the kcal and stays one row. Nothing else changed: card look, amounts, editing, recalculation. | [390](03-screens/qa/compare-step14/14-recipe-detail-ingredients@390.png) · [320](03-screens/qa/compare-step14/14-recipe-detail-ingredients@320.png) |
+
+### Measurements
+
+**Recipe cards.** Gaps between rows, in px; all values are from `check:screens`:
+
+| Card | 390 px | 320 px | Image | Padding / image→text | Title from card top |
+|---|---|---|---|---|---|
+| Baked cod (badge) | 8 · 8 · 8 · 8 · 8 · 8 | 8 · 8 · 8 · 8 · 8 · 8 | 80 × 80 | 16 / 12 | 50 (badge above) |
+| Shrimp stir-fry | 8 · 8 · 8 · 8 · 8 | 8 · 8 · 8 · 8 · 8 | 80 × 80 | 16 / 12 | 16 |
+| Chickpea curry | 8 · 8 · 8 · 8 · 8 | 8 · 8 · 8 · 8 · 8 | 80 × 80 | 16 / 12 | 16 |
+
+**P / F / C row width:**
+
+| Where | Width | Text column | Fits on one row? |
+|---|---|---|---|
+| Recipe cards, 390 | 200 px (225 with 3-digit values) | 226 px | ✓ |
+| Recipe cards, 320 | 200 px | 156 px | ✗ (wraps; open) |
+| Add to Snack, 390 | 183–200 px | 226 px (name → margin) | ✓ |
+| Add to Snack, 320 | 183–200 px | 152 px | ✗ (wraps; open) |
+| Ingredients, 390 and 320 | – | – | ✓ (also with 110 g) |
+
+### Checks
+
+| Check | Result |
+|---|---|
+| `npm run check` (incl. alignment) | **61 / 61**, alignment **0 deviations** (2,498 edges, 26 screens, 390 and 320 px). New rules: search-row names on one x; chips start under the name |
+| `npm run check:a11y` | **Tier 1: 0 / 40 · Tier 2: 0 / 9** |
+| `npm run check:screens` | **350 / 350**. New for step 14:<br>- **Add to Snack:** ✓ and names on one x; the ✓ on line 1; ✓ passive; "+" 44 × 44 and named; kcal centred with "+"; names never clipped; long name + 110 g at 320 and 200%; Tab skips the ✓; Enter opens the food.<br>- **Recipe cards:** order, gaps table, image / padding / gap, chips at 390 / 320.<br>- **Ingredients:** chips in one row at 390 / 320, also with 110 g.<br>- **Today:** photo click opens 14; pointer, pressed overlay, `aria-hidden`, never focused. "View recipe" Enter / Space / click still open 14. |
+| Lint, tokens | stylelint 0 · html-validate 0 (screens, board, docs) · contrast 67 / 67 · tokens.json ↔ tokens.css in sync (283) |
+| **Regression** (pixel diff of all 28 PNGs vs before) | **21 identical:** every Today state, Scan, Photo result, Food detail, the dish calculator and all other dish-detail states.<br><br>**Changed by the fixes:** Add food, Recipes, the board, the docs page, and the two Method states. Those Method states scroll past the Ingredients rows, now 1 pt taller with chips; the content below them is identical.<br><br>**Analyzing:** its shimmer is captured at a different frame, which happens on every export. |
+
+### Open (reported, not hidden)
+
+- **The P / F / C row at 320 px wraps** on Recipes cards (needs 200 px, has 156) and on Add to Snack (needs 183–200, has 152). Nothing is clipped. One row at 320 would need an image of 36 px or less in the card, so the brief's "one row at 320" and "image left, everything in one column" can't both hold. At 390 both fit, also with 3-digit values.
+- **Add to Snack at 320: names break mid-word** ("Almo / nds"). The photo, the ✓ column and kcal + "+" keep their widths, so the name column is only 41 px. This was already the case before (step 13). A fix would hide the decorative photo below 360 px (+60 px for the name), which goes against "keep photo", so I left it for you to decide.
+- **"Vertically centred on the row" (Fix 2):** kcal and "+" are centred on each other on line 1, not on the whole two-line row. Centring them on the whole row would squeeze the chips into the name column, so they would wrap at 390 too.
+- **Card 1's title starts 34 px lower** than in cards 2–3, because the "Best fit" badge sits above it (your choice).
+
+---
+
+## Update: targeted tweaks (step 13)
+
+Before / after images: [03-screens/qa/compare-step13/](03-screens/qa/compare-step13/). They are rendered from the previous commit and the current files with `node 03-screens/tools/compare-step13.mjs`. The "before" exports are in [qa/before-step13/](03-screens/qa/before-step13/).
+
+### Changelog (before → after)
+
+| # | Where | Before | After | Compare |
+|---|---|---|---|---|
+| 1 | **Add to Snack: product rows** | Three lines or more: the name with a small green ✓ after it, then "P 21 · F 53 · C 21" as dotted text that wrapped. "598 / per 100 g" and "+" on the right | **Line 1:** the name; "598 / per 100 g" (kept exactly as it was); the "+" add button; and the **✓ as a button** on the right margin:<br>- 44 × 44, named "Verified by USDA. Show the source of …";<br>- default / pressed / focus / disabled, with a focus ring inside the box and a gap around the glyph;<br>- Enter, Space or tap shows the source in a toast.<br><br>**Line 2:** P / F / C **chips**: the same macro-chip component as Recipes and Today, no dots, in one row at 390 px.<br><br>The ✓ became the button and "+" stays next to it, both your choice. | [390](03-screens/qa/compare-step13/10-add-food@390.png) · [320](03-screens/qa/compare-step13/10-add-food@320.png) |
+| 2 | **Dish detail: Ingredients** | A list card of its own, with the section heading above it | **The Nutrition Facts look:** the list sits in a `.facts` card with the same title style, source line, uppercase header row on the heavy rule, hairline row rules, 14 px names and right-aligned mono values.<br><br>**One definition:** the facts table and `.ingredients--facts` share the same CSS rules. A test compares 27 computed styles; all are equal.<br><br>**Unchanged:** compact rows (letter + value macros), amounts on one right edge, all editing, recalculation, and the order Ingredients → Method. | [view](03-screens/qa/compare-step13/14-recipe-detail-ingredients@390.png) · [edit](03-screens/qa/compare-step13/14-recipe-detail-edit-ingredients@390.png) |
+| 3 | **Recipes: card order** | Reason → Fits → kcal, with the chips last | Reason ("Covers your protein") → **P / F / C** (one row) → "Fits" → kcal, in all 3 cards. The chips keep the full card width, so they stay on one row at 390 and 320 px, also with 110 g values | [390](03-screens/qa/compare-step13/13-recipes@390.png) · [320](03-screens/qa/compare-step13/13-recipes@320.png) |
+
+### Checks
+
+| Check | Result |
+|---|---|
+| `npm run check` (incl. alignment) | **61 / 61**, alignment **0 deviations** (2,490 edges, 26 screens, 390 and 320 px) |
+| `npm run check:a11y` | **Tier 1: 0 / 40 · Tier 2: 0 / 9** (chip and number contrast, targets, focus) |
+| `npm run check:screens` | **331 / 331**. Covers:<br>- **Verified ✓:** 44 × 44 with an accessible name, its glyph on the right inset line; Enter and Space show the toast with a visible focus ring.<br>- **Chips:** one row in every Add food row at 390 px; P/F/C in one row on all recipe cards at 390 and 320 px (also 110 g).<br>- **Card order** in all cards at 390 and 320 px.<br>- **Ingredients card** styles equal to the Nutrition Facts card; amounts on one right edge; Ingredients before Method.<br>- 200% text, 320 px and long names on every screen. |
+| Lint, tokens | stylelint 0 · html-validate 0 · contrast 67 / 67 · tokens.json ↔ tokens.css in sync (no token changes) |
+| **Regression** (pixel diff, before vs after, all 27 PNGs) | **13 screens pixel-identical:** all Today states, Scan, the photo result, Food detail, the dish calculator, the dish view, the log sheet and the name error.<br><br>**Changed by the three fixes:** Add food, Recipes, the dish-detail states that show Ingredients, the board and the docs page.<br><br>**Method states:** identical content, shifted by about 1 px because the Ingredients card above them changed height.<br><br>**Analyzing:** its loading shimmer is captured at a different frame (two exports of the unchanged file also differ by 62,612 px), so this isn't a change. |
+
+### Open issue (Fix 1): rows are not always two lines
+
+On line 1 the name shares the width with "598 / per 100 g" and two 44 px buttons. That leaves the name column about 82 px at 390 px and about 42 px at 320 px:
+- **At 390:** 3 of 5 rows are two lines. "Almonds, dry roasted" and "Greek yogurt, 2%" wrap their names, so those rows take 3 lines.
+- **At 320:** no row is two lines. The column is narrower than one word, so names break mid-word ("Almo / nds") and rows take 4–7 lines. Nothing is clipped. See [the 320 comparison](03-screens/qa/compare-step13/10-add-food@320.png).
+- **Chips at 320:** they wrap to two rows under the name. You chose "chips under the name", knowing this.
+
+Two-line rows need more room for the name. That means either one 44 px button fewer on line 1 (for example the ✓ back next to the name, or the ✓ as the add action), or kcal moved off line 1. I didn't pick one, because the brief says not to invent a solution. Tell me which and I'll apply it.
+
+---
+
 ## Update: chips in one row, View recipe, compact ingredients, Method (step 12)
 
 Before / after images: [03-screens/qa/compare-step12/](03-screens/qa/compare-step12/). The "before" exports are kept in [03-screens/qa/before-step12/](03-screens/qa/before-step12/). Step 11 comparisons are in [qa/compare/](03-screens/qa/compare/).

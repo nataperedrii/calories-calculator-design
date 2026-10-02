@@ -300,7 +300,7 @@ Every screen lists:
     - Lunch 559 ("From a photo · 4 items")
     - Snack 268
     - Dinner "–" with "+ Add"
-  - Recipe card: **"Fits your dinner: Baked cod, potatoes & broccoli · 462 kcal · 30 min"**, with macro chips P 41 · F 12 · C 49 g and a real **"View recipe"** button (named "View recipe: Baked cod, potatoes & broccoli"; Enter, Space or tap opens 14).
+  - Recipe card: **"Fits your dinner: Baked cod, potatoes & broccoli · 462 kcal · 30 min"**, with macro chips P 41 · F 12 · C 49 g and a real **"View recipe"** button (named "View recipe: Baked cod, potatoes & broccoli"; Enter, Space or tap opens 14). Tapping the **dish photo** also opens 14 (step 14). It is a pointer-only shortcut (`aria-hidden`, no tab stop), so "View recipe" stays the one keyboard and screen-reader path.
 - **DS:** `.app-bar--large`, `.nutri` ring + `.macros`, `.list` / `.product` rows, `.recipe-card` + `.badge--fresh`, `.tab-bar`, `.toast`.
 
 | State | What the user sees |
@@ -364,10 +364,14 @@ Every screen lists:
   - Search field "Search foods and dishes" with a barcode icon.
   - Tabs: Recents · Favourites · My dishes.
   - **Recents:** Apple, raw 52 kcal / 100 g · Almonds 579 / 100 g · Greek yogurt 2% 73 / 100 g.
-  - Results show one canonical entry per food with a **✓ USDA** verified badge (insight 2).
+  - Results show one canonical entry per food (step 16):
+    - A matching product photo (the Meals thumbnail, 48 × 48) with the name beside it, top-aligned and wrapping. No ✓.
+    - The P / F / C chips sit under the photo, from the card-inset line (insight 2). The USDA source is named on the food detail (11).
+    - kcal per 100 g and the "+" (44, "Add &lt;food&gt;") sit on the right margin, centred on the whole row.
+    - Short names: "Roasted almonds", "Greek yogurt", "Apple".
   - Bottom: **"Create a dish"** (opens 12).
   - In picker mode the title is "Add ingredient" and the bottom link is hidden.
-- **DS:** `.search`, `.segmented` (tabs), `.list` / `.product` + `.product__verified`, `.badge--verified`, `.btn--secondary`, `.empty`.
+- **DS:** `.search`, `.segmented` (tabs), `.list` / `.product--chips`, `.badge--verified` (on 11), `.btn--secondary`, `.empty`.
 
 | State | What the user sees |
 |---|---|
@@ -434,7 +438,7 @@ Every screen lists:
     - 🔒 Peanut-free (Allergy)
     - High protein
     - ≤ 30 min
-  - Cards, ranked:
+  - Cards, ranked. Each card has an 80 px wide photo on the left that runs from the top to the bottom padding (step 15) and one left-aligned text column: title → time → reason → P / F / C → "Fits" → kcal, 8 px apart (step 14):
     1. **Baked cod, potatoes & broccoli:** 462 kcal · P 41 g · 30 min · "Covers your protein" · "Fits: 462 of 879 kcal".
     2. **Shrimp & broccoli stir-fry with rice:** 532 kcal · P 46 g · 20 min · "Fits: 532 of 879 kcal · covers your protein".
     3. **Chickpea & spinach curry with rice:** 587 kcal · P 21 g · 35 min · "Fits: 587 of 879 kcal". Vegan.
@@ -457,7 +461,7 @@ Every screen lists:
   - Photo (scrolls with the content), the title with an **Edit name** button, "30 min · Serves 2", the badge "Fits your dinner".
   - **Allergens: Fish.** Shown as words with an icon, never colour alone. "Free from peanuts, milk, gluten and egg."
   - Nutrition summary: calorie ring **462 of the 879 kcal left for dinner**, "Per 100 g 99", macro bars P 41 / F 12 / C 49 g against the daily goal.
-  - Ingredients for 1 portion, compact: the name on the left, the amount on one right edge, then "158 kcal P 34 g F 1 g C 0 g" as text (no chips):
+  - Ingredients for 1 portion: the name on the left, the amount on one right edge, in **two lines** (step 15): name | amount, then the P / F / C **macro chips** ("P 34 g", the same component as everywhere) | "158 kcal". Amount and kcal end on one right edge:
     - cod fillet 150 g
     - potatoes 200 g
     - broccoli 100 g

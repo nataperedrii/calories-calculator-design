@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-01T21:55:01.484Z",
+  "date": "2026-10-02T19:53:00.790Z",
   "passed": 61,
   "failed": 0,
   "results": [
@@ -181,7 +181,7 @@
       "group": "load",
       "name": "file:// and http:// render identically (pixel diff)",
       "ok": true,
-      "detail": "1440×28910, 0 different pixels"
+      "detail": "1440×29982, 0 different pixels"
     },
     {
       "group": "geometry",
@@ -199,7 +199,7 @@
       "group": "geometry",
       "name": "touch targets ≥ 44×44 pt (≥ 48×48 dp in Android variants)",
       "ok": true,
-      "detail": "200 controls, smallest 44 px"
+      "detail": "205 controls, smallest 44 px"
     },
     {
       "group": "geometry",
@@ -229,7 +229,7 @@
       "group": "recipe",
       "name": "cards have no fixed height or clipping; titles and text are fully inside",
       "ok": true,
-      "detail": "default: 310×439.72, title 2 lines, overflow visible | is-pressed: 303.8×475.97, title 4 lines, overflow visible | is-disabled: 310×469.69, title 4 lines, overflow visible | default: 310×279, title 2 lines, overflow visible"
+      "detail": "default: 310×439.72, title 2 lines, overflow visible | is-pressed: 303.8×475.97, title 4 lines, overflow visible | is-disabled: 310×469.69, title 4 lines, overflow visible | default: 310×303, title 2 lines, overflow visible"
     },
     {
       "group": "tabbar",
@@ -241,7 +241,7 @@
       "group": "sheet",
       "name": "macro tiles: equal width/height/padding/gaps, shared baselines, tabular numbers, inside sheet margins",
       "ok": true,
-      "detail": "1 row(s) · P · Protein x313 w95.33 h62 | F · Fat x416.33 w95.33 h62 | C · Carbs x519.66 w95.34 h62 · gaps 8/8 · value baselines 21279.38/21279.38/21279.38"
+      "detail": "1 row(s) · P · Protein x313 w95.33 h62 | F · Fat x416.33 w95.33 h62 | C · Carbs x519.66 w95.34 h62 · gaps 8/8 · value baselines 22212.38/22212.38/22212.38"
     },
     {
       "group": "page",
@@ -289,7 +289,7 @@
       "group": "geometry@200%",
       "name": "touch targets ≥ 44×44 pt (≥ 48×48 dp in Android variants)",
       "ok": true,
-      "detail": "200 controls, smallest 44 px"
+      "detail": "205 controls, smallest 44 px"
     },
     {
       "group": "geometry@200%",
@@ -307,7 +307,7 @@
       "group": "product@200%",
       "name": "every row state has identical geometry (height, width, radius, padding, no border)",
       "ok": true,
-      "detail": "default 334×301 r=16px | is-pressed 334×301 r=16px | is-selected 334×301 r=16px | is-disabled 334×301 r=16px | is-error 334×301 r=16px | is-focus 334×301 r=16px"
+      "detail": "default 334×281 r=16px | is-pressed 334×281 r=16px | is-selected 334×281 r=16px | is-disabled 334×281 r=16px | is-error 334×281 r=16px | is-focus 334×281 r=16px"
     },
     {
       "group": "product@200%",
@@ -319,7 +319,7 @@
       "group": "recipe@200%",
       "name": "cards have no fixed height or clipping; titles and text are fully inside",
       "ok": true,
-      "detail": "default: 310×769.7, title 3 lines, overflow visible | is-pressed: 303.8×986.49, title 8 lines, overflow visible | is-disabled: 310×930.64, title 7 lines, overflow visible | default: 310×692, title 4 lines, overflow visible"
+      "detail": "default: 310×769.7, title 3 lines, overflow visible | is-pressed: 303.8×986.49, title 8 lines, overflow visible | is-disabled: 310×930.64, title 7 lines, overflow visible | default: 310×731, title 4 lines, overflow visible"
     },
     {
       "group": "tabbar@200%",
@@ -331,7 +331,7 @@
       "group": "sheet@200%",
       "name": "macro tiles: equal width/height/padding/gaps, shared baselines, tabular numbers, inside sheet margins",
       "ok": true,
-      "detail": "3 row(s) · P · Protein x313 w302 h104 | F · Fat x313 w302 h104 | C · Carbs x313 w302 h104 · gaps 8/8 · value baselines -11831.25/-11719.25/-11607.25"
+      "detail": "3 row(s) · P · Protein x313 w302 h104 | F · Fat x313 w302 h104 | C · Carbs x313 w302 h104 · gaps 8/8 · value baselines -12818.25/-12706.25/-12594.25"
     },
     {
       "group": "page@200%",
@@ -355,13 +355,13 @@
       "group": "standalone",
       "name": "same layout as index.html (page height)",
       "ok": true,
-      "detail": "28910 vs 28910 CSS px"
+      "detail": "29982 vs 29982 CSS px"
     },
     {
       "group": "export",
       "name": "design-system.png is 2× the full page",
       "ok": true,
-      "detail": "2880×57820 (page 1440×28910)"
+      "detail": "2880×59964 (page 1440×29982)"
     },
     {
       "group": "export",
@@ -1031,6 +1031,34 @@
           "ok": true
         },
         {
+          "el": "#c7 button.icon-btn.icon-btn--tint",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint.is-pressed",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint.is-focus",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
           "el": "#c8 button.icon-btn.icon-btn--surface",
           "w": 44,
           "h": 44,
@@ -1633,6 +1661,13 @@
           "ok": true
         },
         {
+          "el": "#c23 button.btn.btn--ghost.btn--m \"Edit\"",
+          "w": 77,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
           "el": "#c23 input.",
           "w": 278,
           "h": 44,
@@ -2005,7 +2040,7 @@
           "gapColour": true,
           "segment": {
             "x": 1152.33,
-            "y": 15436.7,
+            "y": 15457.7,
             "w": 95.33,
             "h": 36
           },
@@ -2019,7 +2054,7 @@
           "gapColour": true,
           "segment": {
             "x": 784.33,
-            "y": 15572.7,
+            "y": 15593.7,
             "w": 95.33,
             "h": 40
           },
@@ -2030,7 +2065,7 @@
         {
           "state": "default",
           "x": 297,
-          "y": 16918.2,
+          "y": 17003.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2041,7 +2076,7 @@
         {
           "state": "is-pressed",
           "x": 297,
-          "y": 16982.2,
+          "y": 17067.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2052,7 +2087,7 @@
         {
           "state": "is-selected",
           "x": 297,
-          "y": 17046.2,
+          "y": 17131.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2063,7 +2098,7 @@
         {
           "state": "is-disabled",
           "x": 297,
-          "y": 17110.2,
+          "y": 17195.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2074,7 +2109,7 @@
         {
           "state": "is-error",
           "x": 297,
-          "y": 17174.2,
+          "y": 17259.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2085,7 +2120,7 @@
         {
           "state": "is-focus",
           "x": 297,
-          "y": 17238.2,
+          "y": 17323.7,
           "w": 334,
           "h": 64,
           "radius": "16px",
@@ -2103,7 +2138,7 @@
           "contentInside": true,
           "titleLines": 2,
           "x": 309,
-          "y": 17291.7,
+          "y": 18200.7,
           "w": 310,
           "h": 439.72
         },
@@ -2115,7 +2150,7 @@
           "contentInside": true,
           "titleLines": 4,
           "x": 680.1,
-          "y": 17296.56,
+          "y": 18205.56,
           "w": 303.8,
           "h": 475.97
         },
@@ -2127,21 +2162,21 @@
           "contentInside": true,
           "titleLines": 4,
           "x": 1045,
-          "y": 17291.7,
+          "y": 18200.7,
           "w": 310,
           "h": 469.69
         },
         {
           "state": "default",
           "overflow": "visible",
-          "height": "279px",
+          "height": "303px",
           "titleInside": true,
           "contentInside": true,
           "titleLines": 2,
           "x": 309,
-          "y": 17861.39,
+          "y": 18770.39,
           "w": 310,
-          "h": 279
+          "h": 303
         }
       ],
       "tabBars": [
@@ -2371,7 +2406,7 @@
           {
             "tile": "P · Protein",
             "x": 313,
-            "y": 21228.38,
+            "y": 22161.38,
             "w": 95.33,
             "h": 62,
             "padding": "8px 12px"
@@ -2379,7 +2414,7 @@
           {
             "tile": "F · Fat",
             "x": 416.33,
-            "y": 21228.38,
+            "y": 22161.38,
             "w": 95.33,
             "h": 62,
             "padding": "8px 12px"
@@ -2387,7 +2422,7 @@
           {
             "tile": "C · Carbs",
             "x": 519.66,
-            "y": 21228.38,
+            "y": 22161.38,
             "w": 95.34,
             "h": 62,
             "padding": "8px 12px"
@@ -2403,14 +2438,14 @@
         "sameTop": true,
         "equalPadding": true,
         "valueBaselines": [
-          21279.38,
-          21279.38,
-          21279.38
+          22212.38,
+          22212.38,
+          22212.38
         ],
         "labelBaselines": [
-          21253.38,
-          21253.38,
-          21253.38
+          22186.38,
+          22186.38,
+          22186.38
         ],
         "valueOffsets": [
           51,
@@ -3103,6 +3138,34 @@
           "ok": true
         },
         {
+          "el": "#c7 button.icon-btn.icon-btn--tint",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint.is-pressed",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint.is-focus",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
+          "el": "#c7 button.icon-btn.icon-btn--tint",
+          "w": 44,
+          "h": 44,
+          "min": 44,
+          "ok": true
+        },
+        {
           "el": "#c8 button.icon-btn.icon-btn--surface",
           "w": 44,
           "h": 44,
@@ -3705,6 +3768,13 @@
           "ok": true
         },
         {
+          "el": "#c23 button.btn.btn--ghost.btn--m \"Edit\"",
+          "w": 101,
+          "h": 50,
+          "min": 44,
+          "ok": true
+        },
+        {
           "el": "#c23 input.",
           "w": 278,
           "h": 50,
@@ -4077,7 +4147,7 @@
           "gapColour": true,
           "segment": {
             "x": 1049,
-            "y": -24919.8,
+            "y": -28807.8,
             "w": 302,
             "h": 50
           },
@@ -4091,7 +4161,7 @@
           "gapColour": true,
           "segment": {
             "x": 681,
-            "y": -24643.8,
+            "y": -28531.8,
             "w": 302,
             "h": 50
           },
@@ -4102,9 +4172,9 @@
         {
           "state": "default",
           "x": 297,
-          "y": -21231.8,
+          "y": -24823.8,
           "w": 334,
-          "h": 301,
+          "h": 281,
           "radius": "16px",
           "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
@@ -4113,9 +4183,9 @@
         {
           "state": "is-pressed",
           "x": 297,
-          "y": -21231.8,
+          "y": -24823.8,
           "w": 334,
-          "h": 301,
+          "h": 281,
           "radius": "16px",
           "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
@@ -4124,9 +4194,9 @@
         {
           "state": "is-selected",
           "x": 297,
-          "y": -21231.8,
+          "y": -24823.8,
           "w": 334,
-          "h": 301,
+          "h": 281,
           "radius": "16px",
           "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
@@ -4135,9 +4205,9 @@
         {
           "state": "is-disabled",
           "x": 297,
-          "y": -21231.8,
+          "y": -24823.8,
           "w": 334,
-          "h": 301,
+          "h": 281,
           "radius": "16px",
           "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
@@ -4146,9 +4216,9 @@
         {
           "state": "is-error",
           "x": 297,
-          "y": -21231.8,
+          "y": -24823.8,
           "w": 334,
-          "h": 301,
+          "h": 281,
           "radius": "16px",
           "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
@@ -4157,9 +4227,9 @@
         {
           "state": "is-focus",
           "x": 297,
-          "y": -21231.8,
+          "y": -24823.8,
           "w": 334,
-          "h": 301,
+          "h": 281,
           "radius": "16px",
           "padding": "8px 12px",
           "border": "0px/0px/0px/0px",
@@ -4175,7 +4245,7 @@
           "contentInside": true,
           "titleLines": 3,
           "x": 309,
-          "y": -19872.8,
+          "y": -20970.8,
           "w": 310,
           "h": 769.7
         },
@@ -4187,7 +4257,7 @@
           "contentInside": true,
           "titleLines": 8,
           "x": 680.1,
-          "y": -19862.73,
+          "y": -20960.73,
           "w": 303.8,
           "h": 986.49
         },
@@ -4199,21 +4269,21 @@
           "contentInside": true,
           "titleLines": 7,
           "x": 1045,
-          "y": -19872.8,
+          "y": -20970.8,
           "w": 310,
           "h": 930.64
         },
         {
           "state": "default",
           "overflow": "visible",
-          "height": "692px",
+          "height": "731px",
           "titleInside": true,
           "contentInside": true,
           "titleLines": 4,
           "x": 309,
-          "y": -18764.17,
+          "y": -19862.17,
           "w": 310,
-          "h": 692
+          "h": 731
         }
       ],
       "tabBars": [
@@ -4443,7 +4513,7 @@
           {
             "tile": "P · Protein",
             "x": 313,
-            "y": -11921.25,
+            "y": -12908.25,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -4451,7 +4521,7 @@
           {
             "tile": "F · Fat",
             "x": 313,
-            "y": -11809.25,
+            "y": -12796.25,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -4459,7 +4529,7 @@
           {
             "tile": "C · Carbs",
             "x": 313,
-            "y": -11697.25,
+            "y": -12684.25,
             "w": 302,
             "h": 104,
             "padding": "8px 12px"
@@ -4475,14 +4545,14 @@
         "sameTop": true,
         "equalPadding": true,
         "valueBaselines": [
-          -11831.25,
-          -11719.25,
-          -11607.25
+          -12818.25,
+          -12706.25,
+          -12594.25
         ],
         "labelBaselines": [
-          -11880.25,
-          -11768.25,
-          -11656.25
+          -12867.25,
+          -12755.25,
+          -12643.25
         ],
         "valueOffsets": [
           90,

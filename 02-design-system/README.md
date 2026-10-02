@@ -46,7 +46,7 @@ The tokens in `tokens.json` become 283 CSS variables, including the `prefers-con
 | **Type** | `display`, `h1`, `h2`, `title`, `body`, `body-strong`, `callout`, `label`, `caption`, `overline`, `num-xl`, `num-l`, `num-m`, `num-s` | rem-based (Dynamic Type). `num-*` use tabular figures |
 | **Font stacks** | Young Serif → Iowan Old Style, Palatino, Georgia, serif · Hanken Grotesk → system UI fonts → sans-serif · Azeret Mono → SF Mono, Menlo, Consolas, Roboto Mono → monospace | They look right offline and keep numbers tabular |
 | **Space** | `space-0 … space-16` on a **4 pt grid**. Grid lines: `space-screen-margin` (20, left **and** right) and `space-card-inset` (16, content inside cards, lists, banners, rows). Gaps: `space-inline-icon` (4, icon → text and macro letter → value), `space-chip-gap` (8, between chips) | Checked by `npm run check:align` (0 px tolerance) |
-| **Size** | `touch-min` 44 · `touch-android` 48 · `app-bar` 56 / `app-bar-android` 64 · `tab-bar` 49 / `tab-bar-android` 64 · `tab-indicator` 56×32 · `tab-label-max` 14 · `segment` 36 / `segment-android` 40 · `col-min` 5rem · `chip` 36 · `thumb` 48 · `shutter` 72 · `plate-guide` 280 · `recipe-thumb` 112 · `icon-inset` 10 (hit area → glyph, used to put glyphs on grid lines) · `macro-chip` 24 (compact P/F/C chip) · `step-number` 28 · `measure` 40rem (≈ 75 characters, reading width) · safe areas 47 / 34 | |
+| **Size** | `touch-min` 44 · `touch-android` 48 · `app-bar` 56 / `app-bar-android` 64 · `tab-bar` 49 / `tab-bar-android` 64 · `tab-indicator` 56×32 · `tab-label-max` 14 · `segment` 36 / `segment-android` 40 · `col-min` 5rem · `chip` 36 · `thumb` 48 · `shutter` 72 · `plate-guide` 280 · `recipe-thumb` 80 · `icon-inset` 10 (hit area → glyph, used to put glyphs on grid lines) · `macro-chip` 24 (compact P/F/C chip) · `step-number` 28 · `measure` 40rem (≈ 75 characters, reading width) · safe areas 47 / 34 | |
 | **Icons** | `size-icon-s/m/l/xl` = 16 / 20 / 24 / 32, `size-icon-stroke` 2 | Drawn on a 24 grid |
 | **Radius** | `xs` 6 · `sm` 10 · `md` 16 · `lg` 24 · `xl` 32 · `full` | |
 | **Border width** | `hairline` 1 · `default` 1.5 · `focus` 2 · `focus-gap` 2 · `rule` 3 | |
@@ -70,8 +70,8 @@ Every component has **default, pressed, disabled, focus and error** states where
 | 4 | Chips | `.chip` | default · pressed · selected · focus · disabled · fresh · locked (allergy) |
 | 5 | Segmented control (g / ml / portion) | `fieldset.segmented` + native radios | default · pressed · focus · disabled option · Android |
 | 6 | Weight stepper | `.stepper` | default · pressed · focus · at minimum · error · disabled |
-| 7 | Product list item | `.product`, `.product--detected`, `.product__thumb--meal` | default · pressed · selected · disabled · error (+ focus) · detected · check portion · photo / icon thumb · meal rows (passive meal icon + one Add button) |
-| 8 | Recipe card | `.recipe-card`, `.recipe-card--compact` | default · pressed · disabled (long titles) · compact (chips in a full-width row) · View recipe button (default · pressed · focus · disabled) |
+| 7 | Product list item | `.product`, `.product--detected`, `.product__thumb--meal`, `.product--chips` (photo + name, chips under the photo, kcal + Add centred) | default · pressed · selected · disabled · error (+ focus) · detected · check portion · photo / icon thumb · meal rows (passive meal icon + one Add button) |
+| 8 | Recipe card | `.recipe-card`, `.recipe-card--compact` | default · pressed · disabled (long titles) · compact (80 px wide full-height image, one text column), clickable image (`.recipe-card__img--link`) · View recipe button (default · pressed · focus · disabled) |
 | 9 | Nutrition summary | `.nutri`, `.macro`, `.macro-tile--chip` | on track · over goal · macro chips |
 | 10 | Nutrition facts table | `.facts` | per 100 g + per portion |
 | 11 | Top app bar | `.app-bar` | default · scrolled · large · Android 64 dp |
@@ -332,6 +332,39 @@ Gaps are 8.00 / 8.00. The last tile ends at 615.00, exactly the sheet margin. Nu
 - **axe "incomplete" nodes** are covered by the custom contrast scan and `contrast.py` rather than by axe itself (see [Open issues](#open-issues)).
 
 ---
+
+## Changelog (v1.8 → v1.9): photos in search rows (step 16)
+
+| Area | Before | After |
+|---|---|---|
+| **Search rows** (`.product--chips`) | Name + chips, no photo | `.product__thumb` (the Meals thumbnail: `size-thumb`, `radius-sm`, cover) · name, top-aligned. Chips under the photo (`grid-column: 1 / 3`), `space-2` below it. kcal + Add stay in column 3, centred on the row. No new tokens |
+
+## Changelog (v1.7 → v1.8): targeted tweaks (step 15)
+
+| Area | Before | After |
+|---|---|---|
+| **Search rows** (`.product--chips`) | Photo · green ✓ (`.product__check`) · name, chips under the name; kcal + Add centred on line 1 | **Only the name** on the card-inset line, chips right under it. kcal + Add span both lines, centred on the row. The divider starts on the name line. `.product__check` and `.product__verified` (the green ✓ after names in product rows) were removed, along with the audit's contrast entry for that icon. The `high` glyph stays in its functional uses: success toasts, "High confidence", the scan hint and the "done" step |
+| **Compact recipe card** | 80 × 80 square image | Image column `size-recipe-thumb` (80) wide, from the top to the bottom padding (`align-items: stretch`, `min-height: 0`; the photo is absolutely positioned, `object-fit: cover`, `object-position: center`). Own radius on all four corners; the card doesn't clip |
+| **Ingredient rows (view)** | Name \| amount, then "158 kcal" + chips on one line (`.macro-line`) | Two lines: name \| amount, then chips \| `.ingredient__kcal` "158 kcal". Amount and kcal share the facts value style (mono, tabular, right-aligned), so they end on one edge. Gap between the lines: `space-2`. `.macro-line` and `.macro-line__item` were removed |
+| **Tokens** | – | No change: every token the ✓ used (`color.status.success`, `size.icon-s`, `size.icon-l`) is still used elsewhere |
+
+## Changelog (v1.6 → v1.7): targeted tweaks (step 14)
+
+| Area | Before | After |
+|---|---|---|
+| **Search rows** (`.product--chips`) | Verified ✓ as a 44 button (`.icon-btn--verified`) on the right, after "+" | `.product__check`: a **passive indicator** ("Verified: USDA", no hit area, no states, no tab stop) in a fixed `size-icon-l` column left of the name, centred on the name's first line. Grid: thumb · ✓ · name · end. Chips span from the name to the right margin. kcal + Add (44) sit on the right margin, centred on line 1. `.icon-btn--verified` was removed |
+| **Compact recipe card** | Image left of the title block; chips, Fits and kcal in a full-width foot | Square image `size-recipe-thumb` (**80**, was 112 × auto), object-fit cover. **One** text column (`min-width: 0`), everything left-aligned: title → time → reason → P/F/C → Fits → kcal, all `space-2` apart. Padding `space-card-inset`, image → text `space-3`. The foot is gone |
+| **Clickable image** | – | `.recipe-card__img--link`: pointer cursor and a pressed overlay (`color.bg.pressed`, also `.is-pressed` for touch). Used `aria-hidden`, beside a real "View recipe" button |
+| **Ingredient line** (`.macro-line`) | Text macros ("P 34 g F 1 g C 0 g", coloured letters) | "158 kcal" + the **macro chips** (`.macro-tile--chip`, the same component). The chip group moves under the kcal as one row when the line is too narrow. `.macro-line__key` and the `--p/--f/--c` item rules were removed |
+| **Token** | `size.recipe-thumb` 112 | 80: at 390 pt it leaves a 226 px text column, enough for the P/F/C row (200 px, 225 with 3-digit values) |
+
+## Changelog (v1.5 → v1.6): targeted tweaks
+
+| Area | Before | After |
+|---|---|---|
+| **Product rows** | One text line of macros ("P 21 · F 53 · C 21") and a small ✓ after the name | `.product--chips`: the name, kcal, Add and **Verified** (`.icon-btn--verified`, 44, focus ring inside the box) on line 1; the macro chips (`.product__macros`) on line 2 |
+| **Ingredients** | A list card of their own | `.ingredients--facts` inside a `.facts` card. The rows, header, fonts and value alignment come from the **same rules** as the Nutrition Facts table (shared selectors) |
+| **Compact recipe card** | Chips in the foot after Fits and kcal | The foot holds the chips → Fits → kcal, so the order is: reason → P/F/C → Fits |
 
 ## Changelog (v1.4 → v1.5): chips in one row, View recipe, compact ingredients, Method
 

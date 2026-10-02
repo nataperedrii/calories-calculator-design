@@ -70,8 +70,12 @@
 <div class="recipe-card__meta"><span class="badge badge--fresh"><svg class="icon" aria-hidden="true"><use href="#i-fresh"/></svg>Fits your dinner</span></div>
 <div class="banner" role="note"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><p class="banner__text" id="allergens-text"><b>Contains: fish.</b> Free from peanuts, milk, gluten and egg.</p></div>
 <section class="nutri" aria-labelledby="sum-title"><h2 class="visually-hidden" id="sum-title">Per portion</h2><div class="nutri__ring"><svg id="ring" viewBox="0 0 256 136" role="img" aria-label="462 of 879 kcal left for dinner"><path class="nutri__track" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20"/><path id="ring-value" class="nutri__value" d="M16 128 A112 112 0 0 1 240 128" stroke-width="20" stroke-dasharray="185 400"/></svg><div class="nutri__center"><b class="nutri__big" id="sum-kcal">462</b><small>kcal per portion</small></div></div><div class="nutri__row"><span>Dinner budget <b>879</b></span><span>Per 100 g <b id="sum-100">99</b></span></div><div class="macros"><div class="macro macro--p" data-macro="p"><div class="macro__label"><i class="macro__key"></i>P · Protein</div><div class="macro__value">41<small> g</small></div><div class="macro__bar" role="meter" aria-label="Protein" aria-valuemin="0" aria-valuemax="100" aria-valuenow="41" aria-valuetext="41 of 100 grams a day"><i style="--w: 41%"></i></div><div class="macro__goal">of 100 g</div></div><div class="macro macro--f" data-macro="f"><div class="macro__label"><i class="macro__key"></i>F · Fat</div><div class="macro__value">12<small> g</small></div><div class="macro__bar" role="meter" aria-label="Fat" aria-valuemin="0" aria-valuemax="70" aria-valuenow="12" aria-valuetext="12 of 70 grams a day"><i style="--w: 17%"></i></div><div class="macro__goal">of 70 g</div></div><div class="macro macro--c" data-macro="c"><div class="macro__label"><i class="macro__key"></i>C · Carbs</div><div class="macro__value">49<small> g</small></div><div class="macro__bar" role="meter" aria-label="Carbs" aria-valuemin="0" aria-valuemax="255" aria-valuenow="49" aria-valuetext="49 of 255 grams a day"><i style="--w: 19%"></i></div><div class="macro__goal">of 255 g</div></div></div><p class="t-caption text-secondary">Bars show this portion against your daily goal.</p></section>
-<div class="section-head" id="ing-head"><h2 id="ing-title">Ingredients · 1 portion</h2><button type="button" class="btn btn--ghost btn--m" id="edit-toggle" aria-label="Edit ingredients"><svg class="icon icon--m" aria-hidden="true"><use href="#i-edit"/></svg>Edit</button></div>
-<ol class="ingredients" id="ingredients" aria-labelledby="ing-title"></ol>
+<section class="facts" id="ing-head" aria-labelledby="ing-title">
+<div class="row-between"><h2 class="facts__title" id="ing-title">Ingredients</h2><button type="button" class="btn btn--ghost btn--m" id="edit-toggle" aria-label="Edit ingredients"><svg class="icon icon--m" aria-hidden="true"><use href="#i-edit"/></svg>Edit</button></div>
+<div class="facts__source">1 portion · <span class="badge badge--verified">✓ USDA</span></div>
+<div class="ingredients__head" aria-hidden="true"><span>Ingredient</span><span>Amount</span></div>
+<ol class="ingredients ingredients--facts" id="ingredients" aria-labelledby="ing-title"></ol>
+</section>
 <button type="button" class="btn btn--secondary" id="add-ingredient" hidden><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add ingredient</button>
 <div class="section-head" id="method-head"><h2 id="method-title">Method</h2><button type="button" class="btn btn--ghost btn--m" id="edit-steps" aria-label="Edit method"><svg class="icon icon--m" aria-hidden="true"><use href="#i-edit"/></svg>Edit</button></div>
 <div class="recipe-card__meta"><span><svg class="icon icon--s" aria-hidden="true"><use href="#i-time"/></svg>Total 30 min</span><span>Serves 2</span></div>
@@ -105,6 +109,11 @@
 <script>
   // Exports of scrolled states: <body data-scroll-to="id"> scrolls that element to the top of the screen body.
   if (document.body.dataset.scrollTo) document.getElementById(document.body.dataset.scrollTo).scrollIntoView({ block: "start" });
+  // Pointer-only image links (aria-hidden, no tab stop): pressed feedback for touch, where :active on a div is unreliable.
+  const pressable = ".recipe-card__img--link";
+  document.addEventListener("pointerdown", (e) => e.target.closest(pressable)?.classList.add("is-pressed"));
+  ["pointerup", "pointercancel", "pointerleave"].forEach((ev) =>
+    document.addEventListener(ev, () => document.querySelectorAll(pressable + ".is-pressed").forEach((el) => el.classList.remove("is-pressed")), true));
   // Prototype navigation: any element with data-href opens that screen.
   document.addEventListener("click", (e) => {
     const t = e.target.closest("[data-href]");

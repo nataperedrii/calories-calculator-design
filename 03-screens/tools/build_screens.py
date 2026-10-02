@@ -185,13 +185,13 @@ def macro_tiles(t):
             f'<div class="macro-tile macro-tile--c"><span class="macro-tile__label">C · Carbs</span><span class="macro-tile__value">{r1(t["c"])}<small> g</small></span></div></div>')
 
 
-def macro_chips(t):
+def macro_chips(t, extra=""):
     """P / F / C chips: the compact form of the design-system macro tile (same tokens as the detail screen)."""
     out = []
     for k, letter, word in (("p", "P", "Protein"), ("f", "F", "Fat"), ("c", "C", "Carbs")):
         out.append(f'<span class="macro-tile macro-tile--{k} macro-tile--chip"><span class="macro-tile__label" aria-hidden="true">{letter}</span>'
                    f'<span class="visually-hidden">{word}</span><span class="macro-tile__value">{r0(t[k])}<small> g</small></span></span>')
-    return f'<div class="macro-tiles macro-tiles--inline">{"".join(out)}</div>'
+    return f'<div class="macro-tiles macro-tiles--inline{(" " + extra) if extra else ""}">{"".join(out)}</div>'
 
 
 MEAL_ICONS = {"Breakfast": "breakfast", "Lunch": "sun", "Snack": "snack", "Dinner": "dinner"}
@@ -253,6 +253,11 @@ def meal_row(name, meta, kcal, img=None, href=None, add=None):
 SCRIPT = """<script>
   // Exports of scrolled states: <body data-scroll-to="id"> scrolls that element to the top of the screen body.
   if (document.body.dataset.scrollTo) document.getElementById(document.body.dataset.scrollTo).scrollIntoView({ block: "start" });
+  // Pointer-only image links (aria-hidden, no tab stop): pressed feedback for touch, where :active on a div is unreliable.
+  const pressable = ".recipe-card__img--link";
+  document.addEventListener("pointerdown", (e) => e.target.closest(pressable)?.classList.add("is-pressed"));
+  ["pointerup", "pointercancel", "pointerleave"].forEach((ev) =>
+    document.addEventListener(ev, () => document.querySelectorAll(pressable + ".is-pressed").forEach((el) => el.classList.remove("is-pressed")), true));
   // Prototype navigation: any element with data-href opens that screen.
   document.addEventListener("click", (e) => {
     const t = e.target.closest("[data-href]");
@@ -299,7 +304,7 @@ def today(file, time, meals, toast_msg=None, card=False, title_note="Thursday", 
     rec = ""
     if card:
         rec = (f'<div class="section-head" id="fits-head"><h2>Fits your dinner</h2><button type="button" class="btn btn--ghost btn--m" data-href="13-recipes.html">See more</button></div>'
-               f'<article class="recipe-card"><div class="recipe-card__img"><img src="{IMG}/{DISH_IMG}" alt="" width="350" height="219"></div>'
+               f'<article class="recipe-card"><div class="recipe-card__img recipe-card__img--link" data-href="14-recipe-detail.html" aria-hidden="true"><img src="{IMG}/{DISH_IMG}" alt="" width="350" height="219"></div>'
                f'<div class="recipe-card__body"><span class="badge badge--fresh">{ic("fresh")}Fits your dinner</span><h3 class="recipe-card__title">{DISH}</h3>'
                f'<div class="recipe-card__meta"><span>{ic("time", "icon--s")}30 min</span><span>Covers your protein</span></div>{macro_chips(DINNER)}'
                f'<div class="recipe-card__foot"><span class="recipe-card__kcal">{DINNER["kcal"]} <small>kcal</small></span><button type="button" class="btn btn--secondary btn--m" data-href="14-recipe-detail.html" aria-label="View recipe: {DISH}">View recipe</button></div></div></article>')
@@ -421,15 +426,18 @@ files.append(page("09-photo-result.html", "Lunch from a photo", "Ripe photo resu
 # ---------------------------------------------------------------------------
 
 
-def food_row(key, img=None, icon="portion", name=None, href=None, add_label=None):
+def food_row(key, img, name=None, href=None, add_label=None):
     nm, kcal, p, f, c = USDA[key]
     name = name or nm
-    thumb = (f'<img class="product__thumb" src="{IMG}/{img}" alt="" width="48" height="48">' if img
-             else f'<span class="product__thumb product__thumb--icon">{ic(icon)}</span>')
     go = f' data-href="{href}"' if href else ""
-    return (f'<div class="product"{go}>{thumb}<div><div class="product__name">{name} <svg class="icon product__verified" role="img" aria-label="Verified: USDA"><use href="#i-high"/></svg></div>'
-            f'<div class="product__meta">P {r0(p)} · F {r0(f)} · C {r0(c)}</div></div><div class="product__end"><span class="product__kcal">{kcal}<small>per 100 g</small></span>'
-            f'<button type="button" class="icon-btn icon-btn--tint" aria-label="{add_label or "Add " + name.lower()}"{go}>{ic("plus")}</button></div></div>')
+    # Search row: the product photo (the Meals thumbnail component) with the name beside it, top-aligned;
+    # P / F / C chips under the photo; kcal per 100 g + Add on the right edge, centred on the whole row.
+    # The photo is decorative next to the name: alt="".
+    return (f'<div class="product product--chips"{go}><img class="product__thumb" src="{IMG}/{img}" alt="" width="48" height="48">'
+            f'<div class="product__name">{name}</div>'
+            f'<div class="product__end"><span class="product__kcal">{kcal}<small>per 100 g</small></span>'
+            f'<button type="button" class="icon-btn icon-btn--tint" aria-label="{add_label or "Add " + name.lower()}"{go}>{ic("plus")}</button></div>'
+            f'{macro_chips({"p": p, "f": f, "c": c}, "product__macros")}</div>')
 
 
 body = f"""{status_bar("16:30")}
@@ -437,9 +445,9 @@ body = f"""{status_bar("16:30")}
 <main class="screen__body" tabindex="0">
 <div class="search">{ic("search")}<input type="search" value="alm" aria-label="Search foods and dishes" autocomplete="off"><button type="button" class="icon-btn" aria-label="Clear search">{ic("close")}</button></div>
 <div class="section-head"><h2>Results for “alm”</h2><span class="t-callout text-secondary">3 foods · per 100 g</span></div>
-<div class="list">{food_row("almonds", img="food-almonds.jpg", href="11-food-detail.html")}{food_row("almonds_roasted", img="food-almonds.jpg")}{food_row("almond_butter", icon="recipes")}</div>
+<div class="list">{food_row("almonds", "food-almonds.jpg", href="11-food-detail.html")}{food_row("almonds_roasted", "food-roasted-almonds.jpg", name="Roasted almonds")}{food_row("almond_butter", "food-almond-butter.jpg")}</div>
 <div class="section-head"><h2>Recent</h2><span class="t-callout text-secondary">Two taps to log</span></div>
-<div class="list">{food_row("apple", img="food-apple.jpg", name="Apple, raw")}{food_row("yogurt", img="breakfast-granola-blueberries.jpg", name="Greek yogurt, 2%")}</div>
+<div class="list">{food_row("apple", "food-apple.jpg", name="Apple")}{food_row("yogurt", "food-greek-yogurt.jpg", name="Greek yogurt")}</div>
 <button type="button" class="btn btn--secondary" data-href="12-dish-calculator.html">{ic("recipes")}Create a dish</button>
 </main>"""
 files.append(page("10-add-food.html", "Add food", "Ripe add food: search results with verified USDA entries, recent foods and the dish calculator.", body))
@@ -528,11 +536,12 @@ for i, (title, items, img, mins, why, href) in enumerate(RECIPES):
     t = total(items)
     best = f'<span class="badge badge--fresh">{ic("fresh")}Best fit</span>' if i == 0 else ""
     ttl = f'<a href="{href}">{title}</a>' if href else title
-    cards.append(f'<article class="recipe-card recipe-card--compact"><div class="recipe-card__img"><img src="{IMG}/{img}" alt="" width="112" height="160"></div>'
-                 f'<div class="recipe-card__body">{best}<h3 class="recipe-card__title">{ttl}</h3><div class="recipe-card__meta"><span>{ic("time", "icon--s")}{mins} min</span><span>{why}</span></div>'
+    cards.append(f'<article class="recipe-card recipe-card--compact"><div class="recipe-card__img"><img src="{IMG}/{img}" alt="" width="80" height="80"></div>'
+                 f'<div class="recipe-card__body">{best}<h3 class="recipe-card__title">{ttl}</h3>'
+                 f'<div class="recipe-card__meta"><span>{ic("time", "icon--s")}{mins} min</span></div><div class="recipe-card__meta"><span>{why}</span></div>'
+                 f'{macro_chips(t)}'
                  f'<span class="recipe-card__fit">{ic("fresh", "icon--s")}Fits: {t["kcal"]} of {LEFT} kcal</span>'
-                 f'<span class="recipe-card__kcal">{t["kcal"]} <small>kcal</small></span></div>'
-                 f'<div class="recipe-card__foot">{macro_chips(t)}</div></article>')
+                 f'<span class="recipe-card__kcal">{t["kcal"]} <small>kcal</small></span></div></article>')
 body = f"""{status_bar("18:31")}
 <header class="app-bar app-bar--large"><h1 class="app-bar__title">Recipes</h1><div class="app-bar__actions"><button type="button" class="icon-btn" aria-label="Search recipes">{ic("search")}</button><button type="button" class="icon-btn" aria-label="Saved recipes">{ic("heart")}</button></div></header>
 <main class="screen__body" tabindex="0">
@@ -632,8 +641,12 @@ def recipe_detail(file, state="view", sheet=False):
 <div class="recipe-card__meta"><span class="badge badge--fresh">{ic("fresh")}Fits your dinner</span></div>
 <div class="banner" role="note">{ic("alert")}<p class="banner__text" id="allergens-text"><b>Contains: fish.</b> Free from peanuts, milk, gluten and egg.</p></div>
 {dish_summary()}
-<div class="section-head" id="ing-head"><h2 id="ing-title">Ingredients · 1 portion</h2><button type="button" class="btn btn--ghost btn--m" id="edit-toggle" aria-label="Edit ingredients">{ic("edit", "icon--m")}Edit</button></div>
-<ol class="ingredients" id="ingredients" aria-labelledby="ing-title"></ol>
+<section class="facts" id="ing-head" aria-labelledby="ing-title">
+<div class="row-between"><h2 class="facts__title" id="ing-title">Ingredients</h2><button type="button" class="btn btn--ghost btn--m" id="edit-toggle" aria-label="Edit ingredients">{ic("edit", "icon--m")}Edit</button></div>
+<div class="facts__source">1 portion · <span class="badge badge--verified">✓ USDA</span></div>
+<div class="ingredients__head" aria-hidden="true"><span>Ingredient</span><span>Amount</span></div>
+<ol class="ingredients ingredients--facts" id="ingredients" aria-labelledby="ing-title"></ol>
+</section>
 <button type="button" class="btn btn--secondary" id="add-ingredient" hidden>{ic("plus")}Add ingredient</button>
 <div class="section-head" id="method-head"><h2 id="method-title">Method</h2><button type="button" class="btn btn--ghost btn--m" id="edit-steps" aria-label="Edit method">{ic("edit", "icon--m")}Edit</button></div>
 <div class="recipe-card__meta"><span>{ic("time", "icon--s")}Total 30 min</span><span>Serves 2</span></div>
@@ -708,19 +721,19 @@ NOTES = {
     4: ("One concrete question", "“Check portion” tints the row and asks “Is 150 g right?”. “Not sure” offers the two likely answers and Search."),
     5: ("The button carries the result", "“Add to Lunch · 559 kcal”. Meal is preselected from the time; the estimate range is stated."),
     6: ("Undo, not “Are you sure?”", "Logging is reversible, so it's one tap plus Undo. The toast has no timer."),
-    7: ("Two taps from search", "Recents first; one canonical entry per food with a ✓ USDA badge (research insight 2)."),
+    7: ("Two taps from search", "Recents first; one canonical entry per food. The USDA source is named on the food detail (research insight 2)."),
     8: ("Per 100 g + source", "The anchor value and its source stay on top; quick portions like “30 g · 1 handful”."),
     9: ("Cooked weight fixes home cooking", "Raw ingredients + the cooked pot weight → real kcal per 100 g and per portion (insight 1)."),
     10: ("Lead with what's left", f"The ring answers “can I have dinner?”: {LEFT} kcal left, and a recipe that fits it."),
     11: ("“Suits me” is visible", "Diet and allergy come from onboarding. The allergy is a locked chip (lock + “Allergy”) and can only change in Profile."),
-    12: ("Ranked by fit, explained in words", f"Fits the kcal left → covers the protein gap → fewer kcal. “Fits: {DINNER['kcal']} of {LEFT} kcal”, with the reason next to the time."),
+    12: ("Ranked by fit, explained in words", f"Fits the kcal left → covers the protein gap → fewer kcal. “Fits: {DINNER['kcal']} of {LEFT} kcal”. One text column: title, time, reason, P/F/C, fit, kcal."),
     13: ("Safety before the numbers", "Allergens in words above the fold; per-portion kcal and macros add up from the ingredients."),
     14: ("Log without leaving", "A bottom sheet: meal preselected, portions, the same macro tiles, one primary button."),
     15: ("Calm when over", f"Protein is {r0(day(B, L, S, DINNER)['p']) - GOAL['p']} g over: Turmeric and the words “{r0(day(B, L, S, DINNER)['p']) - GOAL['p']} over”. No red, no warning icon."),
     16: ("Fix a dish in place", "Edit turns each row into labelled fields: food, amount, unit. Kcal, the ring and the macro bars update as you type, and screen readers hear the new total."),
     17: ("Delete with Undo", "Focus moves to the next ingredient, so keyboard users don't get lost. The toast offers Undo and has no timer."),
     18: ("Don't lose work", "Leaving with unsaved changes asks “Discard changes?”, with “Keep editing” first."),
-    20: ("A real “View recipe” button", "Secondary button, 12.8:1, 44 tall, named “View recipe: Baked cod, potatoes &amp; broccoli”. Enter, Space and click open the dish."),
+    20: ("A real “View recipe” button", "Secondary button, 12.8:1, 44 tall, named “View recipe: Baked cod, potatoes &amp; broccoli”. Enter, Space and click open the dish. The photo opens it too, for pointer users only (no extra tab stop)."),
     21: ("The method is part of the dish", "Numbered steps in an ordered list after Ingredients: 16 px text, line height 1.5, ≤ 80 characters a line. Time and servings above, in the card style."),
     22: ("Reorder without dragging", "Move up / Move down buttons (WCAG 2.5.7) keep focus on the moved step and announce its new position. Disabled at the ends, not hidden."),
     23: ("Never a blank section", "A recipe without steps shows “No steps yet” with “Add steps”, which opens a focused Step 1 field."),
