@@ -1026,3 +1026,20 @@ The key prompts used with Claude Code, and what came out of each one.
 - **Also:** `.nojekyll` (Pages serves the files as-is) and the CLAUDE.md structure list (previews, PLAN-AUDIT.md, process/CHANGELOG.md).
 - **Not built (not asked for):** `03-screens/index.html`, a phone-frame prototype shell. The prototype link opens the start screen (01 Welcome) directly; on a desktop it shows at phone width in the top-left corner.
 - **Checks:** `npm run check` 61/61 + alignment 0 (3,636 edges); `check:screens` 603/603; `check:a11y` Tier 1 0/39, Tier 2 0/9; tokens in sync.
+
+
+## 20 — Publish: push, merge to main, GitHub Pages
+
+**Prompt**
+
+> enabled github pages. push all the results to github and merge to main. make sure pages link is working. update docs if needed
+
+**Result**
+
+- **Commit and merge:** `584766a` on `design-system` (steps 17–19), pushed. `main` fast-forwarded from `db09594` to `584766a` and pushed (no merge conflicts: `main` hadn't moved since PR #1).
+- **Pages:** the old build served the Jekyll-rendered README. The new landing page was live about 30 s after the push.
+- **Live check (fresh browser context, like incognito):**
+  - 52 pages: landing, stylescape, directions, design system + standalone, flows board, all 46 screens. All answered 200, with 0 failed requests, 0 broken images and 0 script errors.
+  - 32 internal links resolve.
+  - I looked at the landing page (1280 px) and Today (390 px) on the live site.
+- **Docs:** LINKS.md (status "Live", check details, no more "404") and the README Pages note.

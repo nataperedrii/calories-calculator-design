@@ -21,7 +21,7 @@ Everything was made AI-natively: as HTML and CSS with Claude Code, with no hand-
 
 All external links are also in [LINKS.md](LINKS.md).
 
-**Note on GitHub Pages:** the links above go live once GitHub Pages is enabled for this repository (Settings → Pages → deploy from the `main` branch, root folder). Until then they return 404. Every page also works offline: open [index.html](index.html) from a clone.
+The site is published with GitHub Pages from `main` and works in incognito: no sign-in, only repository files and Google Fonts. Every page also works offline: open [index.html](index.html) from a clone.
 
 ## Previews
 
