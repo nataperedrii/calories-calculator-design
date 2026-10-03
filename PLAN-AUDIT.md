@@ -6,7 +6,7 @@
 
 | Where looked | Result |
 |---|---|
-| `~/.claude/plans/` | **One file:** `valiant-wandering-sparrow.md` (1 Oct 2026, 90 lines), "Plan: write `03-screens/FLOWS.md` (no screens built yet)". It's the only plan made in planning mode, so it's the plan audited here |
+| Claude Code plans folder (`[redacted]/plans/`, outside the repository) | **One file:** `valiant-wandering-sparrow.md` (1 Oct 2026, 90 lines), "Plan: write `03-screens/FLOWS.md` (no screens built yet)". It's the only plan made in planning mode, so it's the plan audited here |
 | Project root, `docs/`, `plan/`, `.claude/` | No `PLAN.md`, `plan*.md`, `TODO.md` or `ROADMAP.md`. There are no `docs/` or `plan/` folders |
 | `README.md`, `CLAUDE.md` | They describe the deliverables of the whole test task, not this plan. Deliverables outside this plan are listed under [Outside the plan](#outside-the-plan) |
 | `git log` (6 commits) | No plan file is committed. Step 09 of `process/PROMPTS.md` (line 331) records that this plan was approved and carried out |
@@ -253,7 +253,7 @@ The work was done in batches; after each batch I re-audited the items, looked at
 
 The earlier list still holds, plus:
 - **New audit files:** `PLAN-AUDIT.md`, `03-screens/tools/compare-audit.mjs`, and `03-screens/qa/before-audit/` and `compare-audit/`.
-- **Plan file location:** the plan itself lives outside the project (`~/.claude/plans/valiant-wandering-sparrow.md`), so it isn't edited. Its in-project result, `03-screens/FLOWS.md`, is updated to match the project.
+- **Plan file location:** the plan itself lives outside the project (`[redacted]/plans/valiant-wandering-sparrow.md`), so it isn't edited. Its in-project result, `03-screens/FLOWS.md`, is updated to match the project.
 
 
 ---

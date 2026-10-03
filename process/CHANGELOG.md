@@ -35,7 +35,7 @@ All 16 screens are now built: 46 HTML / PNG files, with flow 0 (onboarding) and 
 
 ## Update: plan audit (step 17)
 
-The `03-screens/FLOWS.md` plan (`~/.claude/plans/valiant-wandering-sparrow.md`) was audited against the project. The full checklist, before and after, with evidence is in [PLAN-AUDIT.md](../PLAN-AUDIT.md).
+The `03-screens/FLOWS.md` plan (`[redacted]/plans/valiant-wandering-sparrow.md`, outside the repository) was audited against the project. The full checklist, before and after, with evidence is in [PLAN-AUDIT.md](../PLAN-AUDIT.md).
 
 **53 items:**
 

@@ -20,7 +20,7 @@ Goal: put the final 46 screens of Ripe into Figma as **editable layers** (frames
 
 **Account (from `whoami`, an exempt call):**
 - Plan "Natalia Peredrii's team": tier `starter`, seat **Full**, role admin. The new file goes here.
-- The other plan, "UX INTENSIVE BY LISA", is someone else's team with a View seat. It is **not used**.
+- The other plan, "[redacted]", is someone else's team with a View seat. It is **not used**.
 
 **Calls already used this month:** these can't be read through the API. The user approved the budget ("ok", 2026-10-03) without giving a number, so we run on the planned assumption of **20 left**. If Figma answers with a limit error, we stop at once and ask (no retries).
 
@@ -83,10 +83,10 @@ Counter: **used 10 / cap 14 / assumed left 10** (exempt calls are not counted). 
 
 | # | Time | Tool | Counts | Result | Used / left |
 |---|---|---|---|---|---|
-| – | 2026-10-03 | `whoami` | exempt | Starter, Full seat, team::1456628069424971860 | 0 / 20 |
+| – | 2026-10-03 | `whoami` | exempt | Starter, Full seat, team::[redacted] | 0 / 20 |
 | 1 | 2026-10-03 01:01 | `get_figma_skill` figma-use SKILL.md | 1 | ok: rules read (paint colour r,g,b only; set variable scopes; one page switch per call; return node ids) | 1 / 19 |
 | 2 | 2026-10-03 01:02 | `get_figma_skill` figma-create-new-file SKILL.md | 1 | ok: plan key + editorType design | 2 / 18 |
-| 3 | 2026-10-03 01:02 | `create_new_file` "Ripe — calorie calculator screens", team::1456628069424971860 | exempt | ok: file https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D | 2 / 18 |
+| 3 | 2026-10-03 01:02 | `create_new_file` "Ripe — calorie calculator screens", team::[redacted] | exempt | ok: file https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D | 2 / 18 |
 | 4 | 2026-10-03 01:04 | `use_figma` batch-00 trial: 07-today + tokens | 1 | ok: frame 1:3, 3 image slots, 0 errors, 0 font fallbacks; 168 variables, 14 text styles, 4 effect styles | 3 / 17 |
 | 5 | 2026-10-03 01:06 | `get_screenshot` trial frame 1:3 | 1 | ok: matches the reference; one difference: the kcal arc came in dashed (Figma ignores pathLength / px dash) → extract.mjs fixed, trial arc replaced in batch-02 | 4 / 16 |
 | 6 | 2026-10-03 01:11 | `use_figma` batch-01: 10 screens (Flow 2, Flow 1B) | 1 | ok: 10 frames, 17 image slots, 0 errors, 0 failed (checksums all passed) | 5 / 15 |
