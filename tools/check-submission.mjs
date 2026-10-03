@@ -44,7 +44,7 @@ const PRIVATE = [
   ["machine name", /\b[a-z0-9-]+\.home\b|\bmacbook-pro-[a-z0-9-]+/gi],
   ["access key or token", /\bghp_[A-Za-z0-9]{20,}|\bgithub_pat_[A-Za-z0-9_]{20,}|\bsk-[A-Za-z0-9]{20,}|\bAKIA[0-9A-Z]{16}\b|\bxox[abp]-[A-Za-z0-9-]{10,}|-----BEGIN [A-Z ]*PRIVATE KEY-----/g],
 ];
-const NOT_EMAIL = /\.(png|jpe?g|svg|webp|css|js|mjs|html|json|md)$|@(?:\d|media|import|font-face|keyframes|supports|layer|axe-core|playwright|types|storybook)\b/i;
+const NOT_EMAIL = /\.(png|jpe?g|svg|webp|css|js|mjs|html|json|md)$|@(?:\d|media|import|font-face|keyframes|supports|layer|axe-core|playwright|types|storybook)\b|^ID\+username@/i; // the last one is the GitHub noreply template, not an address
 let priv = 0;
 for (const f of textFiles) {
   if (f === SELF) continue;
