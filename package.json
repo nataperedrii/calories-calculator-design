@@ -15,7 +15,8 @@
     "export:screens": "node 03-screens/tools/export.mjs",
     "check:screens": "node 03-screens/tools/check.mjs",
     "check:align": "node 03-screens/tools/align.mjs",
-    "previews": "node tools/previews.mjs"
+    "previews": "node tools/previews.mjs",
+    "check:submission": "node tools/check-submission.mjs"
   },
   "engines": {
     "node": ">=20"
