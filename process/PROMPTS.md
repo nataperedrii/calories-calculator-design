@@ -136,6 +136,8 @@ The key prompts used with Claude Code, and what came out of each one.
 > ## Self-check
 > Render the HTML, take a screenshot, verify contrast, spacing and alignment, fix issues, and only then export the PNG. If the result looks templated, redo it.
 
+*(Note: the prompt was adapted from a template and refers to `00-research/`, a folder this repository never had. The text above is kept verbatim; the Result explains what was used instead.)*
+
 **Result**
 
 - **Inputs:** `00-research/` (the analysis and screenshots) doesn't exist. The user chose to use `process/research.md` as the analysis. Competitors' photo flows were taken from public product and help pages (sources are in directions.md). Anything not sourced is marked *our decision*.
@@ -242,9 +244,76 @@ The key prompts used with Claude Code, and what came out of each one.
 
 **Prompt**
 
+<details><summary>Full prompt (verbatim)</summary>
+
 > Continuing Step 2 (Design System). You are acting as a senior product designer with 20 years of experience AND as a strict QA engineer. 02-design-system/ already contains tokens.json, tokens.css, components.css, index.html, README.md and design-system.png. FIX them (do not rewrite from scratch): keep the tokens, component names and overall visual style, and change only what is described below.
 >
-> *(Full prompt: golden rule "render → screenshot → measure → fix → repeat"; 3 hard design rules: no clipped text, nothing leaves its container, even borders; 7 fixes: page radius and 2× PNG, icon and size compliance against current Apple/Google docs, segmented focus gap, product-row uneven outline, recipe-card clipping, tab-bar states outside the bar, bottom-sheet P/F/C alignment; automated verification `tools/check.mjs` + `npm run check` covering file:// vs http, CSS loading, paths, fonts, clipping, touch targets, screenshots; `index.standalone.html`; html-validate, stylelint-config-standard, tokens validation and drift, axe-core, WCAG contrast for all states; README sections "Icon & size compliance", "Validation report", "Changelog".)*
+> ## Golden rule of this step
+> Never consider the work done until you have verified it in a real browser. For every change: render → screenshot → look at it → measure geometry → fix → repeat. Do not say "done" until every check in "Verification" and "Validation" passes. If something could not be verified, say so explicitly.
+>
+> ## Hard design rules (apply everywhere)
+> 1. Text is never clipped. No overflow: hidden that cuts text; no fixed heights on containers with text. Containers grow with content (min-height instead of height) and text wraps.
+> 2. Nothing extends beyond its container: hover/pressed/focus states, outlines, shadows and badges stay inside the parent or have enough internal padding.
+> 3. Colored borders and outlines have equal thickness and equal radius on all sides. No "uneven" strips.
+>
+> ## Fixes by section
+>
+> 1. Documentation main page (index.html) and design-system.png
+> Problem: the whole page/image is wrapped in a large border-radius that crops content at the corners.
+> Fix: remove border-radius from html, body, the page wrapper and the export frame. The background must fill the entire frame with square corners and no overflow: hidden. Rounded corners stay on components only. Regenerate design-system.png (full page, 2x) and confirm nothing is cropped at the edges.
+>
+> 2. Icons and sizes
+> Verify and fix sizes against Apple (HIG, App Store Connect) and Google (Material 3, Play Console) requirements. Check against CURRENT OFFICIAL documentation (use web search), not memory. At minimum verify:
+> - UI icon sizes (24 grid, size set and intended use);
+> - hit area for interactive icons: at least 44×44pt (iOS) and 48×48dp (Android), even when the glyph is smaller;
+> - icon sizes in the tab bar and top app bar;
+> - app icon: 1024×1024, no transparency, no pre-rounded corners (iOS); for Google Play: 512×512 and adaptive icon (108×108dp layers, safe zone);
+> - minimum text and caption sizes.
+> Output: a table in README.md: element, our size, requirement, source (link), status (ok / fixed). Fix anything non-compliant in tokens and components and reflect it in the docs page.
+>
+> 3. Segmented Control, Focus state
+> Problem: there is no gap between the focus outline and the button/segment.
+> Fix: a focus ring with a visible gap (e.g. 2px outline + 2px outline-offset, or a double ring) and at least 3:1 contrast against adjacent colors (WCAG 2.4.7, 2.4.11). The ring must not be clipped by the parent and must not overlap neighboring segments. Evaluate the result and record in the README why the chosen solution is correct.
+>
+> 4. Product List Item, beige row (Greek yogurt)
+> Problem: the outline makes the strip uneven.
+> Fix: equal border thickness and color on all sides, matching outer and inner radius, border must not shift content (border-box, or inset box-shadow instead of border for states), no "steps" at joins. Check every row state (default / pressed / selected / disabled / error) for identical geometry at identical size.
+>
+> 5. Recipe Card, Disabled state
+> Problem: the card is cut off right through the text.
+> Fix: remove fixed height and clipping; the card grows with content and text wraps fully. Test all card states with long titles and a large font size.
+>
+> 6. Tab Bar, Pressed and Focus states
+> Problem: two states extend outside the menu area.
+> Fix: pressed and focus indicators (background, ring, "pill") sit fully inside the tab bar with internal padding on all sides; bar height accounts for a 44pt+ touch target and the safe area (home indicator). The focus ring may be inset. Check every one of the 3–5 items.
+>
+> 7. Bottom Sheet, blocks P 4.0g / F 0.4g / C 42.3g
+> Verify alignment and fix if wrong: three blocks of equal width (e.g. CSS grid with three equal columns), equal internal padding, baseline alignment of numbers and labels, tabular numbers, equal gaps between blocks, blocks stay within the sheet margins. Measure their bounding boxes and put the results in the report.
+>
+> ## Verification (mandatory, automated)
+> Set up Playwright (Chromium) and a check script (02-design-system/tools/check.mjs plus an npm script `npm run check`). The script must:
+> 1. Open index.html two ways: via file:// and via a local HTTP server. The result must be identical.
+> 2. Prove the CSS actually loaded: no 404/ERR in network, no console errors, getComputedStyle on key elements contains token values (--* variables not empty), document.styleSheets includes both files.
+> 3. Check paths: index.html lives in 02-design-system/ and links ./tokens.css and ./components.css with relative paths, tokens.css first. Fonts: if Google Fonts are used, add robust fallback stacks so the page still looks decent offline.
+> 4. Detect clipping: for every element with overflow other than visible compare scrollWidth/scrollHeight with clientWidth/clientHeight; find children whose bounding box exceeds the parent; separately test segmented control, product list item, recipe card, tab bar and bottom sheet in all states.
+> 5. Check touch targets: every interactive element is at least 44×44 CSS px (48 for Android variants).
+> 6. Take screenshots of every section at 100% plus zoomed crops of the problem areas, LOOK at them, and describe what you see.
+> Also build index.standalone.html with inlined styles so the docs render correctly even without sibling files. The main index.html keeps separate CSS files.
+>
+> ## Code validation (mandatory)
+> - HTML: html-validate (or W3C Nu Validator), 0 errors; explain or fix warnings.
+> - CSS: stylelint with stylelint-config-standard, 0 errors; remove duplicates, unknown properties and broken var(--…) references.
+> - tokens.json: valid JSON, conforms to the W3C Design Tokens format ($value, $type, $description), all {…} references resolve, no cycles. tokens.css matches tokens.json with no drift (verify by script).
+> - Accessibility: axe-core (@axe-core/playwright) over the whole page, 0 serious violations.
+> - WCAG AA contrast: recompute for all text colors and all states (including focus rings and disabled text) and update the table in README.md.
+>
+> ## Deliverables
+> - Fixed files in 02-design-system/ (tokens, components, index.html, index.standalone.html, README.md, design-system.png).
+> - tools/check.mjs and `npm run check`.
+> - In README.md: sections "Icon & size compliance", "Validation report" (what was run and the results), "Changelog" (the 7 fixes: before → after).
+> - Final message: list of fixes, check results, anything still open. If any check fails, say so plainly and keep fixing rather than finishing.
+
+</details>
 
 **Result**
 
@@ -285,9 +354,90 @@ The key prompts used with Claude Code, and what came out of each one.
 
 **Prompt**
 
+<details><summary>Full prompt (verbatim)</summary>
+
 > Continuing Step 2 (Design System), accessibility phase. You are acting as a senior product designer with 20 years of experience AND a strict accessibility auditor. 02-design-system/ already contains the fixed tokens.json, tokens.css, components.css, index.html, index.standalone.html, README.md, design-system.png and tools/check.mjs. Task: verify everything against WCAG 2.2 Level AA (the mandatory baseline) and additionally meet AAA requirements for the critical elements. Find ALL defects and fix them. Do not rewrite the system from scratch: keep token names, component names, brand hues and overall style.
 >
-> *(Full prompt: golden rule "audit → fix → re-audit" with no disabled rules, exclusions or hidden elements, and W3C citations instead of "N/A". Three tiers: Tier 1 = all A/AA, blocking; Tier 2 = AAA on a closed list of critical elements (numbers, macros, body text, inputs, errors, primary buttons, tab bar, app bar, all interactive targets, irreversible actions, animations): 1.4.6, 2.5.5, 2.4.12, 2.4.13, 2.3.3, 1.4.8 text, 3.1.4, 3.3.6, 3.3.9, 2.2.3/2.2.4/2.2.6, blocking; Tier 3 = the rest of AAA, best effort. Tooling: `npm run check:a11y` with axe (wcag2a/aa/21a/21aa/22aa/best-practice), pa11y WCAG2AA, a custom contrast script, axe wcag2aaa on critical elements, and geometry/focus/zoom/reflow checks; audit-before / audit-after JSON + MD with screenshots. Fix at the token level first; document brand deviations; README section "WCAG 2.2 AA + AAA for critical elements"; regenerate design-system.png at 2×; final message with counts by tier, open items and changed colour tokens.)*
+> ## Golden rule
+> Never consider the work done without verifying it in a browser. Loop: audit → fix → re-audit until there are zero unresolved violations in Tiers 1 and 2. Do not disable rules in axe/pa11y, add exclusions, or hide elements from checks just to go green. If a criterion genuinely cannot be met, explain why citing the official W3C document (Understanding WCAG 2.2) and propose the closest alternative. Writing "N/A" without justification is forbidden. Check against CURRENT official W3C documentation (use web search), not memory.
+>
+> ## Three tiers of requirements
+> Tier 1. AA: baseline, blocks completion
+> All WCAG 2.2 A and AA criteria for the documentation page (index.html) and every component in every state (default / pressed / disabled / focus / error), light theme. Zero violations.
+>
+> Tier 2. AAA for critical elements: also blocks completion
+> "Critical" means exactly this (closed list):
+> - all calorie and macro numbers and labels: kcal values, text inside the calorie ring, P/F/C (values and labels), macro bars, the nutrition facts table;
+> - body text and headings, input text and labels, error messages;
+> - text on primary buttons (primary CTA), the tab bar (active and inactive items), the top app bar;
+> - all interactive elements (touch targets, focus);
+> - actions that irreversibly change data (deleting account and data);
+> - animations.
+> For these, the following AAA criteria are mandatory:
+> - 1.4.6 Contrast (Enhanced): normal text ≥ 7:1, large text (24px+, or 18.66px+ bold) ≥ 4.5:1. If an accent color fails as text color, keep it for fills and create a darker token for text and icons (e.g. color.text.accent, color.on-accent) that preserves the brand hue. Text on fills must also pass 7:1.
+> - 2.5.5 Target Size (Enhanced): all interactive targets ≥ 44×44 CSS px (48 for Android variants), with adequate spacing between targets.
+> - 2.4.12 Focus Not Obscured (Enhanced): the focused element is never fully or partially covered (sticky bars, tab bar, sheet).
+> - 2.4.13 Focus Appearance: indicator at least 2 CSS px thick around the perimeter, 3:1 change of contrast, with a visible gap and not clipped by the parent (keep the solution from the previous step).
+> - 2.3.3 Animation from Interactions: support prefers-reduced-motion (calorie ring animation, bottom sheet, toast are disabled or simplified).
+> - 1.4.8 Visual Presentation (text part): in multi-line blocks, line spacing ≥ 1.5, paragraph spacing ≥ 1.5× the line spacing, line length ≤ 80 characters, no justified text.
+> - 3.1.4 Abbreviations: abbreviations (kcal, P/F/C, g, ml) are expanded via abbr with title, a legend, or full words on first use.
+> - 3.3.6 Error Prevention (All): confirm, undo or review before irreversible actions.
+> - 3.3.9 Accessible Authentication (Enhanced): no cognitive tests and no memorization at the sign-in step.
+> - 2.2.3 / 2.2.4 / 2.2.6: no timers limiting the user; toast does not vanish too quickly and has a dismiss control.
+>
+> Tier 3. Remaining AAA: best effort, does not block
+> For other AAA criteria (e.g. 3.1.5 Reading Level, 3.1.6 Pronunciation, 2.4.9 Link Purpose (link only), 2.4.10 Section Headings, 3.3.5 Help, 2.1.3 Keyboard (No Exception), 1.4.8 color and column-width parts, 1.4.9 Images of Text), implement whatever does not harm the visual design and does not require major rework. Record the rest in the report as "AAA, not applied" with a one-line reason. Secondary text (hints, captions, placeholder, metadata) must be ≥ 4.5:1 (AA); if it does not break visual hierarchy, push it toward 7:1. Disabled elements are exempt from contrast requirements per the spec, but make them legible (target ≥ 4.5:1) and clearly distinct from active ones.
+>
+> ## Phase 1. Audit
+> Set up `npm run check:a11y` (Playwright + Chromium):
+> 1. axe-core with tags wcag2a, wcag2aa, wcag21a, wcag21aa, wcag22aa, best-practice. Result: zero violations.
+> 2. pa11y with the WCAG2AA standard (htmlcs runner) as a second, independent checker.
+> 3. A custom contrast script: for EVERY text/background pair and every element/adjacent-color pair in all states, use getComputedStyle, account for alpha (composited color), gradients and the background under text (worst case), and compute the ratio with the WCAG formula. Tag each pair as "critical" (7:1 threshold for normal text) or "regular" (4.5:1); non-text elements use 3:1.
+> 4. A separate Tier 2 pass: axe-core with the wcag2aaa tag, but evaluate only elements from the "critical" list (other AAA findings go to Tier 3 as information), plus custom geometry, focus and animation checks.
+> 5. Browser geometry and behavior checks: touch targets, focus, zoom, reflow.
+> 6. A pass through the criteria checklist below. For each criterion record pass / fail / fixed, element, measured value, requirement, tier (1/2/3).
+> Save the audit as 02-design-system/a11y/audit-before.json and audit-before.md (ID, criterion, tier 1/2/3, element/component, state, measured, required).
+>
+> ## What to check (Tier 1: AA)
+> Contrast and color
+> - 1.4.3 Contrast (Minimum): text ≥ 4.5:1, large text ≥ 3:1. For "critical" elements the stricter 1.4.6 threshold applies (see Tier 2).
+> - 1.4.11 Non-text Contrast: input borders, icons, calorie ring and macro bar segments, state indicators, selected vs unselected segment ≥ 3:1 against adjacent colors.
+> - 1.4.1 Use of Color: no information conveyed by color alone (macros: color + letter/icon + label; error states: color + icon + text).
+> Layout, text and scaling
+> - 1.4.4 Resize Text (200%), 1.4.10 Reflow (320 CSS px without horizontal scroll, except tables with their own scroll), 1.4.12 Text Spacing (spacing overrides clip nothing), 1.4.5 Images of Text (no text as images in the HTML, logotype excepted), 1.4.13 Content on Hover or Focus, 1.3.4 Orientation.
+> Keyboard, focus, targets
+> - 2.1.1 Keyboard, 2.1.2 No Keyboard Trap (bottom sheet: focus moves in, stays inside, Esc closes, focus returns), 2.4.3 Focus Order, 2.4.7 Focus Visible, 2.4.11 Focus Not Obscured (Minimum).
+> - 2.5.8 Target Size (Minimum): ≥ 24×24 CSS px as the lower bound (critical elements follow 44×44, Tier 2); 2.5.1, 2.5.2, 2.5.3 (Label in Name), 2.5.7 Dragging Movements (weight stepper and sliders have a non-drag alternative).
+> Structure and navigation of the docs
+> - 1.3.1 semantics (h1–h6 without skipped levels, landmarks header/nav/main/footer, lists, tables with th/scope, caption for the nutrition facts table), 1.3.5 Identify Input Purpose (autocomplete), 2.4.1 Bypass Blocks (skip link), 2.4.2 Page Titled, 2.4.4 Link Purpose (In Context), 2.4.5 Multiple Ways (if applicable), 2.4.6 Headings and Labels, 3.2.3 Consistent Navigation, 3.2.4 Consistent Identification.
+> - 4.1.2 Name, Role, Value for every component: correct roles (segmented control as radiogroup/tablist, stepper, sheet as dialog with aria-modal, toast with role=status, calorie ring with a text alternative, progress/meter for macro bars); 4.1.3 Status Messages.
+> Language, forms, errors
+> - 3.1.1 and 3.1.2 (lang), 3.3.1 Error Identification, 3.3.2 Labels or Instructions (placeholder never replaces a label), 3.3.3 Error Suggestion, 3.3.4 Error Prevention (Legal, Financial, Data), 3.3.7 Redundant Entry, 3.3.8 Accessible Authentication (Minimum), 3.2.1 and 3.2.2 (no unexpected context change on focus or input), 2.3.1 Three Flashes or Below Threshold, 2.2.1 Timing Adjustable, 2.2.2 Pause, Stop, Hide.
+> User system preferences
+> - Support @media (prefers-contrast: more) (strengthened tokens), @media (forced-colors: active) (elements remain visible and distinguishable in system color mode; do not rely on box-shadow alone for borders and focus), and prefers-reduced-motion. Do not block user styles with needless !important.
+>
+> ## Phase 2. Fixes
+> - Fix at the token level first (tokens.json → tokens.css): new text/icon tokens, strengthened borders, a type scale with line-height ≥ 1.5 for text blocks. Then components and markup. Do not regress earlier fixes: text is never clipped, nothing extends beyond its container, borders are even, focus has a gap, tab bar and bottom sheet stay inside bounds, touch targets ≥ 44.
+> - Priority order: all Tier 1 violations first, then Tier 2, then Tier 3.
+> - Keep brand-color changes minimal: preserve hue, adjust saturation and lightness. Document every deviation from BRAND.md ("before → after", reason, measured ratios).
+> - tokens.json and tokens.css must stay in sync (verify by script); tokens.json conforms to the W3C Design Tokens format.
+> - If an AAA fix damages visual hierarchy or clarity, find another solution (icon, label, weight, size) instead of ignoring the problem. For Tier 3 it is acceptable to skip a fix that would damage the design, with a note in the report.
+>
+> ## Phase 3. Re-verification
+> Run in order and keep fixing until everything passes:
+> 1. `npm run check:a11y` (axe AA + pa11y AA + contrast + geometry + Tier 2): zero Tier 1 and Tier 2 violations.
+> 2. `npm run check` (checks from the previous step: CSS loads via file:// and HTTP, no clipping, touch targets).
+> 3. html-validate, stylelint, tokens.json validation, tokens.json/tokens.css parity: 0 errors.
+> 4. Browser checks: 200% zoom and 320px width; keyboard traversal (Tab / Shift+Tab / Enter / Space / Esc) of every component with screenshots of focus states; prefers-reduced-motion, prefers-contrast: more, forced-colors. LOOK at the screenshots and describe what you see.
+> 5. Regenerate design-system.png (full page, 2x, square frame corners).
+>
+> ## Deliverables
+> - Fixed files in 02-design-system/ (tokens, components, index.html, index.standalone.html, design-system.png).
+> - 02-design-system/a11y/: audit-before.json/md, audit-after.json/md, screenshots of focus states and problem areas.
+> - README.md: a "WCAG 2.2 AA + AAA for critical elements" section: the list of "critical" elements; a table "criterion | tier (1/2/3) | result (pass / fixed / justified exception / AAA not applied) | evidence"; a contrast table for all text pairs and states (before → after, threshold, status); a list of changed tokens; an "Open issues" section.
+> - Final message: how many violations were found and fixed (by Tier 1/2/3), what remains open and why, which color tokens changed. If any Tier 1 or Tier 2 check fails, say so plainly and keep fixing.
+
+</details>
 
 **Result**
 
@@ -911,7 +1061,7 @@ The key prompts used with Claude Code, and what came out of each one.
 > Never consider the work done without verifying it in a browser: make the change → render → screenshot → look at it → measure → fix → repeat. Do not say "done" until every check in Phase 4 passes. If something could not be verified, say so plainly.
 >
 > ## Phase 0. Find the plan
-> Look for the plan created earlier in planning mode, in this order: ~/.claude/plans/ (all .md files, newest and most relevant to this project), the project root and docs/, plan/, .claude/ folders (PLAN.md, plan*.md, TODO.md, ROADMAP.md), the project README.md, git history (git log) and commit messages. If you find several versions, take the latest relevant one and state which and why. If you cannot find a plan, stop and ask the user for the path. Do NOT reconstruct or invent a plan from memory.
+> Look for the plan created earlier in planning mode, in this order: [redacted]/plans/ (all .md files, newest and most relevant to this project), the project root and docs/, plan/, .claude/ folders (PLAN.md, plan*.md, TODO.md, ROADMAP.md), the project README.md, git history (git log) and commit messages. If you find several versions, take the latest relevant one and state which and why. If you cannot find a plan, stop and ask the user for the path. Do NOT reconstruct or invent a plan from memory.
 >
 > ## Phase 1. Turn the plan into a checklist
 > Break the plan into atomic items and save it as PLAN-AUDIT.md (in the project root or docs/): ID, item, expected result, acceptance criteria (what exactly must be true for the item to count as done), files where it should live. Keep the plan's structure and order (steps, phases). Skip nothing and do not merge items in a way that loses requirements.
@@ -952,7 +1102,7 @@ The key prompts used with Claude Code, and what came out of each one.
 
 **Result**
 
-- **Plan:** `~/.claude/plans/valiant-wandering-sparrow.md` is the only plan file. Its in-project result is `03-screens/FLOWS.md`.
+- **Plan:** `[redacted]/plans/valiant-wandering-sparrow.md` is the only plan file. Its in-project result is `03-screens/FLOWS.md`.
 - **Checklist:** `PLAN-AUDIT.md` has 53 atomic items with evidence (scripts, Playwright text, screenshots, checks, git history and PROMPTS.md).
   - Before: 43 Done, 3 Partial, 1 Missing, 5 Superseded, 1 Unclear.
   - After: 47 Done, 0 Partial, 0 Missing, 5 Superseded, 1 Unclear.
@@ -1067,241 +1217,65 @@ The key prompts used with Claude Code, and what came out of each one.
 
 ## 22 — Figma export (editable layers, strict call budget)
 
-**Prompt** (verbatim)
+**Prompt**
 
-> This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+*(Note: this session was later resumed from an automatic context summary. An earlier version of this log pasted that summary here by mistake; it has been replaced with the original prompt, taken from the local session transcript.)*
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Export the final screens to Figma via the official Figma plugin for Claude Code, with strict call economy (free plan). You are acting as a senior product designer with 20 years of experience AND a strict QA engineer. This is the final step: the HTML screens and the design system are done and approved. Your task is to put them into a Figma file as editable layers without changing the design itself.
 >
-> Summary:
-> 1. **Primary Request and Intent:**
->    - **Project:** Natalia's design test task "Ripe", a photo-first calorie calculator, in repo `/Users/natalia/ClaudeCode/Apps/Calories/calories-calculator-design`.
->      - Git email valentyn.tymku@gmail.com — use only for identification.
->      - Remote https://github.com/nataperedrii/calories-calculator-design; branches `design-system` and `main`.
->      - GitHub Pages is live at https://nataperedrii.github.io/calories-calculator-design/.
->    - **Completed since the last summary:**
->      - Step 14: targeted tweaks.
->      - "Save your work to GitHub": commit a94d07f.
->      - Step 15: removed the ✓; full-height recipe images; two-line ingredients.
->      - Step 16: product photos on Add to Snack; three downloads approved by the user.
->      - Step 17: plan audit; PLAN-AUDIT.md; servings stepper; unit switch; High protein chip; per-flow a11y.
->      - Step 18: "Yes, please build" onboarding / Diary / Profile; DS components 25–27; 46 screens.
->      - Step 19: landing index.html, README rewrite, LINKS.md, previews/, process/CHANGELOG.md.
->      - Step 20: "enabled github pages. push all the results to github and merge to main. make sure pages link is working. update docs if needed". Commits 584766a and aada0d8, main fast-forwarded, live crawl OK.
->      - Step 21: "yes, please build", the prototype shell `03-screens/index.html`. Commit 5a11b64 pushed and merged, verified live.
->    - **Current request (step 22):** export the final screens to Figma via the official Figma plugin with strict call economy (free plan), as editable layers, without changing the design.
->      - Phase 0: recon of the limits, with sources.
->      - Phase 1: budget in PLAN-FIGMA.md; ≤70% of the remaining allowance; ask for "ok" if >5 calls; update the counter before every call; stop if <20% remains.
->      - Phase 2: local prep (0 calls).
->      - Phase 3: one trial call, then batches; ≤1 screenshot per batch.
->      - Phase 4: fallback package figma-export/, only if needed.
->      - Phase 5: sharing instructions only.
->      - Deliverables: PLAN-FIGMA.md (limits with sources, budget, call log), the Figma link, the list of screens in and out, the manual-fix list, and a final message with calls used/remaining.
->    - **Security / safety rules, verbatim from the user's prompt:**
->      - "Never enter passwords, tokens or credentials. Authorization (OAuth) is done only by the user."
->      - "Delete nothing in Figma and do not modify other people's files. Create a new file (or use the one the user gives you) and work only in it."
->      - "You cannot and should not change the file's sharing. At the end give the user exact instructions: Share → "Anyone with the link" → "can view", and remind them to check the link in an incognito window. Do not publish or send the link anywhere yourself. Do not change security or account settings."
->      - "Change nothing in the HTML source or the design system except fixes required for a successful export, and record every such fix honestly in the report."
->      - "Before executing, show the user the budget and wait for an "ok" if more than 5 calls are planned."
->      - "Before EVERY call update the counter in PLAN-FIGMA.md (used / remaining). If the remainder is below 20% of the limit, stop and ask the user instead of continuing."
->      - "Use at most 70% of the remaining monthly allowance; keep the rest as a reserve for errors and rework."
->      - "First ONE trial call on a single screen … Stop, evaluate the result from a screenshot … and only then run the rest in batches."
->      - "If the plugin returns a limit error, a permission error or a timeout, stop, do not retry blindly, explain the cause to the user and offer options".
->      - "Determine how many calls have already been used this month, if that can be found out. If not, assume the worst and ask the user."
->    - **Standing rules:**
->      - Commit or push only when asked.
->      - Downloads need explicit permission.
->      - Log every step verbatim in process/PROMPTS.md.
->      - Screens use only DS tokens and components.
->      - Don't touch anything not requested.
->      - Report failures plainly.
+> ## Golden rule
+> Every Figma call on the free plan is precious. Never "try and see": verify locally anything that can be verified without Figma. Do not repeat a failed call without diagnosing the cause. Do not consider the work done without verifying the result. If something could not be verified, say so plainly.
 >
-> 2. **Key Technical Concepts:**
->    - **Generated screens:** `03-screens/tools/build_screens.py` holds the USDA data, writes 46 screens, flows.html and 03-screens/index.html, and asserts totals.
->    - **DS:** tokens.json → tokens.css via tools/build_tokens.py; tools/build_docs.py renders the docs and computes the header figures.
->    - **Checks:**
->      - `npm run check` (61 + align.mjs, 0 deviations on 3,636 edges);
->      - `npm run check:screens` (610/610, including section 9, the prototype shell over an http server);
->      - `npm run check:a11y` (Tier 1 0/39, Tier 2 0/9);
->      - lint:css and lint:html (both now include index pages and prototype.css).
->    - **Figma MCP (remote, connected):**
->      - Tools: whoami, create_new_file, use_figma (Plugin API JS, code ≤50,000 chars, ~20 kb output limit), upload_assets (≤60 URLs per call; nodeIds set image fills; POST raw bytes), get_screenshot, get_metadata, get_figma_skill.
->      - No `generate_figma_design` tool is available.
->      - use_figma gotchas: use `await figma.setCurrentPageAsync(page)`; never loadAllPagesAsync, setPluginData or createImageAsync; Inter style "Semi Bold".
->      - use_figma requires loading the figma-use guidance first (skill://figma/figma-use/SKILL.md via get_figma_skill = 1 call; no local copy found).
->    - **Official limits** (raw page https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/):
->      - Starter = 20 tool calls/month ("If you're on a Starter plan (20 tool calls per month)…").
->      - View/Collab on paid plans 6/month; Dev/Full on Pro 200/day, 10/min; Org 200/day, 15/min; Enterprise 600/day, 20/min.
->      - Exempt: add_code_connect_map, create_new_file, whoami. "Rate limits apply to … tools that read data … Some tools, such as those that write to Figma files, are exempt" — ambiguous, so treat use_figma, upload_assets and get_screenshot as counting.
->      - A search snippet claimed 6/month (conflict noted).
->      - write-to-canvas page (https://developers.figma.com/docs/figma-mcp-server/write-to-canvas): Full seat required; "No assets (image) support yet"; custom fonts unsupported; 20kb output limit; free during beta (search results).
->      - Starter plan: 3 design files, 3 pages per file, 1 project.
->    - **whoami (exempt, done):**
->      - Plan "Natalia Peredrii's team": tier starter, seat Full, role admin, key `team::1456628069424971860`. Use this one.
->      - "UX INTENSIVE BY LISA" (View seat, someone else's team): don't use.
->    - **Calls used:** budgeted calls so far 0 (whoami is exempt). Calls used this month elsewhere are unknown → must ask the user.
->    - **Export approach:**
->      - Render each screen in Playwright at 390×844 → compact layer tree:
->        - F: frame with fill, radius, stroke, shadow, clip;
->        - R: rect or ring;
->        - T: text with font, size, line height, tracking, colour, case, align;
->        - S: inline SVG with resolved colours;
->        - I: image placeholder, filled later via upload_assets.
->      - Absolute positioning (no Auto Layout).
->      - SVG dedupe + ASCII + LZW pack into use_figma batch scripts ≤50k chars.
->      - Pages: "Screens", "States" (and "Design system" for tokens).
+> ## Phase 0. Reconnaissance (spend no calls where possible)
+> 1. Check that the Figma plugin is connected (`/plugin` or the tool list). If not, tell the user the command `claude plugin install figma@claude-plugins-official` (or + → Plugins → figma in the desktop app) and stop; the user completes Figma authorization themselves, you never enter credentials or tokens.
+> 2. Find the CURRENT limits of the Figma free plan and of the plugin from the official documentation (web search: Figma Help pages / MCP server docs) and from the account data if a tool allows it (e.g. which plan the user is on and its limits). Do not rely on numbers from memory. Record in the report: the monthly call limit, whether read operations count separately from write operations, limits on the number of files and pages on the free plan, and sharing restrictions.
+> 3. Determine how many calls have already been used this month, if that can be found out. If not, assume the worst and ask the user.
+> 4. Read the plugin's tool documentation (what exactly the tools do, and whether there is a mode that transfers finished HTML screens as editable layers) and write the plan in PLAN-FIGMA.md: which tools, which parameters, how many calls each costs.
 >
-> 3. **Files and Code Sections:**
->    - **Created in step 22 (all uncommitted):**
->      - `tools/figma/extract.mjs` → `figma-export/layers/<id>.json` and `_summary.json`.
->        - Sizes: 2.7k–17k chars per screen; 16–124 nodes; ≤5 images per screen.
->        - Total raw JSON ~506k chars, of which SVG 143k (85 unique SVGs, 24k chars).
->        - Key handling:
->          - text measured on visible characters only (`range.setStart(child, start)` at the first non-space);
->          - the font weight key is `fw` (was `w`, which clashed with width);
->          - box(): fill, radius, stroke (border or inset ring), bottom/top borders, shadows; `rings` from spread-only outer shadows; `outline` → `ringNodes()` stroke-only R nodes;
->          - `dash` for dashed borders;
->          - pseudo-elements: absolute ::before/::after with border, bg or outline; translate % resolved; aspect-ratio height;
->          - radial-gradient scrim → even-odd SVG path (regex `/radial-gradient\((?:circle )?([\d.]+)px(?: at 50% 50%)?, rgba\(0, 0, 0, 0\) [\d.]+%, (rgba?\([^)]*\)) 100%\)/`);
->          - `dialog:modal` → `::backdrop` R at ROOT, and the dialog is walked into ROOT;
->          - inputs, selects and textareas: value text + box + select chevron SVG;
->          - clipping by overflow ancestors;
->          - frame names = first class + aria-label or text;
->          - root = `{t:"F", n:title, w:390, h:844, fill:body bg, clip:1, k:[]}`.
->      - `tools/figma/preview.mjs`: redraws the trees as absolute divs (same rules) and pixel-compares with `03-screens/exports/<id>.png` → `figma-export/preview/*.png` and `_diff.json`. Result over 46 screens: mean 1.41%, max 2.58% (14-recipe-detail-steps-edit).
->      - `figma-export/names.json`: the 46 frame names from SCREEN_NAMES; `14-recipe-detail` was added manually as ["14 Dish detail", "Baked cod, potatoes & broccoli"].
->      - `tools/figma/builder.js` (runs in Figma; the batch prepends `const PACK=…; const PAGE=…; const SLOT=[0,0];`):
->        ```js
->        const unpack = (s) => { const A = "!#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~";
->          const codes = []; for (let i = 0; i < s.length; i += 2) codes.push(A.indexOf(s[i]) * 92 + A.indexOf(s[i + 1]));
->          let out = "", dict, size, w; const reset = () => { dict = []; for (let i = 0; i < 256; i++) dict[i] = String.fromCharCode(i); size = 256; w = null; }; reset();
->          for (const k of codes) { if (k === 8463) { reset(); continue; } let entry; if (w === null) { entry = dict[k]; out += entry; w = entry; continue; }
->            entry = k < size ? dict[k] : w + w[0]; out += entry; dict[size++] = w + entry[0]; w = entry; }
->          return JSON.parse(out); };
->        ```
->        - Then: `report = {frames, images, fonts, fallbacks, errors}`.
->        - `fontFor(family, weight)`: tries STYLE {400:["Regular"], 500:["Medium"], 600:["SemiBold","Semi Bold"], 700:["Bold"]}, falls back to Inter.
->        - `paint(hex)` with 8-digit alpha; `boxProps` (cornerRadius / per-corner, INSIDE strokes, dashPattern [4,4], strokeTop/BottomWeight, DROP_SHADOW effects, opacity).
->        - `build(n, parent)`:
->          - F → createFrame, clipsContent, children;
->          - R → createRectangle;
->          - I → rectangle "image · file" with placeholder #E9DDCB, pushed to report.images [nodeId, file];
->          - S → createNodeFromSvg(data.svgs[n.v] or n.svg);
->          - T → createText; single-line = WIDTH_AND_HEIGHT with x adjusted for right/center; multi-line = HEIGHT with width w+1; textCase UPPER; underline.
->        - Page creation by name, `setCurrentPageAsync`, an optional row label text (Hanken Grotesk Bold 28) at y−64, frames placed at SLOT + (x, y), `return JSON.stringify(report)`.
->      - `tools/figma/pack.mjs`:
->        - LAYOUT:
->          - **Screens page rows:**
->            - Flow 2: 07-today, 07-today-meals, 07-today-card, 13-recipes, 14-recipe-detail, 14-recipe-detail-servings, 14-recipe-detail-log, 07-today-dinner-added.
->            - Flow 1B/1C: 10-add-food, 11-food-detail, 12-dish-calculator.
->            - Flow 1A: 07-today-before-lunch, 08-scan, 09-photo-result-analyzing, 09-photo-result, 07-today-lunch-added.
->            - Flow 0: 01-welcome, 01-welcome-link, 02-goal, 03-about-you, 04-diet, 05-allergies, 06-target, 07-today-empty.
->            - Flow 3: 16-profile, 05-allergies-edit, 16-profile-updated, 13-recipes-filtered, 16-profile-delete, 15-diary, 15-diary-mon, 15-diary-tue, 15-diary-wed.
->          - **States page rows:**
->            - Errors: 03-about-you-error, 06-target-floor.
->            - Edit a dish: edit, edited, deleted, discard, saving, name-error.
->            - Edit the method: method, steps-edit, step-error, step-deleted, no-steps.
->        - GAP_X 80, ROW 844+240.
->        - LZW pack() with alphabet A, `emit(k)= A[floor(k/92)]+A[k%92]`, reset code 8463 when size ≥ 8462.
->        - `unpack` extracted from the builder text via `new Function`.
->        - `ascii()` escapes chars >127 as \uXXXX.
->        - SVG dedupe (n.v index).
->        - The first batch is a single-screen trial (07-today); then greedy batching per page, ≤50,000 chars.
->        - Writes `figma-export/batches/batch-NN.js` and `_plan.json`.
->    - **Earlier files modified in steps 14–21 (all committed in 5a11b64):**
->      - components.css (new components 25–27, stepper max-width/flex, facts nowrap, .product--nav, .ingredients__servings, option-card focus = outline with negative offset, .week bleed `max(calc(var(--space-4) * -1), min(0%, …))` and auto-fit `minmax(max(var(--size-touch-min), 3.4em), 1fr)`);
->      - tokens.json (size.day-ring 32px, size.recipe-thumb 80px);
->      - index.html (docs); build_screens.py; dish-editor.js (servings);
->      - check.mjs (sections 7–9); align.mjs;
->      - root index.html; README.md; LINKS.md; PLAN-AUDIT.md; FLOWS.md; process/PROMPTS.md (steps up to 21); process/CHANGELOG.md; CLAUDE.md;
->      - 03-screens/prototype.css; tools/previews.mjs; tools/build_docs.py; package.json scripts (previews, lint:css, lint:html).
+> ## Phase 1. Call budget (plan first, act second)
+> Build a budget in PLAN-FIGMA.md: the list of screens and states that must reach Figma (Today, Meals, Add to snack, Recipes, dish detail, the design-system page, etc.), and for each, how many calls it needs. Rules:
+> - Use at most 70% of the remaining monthly allowance; keep the rest as a reserve for errors and rework. If it does not fit, cut scope by priority: key screens first (Today, Add to snack, Recipes, dish detail), then the design system, then extra states.
+> - Batch: if a tool accepts several screens per call, use that. Do not spend a separate call per element.
+> - Do not spend calls on verifying results where local verification is enough. To compare the result with the original use as few calls as possible (one screenshot call per batch), and only if the check cannot be done another way.
+> - Before executing, show the user the budget and wait for an "ok" if more than 5 calls are planned.
+> - Before EVERY call update the counter in PLAN-FIGMA.md (used / remaining). If the remainder is below 20% of the limit, stop and ask the user instead of continuing.
 >
-> 4. **Errors and fixes:**
->    - **Step 22, local only, 0 Figma calls spent:**
->      - The text width was overwritten by the font weight (both `w`) → renamed the weight to `fw`.
->      - "21g" instead of "21 g": the range included a leading space → measure the visible characters only.
->      - Discard screen 66% diff: no ::backdrop, no outline → backdrop R at root, outline rings.
->      - Scan 13%:
->        - missing shutter ring (spread-only shadow) → `rings`;
->        - dashed plate guide (pseudo outline, translate %, aspect-ratio height);
->        - scrim from radial-gradient: Chrome serialises it as `radial-gradient(140px, rgba(0, 0, 0, 0) 99%, rgba(43, 33, 24, 0.4) 100%)`, so I widened the regex.
->      - Select chevron added.
->      - **Latest, unresolved:** pack.mjs round trip failed with a JSON SyntaxError (garbage output). Root cause found in analysis: alphabet A has only 91 characters, while the code uses base 92 (`A[k % 92]` → undefined).
->        - Fix: add `'` to A in both pack.mjs and builder.js (making 92), or use `A.length` as the base with reset code base²−1 and the dictionary limit adjusted in both.
->    - **Earlier steps (resolved):**
->      - DS stepper overflow; geometry failures from the over-broad chevron rule; option-card focus lost in the error group.
->      - Week strip: clipping at 200%, the bleed exceeding the docs stage, "0px" in CSS.
->      - Board too wide → Flow 0 split into two rows.
->      - Prototype shell: scale NaN (parseFloat of calc) → measure offsetWidth; the picker scrolled the page on mobile; the phone didn't fit at 1280×720 → sticky stage and layout change.
->      - Stale docs header numbers → computed in build_docs.py.
+> ## Phase 2. Local preparation (0 calls)
+> Fix everything that could break in Figma BEFORE sending:
+> 1. Open every HTML screen in a browser (Playwright) at a fixed 390px width, then 360px/Android variants if they exist. Make sure the screen renders correctly (CSS loads, fonts, images) and save a reference screenshot.
+> 2. Check that nothing is clipped and spacing and grid are fine: `npm run check`, `npm run check:a11y`, html-validate, stylelint: 0 errors. Do not send a screen to Figma that fails the checks.
+> 3. Make screens robust for transfer: all images and fonts available locally or from permitted sources (Google Fonts are available in Figma; no experimental fonts), no external requests that can fail, animations and hover states must not break the capture (freeze the state for capture), a static snapshot of every state.
+> 4. Prepare a meaningful structure: names for screens and states (e.g. "Today / Default", "Recipes / Card states"), order and layout on the Figma pages (one page per section rather than one per screen if the free plan limits the number of pages).
+> 5. Prepare tokens for transfer: color, typography, spacing, radii from tokens.json as a table (use it for Figma variables only if it does not cost extra calls).
 >
-> 5. **Problem Solving:**
->    - Validated the extraction locally against the reference exports (mean 1.41% pixel diff).
->    - Pending: fix the LZW alphabet bug, re-run pack.mjs to get the batch count (estimated ~4 build calls for 45 screens + the trial), then write a mock-`figma` Node test of the builder to catch runtime errors before spending calls.
->    - **Planned budget, assuming 20 remaining → 70% = 14 usable:**
+> ## Phase 3. Export (spend calls only according to the plan)
+> 1. First ONE trial call on a single screen (the least risky but representative one) to verify parameters, layer quality and how the counter moves. Stop, evaluate the result from a screenshot (see below), and only then run the rest in batches.
+> 2. Targets for the Figma result: editable layers, not a flat image; text as text layers with the correct fonts; Auto Layout where supported; meaningful layer names; components/variants only if they do not require extra calls (otherwise list them in the report as "not done due to budget"); colors and text styles tied to tokens if the budget allows; embedded images with correct aspect ratios; 390×844 frames (iOS) with correct safe areas and no stray objects outside frames.
+> 3. After each batch verify the result: at most one screenshot call per batch, compare against the local reference (text not clipped, spacing, alignment, colors, photos in place). Describe what you see. If you find a discrepancy, first diagnose the cause locally and fix the source (HTML), and only then repeat the export of that specific screen. Do not spend calls on cosmetic details the user can quickly fix by hand in Figma: put them on a list.
+> 4. If the plugin returns a limit error, a permission error or a timeout, stop, do not retry blindly, explain the cause to the user and offer options: (a) continue later after the limit resets; (b) reduce scope; (c) the fallback path with no calls.
 >
->      | Item | Calls |
->      |---|---|
->      | get_figma_skill (figma-use) | 1 |
->      | create_new_file (exempt) | 0 |
->      | Trial use_figma: 07-today | 1 |
->      | upload_assets: trial images | 1 |
->      | get_screenshot: trial | 1 |
->      | Remaining batches | ~4 |
->      | Tokens / variables + text styles | 1 (or included in a batch) |
->      | upload_assets: all remaining images (≤60 nodes) | 1 |
->      | Final screenshots | 1–2 |
->      | **Total** | **≈11** |
+> ## Phase 4. Fallback path (in case the limit runs out)
+> Prepare a fallback package in figma-export/: one static 2x PNG snapshot and one SVG/HTML per screen and state, and a README.md explaining how the user can import the HTML into Figma manually (e.g. with a third-party HTML import plugin) and where the tokens are. Do this only if the budget does not cover all screens, or if the export stopped.
 >
->    - Fallback package (figma-export/ PNG + HTML + README) only if the budget or export fails.
->    - 360px Android variants don't exist (note in the report).
+> ## Phase 5. Access
+> You cannot and should not change the file's sharing. At the end give the user exact instructions: Share → "Anyone with the link" → "can view", and remind them to check the link in an incognito window. Do not publish or send the link anywhere yourself. Do not change security or account settings.
 >
-> 6. **All user messages:**
->    - (Earlier messages are in the prior summary.)
->    - Step 13 → 14 prompt pasted (summarised previously).
->    - "Save your work to GitHub"
->    - The step 15 pasted prompt "Targeted tweaks to the existing mockup… Fix 1. "Add to snack" screen: product rows – REMOVE the green circle… Fix 2. Recipes → recipe cards: full-height image respecting the card padding… Fix 3. Recipes → dish detail: the Ingredients section, each ingredient in TWO rows…" (with Verification and Deliverables).
->    - The step 16 pasted prompt "Targeted tweak… Fix. "Add to snack" screen: product photos… The photo size is EXACTLY the same as the thumbnails in the Meals section… Pick a separate matching photo for each product… freely licensed…".
->    - Answer to the AskUserQuestion: "Yes, download all 3".
->    - The step 17 pasted prompt "Audit the plan against the actual project state: build what is missing and verify the result…" (Phases 0–4, Deliverables).
->    - "<< Should I build onboarding (01–06), Diary (15) and Profile (16)? … >> Yes, please build"
->    - "Try again"
->    - The step 19 pasted prompt "Create root index.html (a landing page linking to the stylescape, design system, prototype and flows board) and write root README.md in English: overview, links (GitHub Pages + video placeholder), embedded preview images, concept summary, how I used Claude Code (link to process/PROMPTS.md), repository structure, what I'd do next. Create LINKS.md with the same external links."
->    - "enabled github pages. push all the results to github and merge to main. make sure pages link is working. update docs if needed"
->    - "yes, please build" (the prototype shell)
->    - The current pasted Figma prompt "Export the final screens to Figma via the official Figma plugin for Claude Code, with strict call economy (free plan)…" (Golden rule; Phases 0–5; Safety rules; Deliverables; quoted verbatim in section 1).
+> ## Safety rules
+> - Never enter passwords, tokens or credentials. Authorization (OAuth) is done only by the user.
+> - Delete nothing in Figma and do not modify other people's files. Create a new file (or use the one the user gives you) and work only in it.
+> - Change nothing in the HTML source or the design system except fixes required for a successful export, and record every such fix honestly in the report.
+> - The work remains compliant with the already agreed requirements (WCAG 2.2 AA + AAA for critical elements, grid, spacing, touch targets): the export must not violate them.
 >
-> 7. **Pending Tasks (Figma export, step 22):**
->    - Fix the LZW alphabet (91 vs 92) in pack.mjs and builder.js; re-run `node tools/figma/pack.mjs`; confirm the round trip and the batch count.
->    - Mock-test the builder in Node with a fake `figma` API (0 calls).
->    - Run the local checks (`npm run check`, `check:a11y`, `check:screens`, lint) to confirm 0 errors.
->    - Prepare the tokens table/payload from tokens.json (colours, typography, spacing, radii) for Figma variables.
->    - Write PLAN-FIGMA.md:
->      - limits with sources (raw doc quotes, whoami result, Starter 20/month, exempt tools, 3 files / 3 pages, Full seat needed, no generate_figma_design, image-support caveat);
->      - the budget table;
->      - a call log with a used/remaining counter.
->    - **Ask the user before any counted call:** (a) how many Figma MCP calls have already been used this month; (b) "ok" for the budget (>5 calls).
->    - **After the ok:**
->      1. get_figma_skill (figma-use);
->      2. create_new_file (exempt), using planKey team::1456628069424971860, editorType "design";
->      3. the trial batch-00 (07-today), then upload_assets for its images (POST the bytes of 01-branding/assets files), then get_screenshot;
->      4. evaluate, then the remaining batches, the tokens, one upload_assets for all images, and minimal screenshots.
->    - The fallback package only if needed.
->    - The final report: link, screens in and out, manual-fix list (e.g. no Auto Layout because of absolute positioning, the select chevron approximation), sharing instructions (Share → "Anyone with the link" → "can view"; check in incognito).
->    - Log step 22 in process/PROMPTS.md.
->    - Do not commit unless asked.
->
-> 8. **Current Work:**
->    Local preparation for the Figma export (0 budgeted calls spent; whoami only, which is exempt). Created tools/figma/extract.mjs, preview.mjs, builder.js and pack.mjs, plus figma-export/names.json. The last command, `node tools/figma/pack.mjs`, failed during the round-trip check:
->    ```
->    SyntaxError: Unexpected token 'Q', "{"svgs":QQQQQQQQQQ"... is not valid JSON
->        at makeScript (tools/figma/pack.mjs:71:7)
->    ```
->    Diagnosed: the LZW alphabet string `"!#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_\`abcdefghijklmnopqrstuvwxyz{|}~"` has 91 characters, but the encoder and decoder use base 92 (`A[k % 92]`, `A.indexOf(s[i]) * 92`), and the reset code is 8463.
->
-> 9. **Optional Next Step:**
->    Fix the alphabet mismatch: append `'` to A in both tools/figma/pack.mjs and tools/figma/builder.js so there are 92 characters (safe inside a double-quoted JS string). Then re-run `node tools/figma/pack.mjs` to get the verified batch plan and write the mock-figma builder test. Then write PLAN-FIGMA.md and ask the user for calls used this month and an "ok" on the budget before any counted Figma call. This continues the user's current request: "Export the final screens to Figma via the official Figma plugin for Claude Code, with strict call economy (free plan)… Before executing, show the user the budget and wait for an "ok" if more than 5 calls are planned." I was at Phase 2 (local preparation, 0 calls), validating the pack/unpack round trip.
->
-> If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/natalia/.claude/projects/-Users-natalia-ClaudeCode-Apps-Calories-calories-calculator-design/28520ba5-66ea-4053-839f-8fe9be2bbb8f.jsonl
-> Continue the conversation from where it left off without asking the user any further questions. Resume directly — do not acknowledge the summary, do not recap what was happening, do not preface with "I'll continue" or similar. Pick up the last task as if the break never happened.
+> ## Deliverables
+> - PLAN-FIGMA.md: the limits (with sources), the budget, the call-usage log.
+> - The link to the Figma file and the list of screens and states that made it in.
+> - The list of what did not make it (and why: budget, plugin limitations) and the fallback package figma-export/ if needed.
+> - A short description of discrepancies between Figma and HTML that remain to be fixed by hand.
+> - Final message: how many calls were used and how many remain, what was done, what was verified, what remains open, and the sharing instructions. If anything failed verification, say so plainly.
+
+</details>
 
 Follow-ups: "ok" (budget approved; the number of calls used this month was not given, so the plan ran on the assumption of 20 left), then "Try again" twice after my output was cut off.
 
