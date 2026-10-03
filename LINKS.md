@@ -18,10 +18,11 @@ All external links for the Ripe design test task, in one place.
 
 **GitHub Pages** deploys from `main`, root folder. A `.nojekyll` file makes Pages serve the files as they are.
 
-**Checked on 3 October 2026** in a fresh browser context, like incognito:
-- 52 pages (the landing page, stylescape, directions, design system and its standalone version, the flows board and all 46 screens) answered 200.
+**Checked on 3 October 2026, after the Figma update**, in a fresh browser context, like incognito:
+- 53 pages answered 200: the landing page, stylescape, directions, the design system and its standalone version, the prototype, the flows board and all 46 screens.
 - 0 failed requests, 0 broken images, 0 script errors.
-- All 32 internal links resolve.
+- Every internal link resolves.
+- The Figma link is on the landing page.
 
 The links work from incognito: the site needs no sign-in and loads only the repository files and Google Fonts.
 

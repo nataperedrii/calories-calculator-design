@@ -1352,4 +1352,9 @@ Follow-ups: "ok" (budget approved; the number of calls used this month was not g
   - `figma-export/preview/` (12 MB of regenerable images) is gitignored;
   - a scratch file at the root was removed;
   - the Figma tooling (`tools/figma/`), the export data and PLAN-FIGMA.md were committed with steps 22–23.
-- **Published:** pushed to `design-system`, `main` fast-forwarded and pushed. The live site was then crawled in a fresh browser context (see the end of this session for the numbers).
+- **Published:** pushed to `design-system`, `main` fast-forwarded and pushed. The live site was then crawled in a fresh browser context, after the new landing page was live (about 50 s after the push):
+  - 53 pages answered 200;
+  - 0 failed requests, 0 broken images, 0 script errors;
+  - every internal link resolves;
+  - the Figma link is on the live landing page, README.md and LINKS.md.
+- **Also fixed:** `figma-export/batches/sent/batch-00.js` now holds the exact trial batch that was sent (the first commit had the version regenerated after the arc fix), and the duplicate copies of batches 02–04 were removed.
