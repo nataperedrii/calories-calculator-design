@@ -76,11 +76,22 @@ The site is published with GitHub Pages from `main` and works in incognito: no s
 **What's built:**
 - **16 screens in 46 states:** onboarding, Today, Scan, Photo result, Add food, Food detail, Dish calculator, Recipes, Dish detail (with editing), Diary and Profile.
 - **A design system** of 268 CSS variables (from `tokens.json`) and 27 components.
-- **Accessibility:** WCAG 2.2 AA throughout, and AAA (7:1) for critical elements such as calories and macros.
+- **Accessibility, checked automatically in headless Chromium:**
+  - all 46 screens pass axe-core WCAG 2.2 A/AA, plus 44 px targets, keyboard focus, 320 px width and 200 % text (`check:screens`);
+  - the design-system page also passes pa11y, a contrast scan and AAA checks for critical elements, such as 7:1 contrast for calories and macros (`check:a11y`).
+
+  I also looked at screenshots at 390 and 320 px by eye. **Not verified yet:** real iOS and Android devices, VoiceOver and TalkBack.
 
 ## How I used Claude Code
 
-Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md](process/PROMPTS.md). It has every prompt verbatim (23 steps, from research to the Figma export) and a short summary of what came out. The reports with before/after images and check results are in [process/CHANGELOG.md](process/CHANGELOG.md).
+Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md](process/PROMPTS.md). It has the prompt for each of the 23 steps, from research to the Figma export, and a short summary of what came out. The prompts are verbatim, checked against the session transcript, with three noted exceptions:
+- step 01's folder tree (it had Ukrainian notes) is not reproduced; its English version is in CLAUDE.md;
+- step 04's one-line side note is given in English;
+- private details are masked as `[redacted]`.
+
+Short answers to Claude's questions are summarised under "Clarification".
+
+The reports with before/after images and check results are in [process/CHANGELOG.md](process/CHANGELOG.md).
 
 **Rules first.** [CLAUDE.md](CLAUDE.md) sets the rules Claude Code follows in this repo:
 - English only.
@@ -104,7 +115,7 @@ Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md]
 |---|---|---|
 | `npm run check` | Design system: tokens, lint, HTML, contrast, clipping, touch targets, geometry at 100 % and 200 % text, axe; then grid alignment on every screen at 390 and 320 px | 61 / 61, 0 alignment deviations |
 | `npm run check:screens` | Every screen: HTML, the design-system-only rule, links, axe, the 390 × 844 frame, clipping, 44 pt targets, keyboard, numbers that add up, and behaviour tests (editing, servings, onboarding, Diary, Profile, the prototype shell over http) | 610 / 610 |
-| `npm run check:a11y` | WCAG 2.2 AA (Tier 1) and AAA for critical elements (Tier 2) | 0 failures in both tiers |
+| `npm run check:a11y` | The design-system page: WCAG 2.2 A/AA (Tier 1) and AAA for critical elements (Tier 2) | Tier 1: 0 failures (39 checks); Tier 2: 0 failures (9 checks) |
 
 **Honest about gaps.** [PLAN-AUDIT.md](PLAN-AUDIT.md) audits the screens plan against the project item by item, with evidence. Open questions are listed there instead of being guessed.
 
@@ -157,18 +168,30 @@ npm run export:screens && npm run export:png && node tools/previews.mjs
 npm run check && npm run check:screens && npm run check:a11y
 ```
 
-## What I'd do next
+## Known limitations & next steps
 
-- **Finish the Figma file by hand:** turn key parts (button, chip, product row, recipe card) into Auto Layout components and bind the existing variables and styles to the layers (list in [PLAN-FIGMA.md §5](PLAN-FIGMA.md)).
+The design is frozen for review, so these are listed rather than fixed.
 
-- **Record the video walkthrough** and add its link to LINKS.md and above.
-- **Build the remaining states.** These are specified but not drawn yet: loading (skeleton), offline banners, the camera's permission states, and the empty states of search, Recipes and Diary. The design system already has the components (15, 17, 18).
+| Limitation | What I'd do next |
+|---|---|
+| **Prototype dead ends.**<br>• "Analyzing" doesn't move on to the photo result.<br>• "Save dish" and "Log a portion" in the dish calculator go nowhere.<br>• "Add to Snack" returns to search instead of Today.<br>Every screen still opens from the [prototype shell](03-screens/index.html) (picker, Next / Previous). | Add the three links in the generator: auto-advance after "Analyzing", and both dish-calculator buttons → Today with a toast. |
+| **Missing error states:** photo not recognised, camera permission denied, empty search, empty Recipes, empty Diary. They are specified in [FLOWS.md](03-screens/FLOWS.md) but not drawn. | Build them from the existing empty-state and banner components, starting with "We couldn't recognise this photo" → search. |
+| **Recipes filter chips wrap to three rows** on a 390 px phone (an open question in [PLAN-AUDIT.md](PLAN-AUDIT.md)). | Make the chip row scroll sideways in one line. |
+| **Recipe cards show kcal twice** ("Fits: 462 of 879 kcal" and "462 kcal"), next to a narrow full-height photo. | Keep one kcal value, and try a wider photo. |
+| **The design-system page says "24 components"** in its meta description and section heading; it documents 27. | Correct the count in both places. |
+| **Some photos only approximate the recipe**, for example the cod and the shrimp dish. | Shoot or generate photos of the exact recipes. |
+| **Tested only in headless Chromium.** No real iOS or Android devices, no VoiceOver or TalkBack. | A pass on an iPhone and an Android phone with VoiceOver and TalkBack. |
+
+Also next:
+- **Record the video walkthrough** and add its link here, in LINKS.md and on the landing page.
 - **Test with five people** from the target group: sign-up, a photo log and finding a recipe. Measure time-to-log and how often a portion gets corrected.
-- **Answer the open questions** in [PLAN-AUDIT.md](PLAN-AUDIT.md):
-  - the ±2 % rule for P × 4 + F × 9 + C × 4 vs USDA's food-specific energy factors;
-  - the Recipes filter chips wrapping to three rows on a phone.
-- **More of the system:** Android variants of the screens (48 dp targets and Material bars are already in the design system), a dark theme, and Dynamic Type at the largest sizes.
-- **Before a store release:** a proper trademark clearance for the name "Ripe". So far there's only a quick knock-out search; see [BRAND.md §12](01-branding/BRAND.md).
+- **Close the open questions** in [PLAN-AUDIT.md](PLAN-AUDIT.md), for example whether to keep USDA kcal and drop the ±2 % Atwater rule.
+- **Finish the Figma file by hand:** Auto Layout components for button, chip, product row and recipe card, with the existing variables and styles bound ([PLAN-FIGMA.md §5](PLAN-FIGMA.md)).
+- **More of the system:**
+  - Android variants of the screens (48 dp targets and Material bars are already in the design system);
+  - a dark theme;
+  - Dynamic Type at the largest sizes.
+- **Before a store release:** a proper trademark clearance for the name "Ripe"; so far there's only a quick knock-out search ([BRAND.md §12](01-branding/BRAND.md)).
 
 ## Credits
 
