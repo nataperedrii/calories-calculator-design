@@ -825,6 +825,6 @@ const failed = results.filter((r) => !r.ok);
 mkdirSync(resolve(HERE, "qa"), { recursive: true });
 writeFileSync(resolve(HERE, "qa/report.json"), JSON.stringify({ date: new Date().toISOString(), passed: results.length - failed.length, failed: failed.length, results, open: openItems, facts }, null, 2));
 console.log(`\n${results.length - failed.length}/${results.length} checks passed. Report: 03-screens/qa/report.json`);
-const aaa = Object.entries(facts).filter(([, f]) => f.aaaContrastBelow7.length);
+const aaa = Object.entries(facts).filter(([, f]) => f.aaaContrastBelow7 && f.aaaContrastBelow7.length); // facts.recipeCardTable is not a page
 console.log(`AAA contrast (7:1, informative): ${aaa.length ? aaa.map(([n, f]) => `${n}: ${f.aaaContrastBelow7.length} nodes`).join("; ") : "all text ≥ 7:1"}`);
 process.exit(failed.length ? 1 : 0);

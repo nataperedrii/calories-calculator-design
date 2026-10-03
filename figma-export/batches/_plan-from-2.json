@@ -1,0 +1,67 @@
+[
+ {
+  "file": "batch-02.js",
+  "page": "Screens",
+  "screens": [
+   "07-today-before-lunch",
+   "08-scan",
+   "09-photo-result-analyzing",
+   "09-photo-result",
+   "07-today-lunch-added",
+   "01-welcome",
+   "01-welcome-link",
+   "02-goal",
+   "03-about-you",
+   "04-diet",
+   "05-allergies",
+   "06-target",
+   "07-today-empty",
+   "16-profile"
+  ],
+  "tokens": false,
+  "arcFix": false,
+  "chars": 25708,
+  "rawChars": 102369
+ },
+ {
+  "file": "batch-03.js",
+  "page": "Screens",
+  "screens": [
+   "05-allergies-edit",
+   "16-profile-updated",
+   "13-recipes-filtered",
+   "16-profile-delete",
+   "15-diary",
+   "15-diary-mon",
+   "15-diary-tue",
+   "15-diary-wed"
+  ],
+  "tokens": false,
+  "arcFix": true,
+  "chars": 21171,
+  "rawChars": 97504
+ },
+ {
+  "file": "batch-04.js",
+  "page": "States",
+  "screens": [
+   "03-about-you-error",
+   "06-target-floor",
+   "14-recipe-detail-edit",
+   "14-recipe-detail-edited",
+   "14-recipe-detail-deleted",
+   "14-recipe-detail-discard",
+   "14-recipe-detail-saving",
+   "14-recipe-detail-name-error",
+   "14-recipe-detail-method",
+   "14-recipe-detail-steps-edit",
+   "14-recipe-detail-step-error",
+   "14-recipe-detail-step-deleted",
+   "14-recipe-detail-no-steps"
+  ],
+  "tokens": false,
+  "arcFix": false,
+  "chars": 19814,
+  "rawChars": 91663
+ }
+]

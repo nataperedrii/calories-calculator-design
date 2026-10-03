@@ -1063,3 +1063,293 @@ The key prompts used with Claude Code, and what came out of each one.
 - **Tests:** `check:screens` section 9 serves the repo over http and checks the picker covers all 46 screens, Next / Prev / →, the in-phone click sync, deep links and a bad hash, the fit at 1440, 1280 × 720, 390 and 320, and axe 0. Result: 610 / 610.
 - **Lint:** `lint:css` now includes `prototype.css`; `lint:html` includes both index pages.
 - **Docs:** the landing page, README (links, preview link, structure, checks, next steps), LINKS.md, FLOWS.md, CLAUDE.md and PLAN-AUDIT.md (question 3 closed).
+
+
+## 22 — Figma export (editable layers, strict call budget)
+
+**Prompt** (verbatim)
+
+> This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+>
+> Summary:
+> 1. **Primary Request and Intent:**
+>    - **Project:** Natalia's design test task "Ripe", a photo-first calorie calculator, in repo `/Users/natalia/ClaudeCode/Apps/Calories/calories-calculator-design`.
+>      - Git email valentyn.tymku@gmail.com — use only for identification.
+>      - Remote https://github.com/nataperedrii/calories-calculator-design; branches `design-system` and `main`.
+>      - GitHub Pages is live at https://nataperedrii.github.io/calories-calculator-design/.
+>    - **Completed since the last summary:**
+>      - Step 14: targeted tweaks.
+>      - "Save your work to GitHub": commit a94d07f.
+>      - Step 15: removed the ✓; full-height recipe images; two-line ingredients.
+>      - Step 16: product photos on Add to Snack; three downloads approved by the user.
+>      - Step 17: plan audit; PLAN-AUDIT.md; servings stepper; unit switch; High protein chip; per-flow a11y.
+>      - Step 18: "Yes, please build" onboarding / Diary / Profile; DS components 25–27; 46 screens.
+>      - Step 19: landing index.html, README rewrite, LINKS.md, previews/, process/CHANGELOG.md.
+>      - Step 20: "enabled github pages. push all the results to github and merge to main. make sure pages link is working. update docs if needed". Commits 584766a and aada0d8, main fast-forwarded, live crawl OK.
+>      - Step 21: "yes, please build", the prototype shell `03-screens/index.html`. Commit 5a11b64 pushed and merged, verified live.
+>    - **Current request (step 22):** export the final screens to Figma via the official Figma plugin with strict call economy (free plan), as editable layers, without changing the design.
+>      - Phase 0: recon of the limits, with sources.
+>      - Phase 1: budget in PLAN-FIGMA.md; ≤70% of the remaining allowance; ask for "ok" if >5 calls; update the counter before every call; stop if <20% remains.
+>      - Phase 2: local prep (0 calls).
+>      - Phase 3: one trial call, then batches; ≤1 screenshot per batch.
+>      - Phase 4: fallback package figma-export/, only if needed.
+>      - Phase 5: sharing instructions only.
+>      - Deliverables: PLAN-FIGMA.md (limits with sources, budget, call log), the Figma link, the list of screens in and out, the manual-fix list, and a final message with calls used/remaining.
+>    - **Security / safety rules, verbatim from the user's prompt:**
+>      - "Never enter passwords, tokens or credentials. Authorization (OAuth) is done only by the user."
+>      - "Delete nothing in Figma and do not modify other people's files. Create a new file (or use the one the user gives you) and work only in it."
+>      - "You cannot and should not change the file's sharing. At the end give the user exact instructions: Share → "Anyone with the link" → "can view", and remind them to check the link in an incognito window. Do not publish or send the link anywhere yourself. Do not change security or account settings."
+>      - "Change nothing in the HTML source or the design system except fixes required for a successful export, and record every such fix honestly in the report."
+>      - "Before executing, show the user the budget and wait for an "ok" if more than 5 calls are planned."
+>      - "Before EVERY call update the counter in PLAN-FIGMA.md (used / remaining). If the remainder is below 20% of the limit, stop and ask the user instead of continuing."
+>      - "Use at most 70% of the remaining monthly allowance; keep the rest as a reserve for errors and rework."
+>      - "First ONE trial call on a single screen … Stop, evaluate the result from a screenshot … and only then run the rest in batches."
+>      - "If the plugin returns a limit error, a permission error or a timeout, stop, do not retry blindly, explain the cause to the user and offer options".
+>      - "Determine how many calls have already been used this month, if that can be found out. If not, assume the worst and ask the user."
+>    - **Standing rules:**
+>      - Commit or push only when asked.
+>      - Downloads need explicit permission.
+>      - Log every step verbatim in process/PROMPTS.md.
+>      - Screens use only DS tokens and components.
+>      - Don't touch anything not requested.
+>      - Report failures plainly.
+>
+> 2. **Key Technical Concepts:**
+>    - **Generated screens:** `03-screens/tools/build_screens.py` holds the USDA data, writes 46 screens, flows.html and 03-screens/index.html, and asserts totals.
+>    - **DS:** tokens.json → tokens.css via tools/build_tokens.py; tools/build_docs.py renders the docs and computes the header figures.
+>    - **Checks:**
+>      - `npm run check` (61 + align.mjs, 0 deviations on 3,636 edges);
+>      - `npm run check:screens` (610/610, including section 9, the prototype shell over an http server);
+>      - `npm run check:a11y` (Tier 1 0/39, Tier 2 0/9);
+>      - lint:css and lint:html (both now include index pages and prototype.css).
+>    - **Figma MCP (remote, connected):**
+>      - Tools: whoami, create_new_file, use_figma (Plugin API JS, code ≤50,000 chars, ~20 kb output limit), upload_assets (≤60 URLs per call; nodeIds set image fills; POST raw bytes), get_screenshot, get_metadata, get_figma_skill.
+>      - No `generate_figma_design` tool is available.
+>      - use_figma gotchas: use `await figma.setCurrentPageAsync(page)`; never loadAllPagesAsync, setPluginData or createImageAsync; Inter style "Semi Bold".
+>      - use_figma requires loading the figma-use guidance first (skill://figma/figma-use/SKILL.md via get_figma_skill = 1 call; no local copy found).
+>    - **Official limits** (raw page https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/):
+>      - Starter = 20 tool calls/month ("If you're on a Starter plan (20 tool calls per month)…").
+>      - View/Collab on paid plans 6/month; Dev/Full on Pro 200/day, 10/min; Org 200/day, 15/min; Enterprise 600/day, 20/min.
+>      - Exempt: add_code_connect_map, create_new_file, whoami. "Rate limits apply to … tools that read data … Some tools, such as those that write to Figma files, are exempt" — ambiguous, so treat use_figma, upload_assets and get_screenshot as counting.
+>      - A search snippet claimed 6/month (conflict noted).
+>      - write-to-canvas page (https://developers.figma.com/docs/figma-mcp-server/write-to-canvas): Full seat required; "No assets (image) support yet"; custom fonts unsupported; 20kb output limit; free during beta (search results).
+>      - Starter plan: 3 design files, 3 pages per file, 1 project.
+>    - **whoami (exempt, done):**
+>      - Plan "Natalia Peredrii's team": tier starter, seat Full, role admin, key `team::1456628069424971860`. Use this one.
+>      - "UX INTENSIVE BY LISA" (View seat, someone else's team): don't use.
+>    - **Calls used:** budgeted calls so far 0 (whoami is exempt). Calls used this month elsewhere are unknown → must ask the user.
+>    - **Export approach:**
+>      - Render each screen in Playwright at 390×844 → compact layer tree:
+>        - F: frame with fill, radius, stroke, shadow, clip;
+>        - R: rect or ring;
+>        - T: text with font, size, line height, tracking, colour, case, align;
+>        - S: inline SVG with resolved colours;
+>        - I: image placeholder, filled later via upload_assets.
+>      - Absolute positioning (no Auto Layout).
+>      - SVG dedupe + ASCII + LZW pack into use_figma batch scripts ≤50k chars.
+>      - Pages: "Screens", "States" (and "Design system" for tokens).
+>
+> 3. **Files and Code Sections:**
+>    - **Created in step 22 (all uncommitted):**
+>      - `tools/figma/extract.mjs` → `figma-export/layers/<id>.json` and `_summary.json`.
+>        - Sizes: 2.7k–17k chars per screen; 16–124 nodes; ≤5 images per screen.
+>        - Total raw JSON ~506k chars, of which SVG 143k (85 unique SVGs, 24k chars).
+>        - Key handling:
+>          - text measured on visible characters only (`range.setStart(child, start)` at the first non-space);
+>          - the font weight key is `fw` (was `w`, which clashed with width);
+>          - box(): fill, radius, stroke (border or inset ring), bottom/top borders, shadows; `rings` from spread-only outer shadows; `outline` → `ringNodes()` stroke-only R nodes;
+>          - `dash` for dashed borders;
+>          - pseudo-elements: absolute ::before/::after with border, bg or outline; translate % resolved; aspect-ratio height;
+>          - radial-gradient scrim → even-odd SVG path (regex `/radial-gradient\((?:circle )?([\d.]+)px(?: at 50% 50%)?, rgba\(0, 0, 0, 0\) [\d.]+%, (rgba?\([^)]*\)) 100%\)/`);
+>          - `dialog:modal` → `::backdrop` R at ROOT, and the dialog is walked into ROOT;
+>          - inputs, selects and textareas: value text + box + select chevron SVG;
+>          - clipping by overflow ancestors;
+>          - frame names = first class + aria-label or text;
+>          - root = `{t:"F", n:title, w:390, h:844, fill:body bg, clip:1, k:[]}`.
+>      - `tools/figma/preview.mjs`: redraws the trees as absolute divs (same rules) and pixel-compares with `03-screens/exports/<id>.png` → `figma-export/preview/*.png` and `_diff.json`. Result over 46 screens: mean 1.41%, max 2.58% (14-recipe-detail-steps-edit).
+>      - `figma-export/names.json`: the 46 frame names from SCREEN_NAMES; `14-recipe-detail` was added manually as ["14 Dish detail", "Baked cod, potatoes & broccoli"].
+>      - `tools/figma/builder.js` (runs in Figma; the batch prepends `const PACK=…; const PAGE=…; const SLOT=[0,0];`):
+>        ```js
+>        const unpack = (s) => { const A = "!#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+>          const codes = []; for (let i = 0; i < s.length; i += 2) codes.push(A.indexOf(s[i]) * 92 + A.indexOf(s[i + 1]));
+>          let out = "", dict, size, w; const reset = () => { dict = []; for (let i = 0; i < 256; i++) dict[i] = String.fromCharCode(i); size = 256; w = null; }; reset();
+>          for (const k of codes) { if (k === 8463) { reset(); continue; } let entry; if (w === null) { entry = dict[k]; out += entry; w = entry; continue; }
+>            entry = k < size ? dict[k] : w + w[0]; out += entry; dict[size++] = w + entry[0]; w = entry; }
+>          return JSON.parse(out); };
+>        ```
+>        - Then: `report = {frames, images, fonts, fallbacks, errors}`.
+>        - `fontFor(family, weight)`: tries STYLE {400:["Regular"], 500:["Medium"], 600:["SemiBold","Semi Bold"], 700:["Bold"]}, falls back to Inter.
+>        - `paint(hex)` with 8-digit alpha; `boxProps` (cornerRadius / per-corner, INSIDE strokes, dashPattern [4,4], strokeTop/BottomWeight, DROP_SHADOW effects, opacity).
+>        - `build(n, parent)`:
+>          - F → createFrame, clipsContent, children;
+>          - R → createRectangle;
+>          - I → rectangle "image · file" with placeholder #E9DDCB, pushed to report.images [nodeId, file];
+>          - S → createNodeFromSvg(data.svgs[n.v] or n.svg);
+>          - T → createText; single-line = WIDTH_AND_HEIGHT with x adjusted for right/center; multi-line = HEIGHT with width w+1; textCase UPPER; underline.
+>        - Page creation by name, `setCurrentPageAsync`, an optional row label text (Hanken Grotesk Bold 28) at y−64, frames placed at SLOT + (x, y), `return JSON.stringify(report)`.
+>      - `tools/figma/pack.mjs`:
+>        - LAYOUT:
+>          - **Screens page rows:**
+>            - Flow 2: 07-today, 07-today-meals, 07-today-card, 13-recipes, 14-recipe-detail, 14-recipe-detail-servings, 14-recipe-detail-log, 07-today-dinner-added.
+>            - Flow 1B/1C: 10-add-food, 11-food-detail, 12-dish-calculator.
+>            - Flow 1A: 07-today-before-lunch, 08-scan, 09-photo-result-analyzing, 09-photo-result, 07-today-lunch-added.
+>            - Flow 0: 01-welcome, 01-welcome-link, 02-goal, 03-about-you, 04-diet, 05-allergies, 06-target, 07-today-empty.
+>            - Flow 3: 16-profile, 05-allergies-edit, 16-profile-updated, 13-recipes-filtered, 16-profile-delete, 15-diary, 15-diary-mon, 15-diary-tue, 15-diary-wed.
+>          - **States page rows:**
+>            - Errors: 03-about-you-error, 06-target-floor.
+>            - Edit a dish: edit, edited, deleted, discard, saving, name-error.
+>            - Edit the method: method, steps-edit, step-error, step-deleted, no-steps.
+>        - GAP_X 80, ROW 844+240.
+>        - LZW pack() with alphabet A, `emit(k)= A[floor(k/92)]+A[k%92]`, reset code 8463 when size ≥ 8462.
+>        - `unpack` extracted from the builder text via `new Function`.
+>        - `ascii()` escapes chars >127 as \uXXXX.
+>        - SVG dedupe (n.v index).
+>        - The first batch is a single-screen trial (07-today); then greedy batching per page, ≤50,000 chars.
+>        - Writes `figma-export/batches/batch-NN.js` and `_plan.json`.
+>    - **Earlier files modified in steps 14–21 (all committed in 5a11b64):**
+>      - components.css (new components 25–27, stepper max-width/flex, facts nowrap, .product--nav, .ingredients__servings, option-card focus = outline with negative offset, .week bleed `max(calc(var(--space-4) * -1), min(0%, …))` and auto-fit `minmax(max(var(--size-touch-min), 3.4em), 1fr)`);
+>      - tokens.json (size.day-ring 32px, size.recipe-thumb 80px);
+>      - index.html (docs); build_screens.py; dish-editor.js (servings);
+>      - check.mjs (sections 7–9); align.mjs;
+>      - root index.html; README.md; LINKS.md; PLAN-AUDIT.md; FLOWS.md; process/PROMPTS.md (steps up to 21); process/CHANGELOG.md; CLAUDE.md;
+>      - 03-screens/prototype.css; tools/previews.mjs; tools/build_docs.py; package.json scripts (previews, lint:css, lint:html).
+>
+> 4. **Errors and fixes:**
+>    - **Step 22, local only, 0 Figma calls spent:**
+>      - The text width was overwritten by the font weight (both `w`) → renamed the weight to `fw`.
+>      - "21g" instead of "21 g": the range included a leading space → measure the visible characters only.
+>      - Discard screen 66% diff: no ::backdrop, no outline → backdrop R at root, outline rings.
+>      - Scan 13%:
+>        - missing shutter ring (spread-only shadow) → `rings`;
+>        - dashed plate guide (pseudo outline, translate %, aspect-ratio height);
+>        - scrim from radial-gradient: Chrome serialises it as `radial-gradient(140px, rgba(0, 0, 0, 0) 99%, rgba(43, 33, 24, 0.4) 100%)`, so I widened the regex.
+>      - Select chevron added.
+>      - **Latest, unresolved:** pack.mjs round trip failed with a JSON SyntaxError (garbage output). Root cause found in analysis: alphabet A has only 91 characters, while the code uses base 92 (`A[k % 92]` → undefined).
+>        - Fix: add `'` to A in both pack.mjs and builder.js (making 92), or use `A.length` as the base with reset code base²−1 and the dictionary limit adjusted in both.
+>    - **Earlier steps (resolved):**
+>      - DS stepper overflow; geometry failures from the over-broad chevron rule; option-card focus lost in the error group.
+>      - Week strip: clipping at 200%, the bleed exceeding the docs stage, "0px" in CSS.
+>      - Board too wide → Flow 0 split into two rows.
+>      - Prototype shell: scale NaN (parseFloat of calc) → measure offsetWidth; the picker scrolled the page on mobile; the phone didn't fit at 1280×720 → sticky stage and layout change.
+>      - Stale docs header numbers → computed in build_docs.py.
+>
+> 5. **Problem Solving:**
+>    - Validated the extraction locally against the reference exports (mean 1.41% pixel diff).
+>    - Pending: fix the LZW alphabet bug, re-run pack.mjs to get the batch count (estimated ~4 build calls for 45 screens + the trial), then write a mock-`figma` Node test of the builder to catch runtime errors before spending calls.
+>    - **Planned budget, assuming 20 remaining → 70% = 14 usable:**
+>
+>      | Item | Calls |
+>      |---|---|
+>      | get_figma_skill (figma-use) | 1 |
+>      | create_new_file (exempt) | 0 |
+>      | Trial use_figma: 07-today | 1 |
+>      | upload_assets: trial images | 1 |
+>      | get_screenshot: trial | 1 |
+>      | Remaining batches | ~4 |
+>      | Tokens / variables + text styles | 1 (or included in a batch) |
+>      | upload_assets: all remaining images (≤60 nodes) | 1 |
+>      | Final screenshots | 1–2 |
+>      | **Total** | **≈11** |
+>
+>    - Fallback package (figma-export/ PNG + HTML + README) only if the budget or export fails.
+>    - 360px Android variants don't exist (note in the report).
+>
+> 6. **All user messages:**
+>    - (Earlier messages are in the prior summary.)
+>    - Step 13 → 14 prompt pasted (summarised previously).
+>    - "Save your work to GitHub"
+>    - The step 15 pasted prompt "Targeted tweaks to the existing mockup… Fix 1. "Add to snack" screen: product rows – REMOVE the green circle… Fix 2. Recipes → recipe cards: full-height image respecting the card padding… Fix 3. Recipes → dish detail: the Ingredients section, each ingredient in TWO rows…" (with Verification and Deliverables).
+>    - The step 16 pasted prompt "Targeted tweak… Fix. "Add to snack" screen: product photos… The photo size is EXACTLY the same as the thumbnails in the Meals section… Pick a separate matching photo for each product… freely licensed…".
+>    - Answer to the AskUserQuestion: "Yes, download all 3".
+>    - The step 17 pasted prompt "Audit the plan against the actual project state: build what is missing and verify the result…" (Phases 0–4, Deliverables).
+>    - "<< Should I build onboarding (01–06), Diary (15) and Profile (16)? … >> Yes, please build"
+>    - "Try again"
+>    - The step 19 pasted prompt "Create root index.html (a landing page linking to the stylescape, design system, prototype and flows board) and write root README.md in English: overview, links (GitHub Pages + video placeholder), embedded preview images, concept summary, how I used Claude Code (link to process/PROMPTS.md), repository structure, what I'd do next. Create LINKS.md with the same external links."
+>    - "enabled github pages. push all the results to github and merge to main. make sure pages link is working. update docs if needed"
+>    - "yes, please build" (the prototype shell)
+>    - The current pasted Figma prompt "Export the final screens to Figma via the official Figma plugin for Claude Code, with strict call economy (free plan)…" (Golden rule; Phases 0–5; Safety rules; Deliverables; quoted verbatim in section 1).
+>
+> 7. **Pending Tasks (Figma export, step 22):**
+>    - Fix the LZW alphabet (91 vs 92) in pack.mjs and builder.js; re-run `node tools/figma/pack.mjs`; confirm the round trip and the batch count.
+>    - Mock-test the builder in Node with a fake `figma` API (0 calls).
+>    - Run the local checks (`npm run check`, `check:a11y`, `check:screens`, lint) to confirm 0 errors.
+>    - Prepare the tokens table/payload from tokens.json (colours, typography, spacing, radii) for Figma variables.
+>    - Write PLAN-FIGMA.md:
+>      - limits with sources (raw doc quotes, whoami result, Starter 20/month, exempt tools, 3 files / 3 pages, Full seat needed, no generate_figma_design, image-support caveat);
+>      - the budget table;
+>      - a call log with a used/remaining counter.
+>    - **Ask the user before any counted call:** (a) how many Figma MCP calls have already been used this month; (b) "ok" for the budget (>5 calls).
+>    - **After the ok:**
+>      1. get_figma_skill (figma-use);
+>      2. create_new_file (exempt), using planKey team::1456628069424971860, editorType "design";
+>      3. the trial batch-00 (07-today), then upload_assets for its images (POST the bytes of 01-branding/assets files), then get_screenshot;
+>      4. evaluate, then the remaining batches, the tokens, one upload_assets for all images, and minimal screenshots.
+>    - The fallback package only if needed.
+>    - The final report: link, screens in and out, manual-fix list (e.g. no Auto Layout because of absolute positioning, the select chevron approximation), sharing instructions (Share → "Anyone with the link" → "can view"; check in incognito).
+>    - Log step 22 in process/PROMPTS.md.
+>    - Do not commit unless asked.
+>
+> 8. **Current Work:**
+>    Local preparation for the Figma export (0 budgeted calls spent; whoami only, which is exempt). Created tools/figma/extract.mjs, preview.mjs, builder.js and pack.mjs, plus figma-export/names.json. The last command, `node tools/figma/pack.mjs`, failed during the round-trip check:
+>    ```
+>    SyntaxError: Unexpected token 'Q', "{"svgs":QQQQQQQQQQ"... is not valid JSON
+>        at makeScript (tools/figma/pack.mjs:71:7)
+>    ```
+>    Diagnosed: the LZW alphabet string `"!#$%&()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_\`abcdefghijklmnopqrstuvwxyz{|}~"` has 91 characters, but the encoder and decoder use base 92 (`A[k % 92]`, `A.indexOf(s[i]) * 92`), and the reset code is 8463.
+>
+> 9. **Optional Next Step:**
+>    Fix the alphabet mismatch: append `'` to A in both tools/figma/pack.mjs and tools/figma/builder.js so there are 92 characters (safe inside a double-quoted JS string). Then re-run `node tools/figma/pack.mjs` to get the verified batch plan and write the mock-figma builder test. Then write PLAN-FIGMA.md and ask the user for calls used this month and an "ok" on the budget before any counted Figma call. This continues the user's current request: "Export the final screens to Figma via the official Figma plugin for Claude Code, with strict call economy (free plan)… Before executing, show the user the budget and wait for an "ok" if more than 5 calls are planned." I was at Phase 2 (local preparation, 0 calls), validating the pack/unpack round trip.
+>
+> If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/natalia/.claude/projects/-Users-natalia-ClaudeCode-Apps-Calories-calories-calculator-design/28520ba5-66ea-4053-839f-8fe9be2bbb8f.jsonl
+> Continue the conversation from where it left off without asking the user any further questions. Resume directly — do not acknowledge the summary, do not recap what was happening, do not preface with "I'll continue" or similar. Pick up the last task as if the break never happened.
+
+Follow-ups: "ok" (budget approved; the number of calls used this month was not given, so the plan ran on the assumption of 20 left), then "Try again" twice after my output was cut off.
+
+**Result**
+
+- **Figma file:** "Ripe — calorie calculator screens", in Natalia's own team (Starter plan, Full seat). Sharing is unchanged; see PLAN-FIGMA.md for the steps.
+- **What's in it:**
+  - all **46 screens** as editable frames (~3,200 layers: real text in the three brand fonts, vectors, 39 photo fills);
+  - two pages: Screens has 5 flow rows, States has 3 rows;
+  - **168 variables** (Primitives + Tokens with aliases and scopes), **14 text styles** and **4 effect styles** from `tokens.json`.
+- **Calls:** **10 counted calls**, exactly as budgeted (cap 14 = 70 % of an assumed 20). `whoami` and `create_new_file` are exempt. There were 0 limit or permission errors and every batch reported 0 errors. The full log is in [PLAN-FIGMA.md](../PLAN-FIGMA.md).
+- **How it was done** (no `generate_figma_design` in this connector):
+  - `tools/figma/extract.mjs` reads the rendered DOM of each screen into a compact layer tree.
+  - `preview.mjs` redraws the trees and compares them with the PNG exports (mean 1.36 % pixel difference).
+  - `pack.mjs` compresses them into `use_figma` batches with per-screen checksums, so a copy error can never build a wrong screen.
+  - `builder.js` rebuilds the layers inside Figma.
+  - A mock Figma API in Node ran every batch before any call was spent.
+- **Fixed during the run:**
+  - **Arc:** the kcal arc came in dashed, because Figma ignores `pathLength`. Single-dash arcs are now exported as real paths. The trial frame got a corrected arc; the old layer is hidden, not deleted.
+  - **Packing:** two ~49k-character batches were cut off in my own output before sending, so no call was spent. Packing switched from LZW to deflate + base64, about 5× smaller.
+- **Verified:**
+  - trial and final screenshots of 07 Today against the export;
+  - `use_figma` reports (frames, fonts, errors, failed screens);
+  - 39/39 photo uploads returned 200.
+- **Open (manual work, PLAN-FIGMA.md §5):** no Auto Layout, tokens not bound to layers, shadows slightly heavier, 1–2 px text offsets, the hidden old arc layer, no 360 px variants.
+- **Source untouched:** no change to HTML, CSS, tokens or the design system.
+
+
+## 23 — Figma link in the docs, push, merge, Pages check
+
+**Prompt** (verbatim)
+
+> figma link is here: https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D/Ripe-%E2%80%94-calorie-calculator-screens?m=auto&t=GrevasPES00qM6Bh-1
+> update the docs and add into the proper places. save results to github and validate the github pages after
+
+**Result**
+
+- **The link** is used without the `?m=auto&t=…` share-tracking parameters. It opens the same file.
+- **Where it was added:**
+  - LINKS.md: a Figma row, marked "Shared", and a note on how the file was made;
+  - README.md: intro, links table, the order of work, repository structure, next steps;
+  - the landing page: the Documents list;
+  - CLAUDE.md: structure, plus a short "Figma export" section with the commands;
+  - PLAN-FIGMA.md: result.
+- **Public access:** Figma's CDN answers automated browsers with a 403, so the link's public access was checked by hand in incognito, not by script. No attempt was made to get around the block.
+- **Check script fix:** the last summary line of `check:screens` threw on the non-page `recipeCardTable` entry, so the script exited 1 even when everything passed. This was the case before this step too. It now skips that entry: 610/610, exit 0.
+- **Repository:**
+  - `figma-export/preview/` (12 MB of regenerable images) is gitignored;
+  - a scratch file at the root was removed;
+  - the Figma tooling (`tools/figma/`), the export data and PLAN-FIGMA.md were committed with steps 22–23.
+- **Published:** pushed to `design-system`, `main` fast-forwarded and pushed. The live site was then crawled in a fresh browser context (see the end of this session for the numbers).

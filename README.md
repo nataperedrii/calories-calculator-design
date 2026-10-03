@@ -6,7 +6,7 @@ This is my submission for the trainee designer test task ([jito-dev/trainee-desi
 1. Calculate the calories in a dish or product.
 2. Find recipes that suit me.
 
-Everything was made AI-natively: as HTML and CSS with Claude Code, with no hand-drawn Figma work, and exported to PNG with Playwright.
+Everything was made AI-natively: as HTML and CSS with Claude Code, with no hand-drawn Figma work, and exported to PNG with Playwright. At the end, Claude Code also exported the final screens to [Figma](https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D/Ripe-%E2%80%94-calorie-calculator-screens) as editable layers ([how](PLAN-FIGMA.md)).
 
 ## Links
 
@@ -17,6 +17,7 @@ Everything was made AI-natively: as HTML and CSS with Claude Code, with no hand-
 | **Design system** | [02-design-system/index.html](https://nataperedrii.github.io/calories-calculator-design/02-design-system/index.html) |
 | **Clickable prototype** | [03-screens/index.html](https://nataperedrii.github.io/calories-calculator-design/03-screens/index.html) (phone frame, screen picker by flow, ← / →) |
 | **Flows board** | [03-screens/flows.html](https://nataperedrii.github.io/calories-calculator-design/03-screens/flows.html) |
+| **Figma file** | [Ripe — calorie calculator screens](https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D/Ripe-%E2%80%94-calorie-calculator-screens) (46 screens as editable layers; tokens as variables and styles; view only) |
 | **Video walkthrough** | *Coming soon* |
 
 All external links are also in [LINKS.md](LINKS.md).
@@ -79,7 +80,7 @@ The site is published with GitHub Pages from `main` and works in incognito: no s
 
 ## How I used Claude Code
 
-Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md](process/PROMPTS.md). It has every prompt verbatim (19 steps, from research to this README) and a short summary of what came out. The reports with before/after images and check results are in [process/CHANGELOG.md](process/CHANGELOG.md).
+Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md](process/PROMPTS.md). It has every prompt verbatim (23 steps, from research to the Figma export) and a short summary of what came out. The reports with before/after images and check results are in [process/CHANGELOG.md](process/CHANGELOG.md).
 
 **Rules first.** [CLAUDE.md](CLAUDE.md) sets the rules Claude Code follows in this repo:
 - English only.
@@ -93,6 +94,7 @@ Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md]
 2. **Brand:** directions, the chosen Ripe brand ([BRAND.md](01-branding/BRAND.md)) and the stylescape.
 3. **Design system:** [tokens.json](02-design-system/tokens.json) (W3C format) as the single source → `tokens.css` and [components.css](02-design-system/components.css), plus the [documentation page](02-design-system/index.html).
 4. **Screens:** a spec first ([FLOWS.md](03-screens/FLOWS.md)), then the screens.
+5. **Figma export:** the rendered screens are rebuilt in Figma as editable layers through the Figma MCP connector, within a strict budget of 10 calls on the free plan ([PLAN-FIGMA.md](PLAN-FIGMA.md)).
 
 **Generated, not drawn.** [build_screens.py](03-screens/tools/build_screens.py) holds the USDA data, computes every portion and total, and writes all screens and the flows board. To change a screen, I edit the generator, not the HTML.
 
@@ -115,6 +117,7 @@ calories-calculator-design/
 ├── LINKS.md                ← all external links
 ├── CLAUDE.md               ← the rules Claude Code follows in this repo
 ├── PLAN-AUDIT.md           ← the screens plan vs the project, with evidence
+├── PLAN-FIGMA.md           ← Figma export: limits with sources, budget, call log, manual fixes
 ├── previews/               ← preview images for this README and the landing page
 ├── 01-branding/
 │   ├── BRAND.md            ← brief and rationale: audience, personality, colours, fonts
@@ -142,7 +145,8 @@ calories-calculator-design/
 │   ├── PROMPTS.md          ← every prompt, verbatim, and what came out of it
 │   ├── CHANGELOG.md        ← step-by-step change reports
 │   └── research.md         ← competitor analysis → 5 insights
-└── tools/                  ← token build, docs build, contrast check, previews
+├── figma-export/           ← Figma export data: layer trees, the batches sent, reports with node ids
+└── tools/                  ← token build, docs build, contrast check, previews; figma/ = the Figma export
 ```
 
 **Rebuild and check everything:** Node 20+ and Python 3. Run `npm install` once, then:
@@ -154,6 +158,8 @@ npm run check && npm run check:screens && npm run check:a11y
 ```
 
 ## What I'd do next
+
+- **Finish the Figma file by hand:** turn key parts (button, chip, product row, recipe card) into Auto Layout components and bind the existing variables and styles to the layers (list in [PLAN-FIGMA.md §5](PLAN-FIGMA.md)).
 
 - **Record the video walkthrough** and add its link to LINKS.md and above.
 - **Build the remaining states.** These are specified but not drawn yet: loading (skeleton), offline banners, the camera's permission states, and the empty states of search, Recipes and Diary. The design system already has the components (15, 17, 18).

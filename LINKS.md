@@ -14,7 +14,7 @@ All external links for the Ripe design test task, in one place.
 | **Video walkthrough** (Loom / FocuSee) | *To be added* | Not recorded yet |
 | **Repository** | https://github.com/nataperedrii/calories-calculator-design | Live |
 | **Task** | https://github.com/jito-dev/trainee-designer-apr-2026-test-task | Live |
-| **Figma** | Not used: everything is HTML/CSS made with Claude Code (AI-native workflow) | – |
+| **Figma file** (all 46 screens as editable layers, plus tokens as variables and styles) | https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D/Ripe-%E2%80%94-calorie-calculator-screens | Shared: anyone with the link can view |
 
 **GitHub Pages** deploys from `main`, root folder. A `.nojekyll` file makes Pages serve the files as they are.
 
@@ -24,3 +24,5 @@ All external links for the Ripe design test task, in one place.
 - All 32 internal links resolve.
 
 The links work from incognito: the site needs no sign-in and loads only the repository files and Google Fonts.
+
+**About the Figma file.** The design was made in HTML/CSS, not in Figma. Claude Code then exported the final screens to Figma through the official Figma MCP connector: 10 calls on the free Starter plan. The file is generated, not hand-drawn. How it was made, the call log and the list of manual fixes are in [PLAN-FIGMA.md](PLAN-FIGMA.md). The file is viewable without a Figma account. Figma blocks automated browsers, so its public access was checked by hand in incognito, not by the link check above.

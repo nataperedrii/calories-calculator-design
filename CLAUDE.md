@@ -35,11 +35,13 @@ Background research: [process/research.md](process/research.md). It compares MyF
 ```
 calories-calculator-design/
 ├── README.md                  ← main page: description, links, image previews
-├── LINKS.md                   ← all external links: video, GitHub Pages, (Figma)
+├── LINKS.md                   ← all external links: video, GitHub Pages, Figma
 ├── CLAUDE.md                  ← instructions for Claude Code (shows the process)
 ├── index.html                 ← GitHub Pages landing page linking to the 3 sections
 ├── previews/                  ← 1200 × 675 previews for README and the landing page (tools/previews.mjs)
 ├── PLAN-AUDIT.md              ← the screens plan vs the project, with evidence
+├── PLAN-FIGMA.md              ← Figma export: limits, budget, call log, manual fixes
+├── figma-export/              ← layer trees, sent batches, reports (preview/ is gitignored)
 │
 ├── 01-branding/
 │   ├── BRAND.md               ← brief and rationale: audience, positioning, personality, why these colours/fonts
@@ -68,6 +70,28 @@ calories-calculator-design/
     ├── CHANGELOG.md           ← step-by-step change reports (moved out of README.md)
     └── research.md            ← short competitor analysis (MyFitnessPal, Yazio, Lifesum…)
 ```
+
+## Figma export
+
+The final screens are in Figma as editable layers: https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D/Ripe-%E2%80%94-calorie-calculator-screens (view only). This was made through the Figma MCP connector on the free Starter plan, where every call is budgeted; see `PLAN-FIGMA.md`. The source of truth stays the HTML. Re-export only on request, and plan the calls first.
+
+```bash
+node tools/figma/extract.mjs
+```
+
+```bash
+node tools/figma/preview.mjs
+```
+
+```bash
+node tools/figma/pack.mjs
+```
+
+1. `extract.mjs` renders each screen into a layer tree in `figma-export/layers/`.
+2. `preview.mjs` redraws the trees and compares them with `03-screens/exports/`.
+3. `pack.mjs` writes the `use_figma` batches to `figma-export/batches/` (deflate + base64, with a checksum per screen; `LIMIT`, `DONE` and `START` env vars for resuming).
+4. `tools/figma/builder.js` runs inside Figma.
+5. `tools/figma/calllog.py` updates the call counter in `PLAN-FIGMA.md` before every counted call.
 
 ## Exporting PNGs
 

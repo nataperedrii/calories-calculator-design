@@ -1,0 +1,186 @@
+{
+ "07-today-before-lunch": [
+  "07 Today",
+  "13:09 · breakfast logged"
+ ],
+ "08-scan": [
+  "08 Scan",
+  "Camera with plate guide"
+ ],
+ "09-photo-result-analyzing": [
+  "09 Photo result",
+  "Loading: analyzing, 2–4 s"
+ ],
+ "09-photo-result": [
+  "09 Photo result",
+  "4 foods, confidence, weights"
+ ],
+ "07-today-lunch-added": [
+  "07 Today",
+  "Lunch added · 903 kcal"
+ ],
+ "10-add-food": [
+  "10 Add food",
+  "Search “alm”, recents"
+ ],
+ "11-food-detail": [
+  "11 Food detail & portion",
+  "Almonds, 30 g"
+ ],
+ "12-dish-calculator": [
+  "12 Dish calculator",
+  "Red lentil soup"
+ ],
+ "07-today": [
+  "07 Today",
+  "18:30 · 879 kcal left"
+ ],
+ "13-recipes": [
+  "13 Recipes",
+  "Fits your dinner"
+ ],
+ "14-recipe-detail-log": [
+  "14 Dish detail",
+  "Log sheet"
+ ],
+ "14-recipe-detail-edit": [
+  "14 Dish detail",
+  "Edit ingredients"
+ ],
+ "14-recipe-detail-edited": [
+  "14 Dish detail",
+  "Potatoes 200 → 150 g: totals update"
+ ],
+ "14-recipe-detail-deleted": [
+  "14 Dish detail",
+  "Garlic deleted, Undo"
+ ],
+ "14-recipe-detail-discard": [
+  "14 Dish detail",
+  "Back with changes"
+ ],
+ "14-recipe-detail-name-error": [
+  "14 Dish detail",
+  "Name: validation error"
+ ],
+ "07-today-card": [
+  "07 Today",
+  "Dish card: chips + View recipe"
+ ],
+ "14-recipe-detail-method": [
+  "14 Dish detail",
+  "Method: 6 steps"
+ ],
+ "14-recipe-detail-steps-edit": [
+  "14 Dish detail",
+  "Edit steps: move, delete"
+ ],
+ "14-recipe-detail-step-deleted": [
+  "14 Dish detail",
+  "Step deleted, Undo"
+ ],
+ "14-recipe-detail-no-steps": [
+  "14 Dish detail",
+  "No steps: empty state"
+ ],
+ "14-recipe-detail-servings": [
+  "14 Dish detail",
+  "Servings 2: amounts scale"
+ ],
+ "07-today-meals": [
+  "07 Today",
+  "Scrolled to Meals"
+ ],
+ "14-recipe-detail-saving": [
+  "14 Dish detail",
+  "Saving…"
+ ],
+ "14-recipe-detail-step-error": [
+  "14 Dish detail",
+  "Empty step: error"
+ ],
+ "15-diary-mon": [
+  "15 Diary",
+  "Monday: 1,703 kcal"
+ ],
+ "15-diary-wed": [
+  "15 Diary",
+  "Wednesday: 1,661 kcal"
+ ],
+ "01-welcome": [
+  "01 Welcome",
+  "Passkey or email link"
+ ],
+ "01-welcome-link": [
+  "01 Welcome",
+  "Check your inbox"
+ ],
+ "02-goal": [
+  "02 Your goal",
+  "Step 1 of 5"
+ ],
+ "03-about-you": [
+  "03 About you",
+  "Step 2 of 5"
+ ],
+ "03-about-you-error": [
+  "03 About you",
+  "Height out of range"
+ ],
+ "04-diet": [
+  "04 Diet",
+  "Step 3 of 5"
+ ],
+ "05-allergies": [
+  "05 Allergies",
+  "Step 4 of 5"
+ ],
+ "06-target": [
+  "06 Daily target",
+  "Step 5 of 5 · 2,050 kcal"
+ ],
+ "06-target-floor": [
+  "06 Daily target",
+  "At the floor: 1,550 kcal"
+ ],
+ "07-today-empty": [
+  "07 Today",
+  "First day: 0 of 2,050"
+ ],
+ "15-diary": [
+  "15 Diary",
+  "This week, today selected"
+ ],
+ "15-diary-tue": [
+  "15 Diary",
+  "Tuesday: 45 over"
+ ],
+ "16-profile": [
+  "16 Profile",
+  "Your plan, units, account"
+ ],
+ "05-allergies-edit": [
+  "05 Allergies",
+  "Edit from Profile: + Shellfish"
+ ],
+ "16-profile-updated": [
+  "16 Profile",
+  "Saved: recipes update"
+ ],
+ "13-recipes-filtered": [
+  "13 Recipes",
+  "Shrimp hidden: 2 recipes"
+ ],
+ "16-profile-delete": [
+  "16 Profile",
+  "Delete account: confirm"
+ ],
+ "07-today-dinner-added": [
+  "07 Today",
+  "Dinner added · 1,633 kcal"
+ ],
+ "14-recipe-detail": [
+  "14 Dish detail",
+  "Baked cod, potatoes & broccoli"
+ ]
+}
