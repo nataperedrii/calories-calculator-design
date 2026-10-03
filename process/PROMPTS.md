@@ -1332,3 +1332,95 @@ Follow-ups: "ok" (budget approved; the number of calls used this month was not g
   - every internal link resolves;
   - the Figma link is on the live landing page, README.md and LINKS.md.
 - **Also fixed:** `figma-export/batches/sent/batch-00.js` now holds the exact trial batch that was sent (the first commit had the version regenerated after the arc fix), and the duplicate copies of batches 02–04 were removed.
+
+
+## 24 — Pre-submission cleanup: privacy, log integrity, docs, hygiene (design frozen)
+
+**Prompt**
+
+<details><summary>Full prompt (verbatim)</summary>
+
+> Final pre-submission cleanup of the repository: documentation, privacy and hygiene ONLY, with ZERO design changes. You are acting as a careful release manager and strict QA engineer. Context: the JITO test task (UX/UI Design Trainee), repository nataperedrii/calories-calculator-design. An independent reviewer left a report, REVIEW-REPORT.md (in the project root; if it is missing, ask the user for it). The candidate is presenting this work soon, so the design must stay exactly as it is.
+>
+> ## Hard rules
+> 1. DESIGN FREEZE: do NOT modify any screen, prototype, design-system page, HTML, CSS, JS, tokens (tokens.json/tokens.css), the generator (build_screens.py), images or photos. The only exception is rule 8 (the video link). Do not "fix" design issues from the review, even small ones: list them in README instead (Phase 3.4).
+> 2. Allowed changes: Markdown documentation (README.md, LINKS.md, PROMPTS.md, CHANGELOG.md, new .md files), .gitignore, package.json scripts for checks, new check scripts in a tools/ or scripts/ folder, deleting files that NOTHING references (Phase 4), local git config.
+> 3. Branch and commits: work on a new branch polish-final with small logical commits and English messages. Do NOT push, merge or run force commands without an explicit "yes" from the user. Do NOT rewrite git history (see Phase 7).
+> 4. Language: everything in the repository in English; talk to the user in the chat in Ukrainian. Cyrillic in the repository = 0.
+> 5. Honesty: invent nothing on the user's behalf. The candidate's decisions, prompts and reasoning may only be recovered from evidence in the repository or local transcripts, or drafted for confirmation. Do not alter the text of verbatim prompts in PROMPTS.md except masking private data with the marker [redacted].
+> 6. Make no Figma calls.
+> 7. Verify everything: do not say "done" until all checks in Phase 6 pass, including the proof that every page looks identical to before.
+> 8. Video link exception: when the user provides the video link, replace the placeholder text ("Coming soon", "Not recorded yet", "To be added") with the link in README.md, LINKS.md and index.html. In index.html change ONLY that text/link, nothing else, and re-run the regression check (only that line may differ).
+>
+> ## Phase 0. Baseline
+> Read CLAUDE.md, README.md, LINKS.md, PLAN-AUDIT.md, FLOWS.md, CHANGELOG.md, process/PROMPTS.md, REVIEW-REPORT.md. Create the branch. Run all existing checks and record the results (npm run check, check:screens, check:a11y, lint:html, lint:css, contrast, token drift, alignment). Record sizes (working tree, .git, the 10 largest folders). Take full-page screenshots of EVERY HTML page served on Pages (landing, branding, design system, all screens, flows, prototype) at 390px and desktop and save them as the "before" reference in a temporary folder outside the repository.
+>
+> ## Phase 1. Private data and log integrity (highest priority)
+> 1.1 Scan the ENTIRE working tree for private data: email addresses, absolute local paths (/Users/, ~/.claude, C:\), session transcript paths, Figma team IDs and other people's team names (the public Figma file link itself is fine), tokens/keys, machine names. Show the user the findings with masked values (never print an email in full).
+> 1.2 process/PROMPTS.md, step 22 (lines ~1072–1304): it contains an automatic context summary instead of a prompt. Try to recover the user's real prompt for that step from the local Claude Code transcript (the path appears in the file or in ~/.claude/projects/): extract ONLY the user's message text and mask private data. If recovery is impossible, replace the block with an honest note: "The session was resumed after an automatic context summary; the original prompt for this step was: <briefly, in the user's words, if known>". Do not leave the summary in the repository.
+> 1.3 Mask the remaining findings in all Markdown files. If private data is found inside an HTML file, do NOT edit it: report it to the user under "Needed from the user".
+> 1.4 The claim "every prompt verbatim" (README.md:83): for steps 07–08 (currently summaries) recover the verbatim text from transcripts, or reword the claim accurately ("Prompts are verbatim except steps 07–08, which are summarized").
+> 1.5 Remove template leftovers in PROMPTS.md (references to the nonexistent 00-research/…, lines ~85-86) or add an honest explanation.
+> 1.6 Commit identity: ask the user to confirm the GitHub noreply email and name (format ID+username@users.noreply.github.com); set them only in this repository's local git config for NEW commits. Do not guess the address.
+>
+> ## Phase 2. Reports only (nothing is changed, nothing committed)
+> Save these in a temporary folder outside the repository and summarize them to the user:
+> 2.1 Flow audit: with Playwright, build the screen-transition graph of the prototype; list interactive elements with no target, unreachable screens, and whether each user story can be completed end to end.
+> 2.2 Photo audit: check every dish/product photo against its name and recipe; a table "dish → file → what the photo shows → matches?".
+> The user will use these to prepare answers for the presentation and the interview.
+>
+> ## Phase 3. Documentation (Markdown only)
+> 3.1 README claims audit: phrase "WCAG 2.2 AA throughout" and similar precisely (what was verified automatically in Chromium, what was sampled manually, what was not verified: real devices, VoiceOver/TalkBack). Every number in the README must match the real check results.
+> 3.2 HOW-IT-WORKS.md (one page, plain English, understandable to a beginner): how tokens.json becomes CSS, how build_screens.py works, how to change a portion, what each check verifies. Verify every statement against the code.
+> 3.3 DRAFTS needing the user's confirmation (do not write final versions without it):
+>  - DECISIONS.md (1 page, 8–10 items): "AI proposed X → my decision Y because Z". Find evidence of the user's decision in PROMPTS.md (line numbers) and fill X and Y; leave "Z" (the reason) as a question to the user, never invent it. Candidates: rejecting the first brand direction, photo-first, "over goal" without red, renaming the dish after the photo search, the noticed missing portion stepper, the removed ✓ circle, the Atwater ±2 % question, the narrow full-height photo in recipe cards.
+>  - A "Prompt patterns I use" section in PROMPTS.md: the user's template + 3 lessons (what did not work).
+>  Show the drafts in the chat, ask the user to correct them in their own words, and write the final versions only after they answer.
+> 3.4 Add a "Known limitations & next steps" section to README.md that honestly lists the open issues from the review WITHOUT fixing them: prototype dead ends (from 2.1), missing error states (photo not recognised, camera denied, empty search/recipes/diary), the filter row wrapping into 3 lines, the duplicated kcal in recipe cards, the "24 vs 27" components count on the design-system page, testing on real devices and screen readers. For each: one line on what you would do next. Keep it short and confident.
+>
+> ## Phase 4. Slimming the repository (safe deletions only)
+> Show a "before" size table. Candidates: 03-screens/qa/before-step1*/, duplicate design-system.png files, and the company's reference copies in 01-branding/assets/references/. Delete a file ONLY if no HTML, CSS, JS, Markdown or script in the repository references it (search by file name and path) and no check needs it; otherwise keep it and say why. Keep 1–2 illustrative before/after pairs if CHANGELOG links to them. If QA outputs are regenerated by scripts, add them to .gitignore only if the checks still run from scratch. Show the "after" sizes and state that .git will not shrink without rewriting history.
+>
+> ## Phase 5. Submission-readiness script
+> Create `npm run check:submission`: Cyrillic 0; private data 0 (patterns from 1.1); a list of placeholders ("Coming soon", "Not recorded yet", "To be added", TODO); all internal links and images resolve; in online mode, the external URLs from LINKS.md/README return 200 (Pages, Figma, video). The only expected failure is the missing video link; print that clearly.
+>
+> ## Phase 6. Verification (mandatory)
+> 1. Re-run all existing checks: results must be the same as the baseline (no new failures).
+> 2. check:submission passes except for the video link.
+> 3. Regression proof: take the same full-page screenshots as in Phase 0 and pixel-compare them with the "before" reference. Every page must be identical (0 changed pixels). If anything differs, revert that change and report it.
+> 4. Internal links and images: 0 broken after the deletions.
+>
+> ## Phase 7. Summary and next steps
+> A table: item | what was done | evidence. "Needed from the user": (1) the video link (then apply rule 8); (2) answers to the DECISIONS.md and "Prompt patterns" drafts; (3) the noreply email and name for commits; (4) the findings from the Phase 2 reports to prepare for the interview; (5) any private data found in HTML files. Ask: "Merge polish-final into main and push (no force)?" Only after an explicit "yes": merge, push, wait for the Pages deploy, run check:submission online and report the result.
+> History rewrite (removing private data and heavy files from git history) is NOT done by default. Only if the user explicitly writes "yes, rewrite history": explain the consequences first (irreversible, changes commit hashes, may confuse a reviewer who already cloned the repository), make a full mirror backup, use git filter-repo, verify locally, and push only with --force-with-lease after one more confirmation.
+>
+> ## Deliverables
+> The polish-final branch with small commits; cleaned PROMPTS.md; accurate README with "Known limitations & next steps"; HOW-IT-WORKS.md; DECISIONS.md and "Prompt patterns I use" (after confirmation); a lighter repository; check:submission; the two reports; proof that every page is pixel-identical. If any check fails, say so plainly and fix it without touching the design.
+
+</details>
+
+**Clarification:** the review report was in a sibling folder, not in the project root; the user confirmed it. The user chose the commit identity "Natalia Peredrii" with their own e-mail (not the GitHub noreply address), set only in this repository's local git config.
+
+**Result** (branch `polish-final`, not pushed; no design file changed)
+
+- **Log integrity:**
+  - Step 22 held an automatic context summary instead of the prompt, because an earlier extraction took the last matching message. It is replaced with the original prompt from the local transcript, with a note.
+  - Steps 07 and 08 now carry their full verbatim prompts.
+  - Every logged prompt was compared with the transcript: they match, except step 01's omitted folder tree and step 04's translated side note, both noted.
+- **Private data:** the Figma team ID, another team's name and home-folder paths are masked as `[redacted]` in PLAN-FIGMA.md, PLAN-AUDIT.md, CHANGELOG.md and PROMPTS.md. The working tree scan finds 0 (only `example.com` demo addresses and base64 noise remain, both ignored). Private data in git history is untouched; a rewrite needs the user's explicit "yes".
+- **Docs:**
+  - README: precise accessibility claims (what is automated, what was not verified) and the exact extent of "verbatim";
+  - README: a "Known limitations & next steps" section listing the review's open issues without fixing them;
+  - new HOW-IT-WORKS.md;
+  - a note on step 04's template paths (`00-research/`).
+- **Repository:** 5 unreferenced duplicates of `design-system.png` in `03-screens/qa/` removed (−58 MB in the working tree; 556 → 553 tracked files; `.git` stays 192 MB without a history rewrite). The `before-*` folders and `01-branding/assets/references/` are kept, because Markdown and `compare.mjs` reference them.
+- **New check:** `npm run check:submission`:
+  - Cyrillic, private data, placeholders, internal links and images;
+  - `--online` also requests the external links;
+  - exits 2 when only the video link is missing.
+- **Verification:**
+  - all existing checks match the baseline: 61/61 plus 0 alignment deviations, 610/610, a11y Tier 1 0/39 and Tier 2 0/9, both lints, contrast 67/67, no token drift;
+  - full-page screenshots of all 53 pages at 390 and 1440 px: 100 of 106 pixel-identical;
+  - the other 6 (both design-system pages and 09-analyzing) differ only inside the `ripe-shimmer` skeleton animation, by the same amount as two runs of unchanged code. Every design source file is byte-identical to `83e2138`.
+- **Reports outside the repository** (for the interview): a flow audit (28 of 46 screens reachable by in-screen taps; analyzing → result and the dish-calculator buttons are dead ends) and a photo audit (5 of 11 photos only approximate their dish).
+- **Waiting for the user:** the video link; their own reasons for the DECISIONS.md and "Prompt patterns I use" drafts; approval to merge and push.
