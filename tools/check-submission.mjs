@@ -38,7 +38,7 @@ section("2. Private data");
 const PRIVATE = [
   ["e-mail address", /[A-Za-z0-9._%+-]+@(?!example\.(?:com|org|net)\b)(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}/g],
   ["absolute local path", /\/Users\/[A-Za-z0-9._-]+|\/home\/[a-z][a-z0-9_-]*\/|\b[A-Z]:\\Users\\/g],
-  ["Claude Code home folder", /~\/\.claude\b|\.claude\/projects\//g],
+  ["Claude Code home folder", /~\/\.claude\/[a-z]+\/[A-Za-z0-9]|\.claude\/projects\/-[A-Za-z0-9-]+/g], // real paths, not the bare folder name
   ["session transcript", /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.jsonl/g],
   ["Figma team / organization ID", /\b(?:team|organization)::\d+/g],
   ["machine name", /\b[a-z0-9-]+\.home\b|\bmacbook-pro-[a-z0-9-]+/gi],
