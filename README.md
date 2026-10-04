@@ -84,10 +84,10 @@ The site is published with GitHub Pages from `main` and works in incognito: no s
 
 ## How I used Claude Code
 
-Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md](process/PROMPTS.md). It has the prompt for each of the 25 steps, from research to the final presentation, and a short summary of what came out. The prompts are verbatim, checked against the session transcript, with three noted exceptions:
+Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md](process/PROMPTS.md). It has the prompt for each of the 23 steps, from research to the Figma export, and a short summary of what came out. The prompts are verbatim, checked against the session transcript, with three noted exceptions:
 - step 01's folder tree (it had Ukrainian notes) is not reproduced; its English version is in CLAUDE.md;
-- step 04's one-line side note and the step 25 prompt (both written in Ukrainian) are given in English;
-- private details and third-party company names are masked as `[redacted]`.
+- step 04's one-line side note is given in English;
+- private details and third-party links are masked as `[redacted]`.
 
 Short answers to Claude's questions are summarised under "Clarification".
 
