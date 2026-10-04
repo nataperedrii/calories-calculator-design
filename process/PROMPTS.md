@@ -8,7 +8,7 @@ The key prompts used with Claude Code, and what came out of each one.
 
 **Prompt**
 
-> Read the test task at https://github.com/jito-dev/trainee-designer-apr-2026-test-task.
+> Read the test task at [redacted].
 > Create CLAUDE.md for this project with: a task summary, the 3 deliverables, and rules:
 > - all content in English, no lorem ipsum — realistic food data (real kcal/macros per 100 g)
 > - mobile screens are 390×844
@@ -1340,7 +1340,7 @@ Follow-ups: "ok" (budget approved; the number of calls used this month was not g
 
 <details><summary>Full prompt (verbatim)</summary>
 
-> Final pre-submission cleanup of the repository: documentation, privacy and hygiene ONLY, with ZERO design changes. You are acting as a careful release manager and strict QA engineer. Context: the JITO test task (UX/UI Design Trainee), repository nataperedrii/calories-calculator-design. An independent reviewer left a report, REVIEW-REPORT.md (in the project root; if it is missing, ask the user for it). The candidate is presenting this work soon, so the design must stay exactly as it is.
+> Final pre-submission cleanup of the repository: documentation, privacy and hygiene ONLY, with ZERO design changes. You are acting as a careful release manager and strict QA engineer. Context: the [redacted] test task ([redacted]), repository nataperedrii/calories-calculator-design. An independent reviewer left a report, REVIEW-REPORT.md (in the project root; if it is missing, ask the user for it). The candidate is presenting this work soon, so the design must stay exactly as it is.
 >
 > ## Hard rules
 > 1. DESIGN FREEZE: do NOT modify any screen, prototype, design-system page, HTML, CSS, JS, tokens (tokens.json/tokens.css), the generator (build_screens.py), images or photos. The only exception is rule 8 (the video link). Do not "fix" design issues from the review, even small ones: list them in README instead (Phase 3.4).
@@ -1424,3 +1424,28 @@ Follow-ups: "ok" (budget approved; the number of calls used this month was not g
   - the other 6 (both design-system pages and 09-analyzing) differ only inside the `ripe-shimmer` skeleton animation, by the same amount as two runs of unchanged code. Every design source file is byte-identical to `83e2138`.
 - **Reports outside the repository** (for the interview): a flow audit (28 of 46 screens reachable by in-screen taps; analyzing → result and the dish-calculator buttons are dead ends) and a photo audit (5 of 11 photos only approximate their dish).
 - **Waiting for the user:** the video link; their own reasons for the DECISIONS.md and "Prompt patterns I use" drafts; approval to merge and push.
+
+
+## 25 — Video link; the project presented without the task's company
+
+**Prompt** (translated from Ukrainian; the repository is English only; the task link is masked)
+
+> Here is the video link: https://drive.google.com/file/d/1ov82G6kLm89NLmzvmS3fhac74GmNG4dl/view
+> Also please remove the links to the task, for example in README.md:
+>
+> <<<This is my submission for the trainee designer test task ([redacted])>>>
+>
+> so that it works as a presentation of my project that I can send to anyone, not only to whoever set the task.
+
+**Result**
+
+- **Video:** the Google Drive link replaces the placeholders in README.md (links table), LINKS.md and the landing page, where a "Watch the video on Google Drive" button (the design system's secondary button) replaces "Coming soon". The link opens without signing in (Drive shows the file name, not a sign-in page). The "Record the video" next step is removed from README.
+- **Neutral wording:**
+  - removed the task link and the company name from README.md (intro), LINKS.md (the Task row) and CLAUDE.md (Source line);
+  - "design test task" and "Trainee designer" became "design project" on the landing page (title and subtitle), and in LINKS.md, CLAUDE.md, research.md, PLAN-AUDIT.md and package.json;
+  - in PROMPTS.md, the task link (step 01) and the company and role names (step 24) are masked as `[redacted]`; README now lists "third-party company names" among the masked details.
+- **Not changed:** the caption "design test task" on the brand-directions board (`01-branding/directions.html` and its PNG export). It has no company name or link, and changing it would mean re-exporting the board.
+- **Checks:**
+  - `lint:html` passes;
+  - `npm run check:submission -- --online`: 0 Cyrillic, 0 private data, 0 placeholders, 732 internal links resolve, and all external links answer 200 (video included). Result: "Ready to submit";
+  - landing page before / after: only the subtitle and the video section changed. At 1440 px every other row is pixel-identical. At 390 px the shorter subtitle moves the page up by 21 px; after that shift, only anti-aliasing at 15 card edges differs (colour difference at most 6 of 765). No other HTML, CSS or JS file changed.

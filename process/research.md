@@ -1,6 +1,6 @@
 # Competitive research: calorie trackers
 
-A short review of four leading apps, focused on the two user stories in the test task:
+A short review of four leading apps, focused on the two user stories in this project:
 
 1. **Calculate calories** in a dish or product.
 2. **Find recipes** that fit the user's needs.

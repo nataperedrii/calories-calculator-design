@@ -8,7 +8,7 @@
 |---|---|
 | Claude Code plans folder (`[redacted]/plans/`, outside the repository) | **One file:** `valiant-wandering-sparrow.md` (1 Oct 2026, 90 lines), "Plan: write `03-screens/FLOWS.md` (no screens built yet)". It's the only plan made in planning mode, so it's the plan audited here |
 | Project root, `docs/`, `plan/`, `.claude/` | No `PLAN.md`, `plan*.md`, `TODO.md` or `ROADMAP.md`. There are no `docs/` or `plan/` folders |
-| `README.md`, `CLAUDE.md` | They describe the deliverables of the whole test task, not this plan. Deliverables outside this plan are listed under [Outside the plan](#outside-the-plan) |
+| `README.md`, `CLAUDE.md` | They describe the deliverables of the whole project, not this plan. Deliverables outside this plan are listed under [Outside the plan](#outside-the-plan) |
 | `git log` (6 commits) | No plan file is committed. Step 09 of `process/PROMPTS.md` (line 331) records that this plan was approved and carried out |
 
 **What the plan delivers.** The plan's deliverable is the document `03-screens/FLOWS.md`. Its own first line calls it "the plan for `03-screens/`". Step 10 (PROMPTS.md, line 371) records your decision to **build only the screens of flows 1 and 2 (07–14)**.

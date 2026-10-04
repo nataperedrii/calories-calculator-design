@@ -2,7 +2,7 @@
 
 **Point, snap, know.** Ripe is a mobile calorie calculator that starts with a photo. You point your phone at your plate; Ripe finds each food, estimates the portion and says how sure it is. You check the numbers, tap once, and get back to your meal.
 
-This is my submission for the trainee designer test task ([jito-dev/trainee-designer-apr-2026-test-task](https://github.com/jito-dev/trainee-designer-apr-2026-test-task)): a mobile app for calculating calories, covering two user stories:
+This is my design project: a mobile app for calculating calories, covering two user stories:
 1. Calculate the calories in a dish or product.
 2. Find recipes that suit me.
 
@@ -18,7 +18,7 @@ Everything was made AI-natively: as HTML and CSS with Claude Code, with no hand-
 | **Clickable prototype** | [03-screens/index.html](https://nataperedrii.github.io/calories-calculator-design/03-screens/index.html) (phone frame, screen picker by flow, ← / →) |
 | **Flows board** | [03-screens/flows.html](https://nataperedrii.github.io/calories-calculator-design/03-screens/flows.html) |
 | **Figma file** | [Ripe — calorie calculator screens](https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D/Ripe-%E2%80%94-calorie-calculator-screens) (46 screens as editable layers; tokens as variables and styles; view only) |
-| **Video walkthrough** | *Coming soon* |
+| **Video walkthrough** | [Watch on Google Drive](https://drive.google.com/file/d/1ov82G6kLm89NLmzvmS3fhac74GmNG4dl/view): the brand, the design system and the prototype |
 
 All external links are also in [LINKS.md](LINKS.md).
 
@@ -84,10 +84,10 @@ The site is published with GitHub Pages from `main` and works in incognito: no s
 
 ## How I used Claude Code
 
-Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md](process/PROMPTS.md). It has the prompt for each of the 24 steps, from research to the pre-submission cleanup, and a short summary of what came out. The prompts are verbatim, checked against the session transcript, with three noted exceptions:
+Every step was a prompt to Claude Code; the full list is in [process/PROMPTS.md](process/PROMPTS.md). It has the prompt for each of the 25 steps, from research to the final presentation, and a short summary of what came out. The prompts are verbatim, checked against the session transcript, with three noted exceptions:
 - step 01's folder tree (it had Ukrainian notes) is not reproduced; its English version is in CLAUDE.md;
-- step 04's one-line side note is given in English;
-- private details are masked as `[redacted]`.
+- step 04's one-line side note and the step 25 prompt (both written in Ukrainian) are given in English;
+- private details and third-party company names are masked as `[redacted]`.
 
 Short answers to Claude's questions are summarised under "Clarification".
 
@@ -183,7 +183,6 @@ The design is frozen for review, so these are listed rather than fixed.
 | **Tested only in headless Chromium.** No real iOS or Android devices, no VoiceOver or TalkBack. | A pass on an iPhone and an Android phone with VoiceOver and TalkBack. |
 
 Also next:
-- **Record the video walkthrough** and add its link here, in LINKS.md and on the landing page.
 - **Test with five people** from the target group: sign-up, a photo log and finding a recipe. Measure time-to-log and how often a portion gets corrected.
 - **Close the open questions** in [PLAN-AUDIT.md](PLAN-AUDIT.md), for example whether to keep USDA kcal and drop the ±2 % Atwater rule.
 - **Finish the Figma file by hand:** Auto Layout components for button, chip, product row and recipe card, with the existing variables and styles bound ([PLAN-FIGMA.md §5](PLAN-FIGMA.md)).

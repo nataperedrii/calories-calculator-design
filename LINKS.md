@@ -1,6 +1,6 @@
 # Links
 
-All external links for the Ripe design test task, in one place.
+All external links for the Ripe project, in one place.
 
 | What | Link | Status |
 |---|---|---|
@@ -11,9 +11,8 @@ All external links for the Ripe design test task, in one place.
 | **Clickable prototype** (phone frame, screen picker) | https://nataperedrii.github.io/calories-calculator-design/03-screens/index.html | Live |
 | **First screen alone** (sign-in) | https://nataperedrii.github.io/calories-calculator-design/03-screens/screens/01-welcome.html | Live |
 | **Flows board** | https://nataperedrii.github.io/calories-calculator-design/03-screens/flows.html | Live |
-| **Video walkthrough** (Loom / FocuSee) | *To be added* | Not recorded yet |
+| **Video walkthrough** (Google Drive) | https://drive.google.com/file/d/1ov82G6kLm89NLmzvmS3fhac74GmNG4dl/view | Live: anyone with the link can view |
 | **Repository** | https://github.com/nataperedrii/calories-calculator-design | Live |
-| **Task** | https://github.com/jito-dev/trainee-designer-apr-2026-test-task | Live |
 | **Figma file** (all 46 screens as editable layers, plus tokens as variables and styles) | https://www.figma.com/design/Xo47SGfRZervjkNEHIjE0D/Ripe-%E2%80%94-calorie-calculator-screens | Shared: anyone with the link can view |
 
 **GitHub Pages** deploys from `main`, root folder. A `.nojekyll` file makes Pages serve the files as they are.

@@ -1,7 +1,7 @@
 {
   "name": "ripe-calories-calculator-design",
   "private": true,
-  "description": "Ripe calorie calculator: design test task. Tooling for design-system checks.",
+  "description": "Ripe calorie calculator: design project. Tooling for design-system checks.",
   "type": "module",
   "scripts": {
     "check": "node 02-design-system/tools/check.mjs && node 03-screens/tools/align.mjs",

@@ -1,10 +1,8 @@
 # CLAUDE.md
 
-Instructions for Claude Code in this repo. The repo is a design test task, built with an AI-native workflow: everything is made as HTML/CSS with Claude Code and exported to PNG.
+Instructions for Claude Code in this repo. The repo is a design project, built with an AI-native workflow: everything is made as HTML/CSS with Claude Code and exported to PNG.
 
 ## Task summary
-
-Source: [jito-dev/trainee-designer-apr-2026-test-task](https://github.com/jito-dev/trainee-designer-apr-2026-test-task)
 
 Design a **mobile app for calculating calories**, covering two user stories:
 
