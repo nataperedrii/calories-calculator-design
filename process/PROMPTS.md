@@ -1433,7 +1433,7 @@ Follow-ups: "ok" (budget approved; the number of calls used this month was not g
 > Here is the video link: https://drive.google.com/file/d/1ov82G6kLm89NLmzvmS3fhac74GmNG4dl/view
 > Also please remove the links to the task, for example in README.md:
 >
-> <<<This is my submission for the trainee designer test task ([redacted])>>>
+> <<<This is my submission for the [redacted] test task ([redacted])>>>
 >
 > so that it works as a presentation of my project that I can send to anyone, not only to whoever set the task.
 
@@ -1442,7 +1442,7 @@ Follow-ups: "ok" (budget approved; the number of calls used this month was not g
 - **Video:** the Google Drive link replaces the placeholders in README.md (links table), LINKS.md and the landing page, where a "Watch the video on Google Drive" button (the design system's secondary button) replaces "Coming soon". The link opens without signing in (Drive shows the file name, not a sign-in page). The "Record the video" next step is removed from README.
 - **Neutral wording:**
   - removed the task link and the company name from README.md (intro), LINKS.md (the Task row) and CLAUDE.md (Source line);
-  - "design test task" and "Trainee designer" became "design project" on the landing page (title and subtitle), and in LINKS.md, CLAUDE.md, research.md, PLAN-AUDIT.md and package.json;
+  - "design test task" and the role name became "design project" on the landing page (title and subtitle), and in LINKS.md, CLAUDE.md, research.md, PLAN-AUDIT.md and package.json;
   - in PROMPTS.md, the task link (step 01) and the company and role names (step 24) are masked as `[redacted]`; README now lists "third-party company names" among the masked details.
 - **Not changed:** the caption "design test task" on the brand-directions board (`01-branding/directions.html` and its PNG export). It has no company name or link, and changing it would mean re-exporting the board.
 - **Checks:**
